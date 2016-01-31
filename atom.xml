@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[my soul my beats]]></title>
+  <subtitle><![CDATA[One needs 3 things to be truly happy living in the world, some thing to do, some one to love, some thing to hope for.]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://mzeht.com/"/>
+  <updated>2016-01-31T10:25:38.000Z</updated>
+  <id>http://mzeht.com/</id>
+  
+  <author>
+    <name><![CDATA[mzeht]]></name>
+    <email><![CDATA[mzeht@outlook.com]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[SwipeRefreshLayoutBasic]]></title>
+    <link href="http://mzeht.com/2016/01/31/SwipeRefreshLayoutBasic/"/>
+    <id>http://mzeht.com/2016/01/31/SwipeRefreshLayoutBasic/</id>
+    <published>2016-01-31T10:25:38.000Z</published>
+    <updated>2016-01-31T10:25:38.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://mzeht.com/2015/04/20/hello-world/"/>
+    <id>http://mzeht.com/2015/04/20/hello-world/</id>
+    <published>2015-04-19T17:05:05.000Z</published>
+    <updated>2015-04-19T17:05:05.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="86" src="http://music.163.com/outchain/player?type=2&id=27671003&auto=0&height=66"></iframe>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Start using the Macpro]]></title>
+    <link href="http://mzeht.com/2015/04/20/Start-using-the-Macpro/"/>
+    <id>http://mzeht.com/2015/04/20/Start-using-the-Macpro/</id>
+    <published>2015-04-19T16:44:27.000Z</published>
+    <updated>2015-04-19T18:12:06.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Mac_Pro_840">Mac Pro 840</h2><p>最近用上了传说中的程序员神器Mac pro，从开封的时候开始就开始爱不释手了，整体做工浑然一体，可谓是一件完美的艺术品，用上了Mac，其他的本本真是一点碰的欲望都没有。视网膜屏幕让人眼前一亮，可以明显感觉到和window显示屏的区别，对眼睛更友好，打开网页感觉都是棒棒的。最大的区别是运行程序和开关机的速度有了极大的提升，8g内存，配合闪存硬盘，一秒开关机，妈妈再也不担心程序无响应了。</p>
+<h3 id="命令行工具">命令行工具</h3><p>Mac自带的bash极为方便，界面也十分简洁，对于前端开发的一些工具往往可以直接安装，配置比windows上简单不少，当然也有不便之处，无法在文件目录下直接右键调用出命令行工具设置路径，每次调用都要从用户目录先一步一步CD。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wpMacdeMacBook-Pro:hexo-blog2 wpmac$ ls</span><br><span class="line">_config.yml	node_modules	public		<span class="built_in">source</span></span><br><span class="line">db.json		package.json	scaffolds	themes</span><br><span class="line">wpMacdeMacBook-Pro:hexo-blog2 wpmac$ hexo new <span class="string">"Start using the Macpro"</span></span><br><span class="line">&#123; [Error: Cannot find module <span class="string">'./build/Release/DTraceProviderBindings'</span>] code: <span class="string">'MODULE_NOT_FOUND'</span> &#125;</span><br><span class="line">&#123; [Error: Cannot find module <span class="string">'./build/default/DTraceProviderBindings'</span>] code: <span class="string">'MODULE_NOT_FOUND'</span> &#125;</span><br><span class="line">&#123; [Error: Cannot find module <span class="string">'./build/Debug/DTraceProviderBindings'</span>] code: <span class="string">'MODULE_NOT_FOUND'</span> &#125;</span><br><span class="line">INFO  Created: ~/Documents/hexo-blog2/<span class="built_in">source</span>/_posts/Start-using-the-Macpro.md</span><br><span class="line">wpMacdeMacBook-Pro:hexo-blog2 wpmac$</span><br></pre></td></tr></table></figure>
+<h3 id="文件管理">文件管理</h3><p>Mac下的文件管理比较让人省心，（一个盘符），没有windows下盘符的概念，而且Mac系统运行产生的垃圾文件很少，甚至不用去清理！。反观windows，用了一年几乎就要重装系统了，电脑连续使用时间还不能过长，同是操作系统，差距真的太大了。</p>
+<h3 id="软件安装卸载">软件安装卸载</h3><p>Mac下的软件安装十分绿色，下载dmg文件后，拖拽.app文件到应用程序文件夹即可，windows下还要有烦人的注册表，有时需要手工管理，卸载软件同理。</p>
+<h3 id="推荐软件">推荐软件</h3><p>Mac下有许多优秀的开发者软件可以使用。</p>
+<p>1.开发iOS的xcode，没什么好说的，就是好用，就是快速。</p>
+<p>2.android最新开发工具Android studio,代码提示非常智能，稍微改动啦文件目录，有eclipse的使用经验能很快上手，快捷键也有内置的eclipse习惯的配置，对于界面XML文件的预览支持支持度很高，一改eclipse下形态虚设的预览功能的窘境，andriod模拟器的启动速度也有所提高，但是似乎第三方的模拟器更好，强烈推荐genymotion。关于android studio的优点有时间再另写一篇。</p>
+<p>3.用开发文档专业户Dash，集合了众多开发语言的说明文档，当然全英文，英语还是要学好啊。</p>
+<p>4.内置的邮件管理很好用，在系统偏好中添加你的互联网账号即可使用。</p>
+<p>5.内置的浏览器safri很优秀，但是无奈苹果不支持flash，（flash的问题，长时间观看Mac内存占用太高，温度会起来）无法观看应用flash的网站，有些可以通过代理转化成html5页面来观看。国内的html5应用不广泛，看会儿视频温度刷刷的。chorme也是很好用的，就是老毛病，内存占用高。<br>随着html5的发展，Mac上看视频的体验应该越来越好。发热并不是Mac的错，而是世界（尤其是中国）没有跟上html5的脚步，哈哈哈。突然就变成了html5粉。</p>
+<p>6.如果你需要笔记来记录你的学习，整理资料，那么印象笔记是很好的选择，多平台的app加速网页插件和在线编辑，绝对能满足你的需要。</p>
+<p>7.翻墙工具，shasdowsocks，一个Github上的开源项目，有免费账号和付费版。不同于VPN的断开连接，可以设置自动代理模式，国内网络不翻墙，国外站点过代理，不用来回切换，也较为稳定。</p>
+<p>….相信还有很多好用的软件我没有发现，未完待续。</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="40" src="http://music.163.com/outchain/player?type=2&id=28809116&auto=0&height=86"></iframe>
+
+
+
+
+
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Mac_Pro_840">Mac Pro 840</h2><p>最近用上了传说中的程序员神器Mac pro，从开封的时候开始就开始爱不释手了，整体做工浑然一体，可谓是一件完美的艺术品，用上了Mac，其他的本本真是一点碰的欲望都没有。视网膜屏幕让人眼前一亮，可以明显]]>
+    </summary>
+    
+      <category term="Mac" scheme="http://mzeht.com/tags/Mac/"/>
+    
+      <category term="Linux/Unix" scheme="http://mzeht.com/categories/Linux-Unix/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[在 Mac OS X 下“绿色”安装 Photoshop]]></title>
+    <link href="http://mzeht.com/2015/04/15/2013-11-01-photoshop/"/>
+    <id>http://mzeht.com/2015/04/15/2013-11-01-photoshop/</id>
+    <published>2015-04-15T14:30:44.000Z</published>
+    <updated>2015-03-30T11:23:22.000Z</updated>
+    <content type="html"><![CDATA[<p>在 Mac OS X 中基本上绝大部分都是“绿色”安装的（包括 iWork、Xcode 这种大型的软件），重装系统或者其它情形下（你懂的）如果需要迁移程序，那是相当地简单方便。基本上是一次性搞定所有的软件。</p>
+<p>但东西总有例外，有几个顽固不化的东西，比如 Photoshop、Office（M$的东西安装体验一贯很尿性）、Parallels Desktop 都没法“绿色安装”。趁着 10.9 重装了一次系统，决心重新理一下软件。对于 Parallels Desktop，实在扛不住一年一升级就要重新购买序列号（去年买了8.0，今年升级到9.0还要重花钱买），决定换 VMWare Fusion；对于 Office，决定不再创建 Office 文档，反正 iWork 也能阅读 Office 文档；但对于 Photoshop，暂时实在无可替代，只好深入研究一番……，终于找到了方案，简述如下：</p>
+<p>一、首次安装</p>
+<ol>
+<li><p>试用方式安装；</p>
+</li>
+<li><p>升级到最新；</p>
+</li>
+<li><p><em>*</em>；</p>
+</li>
+</ol>
+<p>二、“绿色”迁移</p>
+<ol>
+<li><p>拷贝 /Applications/Adobe Photoshop CC；</p>
+</li>
+<li><p>拷贝 /Library/Application Support/Adobe 以及 ~/Library/Application Support/Adobe;</p>
+</li>
+<li><p>运行 PS，提示“Adobe Application Support 文件夹中缺少运行 Photoshop 所需的一个或多个文件。请运行 Photoshop 安装程序，并重新安装 Photoshop。”，网上非常多人反映此问题，但没有解决方案。突然转念一想，换成英文关键字搜索，发现 <a href="http://helpx.adobe.com/photoshop/kb/error-one-or-files-application.html" target="_blank" rel="external">Adobe 官网有篇文章</a>，内容比较长，说白了就是还要拷贝 /Library/ScriptingAdditions/Adobe Unit Types.osax</p>
+</li>
+<li><p>再次运行，一切搞定收工。</p>
+</li>
+</ol>
+<p>终于全部软件都是“绿色”啦……</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在 Mac OS X 中基本上绝大部分都是“绿色”安装的（包括 iWork、Xcode 这种大型的软件），重装系统或者其它情形下（你懂的）如果需要迁移程序，那是相当地简单方便。基本上是一次性搞定所有的软件。</p>
+<p>但东西总有例外，有几个顽固不化的东西，比如 Phot]]>
+    </summary>
+    
+      <category term="折腾" scheme="http://mzeht.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[markdown 语法]]></title>
+    <link href="http://mzeht.com/2015/03/10/2015-03-10-markdown/"/>
+    <id>http://mzeht.com/2015/03/10/2015-03-10-markdown/</id>
+    <published>2015-03-09T16:00:00.000Z</published>
+    <updated>2015-04-01T16:09:54.000Z</updated>
+    <content type="html"><![CDATA[<p>Markdown是一种转化文本的轻量级工具，兼顾可读性和易用性。</p>
+<h1 id="1-_标题">1. 标题</h1><p>代码：</p>
+<pre><code><span class="preprocessor"># Title1</span>
+<span class="preprocessor">## Title2</span>
+<span class="preprocessor">### Title3</span>
+<span class="preprocessor">#### Title4</span>
+<span class="preprocessor">##### Title5</span>
+<span class="preprocessor">###### Title6</span>
+</code></pre><p>效果：</p>
+<h1 id="Title1">Title1</h1><h2 id="Title2">Title2</h2><h3 id="Title3">Title3</h3><h4 id="Title4">Title4</h4><h5 id="Title5">Title5</h5><h6 id="Title6">Title6</h6><h1 id="2-_引用">2. 引用</h1><p>代码：</p>
+<pre><code><span class="blockquote">&gt; Reference1</span>
+<span class="blockquote">&gt; &gt; Reference2</span>
+<span class="blockquote">&gt; &gt; &gt; Reference3</span>
+</code></pre><p>效果：</p>
+<blockquote>
+<p>Reference1</p>
+<blockquote>
+<p>Reference2</p>
+<blockquote>
+<p>Reference3</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="3-_列表">3. 列表</h1><p>代码：</p>
+<pre><code><span class="bullet">+ </span>Row1
+<span class="bullet">- </span>Row2
+<span class="bullet">* </span>Row3
+<span class="bullet">1. </span>Row4
+<span class="bullet">2. </span>Row5
+</code></pre><p>效果：</p>
+<ul>
+<li>Row1</li>
+</ul>
+<ul>
+<li>Row2</li>
+</ul>
+<ul>
+<li>Row3</li>
+</ul>
+<ol>
+<li>Row4</li>
+<li>Row5</li>
+</ol>
+<h1 id="4-_代码">4. 代码</h1><p>代码：</p>
+<pre><code><span class="escape">`C</span>ode1<span class="escape">`
+</span>
+    Code2
+</code></pre><p>效果：</p>
+<p><code>Code1</code></p>
+<pre><code>Code2
+</code></pre><h1 id="5-_链接与图片">5. 链接与图片</h1><p>代码：</p>
+<pre><code>[<span class="link_label">WeiPhone</span>](<span class="link_url">http://bbs.weiphone.com "威锋网"</span>)
+
+[<span class="link_label">WPER</span>][<span class="link_reference">ref</span>]
+[<span class="link_reference">ref</span>]:<span class="link_url"> http://bbs.wper.com (威智网)</span>
+
+![<span class="link_label">WeiPhone</span>](<span class="link_url">http://bbsimages.weiphone.com/images/weiphone/logo.png "威锋论坛"</span>)
+
+![<span class="link_label">WPER</span>][<span class="link_reference">pic</span>]
+[<span class="link_reference">pic</span>]:<span class="link_url"> http://bbs.wper.com/static/image/wper/logo.png "威智网"</span>
+
+<span class="xml"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"http://bbsimages.weiphone.com/images/weiphone/logo.png"</span> <span class="attribute">alt</span>=<span class="value">"BBS"</span> <span class="attribute">title</span>=<span class="value">"威锋网"</span> <span class="attribute">width</span>=<span class="value">"200"</span>/ &gt;</span></span>
+</code></pre><p>效果：</p>
+<p><a href="http://bbs.weiphone.com" title="威锋网" target="_blank" rel="external">WeiPhone</a></p>
+<p><a href="http://bbs.wper.com" title="锋科技" target="_blank" rel="external">WPER</a></p>
+<p><img src="http://bbsimages.weiphone.com/images/weiphone/logo.png" alt="WeiPhone" title="威锋论坛"></p>
+<p><img src="http://bbs.wper.com/static/image/wper/logo.png" alt="WPER" title="威智网"></p>
+<p><img src="http://bbsimages.weiphone.com/images/weiphone/logo.png" alt="WeiPhone" title="威锋网" width="200"></p>
+<h1 id="6-_强调">6. 强调</h1><p>代码：</p>
+<pre><code><span class="keyword">*</span>MarkDown<span class="keyword">*</span>
+_MarkDown_
+<span class="keyword">*</span><span class="keyword">*</span>MarkDown<span class="keyword">*</span><span class="keyword">*</span>
+__MarkDown__
+</code></pre><p>效果：</p>
+<p><em>MarkDown</em><br><em>MarkDown</em><br><strong>MarkDown</strong><br><strong>MarkDown</strong></p>
+<h1 id="7-_转义字符">7. 转义字符</h1><p>代码：</p>
+<pre><code><span class="string">\\</span> <span class="string">\`</span> <span class="string">\*</span> <span class="string">\_</span> <span class="string">\{</span> <span class="string">\}</span> <span class="string">\[</span> <span class="string">\]</span> <span class="string">\(</span> <span class="string">\)</span> <span class="string">\#</span> <span class="string">\+</span> <span class="string">\-</span> <span class="string">\.</span> <span class="string">\!</span>
+</code></pre><p>效果：</p>
+<p>\ ` * _ { } [ ] ( ) # + - . !</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Markdown是一种转化文本的轻量级工具，兼顾可读性和易用性。</p>
+<h1 id="1-_标题">1. 标题</h1><p>代码：</p>
+<pre><code><span class="preprocessor"># Title1</span>
+<span clas]]>
+    </summary>
+    
+      <category term="markdown" scheme="http://mzeht.com/tags/markdown/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[LibAhead for iOS - 在未越狱设备上修改三方APP的功能]]></title>
+    <link href="http://mzeht.com/2015/01/31/2015-01-31-libahead/"/>
+    <id>http://mzeht.com/2015/01/31/2015-01-31-libahead/</id>
+    <published>2015-01-30T19:46:31.000Z</published>
+    <updated>2015-04-01T15:59:42.000Z</updated>
+    <content type="html"><![CDATA[<p>折腾了两个晚上，已搞定在未越狱 iOS 上向第三方 APP 注入 dylib 模块的方案！</p>
+<p>通过这个方案，使“微信去广告显IP删弧宠 for iOS ”成为可能（戏谑，但实现起来确实将比 Win32 下简单容易很多）。目前已实测在微信 iPhone 版中添加代码，强制开启“羊年春晚摇一摇”功能，不仅可以抢先体验提前穿越，还能随意控制原本随机摇出的各种功能（剧透：过年的时候微信摇一摇会有：新春红包、上传全家福到春晚、明信片、明星拜年、播放音乐、“甜蜜时光”、啥也没摇到、春晚节目单等功能：）。</p>
+<p>思路和十多年前的 AheadLib for Win32 创意方案一样。决定和 AheadLib 一样，做个自动化生成代码的工具，名字都想好了，LibAhead for iOS。宇宙依然，但青年不再，所以拖拖拉拉是难免的，哈</p>
+<p>针对特定 APP 写的 CydiaSubstrate dylib 模块，稍加处理即可集成到第三方 APP 里，并运行于未越狱的设备中。各种系统权限突破之类的还是老实点——干不了的；因为涉及修改 IPA 包，重新签名也是必须的。</p>
+<p>后续再把细节和工具慢慢补上……</p>
+<p>AppStore 之外（如蒲公英、同步推、快用、PP助手等）下载的 APP 都可能不是安全的——即使是未越狱的手机，基于以上功能完全可以在官方 APP 基础上做各种拦截和功能扩展。</p>
+<p>2015.02.06 更新：扯淡了，根本不需要转发，直接修改 Mach-O Load Command 表，插入 dylib 然后重新签名即可搞定一切，自动化工具已完成，未广泛测试：<a href="https://github.com/Yonsm/iPAFine" target="_blank" rel="external">https://github.com/Yonsm/iPAFine</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>折腾了两个晚上，已搞定在未越狱 iOS 上向第三方 APP 注入 dylib 模块的方案！</p>
+<p>通过这个方案，使“微信去广告显IP删弧宠 for iOS ”成为可能（戏谑，但实现起来确实将比 Win32 下简单容易很多）。目前已实测在微信 iPhone 版中添加代]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://mzeht.com/tags/iOS/"/>
+    
+      <category term="破解" scheme="http://mzeht.com/tags/%E7%A0%B4%E8%A7%A3/"/>
+    
+      <category term="逆向工程" scheme="http://mzeht.com/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[分析 Substrate 的 THUMB 函数 Hook 实现细节]]></title>
+    <link href="http://mzeht.com/2014/07/12/2014-07-12-armhook/"/>
+    <id>http://mzeht.com/2014/07/12/2014-07-12-armhook/</id>
+    <published>2014-07-11T16:14:31.000Z</published>
+    <updated>2015-04-01T15:59:36.000Z</updated>
+    <content type="html"><![CDATA[<p>ARM 架构的 CPU 有 ARM 和 THUMB 执行态。</p>
+<h4 id="1-_先说_ARM_态（被Hook的函数）到_ARM_态（自己的替换函数）的_HOOK">1. 先说 ARM 态（被Hook的函数）到 ARM 态（自己的替换函数）的 HOOK</h4><p>  非常简单，没有看过 Substrate 的时候我就想到并验证过了（8 个字节）：</p>
+<pre><code>LDR PC, [PC， <span class="preprocessor">#-4]</span>
+replacedFunctionAddress  ; 目标绝对地址（ARM 态的，偶数）
+</code></pre><h4 id="2-_ARM_态到_THUMB_态的_HOOK">2. ARM 态到 THUMB 态的 HOOK</h4><p>  和上面应该应该类似，只是   变成 replacedFunctionAddress + 1，转跳后自动切换到 THUMB 态。</p>
+<pre><code>未验证（X！）
+</code></pre><h4 id="3-_THUMB_到_THUMB_态的_HOOK">3. THUMB 到 THUMB 态的 HOOK</h4><p>  难理解的来了，经过实际测试发现<strong>下面的代码可以 HOOK 任意的函数（包括未导出的私有函数）</strong>（注意，hookedFunctionAddress 如果是 THUMB 的，则需要 + 1——MD，在这栽了好长一段时间，感谢曾半仙）</p>
+<pre><code>_MSHookFunction(hookedFunctionAddress + 1, (void <span class="keyword">*</span>)replacedFunctionAddress, (void <span class="keyword">*</span><span class="keyword">*</span>)&amp;pOriginalFunction); 
+</code></pre><p>  用以上 Substrate 的方法实现 THUMB 到 THUMB 的 HOOK 之后，我用 GDB 查看了一下内存，总共修改了12个字节，如下：</p>
+<pre><code>(gdb) x/3xw _mh_execute_header+<span class="number">0x1073E0</span>
+<span class="number">0x15e3e0</span> &lt;_mh_execute_header+<span class="number">1078240</span>&gt;:    <span class="number">0x46c04778</span>    <span class="number">0xe51ff004</span>    <span class="number">0x0029b6b9</span>  
+</code></pre><p>  反汇编代码（注意 THUMB 模式的 disas 地址要 +1 变成奇数）：</p>
+<pre><code>(gdb) disas _mh_execute_header+<span class="number">0x1073E1</span> _mh_execute_header+<span class="number">0x1073EC</span>
+Dump of assembler code from <span class="number">0x15e3e1</span> to <span class="number">0x15e3ec</span>:
+<span class="number">0x0015e3e1</span> &lt;_mh_execute_header+<span class="number">1078241</span>&gt;:    <span class="number">bx</span>    pc
+<span class="number">0x0015e3e3</span> &lt;_mh_execute_header+<span class="number">1078243</span>&gt;:    <span class="keyword">nop</span>            (<span class="keyword">mov</span> <span class="literal">r8</span>, <span class="literal">r8</span>) 
+<span class="number">0x0015e3e5</span> &lt;_mh_execute_header+<span class="number">1078245</span>&gt;:    blx    <span class="number">0x562e24</span> <span class="comment">; 请忽略</span>
+<span class="number">0x0015e3e9</span> &lt;_mh_execute_header+<span class="number">1078249</span>&gt;:    undefined <span class="comment">; 请忽略</span>
+<span class="number">0x0015e3eb</span> &lt;_mh_execute_header+<span class="number">1078251</span>&gt;:    lsls    <span class="literal">r1</span>, <span class="literal">r5</span>, #<span class="number">0</span> <span class="comment">; 请忽略</span>
+</code></pre><p>  第一条指令（C0 46）就是 THUMB 的 BX PC，第二条指令是 78 47 是 THUMB 的 NOP。后面的指令因为实际上是 BX 成 ARM 态了，所以请忽略。</p>
+<p>  BX PC 后实际上是转跳到了 ARM 态的 0x0015e3e4 地址，继续反汇编如下：</p>
+<pre><code>(gdb) disas _mh_execute_header+<span class="number">0x1073E4</span> _mh_execute_header+<span class="number">0x1073EC</span>
+Dump of assembler code from <span class="number">0x15e3e4</span> to <span class="number">0x15e3ec</span>:
+<span class="number">0x0015e3e4</span> &lt;_mh_execute_header+<span class="number">1078244</span>&gt;:    ldr    pc, [pc, #-<span class="number">4</span>]    <span class="comment">; 0x15e3e8 &lt;_mh_execute_header+1078248&gt;</span>
+<span class="number">0x0015e3e8</span> &lt;_mh_execute_header+<span class="number">1078248</span>&gt;:    strheq    <span class="literal">r11</span>, [<span class="literal">r9</span>], -<span class="literal">r9</span> <span class="comment">; 这个就是和 replacedFunctionAddress + 1 了</span>
+</code></pre><p>  可以看到从 0x0015e3e4 这里开始和上面提到的第一种情况（从ARM到THUMB）一样了。</p>
+<p>  补充：感谢 riusksk 做了一个直观图解，非常容易看明白：</p>
+<p>  <img src="/assets/ThumbHook.png" alt=""></p>
+<h4 id="4-_从_THUMB_到_ARM">4. 从 THUMB 到 ARM</h4><pre><code>你猜~~
+</code></pre><h4 id="关于转跳">关于转跳</h4><pre><code><span class="bullet">* </span>如果操作数类型是imm, 那就是互换状态. ARM下到thumb, thumb下调用就到ARM；
+<span class="bullet">* </span>如果操作数是寄存器 根据低位地址，奇数为 THUMB，偶数为 ARM。
+</code></pre><p>知道了上述 HOOK 方法，再构造一个 pOriginalFunction，结合 Inject Dylib 的方法，就可以自己实现 Substrate 的完整功能了。</p>
+<p>（上面仅 3 是对 Substate 的 Hook 分析，其它是我 YY 的，不确定 Substrate 也是这样的实现，有兴趣的话可以自己反汇编/反编译 Substrate 去看实现细节）</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>ARM 架构的 CPU 有 ARM 和 THUMB 执行态。</p>
+<h4 id="1-_先说_ARM_态（被Hook的函数）到_ARM_态（自己的替换函数）的_HOOK">1. 先说 ARM 态（被Hook的函数）到 ARM 态（自己的替换函数）的 HOOK</h4><]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://mzeht.com/tags/iOS/"/>
+    
+      <category term="逆向工程" scheme="http://mzeht.com/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Re-Symbolicate iOS Crash Report]]></title>
+    <link href="http://mzeht.com/2014/06/24/2014-06-24-resymbolicate/"/>
+    <id>http://mzeht.com/2014/06/24/2014-06-24-resymbolicate/</id>
+    <published>2014-06-24T09:31:42.000Z</published>
+    <updated>2015-04-01T15:59:28.000Z</updated>
+    <content type="html"><![CDATA[<p>Xcode Organizer 连接手机看 Device Logs 的时候，有个 Re-Symbolicate 功能可以根据地址反查 Call Stack 中系统模块（如UIKit、CoreFoundation等）的符号信息。</p>
+<p>如果收到的是第三者设备提供过来的Crash Log，则无法使用该功能。使用以下命令可以实现同样的目的：</p>
+<pre><code>export DEVELOPER_DIR=<span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>Developer
+<span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>Developer<span class="regexp">/Platforms/i</span>PhoneOS.platform<span class="regexp">/Developer/</span>Library<span class="regexp">/PrivateFrameworks/</span>DTDeviceKitBase.framework<span class="regexp">/Versions/</span>A<span class="regexp">/Resources/</span>symbolicatecrash -v ~<span class="regexp">/CrashLog.crash</span>
+</code></pre><p>上面提到的是反查系统模块的符号，下面这个则是根据崩溃地址和dSYM来反查自己程序模块中的符号：</p>
+<pre><code>dwarfdump --<span class="keyword">lookup</span> 0x00002712 -<span class="keyword">arch</span> armv7 CrashTesting.<span class="keyword">app</span>.dSYM/
+</code></pre><p>一旦从地址中反查到了符号，将非常有助于分析Crash的原因。</p>
+<p>(2014.11.22 验证)</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Xcode Organizer 连接手机看 Device Logs 的时候，有个 Re-Symbolicate 功能可以根据地址反查 Call Stack 中系统模块（如UIKit、CoreFoundation等）的符号信息。</p>
+<p>如果收到的是第三者设备提供过来的]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://mzeht.com/tags/iOS/"/>
+    
+      <category term="编程" scheme="http://mzeht.com/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[GitHub 页面]]></title>
+    <link href="http://mzeht.com/2014/05/18/2014-05-18-github/"/>
+    <id>http://mzeht.com/2014/05/18/2014-05-18-github/</id>
+    <published>2014-05-18T15:08:31.000Z</published>
+    <updated>2015-03-30T11:23:22.000Z</updated>
+    <content type="html"><![CDATA[<p>稍微整理了一下<a href="https://github.com/Yonsm?tab=repositories" target="_blank" rel="external">我的 GitHub 页面</a>，部分代码会持续维护。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>稍微整理了一下<a href="https://github.com/Yonsm?tab=repositories" target="_blank" rel="external">我的 GitHub 页面</a>，部分代码会持续维护。</p>
+]]>
+    </summary>
+    
+      <category term="分享" scheme="http://mzeht.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="代码" scheme="http://mzeht.com/categories/%E4%BB%A3%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Camo - Xcode 反逆向工程分析的混淆方案]]></title>
+    <link href="http://mzeht.com/2014/02/27/2014-02-27-camo/"/>
+    <id>http://mzeht.com/2014/02/27/2014-02-27-camo/</id>
+    <published>2014-02-27T14:08:31.000Z</published>
+    <updated>2015-04-01T15:59:16.000Z</updated>
+    <content type="html"><![CDATA[<p>逆向工程分析的三大线索是：字符串、导入表、函数名。我捣鼓了一个自己的方案，以加大 iOS/OSX 程序的逆向分析难度：</p>
+<ol>
+<li><p>Camo 程序中搜索源代码目录，找出所有 Object 类名、方法名、属性名的符号，排除掉xcode iPhone SDK 中的符号（也是自动搜索获取），再排除掉导出的和第三方依赖的符号（都是根据参数自动获取）。然后把这些名称全部#define 一下成为随机的名称，写到一个.h中；</p>
+</li>
+<li><p>在 Prefix.pch 的最前面#import这个自动生成的.h。去掉这个.h一样可以编译，加上.h就是混淆名称，没有任何副作用。</p>
+</li>
+</ol>
+<p>PS：Generate Debug Symbol一定要去掉（Xcode默认创建的project，即使是Release[Archive/Profile]编译也启用了Generate Debug Symbol的），去掉之后“等同于源代码”的问题可以有很大的改观。</p>
+<p>期望以后Camo还支持一个另外的两个特性：加密所有的字符串，所有的函数调用（全部使用dlsym来动态获取）。这样编译出来的二进制文件几乎自己都认不出来了。</p>
+<p>完整的混淆方案，后面再整理 Check List。</p>
+<p>2014.07.30 补充：</p>
+<p>终于出成品了，参看：<a href="https://github.com/Yonsm/Camo" target="_blank" rel="external">https://github.com/Yonsm/Camo</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>逆向工程分析的三大线索是：字符串、导入表、函数名。我捣鼓了一个自己的方案，以加大 iOS/OSX 程序的逆向分析难度：</p>
+<ol>
+<li><p>Camo 程序中搜索源代码目录，找出所有 Object 类名、方法名、属性名的符号，排除掉xcode iPhone SDK]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://mzeht.com/tags/iOS/"/>
+    
+      <category term="逆向工程" scheme="http://mzeht.com/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[另类思维实现 Mac OS X 下的 mount bind]]></title>
+    <link href="http://mzeht.com/2014/02/26/2014-02-26-mountbind/"/>
+    <id>http://mzeht.com/2014/02/26/2014-02-26-mountbind/</id>
+    <published>2014-02-26T11:50:17.000Z</published>
+    <updated>2015-04-01T15:59:10.000Z</updated>
+    <content type="html"><![CDATA[<p>*nix 下的 mount 基本上都支持 -o bind 来绑定另外一个目录到特定目录中。但 Mac OS X 的 mount 确不支持此功能，有时候这个“特性”非常让人郁闷——比如，百度网盘的脑残设计，强制设定只能同步到一个叫“百度云同步盘”的目录中，ln -s 创建的外部链接目录都不支持（需求场景，SSD小硬盘，某个存放大姐姐们的目录在NAS或移动硬盘上，但是想跟百通网盘同步）。</p>
+<p>几经尝试，终于找到一个曲线实现的方法：用 mount_afp 来模拟 mount -o 的功能：</p>
+<p>如果是本地移动硬盘，先确保该目录已共享，然后执行 </p>
+<pre><code><span class="title">mount_afp</span> <span class="url">afp://user:pass<span class="variable">@localhost</span>/Movies</span> ~/百度云同步盘/Movies
+</code></pre><p>搞定了。</p>
+<p>后话：我扯淡了，半夜才想起来，以前创建 RAMDISK 的时候用的 mount -t hfs -o union <strong><em> </em></strong> 就可以实现这种功能……</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>*nix 下的 mount 基本上都支持 -o bind 来绑定另外一个目录到特定目录中。但 Mac OS X 的 mount 确不支持此功能，有时候这个“特性”非常让人郁闷——比如，百度网盘的脑残设计，强制设定只能同步到一个叫“百度云同步盘”的目录中，ln -s 创建的外]]>
+    </summary>
+    
+      <category term="Mac" scheme="http://mzeht.com/tags/Mac/"/>
+    
+      <category term="分享" scheme="http://mzeht.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[在iOS上深度追踪HTTP/UIWebView/openURL/SSL的方法和插件]]></title>
+    <link href="http://mzeht.com/2014/02/21/2014-02-21-httpeek/"/>
+    <id>http://mzeht.com/2014/02/21/2014-02-21-httpeek/</id>
+    <published>2014-02-21T14:50:17.000Z</published>
+    <updated>2015-04-01T16:02:40.000Z</updated>
+    <content type="html"><![CDATA[<p>HTTP 请求 Sniffer 很多工具可以做，至于 HTTPS 则使用 Charles 做中间人攻击也可以拿到全部 HTTPS 请求的细节，并且不限定于 iOS（具体方法这里就不说了，不是本文重点）。</p>
+<p>但是，这些协议层的分析往往只能分析协议细节，想要深度追踪 HTTP/HTTPS/UIWebView 数据的生成细节的话，很多时候还是无能为力的。此时我们需要定位到数据生成的进程、模块、调用堆栈，进而找到相关代码继续做逆向工程分析——HttPeek 插件就是这样用途的插件，用法：</p>
+<ol>
+<li><p>在已越狱的系统中安装 Cydia Substrate；</p>
+</li>
+<li><p>把 HttPeek.dylib <a href="https://github.com/Yonsm/HttPeek/raw/master/Release/HttPeek.dylib" target="_blank" rel="external">点此下载</a> 放到 Cydia Substrate 的插件目录中（/Library/MobileSubstrate/DynamicLibraries），并重启设备或相关进程；</p>
+</li>
+<li><p>操作重现，确保你期望监听的 HTTP/HTTPS/UIWebView/SSL 请求已发生；</p>
+</li>
+<li><p>在 /tmp/%进程名称%.req 目录中获取改进程所有的 HTTP/HTTP/UIWebView/SSL 请求细节的日志，比如：</p>
+<pre><code><span class="xml">FROM /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore(0x3990e000)-<span class="tag">&lt;<span class="title">redacted</span>&gt;</span>(0x399183e1=&gt;0x0093e1)
+<span class="tag">&lt;<span class="title">(</span>
+    <span class="attribute">0</span>   <span class="attribute">HttPeek.dylib</span>                       <span class="attribute">0x0199fcb1</span> <span class="attribute">_Z10LogRequestP12NSURLRequestPv</span> + <span class="attribute">496</span>
+    <span class="attribute">1</span>   <span class="attribute">HttPeek.dylib</span>                       <span class="attribute">0x019a03cb</span> <span class="attribute">_Z22</span>$<span class="attribute">NSURLConnection_startP11objc_objectP13objc_selector</span> + <span class="attribute">50</span>
+    <span class="attribute">2</span>   <span class="attribute">iTunesStore</span>                         <span class="attribute">0x3991880b</span> &lt;<span class="attribute">redacted</span>&gt;</span> + 1066
+    3   iTunesStore                         0x399183a5 <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 360
+    4   iTunesStore                         0x399148df <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 386
+    5   iTunesStore                         0x3991f78b <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 598
+    6   iTunesStore                         0x3991e421 <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 544
+    7   iTunesStore                         0x399137cd <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 288
+    8   iTunesStore                         0x39912c69 <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 620
+    9   iTunesStore                         0x3991230d <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 276
+    10  iTunesStoreUI                       0x39a636bb <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 354
+    11  iTunesStoreUI                       0x39a63011 <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 164
+    12  iTunesStore                         0x399137cd <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 288
+    13  iTunesStore                         0x39912c69 <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 620
+    14  Foundation                          0x315c07db <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 770
+    15  Foundation                          0x31664995 <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 60
+    16  libdispatch.dylib                   0x3b5bb68f <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 110
+    17  libdispatch.dylib                   0x3b5bcd71 <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 220
+    18  libdispatch.dylib                   0x3b5bcf59 <span class="tag">&lt;<span class="title">redacted</span>&gt;</span> + 56
+    19  libsystem_pthread.dylib             0x3b6f7dbf _pthread_wqthread + 298
+    20  libsystem_pthread.dylib             0x3b6f7c84 start_wqthread + 8
+)&gt;
+POST: https://play.itunes.apple.com/WebObjects/MZPlay.woa/wa/signSapSetup
+</span><span class="expression">{
+    <span class="string">"Accept-Language"</span> = <span class="string">"zh-Hans"</span>;
+    <span class="variable">Cookie</span> = <span class="string">"mzf_odc=ST1; xp_ci=3z22aB6Jz841z576zB2szwxWTgkNv; mzf_in=112351; s_vi=[CS]v1|2983AD4B05010B41-600001338012E27D[CE]; Pod=11; itspod=11; ns-mzf-inst=36-85-80-109-88-8294-112351-11-st11; session-store-id=d79638dc54b6dec6c1116ba8fe8e4d84"</span>;
+    <span class="string">"User-Agent"</span> = <span class="string">"AppStore/2.0 iOS/7.0.4 model/iPhone4,1 (6; dt:73)"</span>;
+    <span class="string">"X-Apple-Client-Versions"</span> = <span class="string">"GameCenter/2.0"</span>;
+    <span class="string">"X-Apple-Connection-Type"</span> = <span class="variable">WiFi</span>;
+    <span class="string">"X-Apple-Partner"</span> = <span class="string">"origin.0"</span>;
+    <span class="string">"X-Apple-Store-Front"</span> = <span class="string">"143465-19,21 t:native"</span>;
+}</span><span class="xml">
+
+<span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>
+<span class="tag">&lt;<span class="title">plist</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">dict</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">key</span>&gt;</span>sign-sap-setup-buffer<span class="tag">&lt;/<span class="title">key</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">data</span>&gt;</span>
+    AgAAANIISnQ/0ZM7Y5AO05eY5ugZbrkHNJoRsyFGn+P03FNKZTQmjN/Ha0pbt9Xkfgjz
+    rrdfL3kxiThvq7duDjJp3GO7OatGg7Iyr7x/RJtClXmAoK2uL0rjxqyN36cgIbmYrP2I
+    ZidsvuCHDj13S77kleOuKkuGFZN3JxIMm0OfJG7sqL/GO+2Upo8k0adRhiMj9asFhCxI
+    LdxM2hcZ30cXKhV+fCRYybJm4UHX33lHAWed+6rty6gMzK+m/QbUWhTR2XCWOrEFs+qM
+    Xq1QULQ3kJGPlVYFHaFoVDXRzfsNLTCsql353InFNdTxMdNTxqt9YqmmT+apJTHUq8xA
+    +C9FOQ6G/u35sTGOZUUPxtjTiauYdfYgBs5ULIjwCQAAADCsp7cq8VDLhfHkRGX0idYF
+    kNxP/T1GaG1V0U9kWE0gT5cFAPe464nMsRgxouM2wwEf4hsJkobd98rw1a4xrOAEtFn1
+    iw==
+    <span class="tag">&lt;/<span class="title">data</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">dict</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">plist</span>&gt;</span></span>
+</code></pre><p>可以看到，Charles 等常规 Sniffer 软件中能看到的发送和接收细节都有，此外还有完整的 CallStack 记录，上例中一看就知道数据是 /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore 这个模块发送的的请求，在 Xcode 的 iOS SDK 中可以找到这个模块，进而继续逆向分析它。</p>
+<p>PS1：HttPeek 还支持 UIWebView Request、UIAplicaiton openURL、SSLRead/SSLWrite、CFReadStreamCreateForHTTPRequest 的监听，同时还支持SSL 认证禁用（以便使用中间人代理来分析 SSL 网络交互）。</p>
+<p>PS2：源代码可获取：<a href="https://github.com/Yonsm/HttPeek" target="_blank" rel="external">https://github.com/Yonsm/HttPeek</a>。</p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>HTTP 请求 Sniffer 很多工具可以做，至于 HTTPS 则使用 Charles 做中间人攻击也可以拿到全部 HTTPS 请求的细节，并且不限定于 iOS（具体方法这里就不说了，不是本文重点）。</p>
+<p>但是，这些协议层的分析往往只能分析协议细节，想要深度追踪]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://mzeht.com/tags/iOS/"/>
+    
+      <category term="分享" scheme="http://mzeht.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="逆向工程" scheme="http://mzeht.com/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[[转载]用C++进行设计模式的解析和实现]]></title>
+    <link href="http://mzeht.com/2014/02/12/2014-02-12-designpattern/"/>
+    <id>http://mzeht.com/2014/02/12/2014-02-12-designpattern/</id>
+    <published>2014-02-12T12:30:17.000Z</published>
+    <updated>2015-04-01T15:58:58.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://c.chinaitlab.com/special/sjms/Index.html" target="_blank" rel="external">用C++设计模式的解析和实现</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://c.chinaitlab.com/special/sjms/Index.html" target="_blank" rel="external">用C++设计模式的解析和实现</a></p>
+]]>
+    </summary>
+    
+      <category term="分享" scheme="http://mzeht.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="网文" scheme="http://mzeht.com/tags/%E7%BD%91%E6%96%87/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用 WPAD 配合 GAE 实现客户端准零配置科学上网]]></title>
+    <link href="http://mzeht.com/2014/01/28/2014-01-28-wpad/"/>
+    <id>http://mzeht.com/2014/01/28/2014-01-28-wpad/</id>
+    <published>2014-01-28T12:30:17.000Z</published>
+    <updated>2015-04-01T15:58:52.000Z</updated>
+    <content type="html"><![CDATA[<p>WPAD 是 Web Proxy Auto Discovery 的缩写，可以看做是是 PAC 的扩展应用。</p>
+<p>简单说来，以前在浏览器中指定 PAC 文件或者地址，WPAD 就是在 DHCP 的时候自动发现 PAC（实际上也可以在 DNS 中发现 PAC，不过推荐 DHCP 中发现）。</p>
+<p>直接说步骤：</p>
+<ol>
+<li><p>首先假定您已经在局域网内配置好 GAE Proxy，且启用了 PAC 文件，这里假设 PAC 是 <a href="http://192.168.1.1:8086/proxy.pac" target="_blank" rel="external">http://192.168.1.1:8086/proxy.pac</a></p>
+</li>
+<li><p>在 DNSMasQ 中配置 WPAD，加入一行：dhcp-option=252,<a href="http://192.168.1.1:8086/proxy.pac" target="_blank" rel="external">http://192.168.1.1:8086/proxy.pac</a></p>
+<p> 服务端 WPAD 配置完毕，简单吧。</p>
+</li>
+<li><p>客户端，请确保客户端是 DHCP 获取 IP 地址的。</p>
+<p> Mac OS X：设置 -&gt; 网络 -&gt; 选定网络（比如以太网或者 Wi-Fi）-&gt; 高级 -&gt; 代理 -&gt; 自动发现代理 -&gt; 勾上</p>
+<p> Windows：Internet Explorer 属性 -&gt; 连接 -&gt; 自动检测设置（此设置可能已经默认开启，也就是说 Windows 系统零配置）</p>
+<p> 万事搞定，之后畅享零配置科学上网吧。</p>
+</li>
+</ol>
+<p>这样好的好处是不言而喻的，服务端配置好后，客户端（Windows、Mac OS X 均可，其它客户端应该也行）只要勾选一个选项，无需做其它额外配置，DHCP 的时候将自动发现，可以实现科学上网。且切换<br>到别的网络后，自动就使用别的网络的代理设置了（或者该网络没有配置代理，则自动直连了）。</p>
+<p>这是我现在为止尝试到的最简单（准零配置）、最方便（支持HTTPS）、最廉价（GAE 免费使用）的方案，什么 VPN、S**Sock、套神马的，不是要钱就是不稳定，也不能长期使用。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>WPAD 是 Web Proxy Auto Discovery 的缩写，可以看做是是 PAC 的扩展应用。</p>
+<p>简单说来，以前在浏览器中指定 PAC 文件或者地址，WPAD 就是在 DHCP 的时候自动发现 PAC（实际上也可以在 DNS 中发现 PAC，不过推荐]]>
+    </summary>
+    
+      <category term="分享" scheme="http://mzeht.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="折腾" scheme="http://mzeht.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[运行期修改 iOS 进程中的指令或数据]]></title>
+    <link href="http://mzeht.com/2014/01/20/2014-01-20-fakecode/"/>
+    <id>http://mzeht.com/2014/01/20/2014-01-20-fakecode/</id>
+    <published>2014-01-20T13:33:17.000Z</published>
+    <updated>2015-04-01T15:58:46.000Z</updated>
+    <content type="html"><![CDATA[<p>做个 mobile substrate 插件，然后用下面的方法在运行时修改指令或者数据，需要做 memory patch 外挂内挂倒挂什么的，直接看代码了：</p>
+<p>//<br>extern “C” kern_return_t mach_vm_region<br>(<br> vm_map_t target_task,<br> vm_address_t <em>address,<br> vm_size_t </em>size,<br> vm_region_flavor_t flavor,<br> vm_region_info_t info,<br> mach_msg_type_number_t <em>infoCnt,<br> mach_port_t </em>object_name<br> );</p>
+<p>//<br>template <typename type=""> NS_INLINE bool FakeCode(TYPE *addr, TYPE code)<br>{<br>    mach_port_t task;<br>    vm_size_t region_size = 0;<br>    vm_address_t region = (vm_address_t)addr;</typename></p>
+<pre><code>/<span class="keyword">*</span> Get region boundaries <span class="keyword">*</span>/
+</code></pre><h1 id="if_defined(MAC64)_||_defined(_LP64)">if defined(<em>MAC64) || defined(<em>_LP64</em></em>)</h1><pre><code><span class="title">vm_region_basic_info_data_64_t</span> <span class="built_in">info</span>;
+<span class="title">mach_msg_type_number_t</span> info_count = VM_REGION_BASIC_INFO_COUNT_64;
+<span class="title">vm_region_flavor_t</span> flavor = VM_REGION_BASIC_INFO_64;
+<span class="title">if</span> (mach_vm_region(mach_task_self(), &amp;region, &amp;region_size, flavor, (vm_region_info_t)&amp;<span class="built_in">info</span>, (mach_msg_type_number_t*)&amp;info_count, (mach_port_t*)&amp;task) != KERN_SUCCESS)
+{
+    <span class="title">return</span> <span class="built_in">false</span>;
+}
+</code></pre><h1 id="else">else</h1><pre><code><span class="title">vm_region_basic_info_data_t</span> <span class="built_in">info</span>;
+<span class="title">mach_msg_type_number_t</span> info_count = VM_REGION_BASIC_INFO_COUNT;
+<span class="title">vm_region_flavor_t</span> flavor = VM_REGION_BASIC_INFO;
+<span class="title">if</span> (vm_region(mach_task_self(), &amp;region, &amp;region_size, flavor, (vm_region_info_t)&amp;<span class="built_in">info</span>, (mach_msg_type_number_t*)&amp;info_count, (mach_port_t*)&amp;task) != KERN_SUCCESS)
+{
+    <span class="title">return</span> <span class="built_in">false</span>;
+}
+</code></pre><h1 id="endif">endif</h1><pre><code>/* Change memory protections <span class="keyword">to</span> rw- */
+<span class="keyword">if</span> (vm_protect(mach_task_self(), region, region_size, <span class="constant">false</span>, VM_PROT_READ | VM_PROT_WRITE | VM_PROT_COPY) != KERN_SUCCESS)
+{
+    _LineLog();
+<span class="command">    return</span> <span class="constant">false</span>;
+}
+
+/* Actually perform <span class="keyword">the</span> <span class="command">write</span> */
+*addr = code;
+
+/* Flush CPU data cache <span class="keyword">to</span> save <span class="command">write</span> <span class="keyword">to</span> RAM */
+sys_dcache_flush(addr, sizeof(code));
+
+/* Invalidate instruction cache <span class="keyword">to</span> make <span class="keyword">the</span> CPU <span class="command">read</span> patched instructions <span class="keyword">from</span> RAM */
+sys_icache_invalidate(addr, sizeof(code));
+
+/* Change memory protections <span class="keyword">back</span> <span class="keyword">to</span> r-x */
+vm_protect(mach_task_self(), region, region_size, <span class="constant">false</span>, VM_PROT_EXECUTE | VM_PROT_READ);
+<span class="command">return</span> <span class="constant">true</span>;
+</code></pre><p>}</p>
+<p>好了，修改方法有了，ARM64也支持了。但 Module Base 是变化的，对一个模块逆向工程后，如何确定运行时模块的基址呢？</p>
+<p>——我也想知道……，不过我想了一个山寨的方法，先看到一个导出符号，作为参照基准，运行期获取这个导出符号，然后做一个差值计算，搞定：</p>
+<p>NS_INLINE uint8_t <em>ModuleBase(NSString </em>path, NSString <em>refFunc, unsigned int refAddr = 0x1000)<br>{<br>    unsigned char </em>base = (unsigned char *)dlsym(dlopen(path.UTF8String, RTLD_LAZY), refFunc.UTF8String);<br>    if (base == nil)<br>    {<br>        _Log(@”HOOK Base symbol not found”);<br>        return nil;<br>    }</p>
+<pre><code><span class="keyword">if</span> (((unsigned <span class="keyword">int</span>)<span class="keyword">base</span> &amp; <span class="number">0x0FF0</span>) != (refAddr &amp; <span class="number">0x0FF0</span>))
+{
+    _Log(<span class="string">@"HOOK Base symbol miss match: %p !=! %08X"</span>, <span class="keyword">base</span>, refAddr);
+    <span class="keyword">return</span> nil;
+}
+
+<span class="keyword">base</span> -= refAddr;
+_Log(<span class="string">@"HOOK Base: %@ at %p"</span>, path, <span class="keyword">base</span>);
+<span class="keyword">return</span> <span class="keyword">base</span>;
+</code></pre><p>}</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>做个 mobile substrate 插件，然后用下面的方法在运行时修改指令或者数据，需要做 memory patch 外挂内挂倒挂什么的，直接看代码了：</p>
+<p>//<br>extern “C” kern_return_t mach_vm_region<br>(<]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://mzeht.com/tags/iOS/"/>
+    
+      <category term="分享" scheme="http://mzeht.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[完美控专用：CeleDial 联系人整理功能介绍]]></title>
+    <link href="http://mzeht.com/2014/01/17/2014-01-17-contactfusion/"/>
+    <id>http://mzeht.com/2014/01/17/2014-01-17-contactfusion/</id>
+    <published>2014-01-17T14:33:17.000Z</published>
+    <updated>2015-04-01T15:57:50.000Z</updated>
+    <content type="html"><![CDATA[<p>在 <a href="http://www.celedial.com/appstore" target="_blank" rel="external">CeleDail for iPhone</a> 的设置界面中，提供了一系列非常有用的整理联系人数据的小功能：</p>
+<p><img src="/assets/ContactFusion.png" alt=""></p>
+<p>1). 在多个Google、iCloud、Hotmail账户之间同步联系人：使用之前在系统设置中添加多个联系人账户即可，然后在CeleDial设置中，点击所有联系人群组，在下面展开的单个联系人账号的右侧点击有命令可以操作。目前仅支持单向同步。 </p>
+<p>2). 电话号码批量添加国家区号（如+86）：8个数字以上的才会添加，区号是根据区域设置来的，中国+86，已经有+或00开头的，不会添加。会自动删除“-”和“ ”（空格）。 </p>
+<p>3). 批量删除国家区号(如+86)。 </p>
+<p>4). 批量合并姓氏和名字。 </p>
+<p>5). 批量拆分姓氏和名字：仅拆分2、3、4个非英文字母的姓名，或者带空格的英文姓名，拆分和合并可以轮着用，整理得更透彻。 </p>
+<a id="more"></a>
+<p>6). 把未分组的联系人添加到“未分组”中（以便整理）：仅支持 CardDAV/Local/iCloud 账户，推荐iCloud分组，可以同步到 iCloud上来管理分组。Exchange不支持分组，iOS的设计如此。Google 已经支持 CardDAV，但Google 竟然不支持同步分组（不过跟 CeleDial 没关系）。 </p>
+<p>iOS SDK 不支持读取联系人账户的名称，只能读取类型，更悲催的是iCloud类型的联系人，实际上也是CardDAV，所以没法很好地来标识联系人来源，再次提请注意：请确认操作不会造成联系人数据丢失！！ </p>
+<p>最好是在iPhone中，关闭掉网络，然后使用后，检查一下联系人没问题，再打开网络同步到网上。 </p>
+<p>注意：风险自负，仅供完美主义者或强迫症专用！！！：）</p>
+<p>这些功能在一年前的 CeleDial 2.4 开始已提供了，如果需要可在 AppStore 中 <a href="http://www.celedial.com/appstore" target="_blank" rel="external">下载 CeleDial</a>。</p>
+<p>想在各大在线联系人账户之前迁移的用户，终于有解决方案了，操起手中的肾机开干吧！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在 <a href="http://www.celedial.com/appstore">CeleDail for iPhone</a> 的设置界面中，提供了一系列非常有用的整理联系人数据的小功能：</p>
+<p><img src="/assets/ContactFusion.png" alt=""></p>
+<p>1). 在多个Google、iCloud、Hotmail账户之间同步联系人：使用之前在系统设置中添加多个联系人账户即可，然后在CeleDial设置中，点击所有联系人群组，在下面展开的单个联系人账号的右侧点击有命令可以操作。目前仅支持单向同步。 </p>
+<p>2). 电话号码批量添加国家区号（如+86）：8个数字以上的才会添加，区号是根据区域设置来的，中国+86，已经有+或00开头的，不会添加。会自动删除“-”和“ ”（空格）。 </p>
+<p>3). 批量删除国家区号(如+86)。 </p>
+<p>4). 批量合并姓氏和名字。 </p>
+<p>5). 批量拆分姓氏和名字：仅拆分2、3、4个非英文字母的姓名，或者带空格的英文姓名，拆分和合并可以轮着用，整理得更透彻。 </p>]]>
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://mzeht.com/tags/iOS/"/>
+    
+      <category term="分享" scheme="http://mzeht.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hex Fiend - Mac 下好用的十六进制编辑器]]></title>
+    <link href="http://mzeht.com/2014/01/15/2014-01-15-hexfield/"/>
+    <id>http://mzeht.com/2014/01/15/2014-01-15-hexfield/</id>
+    <published>2014-01-15T13:33:17.000Z</published>
+    <updated>2015-04-01T16:02:54.000Z</updated>
+    <content type="html"><![CDATA[<p>Hex Fiend 是 Mac 下最好用的十六进制编辑器，Xcode 内嵌的十六进制编辑功能就是 Hex Fiend 提供的（苹果一向实用拿来注意）。闲来无事，我 <a href="https://github.com/Yonsm/HexFiend" target="_blank" rel="external">fork 了 Hex Fiend</a> 的代码，。并做了以下修改：</p>
+<ul>
+<li>默认打开文件启用覆盖模式</li>
+<li>代码中嵌入多语言支持，使用 GenString 自动生成简体中文语言文件。</li>
+</ul>
+<p>以后可能会按需要更新。</p>
+<p><img src="https://github.com/Yonsm/HexFiend/raw/master/HexFiend_CN.png" alt=""></p>
+<p>下载：<a href="https://github.com/Yonsm/HexFiend/raw/master/HexFiend_CN.zip" target="_blank" rel="external">Hex Fiend 2.2.300 中英双语版</a></p>
+<a id="more"></a>
+<p>下面是原版介绍：</p>
+<h1 id="Hex_Fiend">Hex Fiend</h1><p>Hex Fiend is a fast and clever hex editor for Mac OS X, written using the Cocoa frameworks. Hex Fiend also provides a framework, allowing “hex views” to be embedded in other applications.</p>
+<h2 id="License">License</h2><p>Hex Fiend is released under a liberal BSD-style <a href="./License.txt">license</a>.</p>
+<h2 id="More_Information:">More Information:</h2><ul>
+<li>API documentation, see <a href="http://ridiculousfish.com/hexfiend/docs/" target="_blank" rel="external">ridiculousfish.com/hexfiend/docs/</a></li>
+<li>Information about Hex Fiend, see <a href="http://ridiculousfish.com/hexfiend/" target="_blank" rel="external">ridiculousfish.com/hexfiend/</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Hex Fiend 是 Mac 下最好用的十六进制编辑器，Xcode 内嵌的十六进制编辑功能就是 Hex Fiend 提供的（苹果一向实用拿来注意）。闲来无事，我 <a href="https://github.com/Yonsm/HexFiend">fork 了 Hex Fiend</a> 的代码，。并做了以下修改：</p>
+<ul>
+<li>默认打开文件启用覆盖模式</li>
+<li>代码中嵌入多语言支持，使用 GenString 自动生成简体中文语言文件。</li>
+</ul>
+<p>以后可能会按需要更新。</p>
+<p><img src="https://github.com/Yonsm/HexFiend/raw/master/HexFiend_CN.png" alt=""></p>
+<p>下载：<a href="https://github.com/Yonsm/HexFiend/raw/master/HexFiend_CN.zip">Hex Fiend 2.2.300 中英双语版</a></p>]]>
+    
+    </summary>
+    
+      <category term="Mac" scheme="http://mzeht.com/tags/Mac/"/>
+    
+      <category term="分享" scheme="http://mzeht.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="汉化" scheme="http://mzeht.com/tags/%E6%B1%89%E5%8C%96/"/>
+    
+      <category term="资源" scheme="http://mzeht.com/categories/%E8%B5%84%E6%BA%90/"/>
+    
+  </entry>
+  
+</feed>
