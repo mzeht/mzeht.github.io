@@ -4,22 +4,31 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>my soul my beats</title>
+    <title>Android Studio 2.0 Preview 9 | my soul my beats</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mzeht">
     
 
     
-    <meta name="description" content="学习总结 思考感悟 知识管理">
-<meta property="og:type" content="website">
-<meta property="og:title" content="my soul my beats">
-<meta property="og:url" content="http://mzeht.com/index.html">
+    <meta name="description" content="一不注意android studio preview 2.0 又要升级了，升级到preview2.0 9版本
+下载地址http://tools.android.com/download/studio/builds/2-0-preview-9这里有最新的版本更新消息之前的preview 2.0 的确有不可忽视的bug 
+
+We’ve just pushed Android Studio 2.0 Pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Studio 2.0 Preview 9">
+<meta property="og:url" content="http://mzeht.com/2016/02/02/Android-Studio-2-0-Preview-9/index.html">
 <meta property="og:site_name" content="my soul my beats">
-<meta property="og:description" content="学习总结 思考感悟 知识管理">
+<meta property="og:description" content="一不注意android studio preview 2.0 又要升级了，升级到preview2.0 9版本
+下载地址http://tools.android.com/download/studio/builds/2-0-preview-9这里有最新的版本更新消息之前的preview 2.0 的确有不可忽视的bug 
+
+We’ve just pushed Android Studio 2.0 Pr">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="my soul my beats">
-<meta name="twitter:description" content="学习总结 思考感悟 知识管理">
+<meta name="twitter:title" content="Android Studio 2.0 Preview 9">
+<meta name="twitter:description" content="一不注意android studio preview 2.0 又要升级了，升级到preview2.0 9版本
+下载地址http://tools.android.com/download/studio/builds/2-0-preview-9这里有最新的版本更新消息之前的preview 2.0 的确有不可忽视的bug 
+
+We’ve just pushed Android Studio 2.0 Pr">
 <meta name="twitter:creator" content="@https://twitter.com">
 
     
@@ -73,125 +82,97 @@
 
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/02/02/Android-Studio-2-0-Preview-9/" title="Android Studio 2.0 Preview 9" itemprop="url">
-  
-    <h1 itemprop="name">Android Studio 2.0 Preview 9</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >一不注意android studio preview 2.0 又要升级了，升级到preview2.0 9版本
-下载地址http://tools.android.com/download/studio/builds/2-0-preview-9这里有最新的版本更新消息之前的previ</p>
-        
+      <a href="/2016/02/02/Android-Studio-2-0-Preview-9/" title="Android Studio 2.0 Preview 9" itemprop="url">Android Studio 2.0 Preview 9</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://mzeht.com/about" title="mzeht" target="_blank" itemprop="author">mzeht</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-02T10:40:59.000Z" itemprop="datePublished"> 发表于 Feb 2 2016</time>
     
-    <time datetime="2016-02-02T10:40:59.000Z" itemprop="datePublished">Feb 2 2016</time>
-  </a>
-</section>
-
-
-
-
-
-
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>一不注意android studio preview 2.0 又要升级了，升级到preview2.0 9版本</p>
+<p>下载地址<a href="http://tools.android.com/download/studio/builds/2-0-preview-9" target="_blank" rel="external">http://tools.android.com/download/studio/builds/2-0-preview-9</a><br>这里有最新的版本更新消息<br>之前的preview 2.0 的确有不可忽视的bug </p>
+<blockquote>
+<p>We’ve just pushed Android Studio 2.0 Preview 9 to the canary channel — along with 2.0.0-alpha9 of the Gradle plugin to jcenter (and as part of the bundled offline repository within the IDE).</p>
+<p>In this release, we’ve completely turned off in-memory dexing by default. We’ve spent the last couple of previews trying to fine-tune it, but there are lingering issues which continues to affect users. This should hopefully make the builds work a lot better for many of you. (If things were already working well, you can continue with in-memory dexing by turning it on with android.dexOptions.dexInProcess=true.)</p>
+</blockquote>
+<p> <strong>We’ve also continued to fix various Instant Run scenarios; in particular, using APK splits on API 23 seems to trigger some platform bugs, so for now we’ve switched over to using multidex for coldswap for both Lollipop and Marshmallow.</strong></p>
+<p>没错，果然是bug，就是打包出问题,个人经历为生成的apk fragment资源管理混乱，主题资源编译出错，同样的打包方式，viewpage切换一个出错一个正常，过渡动画一个默认，一个自定义，导致我用回了1.5稳定版，不知道这个版本彻底解决没，从preview 9 开始 默认使用gradle2.10版本</p>
+<p>gradle的android构建插件为<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:2.0.0-alpha6'</span></span><br></pre></td></tr></table></figure></p>
   
-<section class="post" itemscope itemprop="blogitem">
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
   
-    <a href="/2016/02/01/NavigationView-TabLayout-Viewpage/" title="NavigationView+TabLayout+Viewpage" itemprop="url">
-  
-    <h1 itemprop="name">NavigationView+TabLayout+Viewpage</h1>
-    
-     
-           <p itemprop="description" >NavigationView配合TabLayout+Viewpagefragment实现多页面切换，适合搭建框架.
-Demo地址https://github.com/mzeht/ZhiHuiYun</p>
-        
-    
-    <time datetime="2016-02-01T09:28:41.000Z" itemprop="datePublished">Feb 1 2016</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/01/30/SwipeRefreshLayoutBasic/" title="SwipeRefreshLayoutBasic" itemprop="url">
-  
-    <h1 itemprop="name">SwipeRefreshLayoutBasic</h1>
-    
-     
-           <p itemprop="description" >SwipeRefreshLayout配合Recyclerview实现下拉刷新列表
-
-SwipeRefreshLayout是google官方的刷新控件Recyclerview则是未来取代listview，girdview等的新控件
-.IDE android studio 1.5(2</p>
-        
-    
-    <time datetime="2016-01-29T16:20:12.000Z" itemprop="datePublished">Jan 30 2016</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2015/04/20/hello-world/" title="Hello World" itemprop="url">
-  
-    <h1 itemprop="name">Hello World</h1>
-    
-     
-           <p itemprop="description" >Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the </p>
-        
-    
-    <time datetime="2015-04-19T17:05:05.000Z" itemprop="datePublished">Apr 20 2015</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2015/03/10/2015-03-10-markdown/" title="markdown 语法" itemprop="url">
-  
-    <h1 itemprop="name">markdown 语法</h1>
-    
-     
-           <p itemprop="description" >Markdown是一种转化文本的轻量级工具，兼顾可读性和易用性。
-1. 标题代码：
-# Title1
-## Title2
-### Title3
-#### Title4
-##### Title5
-###### Title6
-效果：
-Title1Title2Title3Title4T</p>
-        
-    
-    <time datetime="2015-03-09T16:00:00.000Z" itemprop="datePublished">Mar 10 2015</time>
-  </a>
-</section>
-
-
-
-
-
-
+  <span></span> <a href="/tags/AndroidStudio/">AndroidStudio</a>
+  </div>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://mzeht.com/2016/02/02/Android-Studio-2-0-Preview-9/" data-title="Android Studio 2.0 Preview 9 | my soul my beats" data-tsina="2865942514" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/02/01/NavigationView-TabLayout-Viewpage/"  title="NavigationView+TabLayout+Viewpage">
+ <strong>下一篇：</strong><br/> 
+ <span>NavigationView+TabLayout+Viewpage
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/02/02/Android-Studio-2-0-Preview-9/" data-title="Android Studio 2.0 Preview 9" data-url="http://mzeht.com/2016/02/02/Android-Studio-2-0-Preview-9/"></div>
+</section>
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -388,12 +369,69 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
 
 
 
@@ -414,6 +452,27 @@ $(document).ready(function(){
 
 
 
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
 
 
 
@@ -447,4 +506,4 @@ $(document).ready(function(){
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
