@@ -4,7 +4,7 @@
   <subtitle><![CDATA[此刻恰逢]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-01-31T10:34:13.000Z</updated>
+  <updated>2016-02-02T09:14:14.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -16,14 +16,319 @@
   
   <entry>
     <title><![CDATA[SwipeRefreshLayoutBasic]]></title>
-    <link href="http://mzeht.com/2016/01/31/SwipeRefreshLayoutBasic/"/>
-    <id>http://mzeht.com/2016/01/31/SwipeRefreshLayoutBasic/</id>
-    <published>2016-01-31T10:25:38.000Z</published>
-    <updated>2016-01-31T10:34:13.000Z</updated>
-    <content type="html"></content>
+    <link href="http://mzeht.com/2016/02/02/SwipeRefreshLayoutBasic/"/>
+    <id>http://mzeht.com/2016/02/02/SwipeRefreshLayoutBasic/</id>
+    <published>2016-02-02T09:14:14.000Z</published>
+    <updated>2016-02-02T09:14:14.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="SwipeRefreshLayout配合Recyclerview实现下拉刷新列表">SwipeRefreshLayout配合Recyclerview实现下拉刷新列表</h1><p>SwipeRefreshLayout是google官方的刷新控件<br>Recyclerview则是未来取代listview，girdview等的新控件</p>
+<p>.IDE android studio 1.5(2.o preview之前apk打包有bug，暂时不用了)</p>
+<p>.Demo地址 <a href="https://github.com/mzeht/SwipeRefreshListDemo" target="_blank" rel="external">https://github.com/mzeht/SwipeRefreshListDemo</a> </p>
+<h2 id="-MainActivity">.MainActivity</h2><p>activity_main.xml</p>
+<pre><code>&lt;?xml <span class="variable">version=</span><span class="string">"1.0"</span> <span class="variable">encoding=</span><span class="string">"utf-8"</span>?&gt;
+&lt;android.support.design.widget.CoordinatorLayout
+xmlns:<span class="variable">android=</span><span class="string">"http://schemas.android.com/apk/res/android"</span>
+xmlns:<span class="variable">app=</span><span class="string">"http://schemas.android.com/apk/res-auto"</span>
+xmlns:<span class="variable">tools=</span><span class="string">"http://schemas.android.com/tools"</span>
+android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
+android:<span class="variable">fitsSystemWindows=</span><span class="string">"true"</span>
+tools:<span class="variable">context=</span><span class="string">"com.example.mzeht.swiperefreshlistdemo.MainActivity"</span>&gt;
+
+&lt;android.support.design.widget.AppBarLayout
+    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">theme=</span><span class="string">"@style/AppTheme.AppBarOverlay"</span>&gt;
+
+    &lt;android.support.v7.widget.Toolbar
+        android:<span class="variable">id=</span><span class="string">"@+id/toolbar"</span>
+        android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+        android:<span class="variable">layout_height=</span><span class="string">"?attr/actionBarSize"</span>
+        android:<span class="variable">background=</span><span class="string">"?attr/colorPrimary"</span>
+        app:<span class="variable">popupTheme=</span><span class="string">"@style/AppTheme.PopupOverlay"</span>/&gt;
+
+&lt;/android.support.design.widget.AppBarLayout&gt;
+
+&lt;include <span class="variable">layout=</span><span class="string">"@layout/content_main"</span>/&gt;
+
+&lt;android.support.design.widget.FloatingActionButton
+    android:<span class="variable">id=</span><span class="string">"@+id/fab"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">layout_gravity=</span><span class="string">"bottom|end"</span>
+    android:<span class="variable">layout_margin=</span><span class="string">"@dimen/fab_margin"</span>
+    android:<span class="variable">src=</span><span class="string">"@android:drawable/ic_dialog_email"</span>/&gt;
+
+&lt;/android.support.design.widget.CoordinatorLayout&gt;
+</code></pre><h2 id="-在其中的content_main-xml">.在其中的content_main.xml</h2><p>SwipeRefreshLayout 嵌套一个子元素 （如有多个，可用FrameLayout封装成一个）</p>
+<pre><code>    &lt;?xml <span class="variable">version=</span><span class="string">"1.0"</span> <span class="variable">encoding=</span><span class="string">"utf-8"</span>?&gt;
+&lt;RelativeLayout
+        xmlns:<span class="variable">android=</span><span class="string">"http://schemas.android.com/apk/res/android"</span>
+    xmlns:<span class="variable">app=</span><span class="string">"http://schemas.android.com/apk/res-    auto"</span>
+    xmlns:<span class="variable">tools=</span><span class="string">"http://schemas.android.com/tools"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
+    app:<span class="variable">layout_behavior=</span><span class="string">"@string/    appbar_scrolling_view_behavior"</span>
+    tools:<span class="variable">context=</span><span class="string">"com.example.mzeht.swiperefreshlistdemo.MainActivity"</span>
+    tools:<span class="variable">showIn=</span><span class="string">"@layout/activity_main"</span>&gt;
+
+&lt;android.support.v4.widget.SwipeRefreshLayout
+    android:<span class="variable">id=</span><span class="string">"@+id/swiperefresh"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>&gt;
+    &lt;android.support.v7.widget.RecyclerView
+        android:<span class="variable">id=</span><span class="string">"@+id/recycler"</span>
+        android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+        android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>&gt;
+    &lt;/android.support.v7.widget.RecyclerView&gt;
+&lt;/android.support.v4.widget.SwipeRefreshLayout&gt;
+&lt;/RelativeLayout&gt;
+</code></pre><h2 id="-RecyclerView的Item">.RecyclerView的Item</h2><p>*同经典的listviewItem，只是adapter略有区别</p>
+<pre><code>&lt;?xml <span class="variable">version=</span><span class="string">"1.0"</span> <span class="variable">encoding=</span><span class="string">"utf-8"</span>?&gt;
+&lt;LinearLayout xmlns:<span class="variable">android=</span><span class="string">"http://schemas.android.com/apk/res/android"</span>
+          xmlns:<span class="variable">tools=</span><span class="string">"http://schemas.android.com/tools"</span>
+          android:<span class="variable">orientation=</span><span class="string">"horizontal"</span>
+          android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+          android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
+android:<span class="variable">id=</span><span class="string">"@+id/ll"</span>&gt;
+
+&lt;ImageView
+    android:<span class="variable">id=</span><span class="string">"@+id/image"</span>
+    android:<span class="variable">src=</span><span class="string">"@mipmap/ic_launcher"</span>
+    android:<span class="variable">padding=</span><span class="string">"5dp"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">focusable=</span><span class="string">"false"</span>
+    /&gt;
+&lt;TextView
+    android:<span class="variable">id=</span><span class="string">"@+id/tv"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">textSize=</span><span class="string">"18sp"</span>
+    android:<span class="variable">gravity=</span><span class="string">"center"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
+    android:<span class="variable">focusable=</span><span class="string">"false"</span>
+    tools:<span class="variable">text=</span><span class="string">"ss"</span>/&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre><h2 id="-RecyclerView的分割线">.RecyclerView的分割线</h2><p>*RecyclerView 默认没有分割线，需要自定义一个，希望以后有默认可选，这里定义一个</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyItemDecoration</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ItemDecoration</span> </span>{
+<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] ATTRS = {android.R.attr.listDivider};
+<span class="keyword">private</span> Drawable mDivider;
+<span class="function"><span class="keyword">public</span> <span class="title">MyItemDecoration</span><span class="params">(Context context)</span>
+</span>{
+    TypedArray array = context.obtainStyledAttributes(ATTRS);
+    <span class="comment">// 获取分隔条</span>
+    mDivider = array.getDrawable(<span class="number">0</span>);
+    array.recycle();
+}
+<span class="annotation">@Override</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDrawOver</span><span class="params">(Canvas c, RecyclerView parent, RecyclerView.State state)</span>
+</span>{
+    <span class="keyword">super</span>.onDrawOver(c, parent, state);
+    <span class="keyword">int</span> count = parent.getChildCount();
+    <span class="keyword">int</span> left = parent.getPaddingLeft();
+    <span class="keyword">int</span> right = parent.getWidth()-parent.getPaddingRight();
+    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++)
+    {
+        View v = parent.getChildAt(i);
+        RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) v.getLayoutParams();
+        <span class="keyword">int</span> top = v.getBottom() + params.bottomMargin;
+        <span class="keyword">int</span> bottom = top + mDivider.getIntrinsicHeight();
+        mDivider.setBounds(left,top,right,bottom);
+        mDivider.draw(c);
+    }
+}
+
+}
+</code></pre><p>*MainActivity</p>
+<pre><code>mRecyclerView= (RecyclerView) findViewById(R.id.recycler);
+mRefreshlayout= (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+mLinearLayoutManager = <span class="keyword">new</span> LinearLayoutManager(<span class="keyword">this</span>);
+mAdapter = <span class="keyword">new</span> MainRecyclerAdapter(DataSource.generateData(<span class="number">20</span>),MainActivity.<span class="keyword">this</span>);
+mRecyclerView.setAdapter(mAdapter);
+
+<span class="comment">//每个item高度一致，可设置为true，提高性能</span>
+mRecyclerView.setHasFixedSize(<span class="keyword">true</span>);
+mRecyclerView.setLayoutManager(mLinearLayoutManager);
+<span class="comment">//分隔线</span>
+mRecyclerView.addItemDecoration(<span class="keyword">new</span> MyItemDecoration(<span class="keyword">this</span>));
+mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefreshLayout.OnRefreshListener() {
+    <span class="annotation">@Override</span>
+    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span> </span>{
+
+        <span class="keyword">new</span> UpdateTask().execute();
+
+    }
+});
+</code></pre><p>   *开启异步任务模拟耗时操作</p>
+<pre><code>   <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateTask</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">AsyncTask&lt;Void</span>,<span class="title">Void</span>,<span class="title">List&lt;String&gt;&gt;</span>
+</span>{
+    <span class="annotation">@Override</span>
+    <span class="keyword">protected</span> <span class="type">List</span>&lt;<span class="type">String</span>&gt; doInBackground(<span class="type">Void</span>... params)
+    {
+        <span class="keyword">try</span>
+        {
+            <span class="type">Thread</span>.sleep(<span class="number">2000</span>);
+        } <span class="keyword">catch</span> (<span class="type">InterruptedException</span> e)
+        {
+            e.printStackTrace();
+        }
+        <span class="type">List</span>&lt;<span class="type">String</span>&gt; strings = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+        strings.add(<span class="string">"新数据1"</span>);
+        strings.add(<span class="string">"新数据2"</span>);
+        strings.add(<span class="string">"新数据3"</span>);
+        strings.add(<span class="string">"新数据4"</span>);
+        <span class="keyword">return</span> strings;
+    }
+    <span class="annotation">@Override</span>
+    <span class="keyword">protected</span> void onPostExecute(<span class="type">List</span>&lt;<span class="type">String</span>&gt; strings)
+    {
+        mAdapter.addItems(strings);
+        <span class="comment">//通知刷新完毕</span>
+        mRefreshlayout.setRefreshing(<span class="literal">false</span>);
+        <span class="comment">//滚动到列首部---&gt;这是一个很方便的api，可以滑动到指定位置</span>
+        mRecyclerView.scrollToPosition(<span class="number">0</span>);
+    }
+}
+</code></pre><h2 id="RecylerView的Item点击事件监听，内部各个子控件的监听">RecylerView的Item点击事件监听，内部各个子控件的监听</h2><pre><code>*在设计复杂listview 的时候，往往有Item点击事件和各个子控件的事件需要监听
+*但是RecylerView没有提供OnItemOnclick的方法，需要我们自己去写
+首先定义一个外部接口
+
+```java
+
+<span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">OnListClickListener</span> {
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemClick</span><span class="params">(View view,String data)</span></span>;
+
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemTextClick</span><span class="params">(View view,String data)</span></span>;
+
+
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemIconClick</span><span class="params">(View view ,String data)</span></span>;
+}
+</code></pre><p>*适配Adapter</p>
+<p>public class MainRecyclerAdapter extends RecyclerView.Adapter<mainrecycleradapter.viewholder> {</mainrecycleradapter.viewholder></p>
+<pre><code><span class="keyword">private</span> List&lt;String&gt; datas = <span class="keyword">null</span>;
+<span class="keyword">private</span> OnListClickListener mListener;
+
+<span class="function"><span class="keyword">public</span> <span class="title">MainRecyclerAdapter</span><span class="params">(List&lt;String&gt; datas,OnListClickListener l)</span>
+</span>{
+    <span class="keyword">this</span>.datas = datas;
+    <span class="keyword">this</span>.mListener=l;
+}
+<span class="annotation">@Override</span>
+<span class="keyword">public</span> <span class="function">ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span>
+</span>{
+    <span class="keyword">final</span> View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, <span class="keyword">false</span>);
+<span class="comment">//        itemView.setOnClickListener(new View.OnClickListener()</span>
+<span class="comment">//        {</span>
+<span class="comment">//            @Override</span>
+<span class="comment">//            public void onClick(View v)</span>
+<span class="comment">//            {</span>
+<span class="comment">//                if(mListener != null)</span>
+<span class="comment">//                {</span>
+<span class="comment">//                    mListener.OnItemClick(v, (String) itemView.getTag());</span>
+<span class="comment">//                }</span>
+<span class="comment">//            }</span>
+<span class="comment">//        });</span>
+    ViewHolder viewHolder= <span class="keyword">new</span> ViewHolder(itemView);
+
+
+
+
+    <span class="keyword">return</span> viewHolder;
+}
+<span class="annotation">@Override</span>
+<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(<span class="keyword">final</span> ViewHolder holder, <span class="keyword">final</span> <span class="keyword">int</span> position)</span>
+</span>{
+    String s = datas.get(position);
+    holder.bindData(s);
+    holder.itemView.setTag(s);
+    holder.mContent.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+            mListener.OnItemTextClick(holder.mContent, (String) holder.itemView.getTag());
+        }
+    });
+
+    holder.mImageView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+            mListener.OnItemIconClick(holder.mImageView, (String) holder.itemView.getTag());
+        }
+    });
+
+    holder.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+            mListener.OnItemClick(v, (String) holder.itemView.getTag());
+        }
+    });
+
+
+}
+<span class="annotation">@Override</span>
+<span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span>
+</span>{
+    <span class="function"><span class="keyword">return</span> datas.<span class="title">size</span><span class="params">()</span></span>;
+}
+<span class="javadoc">/**
+ * 批量增加
+ * */</span>
+<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">addItems</span><span class="params">(List&lt;String&gt; items)</span>
+</span>{
+    <span class="keyword">if</span> (items == <span class="keyword">null</span>)
+        <span class="keyword">return</span>;
+    <span class="keyword">this</span>.datas.addAll(<span class="number">0</span>, items);
+    <span class="keyword">this</span>.notifyItemRangeInserted(<span class="number">0</span>, items.size());
+}
+
+<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span>
+</span>{
+    <span class="keyword">private</span> TextView mContent;
+    <span class="keyword">private</span> ImageView mImageView;
+    <span class="function"><span class="keyword">public</span> <span class="title">ViewHolder</span><span class="params">(View itemView)</span>
+    </span>{
+        <span class="keyword">super</span>(itemView);
+        mContent = (TextView) itemView.findViewById(R.id.tv);
+        mImageView= (ImageView) itemView.findViewById(R.id.image);
+    }
+    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">bindData</span><span class="params">(String s)</span>
+    </span>{
+        <span class="keyword">if</span> (s != <span class="keyword">null</span>)
+            mContent.setText(s);
+    }
+
+}
+}
+</code></pre><p>*通过对Item的根试图的监听，实现Item点击监听，不用设置最外层布局id，可以看出，Recyclerview强制对listview进行复用，对子控件的个性化定制在bind操作中进行，接口事件传递到Activity层，可以通过TAG传递数据，解耦合，如：</p>
+<pre><code> @<span class="type">Override</span>
+    public void <span class="type">OnItemClick</span>(<span class="type">View</span> view, <span class="type">String</span> <span class="typedef"><span class="keyword">data</span>) <span class="container">{
+    <span class="type">Toast</span>.<span class="title">makeText</span>(<span class="type">MainActivity</span>.<span class="title">this</span>, "来自<span class="type">Item</span>的点击事件:" + <span class="title">data</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).<span class="title">show</span>();
+
+}</span></span>
+
+@<span class="type">Override</span>
+<span class="title">public</span> void <span class="type">OnItemTextClick</span>(<span class="type">View</span> view, <span class="type">String</span> <span class="typedef"><span class="keyword">data</span>) <span class="container">{
+    <span class="type">Toast</span>.<span class="title">makeText</span>(<span class="type">MainActivity</span>.<span class="title">this</span>, "来自<span class="title">text</span>的点击事件:" + <span class="title">data</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).<span class="title">show</span>();
+
+}</span></span>
+
+@<span class="type">Override</span>
+<span class="title">public</span> void <span class="type">OnItemIconClick</span>(<span class="type">View</span> view, <span class="type">String</span> <span class="typedef"><span class="keyword">data</span>) <span class="container">{
+    <span class="type">Toast</span>.<span class="title">makeText</span>(<span class="type">MainActivity</span>.<span class="title">this</span>, "来自<span class="title">icon</span>的点击事件:" + <span class="title">data</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).<span class="title">show</span>();
+
+}</span></span>
+</code></pre>]]></content>
     <summary type="html">
-    
+    <![CDATA[<h1 id="SwipeRefreshLayout配合Recyclerview实现下拉刷新列表">SwipeRefreshLayout配合Recyclerview实现下拉刷新列表</h1><p>SwipeRefreshLayout是google官方的刷新控件<br>Recycl]]>
     </summary>
+    
+      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
+    
+      <category term="Matertal Design" scheme="http://mzeht.com/tags/Matertal-Design/"/>
+    
+      <category term="代码" scheme="http://mzeht.com/categories/%E4%BB%A3%E7%A0%81/"/>
     
   </entry>
   
@@ -55,7 +360,7 @@
     <link href="http://mzeht.com/2015/04/20/Start-using-the-Macpro/"/>
     <id>http://mzeht.com/2015/04/20/Start-using-the-Macpro/</id>
     <published>2015-04-19T16:44:27.000Z</published>
-    <updated>2015-04-19T18:12:06.000Z</updated>
+    <updated>2016-02-02T06:48:31.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Mac_Pro_840">Mac Pro 840</h2><p>最近用上了传说中的程序员神器Mac pro，从开封的时候开始就开始爱不释手了，整体做工浑然一体，可谓是一件完美的艺术品，用上了Mac，其他的本本真是一点碰的欲望都没有。视网膜屏幕让人眼前一亮，可以明显感觉到和window显示屏的区别，对眼睛更友好，打开网页感觉都是棒棒的。最大的区别是运行程序和开关机的速度有了极大的提升，8g内存，配合闪存硬盘，一秒开关机，妈妈再也不担心程序无响应了。</p>
 <h3 id="命令行工具">命令行工具</h3><p>Mac自带的bash极为方便，界面也十分简洁，对于前端开发的一些工具往往可以直接安装，配置比windows上简单不少，当然也有不便之处，无法在文件目录下直接右键调用出命令行工具设置路径，每次调用都要从用户目录先一步一步CD。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wpMacdeMacBook-Pro:hexo-blog2 wpmac$ ls</span><br><span class="line">_config.yml	node_modules	public		<span class="built_in">source</span></span><br><span class="line">db.json		package.json	scaffolds	themes</span><br><span class="line">wpMacdeMacBook-Pro:hexo-blog2 wpmac$ hexo new <span class="string">"Start using the Macpro"</span></span><br><span class="line">&#123; [Error: Cannot find module <span class="string">'./build/Release/DTraceProviderBindings'</span>] code: <span class="string">'MODULE_NOT_FOUND'</span> &#125;</span><br><span class="line">&#123; [Error: Cannot find module <span class="string">'./build/default/DTraceProviderBindings'</span>] code: <span class="string">'MODULE_NOT_FOUND'</span> &#125;</span><br><span class="line">&#123; [Error: Cannot find module <span class="string">'./build/Debug/DTraceProviderBindings'</span>] code: <span class="string">'MODULE_NOT_FOUND'</span> &#125;</span><br><span class="line">INFO  Created: ~/Documents/hexo-blog2/<span class="built_in">source</span>/_posts/Start-using-the-Macpro.md</span><br><span class="line">wpMacdeMacBook-Pro:hexo-blog2 wpmac$</span><br></pre></td></tr></table></figure>
@@ -70,7 +375,9 @@
 <p>6.如果你需要笔记来记录你的学习，整理资料，那么印象笔记是很好的选择，多平台的app加速网页插件和在线编辑，绝对能满足你的需要。</p>
 <p>7.翻墙工具，shasdowsocks，一个Github上的开源项目，有免费账号和付费版。不同于VPN的断开连接，可以设置自动代理模式，国内网络不翻墙，国外站点过代理，不用来回切换，也较为稳定。</p>
 <p>….相信还有很多好用的软件我没有发现，未完待续。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="40" src="http://music.163.com/outchain/player?type=2&id=28809116&auto=0&height=86"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="400" height="80" src="http://music.163.com/outchain/player?type=2&id=28809116&auto=0&height=86"></iframe>
+
+
 
 
 
