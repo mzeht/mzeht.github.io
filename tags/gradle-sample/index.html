@@ -1,10 +1,10 @@
 
- <!DOCTYPE HTML>
+  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>categories | my soul my beats</title>
+    <title>my soul my beats</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mzeht">
@@ -13,12 +13,12 @@
     
     <meta name="description" content="学习总结 思考感悟 知识管理">
 <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://mzeht.com/categories/index.html">
+<meta property="og:title" content="my soul my beats">
+<meta property="og:url" content="http://mzeht.com/tags/gradle-sample/index.html">
 <meta property="og:site_name" content="my soul my beats">
 <meta property="og:description" content="学习总结 思考感悟 知识管理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
+<meta name="twitter:title" content="my soul my beats">
 <meta name="twitter:description" content="学习总结 思考感悟 知识管理">
 <meta name="twitter:creator" content="@https://twitter.com">
 
@@ -73,19 +73,31 @@
 
       </header>
       <div id="container">
-          
+        
+
 <div class="archive-title" >
-<h2 class="category-icon">分类</h2>
-
-<a data-src="/categories/代码/" href="#代码" title="代码">代码<sup>2</sup></a>
-
-<a data-src="/categories/文档/" href="#文档" title="文档">文档<sup>3</sup></a>
-
+  <h2 class="tag-icon">gradle sample</h2>
+  
 </div>
-<div id="main" class="archive-part">
-<div class="all-list-box"></div>
-</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
 
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2016/02/10/User-Gradle-sample/" title="User Gradle sample" itemprop="url">
+  
+
+    <time datetime="2016-02-09T17:19:32.000Z" itemprop="datePublished">Feb 10 2016</time>
+
+
+    <h1 itemprop="name">User Gradle sample</h1>
+
+  </a>
+</section>
+
+
+  </div>
+</div>
 
       </div>
       <footer><div id="footer" >
@@ -218,24 +230,6 @@ $(document).ready(function(){
 
 
 
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var list    = $('.archive-title a'),
-      box     = $('.all-list-box'),
-      first   = $('.archive-title a:first-of-type');
-      box.load(first.attr('data-src').toString()+' #archive-page');
-      first.addClass('current');
-  list.each(function(){
-    $(this).click(function(){
-      var listSrc=$(this).attr('data-src').toString()+' #archive-page';
-      box.load(listSrc);
-      list.removeClass('current');
-      $(this).addClass('current');
-     });  
-    });
-  }); 
-</script>
 
 
 

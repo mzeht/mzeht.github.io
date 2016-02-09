@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[my soul my beats]]></title>
-  <subtitle><![CDATA[恰逢此刻]]></subtitle>
+  <subtitle><![CDATA[风雪依稀秋白发尾 灯火葳蕤]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-02-08T16:03:25.000Z</updated>
+  <updated>2016-02-09T17:27:04.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -15,11 +15,75 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[User Gradle sample]]></title>
+    <link href="http://mzeht.com/2016/02/10/User-Gradle-sample/"/>
+    <id>http://mzeht.com/2016/02/10/User-Gradle-sample/</id>
+    <published>2016-02-09T17:19:32.000Z</published>
+    <updated>2016-02-09T17:27:04.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="Example_4-1-_Executing_multiple_tasks">Example 4.1. Executing multiple tasks</h1><p>build.gradle</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">task</span> <span class="keyword">compile</span> &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'compiling source'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> compileTest(dependsOn: <span class="keyword">compile</span>) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'compiling unit tests'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> test(dependsOn: [<span class="keyword">compile</span>, compileTest]) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'running unit tests'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> dist(dependsOn: [<span class="keyword">compile</span>, test]) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'building the distribution'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Output of gradle dist test</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle dist test</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1</span> secs</span><br></pre></td></tr></table></figure>
+<h1 id="Example_4-2-_Excluding_tasks">Example 4.2. Excluding tasks</h1><p>Output of gradle dist -x test</p>
+<p>你能通过使用-x 命令来排除某些任务的执行，我们来使用之前的脚本来演示</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle dist -x test</span><br><span class="line">:compile</span><br><span class="line">compiling source</span><br><span class="line">:dist</span><br><span class="line">building <span class="operator">the</span> distribution</span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL</span><br><span class="line"></span><br><span class="line">Total <span class="built_in">time</span>: <span class="number">1</span> <span class="built_in">secs</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Example_4-1-_Executing_multiple_tasks">Example 4.1. Executing multiple tasks</h1><p>build.gradle</p>
+<figure class="highlight gradle]]>
+    </summary>
+    
+      <category term="gradle sample" scheme="http://mzeht.com/tags/gradle-sample/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Gradle.4 Using the Gradle Command-Line]]></title>
+    <link href="http://mzeht.com/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/"/>
+    <id>http://mzeht.com/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/</id>
+    <published>2016-02-09T17:12:31.000Z</published>
+    <updated>2016-02-09T17:25:40.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="4-通过命令行使用gradle">4.通过命令行使用gradle</h1><p>这张将介绍使用gradle命令行的基础知识，就像你在前几章看到的那样</p>
+<h2 id="4-1_执行多重任务">4.1 执行多重任务</h2><p>你能使用命令通过一个脚本来执行多个任务，例如这个命令<code>gradle compile test</code>,他会执行compite和test两个任务，gradle会按照命令行中的任务顺序来有序执行，也会运行其依赖项目，每个任务仅仅只执行一次，无论它在脚本中如何被引用，是直接指定还是作为其他任务的依赖，或者两者都是，让我们来看一个例子.</p>
+<p>以下四个任务，<code>dist</code>和<code>test</code>都依赖于<code>complie</code>，执行<code>gradle dist test</code>，结果<code>complie</code>任务只会运行一次.</p>
+<p>图4.1 task依赖图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png" alt=""><br><code>官方演示图错了，test不是指向complie，而是complie指向test</code></p>
+<p>例4.1 执行多任务脚本</p>
+<p>build.gradle</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">task</span> <span class="keyword">compile</span> &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'compiling source'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> compileTest(dependsOn: <span class="keyword">compile</span>) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'compiling unit tests'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> test(dependsOn: [<span class="keyword">compile</span>, compileTest]) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'running unit tests'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> dist(dependsOn: [<span class="keyword">compile</span>, test]) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'building the distribution'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>gradle dist test的输出</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle dist test</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1</span> secs</span><br></pre></td></tr></table></figure>
+<p>每个任务只执行了一次，所以gradle test test 和 gradle test 的结果是一样的</p>
+<p>这是本人测试的，第一次速度明显很慢<br>参考<a href="https://docs.gradle.org/2.11/userguide/gradle_daemon.html" target="_blank" rel="external">https://docs.gradle.org/2.11/userguide/gradle_daemon.html</a></p>
+<p>windows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">if</span> not exist <span class="string">"%USERPROFILE%/.gradle"</span> mkdir <span class="string">"%USERPROFILE%/.gradle"</span>) &amp;&amp; (<span class="built_in">echo</span> org.gradle.daemon=<span class="literal">true</span> &gt;&gt; <span class="string">"%USERPROFILE%/.gradle/gradle.properties"</span>)</span><br></pre></td></tr></table></figure>
+<p>UNIX:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;touch ~<span class="regexp">/.gradle/gradle</span>.properties &amp;&amp; echo <span class="string">"org.gradle.daemon=true"</span> <span class="prompt">&gt;&gt; </span>~<span class="regexp">/.gradle/gradle</span>.properties</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">➜  <span class="constant">Desktop </span> gradle dist test</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">4.446</span> secs</span><br><span class="line"></span><br><span class="line"><span class="constant">This </span>build could be faster, please consider using the <span class="constant">Gradle Daemon:</span> <span class="symbol">https:</span>/<span class="regexp">/docs.gradle.org/</span><span class="number">2.8</span>/userguide/gradle_daemon.html</span><br><span class="line">➜  <span class="constant">Desktop </span> gradle dist test</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1.768</span> secs</span><br></pre></td></tr></table></figure>
+<h2 id="4-2执行任务">4.2执行任务</h2><p>你能通过使用-x 命令来排除某些任务的执行，我们来使用之前的脚本来演示</p>
+<p>例4.2 执行任务<br>gradle dist -x test的输出</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle dist -x test</span><br><span class="line">:compile</span><br><span class="line">compiling source</span><br><span class="line">:dist</span><br><span class="line">building <span class="operator">the</span> distribution</span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL</span><br><span class="line"></span><br><span class="line">Total <span class="built_in">time</span>: <span class="number">1</span> <span class="built_in">secs</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png" alt=""></p>
+<p><code>官方演示图错了，test不是指向complie，而是complie指向test</code></p>
+<p>从这个示例的输出,可以看到test任务没有执行,即使这是一个dist的依赖任务。你还会注意到依赖于test的任务中,compileTest没有执行。但是test依赖的另一个任务,如complie,仍会被执行。</p>
+<h2 id="4-3如何在构建失败的时候继续构建">4.3如何在构建失败的时候继续构建</h2><p>默认情况下，gradle将会在任何任务失败时中止执行。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="4-通过命令行使用gradle">4.通过命令行使用gradle</h1><p>这张将介绍使用gradle命令行的基础知识，就像你在前几章看到的那样</p>
+<h2 id="4-1_执行多重任务">4.1 执行多重任务</h2><p>你能使用命令通过一个脚本来执行]]>
+    </summary>
+    
+      <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Gradle User Guide]]></title>
     <link href="http://mzeht.com/2016/02/06/Gradle-User-Guide/"/>
     <id>http://mzeht.com/2016/02/06/Gradle-User-Guide/</id>
     <published>2016-02-06T15:19:45.000Z</published>
-    <updated>2016-02-08T16:03:25.000Z</updated>
+    <updated>2016-02-09T17:24:30.000Z</updated>
     <content type="html"><![CDATA[<p>参考资料：gradle 2.11 官方文档<a href="https://docs.gradle.org/current/userguide/userguide.html" target="_blank" rel="external">https://docs.gradle.org/current/userguide/userguide.html</a></p>
 <p>Gradle User Guide<br>Version 2.10</p>
 <p>Copyright © 2007-2015 Hans Dockter, Adam Murdoch<br>Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.</p>
@@ -73,7 +137,7 @@
 <h3 id="3-5_运行和测试安装">3.5 运行和测试安装</h3><p>ou run Gradle via the gradle command. To check if Gradle is properly installed just type gradle -v. The output shows the Gradle version and also the local environment configuration (Groovy, JVM version, OS, etc.). The displayed Gradle version should match the distribution you have downloaded.</p>
 <h3 id="3-6_JVM_设置">3.6 JVM 设置</h3><p>JVM 选项可以通过设置环境变量来更改. 您可以使用 GRADLE_OPTS 或者 JAVA_OPTS.<br>JAVA_OPTS 是一个用于 JAVA 应用的环境变量. 一个典型的用例是在 JAVA_OPTS 里设置HTTP代理服务器(proxy),<br>GRADLE_OPTS 是内存选项. 这些变量可以在 gradle 的一开始就设置或者通过 gradlew 脚本来设置.</p>
 <p>注意，目前Gradle不能通过命令行设置jvm.</p>
-<h2 id="4-通过命令行使用Gradle">4.通过命令行使用Gradle</h2><h3 id="4-1_执行多个任务">4.1 执行多个任务</h3>]]></content>
+]]></content>
     <summary type="html">
     <![CDATA[<p>参考资料：gradle 2.11 官方文档<a href="https://docs.gradle.org/current/userguide/userguide.html" target="_blank" rel="external">https://docs.gradl]]>
     </summary>
