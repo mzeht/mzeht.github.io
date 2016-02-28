@@ -100,7 +100,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4-通过命令行使用gradle"><span class="toc-number">1.</span> <span class="toc-text">4.通过命令行使用gradle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1_执行多重任务"><span class="toc-number">1.1.</span> <span class="toc-text">4.1 执行多重任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2执行任务"><span class="toc-number">1.2.</span> <span class="toc-text">4.2执行任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3如何在构建失败的时候继续构建"><span class="toc-number">1.3.</span> <span class="toc-text">4.3如何在构建失败的时候继续构建</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4-通过命令行使用gradle"><span class="toc-number">1.</span> <span class="toc-text">4.通过命令行使用gradle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1_执行多重任务"><span class="toc-number">1.1.</span> <span class="toc-text">4.1 执行多重任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2执行任务"><span class="toc-number">1.2.</span> <span class="toc-text">4.2执行任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3如何在构建失败的时候继续构建"><span class="toc-number">1.3.</span> <span class="toc-text">4.3如何在构建失败的时候继续构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4_任务名缩写"><span class="toc-number">1.4.</span> <span class="toc-text">4.4 任务名缩写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5选择执行的脚本"><span class="toc-number">1.5.</span> <span class="toc-text">4.5选择执行的脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6获得构建信息"><span class="toc-number">1.6.</span> <span class="toc-text">4.6获得构建信息</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -126,8 +126,28 @@
 <p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png" alt=""></p>
 <p><code>官方演示图错了，test不是指向complie，而是complie指向test</code></p>
 <p>从这个示例的输出,可以看到test任务没有执行,即使这是一个dist的依赖任务。你还会注意到依赖于test的任务中,compileTest没有执行。但是test依赖的另一个任务,如complie,仍会被执行。</p>
-<h2 id="4-3如何在构建失败的时候继续构建">4.3如何在构建失败的时候继续构建</h2><p>默认情况下，gradle将会在任何任务失败时中止执行。</p>
-  
+<h2 id="4-3如何在构建失败的时候继续构建">4.3如何在构建失败的时候继续构建</h2><p>默认情况下，gradle将会在任何任务失败时中止执行。这使得构建更快地完成，但隐藏了其他错误。为了在一个单一的构建尽可能多的发现可能失败的任务，你可以使用—continue选项。</p>
+<p>当—continue执行，gradle将执行每项任务，而不是只要遇到第一个故障就停止。遇到的每一个故障将在构建结束时报告。</p>
+<p>如果一个任务失败，依赖于它的任何后续任务将不会被执行，因为这样做是不安全的。例如，如果complie的代码发生错误，test就不会被执行，因为test任务依赖于complie任务（直接或间接地） 。</p>
+<h2 id="4-4_任务名缩写">4.4 任务名缩写</h2><p>当你命令行指定任务时，不需要提供全名，只要能足够辨认出该任务，在上面同样的脚本中，我们会通过执行<code>gradle -d</code>来执行dist任务</p>
+<p>Example 4.3. Abbreviated task name</p>
+<p>Output of gradle di</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle di</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1</span> secs</span><br></pre></td></tr></table></figure>
+<p>你也可以缩写驼峰命名的每个词，例如，可以通过<code>gradle compTest</code>甚至<code>gradle cT</code>来执行 compileTest 任务</p>
+<p>Example 4.4. Abbreviated camel case task name<br>Output of gradle cT</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle cT</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1</span> secs</span><br></pre></td></tr></table></figure>
+<p>在使用缩写的同时也可以使用 －x 命令</p>
+<h2 id="4-5选择执行的脚本">4.5选择执行的脚本</h2><p>当运行gradle命令时，会从当前路径查找脚本文件，你也可以使用 －b 命令来选择其他文件，如果使用－b命令，setting.gradle 文件就不会被使用，例如：</p>
+<p>Example 4.5. Selecting the project using a build file</p>
+<p>subdir/myproject.gradle</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">task</span> hello &lt;&lt; &#123;</span><br><span class="line">    <span class="title">println</span> <span class="string">"using build file '<span class="variable">$buildFile</span>.name' in '<span class="variable">$buildFile</span>.parentFile.name'."</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Output of gradle -q -b subdir/myproject.gradle hello</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle -<span class="tag">q</span> -<span class="tag">b</span> subdir/myproject<span class="class">.gradle</span> hello</span><br><span class="line">using build file <span class="string">'myproject.gradle'</span> <span class="keyword">in</span> <span class="string">'subdir'</span>.</span><br></pre></td></tr></table></figure>
+<p>或者，你可以使用 －p 命令来指定文件路径，多个工程中，你应该使用－p命令 而不是 －b 命令</p>
+<p>Example 4.6. Selecting the project using project directory</p>
+<p>Output of gradle -q -p subdir hello</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle -<span class="tag">q</span> -<span class="tag">p</span> subdir hello</span><br><span class="line">using build file <span class="string">'build.gradle'</span> <span class="keyword">in</span> <span class="string">'subdir'</span>.</span><br></pre></td></tr></table></figure>
+<h2 id="4-6获得构建信息">4.6获得构建信息</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -193,7 +213,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4-通过命令行使用gradle"><span class="toc-number">1.</span> <span class="toc-text">4.通过命令行使用gradle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1_执行多重任务"><span class="toc-number">1.1.</span> <span class="toc-text">4.1 执行多重任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2执行任务"><span class="toc-number">1.2.</span> <span class="toc-text">4.2执行任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3如何在构建失败的时候继续构建"><span class="toc-number">1.3.</span> <span class="toc-text">4.3如何在构建失败的时候继续构建</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4-通过命令行使用gradle"><span class="toc-number">1.</span> <span class="toc-text">4.通过命令行使用gradle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1_执行多重任务"><span class="toc-number">1.1.</span> <span class="toc-text">4.1 执行多重任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2执行任务"><span class="toc-number">1.2.</span> <span class="toc-text">4.2执行任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3如何在构建失败的时候继续构建"><span class="toc-number">1.3.</span> <span class="toc-text">4.3如何在构建失败的时候继续构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4_任务名缩写"><span class="toc-number">1.4.</span> <span class="toc-text">4.4 任务名缩写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5选择执行的脚本"><span class="toc-number">1.5.</span> <span class="toc-text">4.5选择执行的脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6获得构建信息"><span class="toc-number">1.6.</span> <span class="toc-text">4.6获得构建信息</span></a></li></ol></li></ol>
  
   </div>
 
@@ -211,7 +231,7 @@
 		  
 		
 		  
-			<li><a href="/categories/文档/" title="文档">文档<sup>3</sup></a></li>
+			<li><a href="/categories/文档/" title="文档">文档<sup>4</sup></a></li>
 		  
 		
 		</ul>
@@ -236,7 +256,7 @@
 			
 		
 			
-				<li><a href="/tags/gradle-sample/" title="gradle sample">gradle sample<sup>1</sup></a></li>
+				<li><a href="/tags/TabLyout/" title="TabLyout">TabLyout<sup>1</sup></a></li>
 			
 		
 			
@@ -244,11 +264,19 @@
 			
 		
 			
-				<li><a href="/tags/TabLyout/" title="TabLyout">TabLyout<sup>1</sup></a></li>
+				<li><a href="/tags/gradle-sample/" title="gradle sample">gradle sample<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/ViewPage/" title="ViewPage">ViewPage<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Meterial-design/" title="Meterial design">Meterial design<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/debug/" title="debug">debug<sup>1</sup></a></li>
 			
 		
 			
