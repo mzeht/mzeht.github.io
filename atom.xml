@@ -4,7 +4,7 @@
   <subtitle><![CDATA[风雪依稀秋白发尾 灯火葳蕤]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-03-16T18:43:49.000Z</updated>
+  <updated>2016-03-16T18:49:08.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[汇智网Nodejs入门]]></title>
+    <title><![CDATA[Nodejs入门]]></title>
     <link href="http://mzeht.com/2016/03/15/Nodejs%E5%85%A5%E9%97%A8/"/>
     <id>http://mzeht.com/2016/03/15/Nodejs入门/</id>
     <published>2016-03-15T11:38:32.000Z</published>
-    <updated>2016-03-16T18:43:49.000Z</updated>
+    <updated>2016-03-16T18:49:08.000Z</updated>
     <content type="html"><![CDATA[<p>总结<a href="http://www.hubwiz.com/course/5359f6f6ec7452081a7873d8/" target="_blank" rel="external">http://www.hubwiz.com/course/5359f6f6ec7452081a7873d8/</a></p>
 <h1 id="快速入门">快速入门</h1><h2 id="hello_world">hello world</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello world'</span>);</span><br></pre></td></tr></table></figure>
 <p>输出</p>
