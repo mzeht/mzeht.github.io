@@ -4,7 +4,7 @@
   <subtitle><![CDATA[风雪依稀秋白发尾 灯火葳蕤]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-03-16T15:57:41.000Z</updated>
+  <updated>2016-03-16T18:43:49.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -16,11 +16,12 @@
   
   <entry>
     <title><![CDATA[汇智网Nodejs入门]]></title>
-    <link href="http://mzeht.com/2016/03/15/%E6%B1%87%E6%99%BA%E7%BD%91Nodejs%E5%85%A5%E9%97%A8/"/>
-    <id>http://mzeht.com/2016/03/15/汇智网Nodejs入门/</id>
+    <link href="http://mzeht.com/2016/03/15/Nodejs%E5%85%A5%E9%97%A8/"/>
+    <id>http://mzeht.com/2016/03/15/Nodejs入门/</id>
     <published>2016-03-15T11:38:32.000Z</published>
-    <updated>2016-03-16T15:57:41.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="快速入门">快速入门</h1><h2 id="hello_world">hello world</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello world'</span>);</span><br></pre></td></tr></table></figure>
+    <updated>2016-03-16T18:43:49.000Z</updated>
+    <content type="html"><![CDATA[<p>总结<a href="http://www.hubwiz.com/course/5359f6f6ec7452081a7873d8/" target="_blank" rel="external">http://www.hubwiz.com/course/5359f6f6ec7452081a7873d8/</a></p>
+<h1 id="快速入门">快速入门</h1><h2 id="hello_world">hello world</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello world'</span>);</span><br></pre></td></tr></table></figure>
 <p>输出</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="blockquote">&gt; hello world</span></span><br></pre></td></tr></table></figure>
 <h2 id="回调函数">回调函数</h2><p>由于node是一个异步事件驱动的平台，所以在代码中我们经常需要使用回调函数。下面是回调函数应用的经典示例：</p>
@@ -236,7 +237,7 @@
 <p><a href="http://nodejs.cn/api/child_process" target="_blank" rel="external">http://nodejs.cn/api/child_process</a><br><a href="http://nodeapi.ucdok.com/#/api/child_process.html" target="_blank" rel="external">http://nodeapi.ucdok.com/#/api/child_process.html</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="快速入门">快速入门</h1><h2 id="hello_world">hello world</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span ]]>
+    <![CDATA[<p>总结<a href="http://www.hubwiz.com/course/5359f6f6ec7452081a7873d8/" target="_blank" rel="external">http://www.hubwiz.com/course/5359f6f6ec]]>
     </summary>
     
       <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
