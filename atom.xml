@@ -4,7 +4,7 @@
   <subtitle><![CDATA[风雪依稀秋白发尾 灯火葳蕤]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-03-21T17:53:55.000Z</updated>
+  <updated>2016-03-21T17:55:37.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://mzeht.com/2016/03/21/nodejs-mongodb%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E8%B4%AD%E7%89%A9%E7%BD%91%E7%AB%99/"/>
     <id>http://mzeht.com/2016/03/21/nodejs-mongodb实现简单购物网站/</id>
     <published>2016-03-21T14:53:59.000Z</published>
-    <updated>2016-03-21T17:53:55.000Z</updated>
+    <updated>2016-03-21T17:55:37.000Z</updated>
     <content type="html"><![CDATA[<h1 id="需求与设计">需求与设计</h1><h2 id="功能介绍">功能介绍</h2><ol>
 <li><p>用户可以完成注册、登录然后登录后对商品的浏览。</p>
 </li>
@@ -59,9 +59,9 @@
 <l]]>
     </summary>
     
-      <category term="mongodb" scheme="http://mzeht.com/tags/mongodb/"/>
+      <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
     
-      <category term="nodejs" scheme="http://mzeht.com/tags/nodejs/"/>
+      <category term="mongodb" scheme="http://mzeht.com/tags/mongodb/"/>
     
       <category term="项目" scheme="http://mzeht.com/categories/%E9%A1%B9%E7%9B%AE/"/>
     
