@@ -4,25 +4,56 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | my soul my beats</title>
+    <title>nodejs + mongodb实现简单购物网站 | my soul my beats</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mzeht">
     
 
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+    <meta name="description" content="需求与设计功能介绍
+用户可以完成注册、登录然后登录后对商品的浏览。
+
+登录之后，用户可以对相关商品进行选购并添加到购物车。
+
+用户可以对购物车里面的商品进行增加、减少、删除操作。
+
+用户可对购物车商品进行结算操作。
+
+
+技术选型本项目涉及使用到NodeJS、Express框架、MongoDB数据库、Mongoose对象模型库，详细介绍如下：
+NodeJS：Node.js采用Google Chrom">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://mzeht.com/2015/06/02/hello-world/index.html">
+<meta property="og:title" content="nodejs + mongodb实现简单购物网站">
+<meta property="og:url" content="http://mzeht.com/2016/03/21/nodejs-mongodb实现简单购物网站/index.html">
 <meta property="og:site_name" content="my soul my beats">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta property="og:description" content="需求与设计功能介绍
+用户可以完成注册、登录然后登录后对商品的浏览。
+
+登录之后，用户可以对相关商品进行选购并添加到购物车。
+
+用户可以对购物车里面的商品进行增加、减少、删除操作。
+
+用户可对购物车商品进行结算操作。
+
+
+技术选型本项目涉及使用到NodeJS、Express框架、MongoDB数据库、Mongoose对象模型库，详细介绍如下：
+NodeJS：Node.js采用Google Chrom">
+<meta property="og:image" content="http://7xqtsx.com1.z0.glb.clouddn.com/module.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="nodejs + mongodb实现简单购物网站">
+<meta name="twitter:description" content="需求与设计功能介绍
+用户可以完成注册、登录然后登录后对商品的浏览。
+
+登录之后，用户可以对相关商品进行选购并添加到购物车。
+
+用户可以对购物车里面的商品进行增加、减少、删除操作。
+
+用户可对购物车商品进行结算操作。
+
+
+技术选型本项目涉及使用到NodeJS、Express框架、MongoDB数据库、Mongoose对象模型库，详细介绍如下：
+NodeJS：Node.js采用Google Chrom">
 <meta name="twitter:creator" content="@https://twitter.com">
 
     
@@ -82,14 +113,14 @@ Quick">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/06/02/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2016/03/21/nodejs-mongodb实现简单购物网站/" title="nodejs + mongodb实现简单购物网站" itemprop="url">nodejs + mongodb实现简单购物网站</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://mzeht.com/about" title="mzeht" target="_blank" itemprop="author">mzeht</a>
 		
   <p class="article-time">
-    <time datetime="2015-06-02T04:30:10.000Z" itemprop="datePublished"> 发表于 Jun 2 2015</time>
+    <time datetime="2016-03-21T14:53:59.000Z" itemprop="datePublished"> 发表于 Mar 21 2016</time>
     
   </p>
 </header>
@@ -98,25 +129,54 @@ Quick">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#需求与设计"><span class="toc-number">1.</span> <span class="toc-text">需求与设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#功能介绍"><span class="toc-number">1.1.</span> <span class="toc-text">功能介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#技术选型"><span class="toc-number">1.2.</span> <span class="toc-text">技术选型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构划分"><span class="toc-number">1.3.</span> <span class="toc-text">结构划分</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="86" src="http://music.163.com/outchain/player?type=2&id=247529&auto=0&height=66"></iframe>
+		<h1 id="需求与设计">需求与设计</h1><h2 id="功能介绍">功能介绍</h2><ol>
+<li><p>用户可以完成注册、登录然后登录后对商品的浏览。</p>
+</li>
+<li><p>登录之后，用户可以对相关商品进行选购并添加到购物车。</p>
+</li>
+<li><p>用户可以对购物车里面的商品进行增加、减少、删除操作。</p>
+</li>
+<li><p>用户可对购物车商品进行结算操作。</p>
+</li>
+</ol>
+<h2 id="技术选型">技术选型</h2><p>本项目涉及使用到NodeJS、Express框架、MongoDB数据库、Mongoose对象模型库，详细介绍如下：</p>
+<p>NodeJS：Node.js采用Google Chrome浏览器的V8引擎，一个后端的Javascript运行环境，提供很多系统级的API，如文件操作、网络编程等。</p>
+<p>MongoDB：MongoDB是一个基于分布式文件存储的一个高性能，开源，无模式的文档型数据库，数据以BSON文档的格式存储在磁盘上。</p>
+<p>Express：一个简洁、灵活的基于Node.js的Web应用开发框架, 支持Ejs、jade等多种模板，并且提供一系列强大的功能，比如：模板解析、静态文件服务、中间件、路由控制等等。</p>
+<p>Mongoose：一个针对MongoDB操作的对象模型库，封装了MongoDB对文档的的一些增删改查等常用方法。</p>
+<h2 id="结构划分">结构划分</h2><p>项目主要分为以下几大模块：注册模块，登录模块，商品模块、购物车模块、结算模块。</p>
+<ol>
+<li><p>用户注册模块：填写用户名、密码、确认密码后，实现成功注册，然后进行登录。</p>
+</li>
+<li><p>用户登录模块：填写已注册的用户名称，填写正确的密码，进入商品展示页面。</p>
+</li>
+<li><p>商品模块：用户选择相关产品加入购物车。</p>
+</li>
+<li><p>购物车模块：对相关商品进行增加、减少、删除操作。</p>
+</li>
+<li><p>结算模块：对购物车内已选择商品进行结算。</p>
+</li>
+</ol>
+<p>模块结构如下图所示：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/module.jpg" alt="image"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/项目/">项目</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/－nodejs-－mongodb/">－nodejs －mongodb</a>
+  </div>
 
 </div>
 
@@ -124,7 +184,7 @@ Quick">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mzeht.com/2015/06/02/hello-world/" data-title="Hello World | my soul my beats" data-tsina="2865942514" class="share clearfix">
+	  <div data-url="http://mzeht.com/2016/03/21/nodejs-mongodb实现简单购物网站/" data-title="nodejs + mongodb实现简单购物网站 | my soul my beats" data-tsina="2865942514" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -137,19 +197,11 @@ Quick">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/01/30/SwipeRefreshLayoutBasic/" title="SwipeRefreshLayoutBasic">
-  <strong>上一篇：</strong><br/>
-  <span>
-  SwipeRefreshLayoutBasic</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/03/10/2015-03-10-markdown/"  title="markdown 语法">
+<a href="/2016/03/18/ConnectManager网络请求的三层封装（模块－转换－底层）/"  title="ConnectManager网络请求的三层封装（模块－转换－底层）">
  <strong>下一篇：</strong><br/> 
- <span>markdown 语法
+ <span>ConnectManager网络请求的三层封装（模块－转换－底层）
 </span>
 </a>
 </div>
@@ -158,7 +210,7 @@ Quick">
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/06/02/hello-world/" data-title="Hello World" data-url="http://mzeht.com/2015/06/02/hello-world/"></div>
+	<div class="ds-thread" data-thread-key="2016/03/21/nodejs-mongodb实现简单购物网站/" data-title="nodejs + mongodb实现简单购物网站" data-url="http://mzeht.com/2016/03/21/nodejs-mongodb实现简单购物网站/"></div>
 </section>
 
 
@@ -168,7 +220,7 @@ Quick">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#需求与设计"><span class="toc-number">1.</span> <span class="toc-text">需求与设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#功能介绍"><span class="toc-number">1.1.</span> <span class="toc-text">功能介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#技术选型"><span class="toc-number">1.2.</span> <span class="toc-text">技术选型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构划分"><span class="toc-number">1.3.</span> <span class="toc-text">结构划分</span></a></li></ol></li></ol>
  
   </div>
 
