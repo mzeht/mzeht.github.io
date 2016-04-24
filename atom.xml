@@ -43,6 +43,74 @@
   </entry>
   
   <entry>
+    <title><![CDATA[MongoDB]]></title>
+    <link href="http://mzeht.com/2016/03/22/MongoDB/"/>
+    <id>http://mzeht.com/2016/03/22/MongoDB/</id>
+    <published>2016-03-22T12:55:47.000Z</published>
+    <updated>2016-04-24T17:38:56.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="简单介绍">简单介绍</h1><h2 id="简介">简介</h2><p>MongoDB是一个基于分布式文件存储的数据库，由C++语言编写，旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
+<p>MongoDB是一个高性能，开源，无模式的文档型数据库，官方给自己的定义是Key-value存储(高性能和高扩展)和传统RDBMS(丰富的查询和功能)之间的一座桥梁</p>
+<h2 id="Document和BSON">Document和BSON</h2><p>MongoDB中保存的数据格式为BSON，如：。<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/bson.jpg" alt=""></p>
+<p>MongoDB中数据的基本单元称为文档(Document)，它是MongoDB的核心概念，由多个键极其关联的值有序的放置在一起组成，数据库中它对应于关系型数据库的行。</p>
+<p>数据在MongoDB中以BSON（Binary-JSON）文档的格式存储在磁盘上。</p>
+<p>BSON（Binary Serialized Document Format）是一种类json的一种二进制形式的存储格式，简称Binary JSON，BSON和JSON一样，支持内嵌的文档对象和数组对象，但是BSON有JSON没有的一些数据类型，如Date和BinData类型。</p>
+<p>BSON的优点是灵活性高，但它的缺点是空间利用率不是很理想，BSON有三个特点：轻量性、可遍历性、高效性。</p>
+<h1 id="文档的增删查改">文档的增删查改</h1><h2 id="简单插入文档">简单插入文档</h2><p>在数据库中，数据插入是最基本的操作，在MongoDB使用db.collection.insert(document)语句来插入文档，如下图：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/insert1.png" alt=""></p>
+<p>document是文档数据，collection是存放文档数据的集合。</p>
+<p>例如：所有用户的信息存放在users集合中，每个用户的信息为一个user文档，插入数据:</p>
+<p>db.users.insert(user);<br>如果collection存在，document会添加到collection目录下， 如果collection不存在，数据库会先创建collection，然后再保存document。</p>
+<p>练习一下：把自己的姓名(name)和年龄(age)保存到person集合中！<br>如果想要查看已插入的person文档，可以使用：db.person.find()查看当前库中person集合里的数据。</p>
+<p>如果想要查看当前数据库中的集合列表，可以使用：show collections。</p>
+<p>db.person.insert({name:’阿牛’, age:28});</p>
+<h2 id="批量插入文档">批量插入文档</h2><p>insert语句不但可以插入单个文档，还可以一次性插入多个文档。</p>
+<p>插入多个文档时，insert命令的参数为一个数组，数组元素为BSON格式的文档。</p>
+<p>多个文档可以放在一个数组内，一次插入多条数据，例如：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.insert([&#123;<span class="property">name</span>:<span class="string">"tommy"</span>&#125;,&#123;<span class="property">name</span>:<span class="string">"xiaoming"</span>&#125;])</span><br></pre></td></tr></table></figure>
+<p>文档批量插入非常方便，但是使用批量插入时也有一些问题需要注意，因为BSON格式的限制，一次插入的数据量不能超过16M，在一个insert命令中插入多条数据时，MongoDB不保证完全成功或完全失败。</p>
+<p>使用insert命令将以下数据一次性插入person集合中。</p>
+<p>文／Te_Lee（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">http://www.jianshu.com/p/1e402922ee32/</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th style="text-align:center">age</th>
+<th style="text-align:center">status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mary</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td>Lucy</td>
+<td style="text-align:center">89</td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td>Jacky</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">A</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.person.insert([</span><br><span class="line"> &#123;<span class="string">name:</span><span class="string">"Mary"</span>,  <span class="string">age:</span><span class="number">21</span>, <span class="string">status:</span><span class="string">"A"</span>&#125;,</span><br><span class="line"> &#123;<span class="string">name:</span><span class="string">"Lucy"</span>,  <span class="string">age:</span><span class="number">89</span>, <span class="string">status:</span><span class="string">"A"</span>&#125;,</span><br><span class="line"> &#123;<span class="string">name:</span><span class="string">"Jacky"</span>, <span class="string">age:</span><span class="number">30</span>, <span class="string">status:</span><span class="string">"A"</span>&#125; </span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<h2 id="查询文档">查询文档</h2><p>在MongoDB中，查询指向特定的文档集合，查询设定条件，指明MongoDB需要返回的文档；查询也可以包含一个投影，指定返回的字段。</p>
+<p>如下图，在查询过程指定了一个查询条件和一个排序修饰。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="简单介绍">简单介绍</h1><h2 id="简介">简介</h2><p>MongoDB是一个基于分布式文件存储的数据库，由C++语言编写，旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
+<p>MongoDB是一个高性能，开源，无模式的文档型数据库，]]>
+    </summary>
+    
+      <category term="mongodb" scheme="http://mzeht.com/tags/mongodb/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[nodejs + mongodb实现简单购物网站]]></title>
     <link href="http://mzeht.com/2016/03/21/nodejs-mongodb%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E8%B4%AD%E7%89%A9%E7%BD%91%E7%AB%99/"/>
     <id>http://mzeht.com/2016/03/21/nodejs-mongodb实现简单购物网站/</id>

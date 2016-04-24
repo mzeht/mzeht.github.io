@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -147,13 +147,13 @@ NodeJS：Node.js采用Google Chrom">
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: 0,
-      author: '博主'
+      author: 'Author'
     }
   };
 </script>
@@ -161,7 +161,7 @@ NodeJS：Node.js采用Google Chrom">
   <title> nodejs + mongodb实现简单购物网站 | my soul my beats </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -216,7 +216,27 @@ NodeJS：Node.js采用Google Chrom">
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            首页
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            About
           </a>
         </li>
       
@@ -226,7 +246,7 @@ NodeJS：Node.js采用Google Chrom">
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -236,7 +256,7 @@ NodeJS：Node.js采用Google Chrom">
             
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -289,9 +309,9 @@ NodeJS：Node.js采用Google Chrom">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-21T22:53:59+08:00" content="3月 21 2016">
-              3月 21 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-03-21T22:53:59+08:00" content="Mar 21 2016">
+              Mar 21 2016
             </time>
           </span>
 
@@ -301,7 +321,7 @@ NodeJS：Node.js采用Google Chrom">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/项目/" itemprop="url" rel="index">
@@ -317,6 +337,13 @@ NodeJS：Node.js采用Google Chrom">
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/21/nodejs-mongodb实现简单购物网站/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/nodejs-mongodb实现简单购物网站/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -612,8 +639,8 @@ NodeJS：Node.js采用Google Chrom">
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/13/企业征信客户端竞争品分析/" rel="prev" title="企业征信移动客户端竞品分析">
-                企业征信移动客户端竞品分析 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/22/MongoDB/" rel="prev" title="MongoDB">
+                MongoDB <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -640,6 +667,10 @@ NodeJS：Node.js采用Google Chrom">
           
   <div class="comments" id="comments">
     
+      <div class="ds-thread" data-thread-key="2016/03/21/nodejs-mongodb实现简单购物网站/"
+           data-title="nodejs + mongodb实现简单购物网站" data-url="http://mzeht.com/2016/03/21/nodejs-mongodb实现简单购物网站/">
+      </div>
+    
   </div>
 
 
@@ -663,10 +694,10 @@ NodeJS：Node.js采用Google Chrom">
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -674,7 +705,7 @@ NodeJS：Node.js采用Google Chrom">
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
+               src="http://mzeht.com/uploads/avatar.png"
                alt="mzeht" />
           <p class="site-author-name" itemprop="name">mzeht</p>
           <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
@@ -682,17 +713,17 @@ NodeJS：Node.js采用Google Chrom">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
-              <span class="site-state-item-name">日志</span>
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              
+                <span class="site-state-item-name">categories</span>
+              </a>
             </div>
           
 
@@ -700,7 +731,7 @@ NodeJS：Node.js采用Google Chrom">
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">标签</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -762,13 +793,13 @@ NodeJS：Node.js采用Google Chrom">
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
@@ -849,9 +880,28 @@ NodeJS：Node.js采用Google Chrom">
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"mzeht"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+  
+
+
 
 
 

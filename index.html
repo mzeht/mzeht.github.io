@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -97,13 +97,13 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: 0,
-      author: '博主'
+      author: 'Author'
     }
   };
 </script>
@@ -111,7 +111,7 @@
   <title> my soul my beats </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -168,7 +168,27 @@
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            首页
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            About
           </a>
         </li>
       
@@ -178,7 +198,7 @@
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -188,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -244,9 +264,9 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-13T17:12:31+08:00" content="4月 13 2016">
-              4月 13 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-04-13T17:12:31+08:00" content="Apr 13 2016">
+              Apr 13 2016
             </time>
           </span>
 
@@ -256,7 +276,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/文档/" itemprop="url" rel="index">
@@ -272,6 +292,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/13/企业征信客户端竞争品分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/13/企业征信客户端竞争品分析/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -353,6 +380,175 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/22/MongoDB/" itemprop="url">
+                  MongoDB
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-03-22T20:55:47+08:00" content="Mar 22 2016">
+              Mar 22 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/文档/" itemprop="url" rel="index">
+                    <span itemprop="name">文档</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/22/MongoDB/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/22/MongoDB/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="简单介绍">简单介绍</h1><h2 id="简介">简介</h2><p>MongoDB是一个基于分布式文件存储的数据库，由C++语言编写，旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
+<p>MongoDB是一个高性能，开源，无模式的文档型数据库，官方给自己的定义是Key-value存储(高性能和高扩展)和传统RDBMS(丰富的查询和功能)之间的一座桥梁</p>
+<h2 id="Document和BSON">Document和BSON</h2><p>MongoDB中保存的数据格式为BSON，如：。<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/bson.jpg" alt=""></p>
+<p>MongoDB中数据的基本单元称为文档(Document)，它是MongoDB的核心概念，由多个键极其关联的值有序的放置在一起组成，数据库中它对应于关系型数据库的行。</p>
+<p>数据在MongoDB中以BSON（Binary-JSON）文档的格式存储在磁盘上。</p>
+<p>BSON（Binary Serialized Document Format）是一种类json的一种二进制形式的存储格式，简称Binary JSON，BSON和JSON一样，支持内嵌的文档对象和数组对象，但是BSON有JSON没有的一些数据类型，如Date和BinData类型。</p>
+<p>BSON的优点是灵活性高，但它的缺点是空间利用率不是很理想，BSON有三个特点：轻量性、可遍历性、高效性。</p>
+<h1 id="文档的增删查改">文档的增删查改</h1><h2 id="简单插入文档">简单插入文档</h2><p>在数据库中，数据插入是最基本的操作，在MongoDB使用db.collection.insert(document)语句来插入文档，如下图：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/insert1.png" alt=""></p>
+<p>document是文档数据，collection是存放文档数据的集合。</p>
+<p>例如：所有用户的信息存放在users集合中，每个用户的信息为一个user文档，插入数据:</p>
+<p>db.users.insert(user);<br>如果collection存在，document会添加到collection目录下， 如果collection不存在，数据库会先创建collection，然后再保存document。</p>
+<p>练习一下：把自己的姓名(name)和年龄(age)保存到person集合中！<br>如果想要查看已插入的person文档，可以使用：db.person.find()查看当前库中person集合里的数据。</p>
+<p>如果想要查看当前数据库中的集合列表，可以使用：show collections。</p>
+<p>db.person.insert({name:’阿牛’, age:28});</p>
+<h2 id="批量插入文档">批量插入文档</h2><p>insert语句不但可以插入单个文档，还可以一次性插入多个文档。</p>
+<p>插入多个文档时，insert命令的参数为一个数组，数组元素为BSON格式的文档。</p>
+<p>多个文档可以放在一个数组内，一次插入多条数据，例如：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.insert([&#123;<span class="property">name</span>:<span class="string">"tommy"</span>&#125;,&#123;<span class="property">name</span>:<span class="string">"xiaoming"</span>&#125;])</span><br></pre></td></tr></table></figure>
+<p>文档批量插入非常方便，但是使用批量插入时也有一些问题需要注意，因为BSON格式的限制，一次插入的数据量不能超过16M，在一个insert命令中插入多条数据时，MongoDB不保证完全成功或完全失败。</p>
+<p>使用insert命令将以下数据一次性插入person集合中。</p>
+<p>文／Te_Lee（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">http://www.jianshu.com/p/1e402922ee32/</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th style="text-align:center">age</th>
+<th style="text-align:center">status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mary</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td>Lucy</td>
+<td style="text-align:center">89</td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td>Jacky</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">A</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.person.insert([</span><br><span class="line"> &#123;<span class="string">name:</span><span class="string">"Mary"</span>,  <span class="string">age:</span><span class="number">21</span>, <span class="string">status:</span><span class="string">"A"</span>&#125;,</span><br><span class="line"> &#123;<span class="string">name:</span><span class="string">"Lucy"</span>,  <span class="string">age:</span><span class="number">89</span>, <span class="string">status:</span><span class="string">"A"</span>&#125;,</span><br><span class="line"> &#123;<span class="string">name:</span><span class="string">"Jacky"</span>, <span class="string">age:</span><span class="number">30</span>, <span class="string">status:</span><span class="string">"A"</span>&#125; </span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<h2 id="查询文档">查询文档</h2><p>在MongoDB中，查询指向特定的文档集合，查询设定条件，指明MongoDB需要返回的文档；查询也可以包含一个投影，指定返回的字段。</p>
+<p>如下图，在查询过程指定了一个查询条件和一个排序修饰。</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/21/nodejs-mongodb实现简单购物网站/" itemprop="url">
                   nodejs + mongodb实现简单购物网站
                 </a>
@@ -366,9 +562,9 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-21T22:53:59+08:00" content="3月 21 2016">
-              3月 21 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-03-21T22:53:59+08:00" content="Mar 21 2016">
+              Mar 21 2016
             </time>
           </span>
 
@@ -378,7 +574,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/项目/" itemprop="url" rel="index">
@@ -394,6 +590,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/21/nodejs-mongodb实现简单购物网站/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/nodejs-mongodb实现简单购物网站/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -714,9 +917,9 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-18T14:01:47+08:00" content="3月 18 2016">
-              3月 18 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-03-18T14:01:47+08:00" content="Mar 18 2016">
+              Mar 18 2016
             </time>
           </span>
 
@@ -726,7 +929,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/代码/" itemprop="url" rel="index">
@@ -742,6 +945,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/18/ConnectManager网络请求的三层封装（模块－转换－底层）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/18/ConnectManager网络请求的三层封装（模块－转换－底层）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -900,9 +1110,9 @@ public abstract void onFault(CustomError fault);
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-17T12:08:02+08:00" content="3月 17 2016">
-              3月 17 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-03-17T12:08:02+08:00" content="Mar 17 2016">
+              Mar 17 2016
             </time>
           </span>
 
@@ -912,7 +1122,7 @@ public abstract void onFault(CustomError fault);
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/文档/" itemprop="url" rel="index">
@@ -928,6 +1138,13 @@ public abstract void onFault(CustomError fault);
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/17/express框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/17/express框架/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1219,15 +1436,22 @@ public abstract void onFault(CustomError fault);
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-15T19:38:32+08:00" content="3月 15 2016">
-              3月 15 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-03-15T19:38:32+08:00" content="Mar 15 2016">
+              Mar 15 2016
             </time>
           </span>
 
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/15/Nodejs入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/15/Nodejs入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1527,15 +1751,22 @@ public abstract void onFault(CustomError fault);
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-25T14:55:23+08:00" content="2月 25 2016">
-              2月 25 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-02-25T14:55:23+08:00" content="Feb 25 2016">
+              Feb 25 2016
             </time>
           </span>
 
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/25/eclipes-to-androidstudio/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/25/eclipes-to-androidstudio/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1630,9 +1861,9 @@ public abstract void onFault(CustomError fault);
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-14T21:05:35+08:00" content="2月 14 2016">
-              2月 14 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-02-14T21:05:35+08:00" content="Feb 14 2016">
+              Feb 14 2016
             </time>
           </span>
 
@@ -1642,7 +1873,7 @@ public abstract void onFault(CustomError fault);
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/文档/" itemprop="url" rel="index">
@@ -1658,6 +1889,13 @@ public abstract void onFault(CustomError fault);
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/14/Meterial-design-for-developer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/14/Meterial-design-for-developer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1755,15 +1993,22 @@ public abstract void onFault(CustomError fault);
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-10T01:19:32+08:00" content="2月 10 2016">
-              2月 10 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-02-10T01:19:32+08:00" content="Feb 10 2016">
+              Feb 10 2016
             </time>
           </span>
 
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/10/User-Gradle-sample/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/10/User-Gradle-sample/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1855,9 +2100,9 @@ public abstract void onFault(CustomError fault);
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-10T01:12:31+08:00" content="2月 10 2016">
-              2月 10 2016
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-02-10T01:12:31+08:00" content="Feb 10 2016">
+              Feb 10 2016
             </time>
           </span>
 
@@ -1867,7 +2112,7 @@ public abstract void onFault(CustomError fault);
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/文档/" itemprop="url" rel="index">
@@ -1883,6 +2128,13 @@ public abstract void onFault(CustomError fault);
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1976,171 +2228,6 @@ public abstract void onFault(CustomError fault);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/06/Gradle-User-Guide/" itemprop="url">
-                  Gradle User Guide
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-06T23:19:45+08:00" content="2月 6 2016">
-              2月 6 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/文档/" itemprop="url" rel="index">
-                    <span itemprop="name">文档</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考资料：gradle 2.11 官方文档<a href="https://docs.gradle.org/current/userguide/userguide.html" target="_blank" rel="external">https://docs.gradle.org/current/userguide/userguide.html</a></p>
-<p>Gradle User Guide<br>Version 2.10</p>
-<p>Copyright © 2007-2015 Hans Dockter, Adam Murdoch<br>Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.</p>
-<h1 id="第一章：关于gradle">第一章：关于gradle</h1><h2 id="1-介绍">1.介绍</h2><p>很高兴能向大家介绍 Gradle, 这是一个构建系统, 我们认为它是 java ( JVM ) 世界中构建技术的一个飞跃.<br>Gradle 提供了:</p>
-<ul>
-<li>一个像 Ant 一样的非常灵活的通用构建工具</li>
-<li>一种可切换的, 像 maven 一样的基于合约构建的框架</li>
-<li>支持强大的多工程构建</li>
-<li>支持强大的依赖管理(基于 ApacheIvy )</li>
-<li>很好的支持你已有的 maven 和 ivy 仓库</li>
-<li>支持传递性依赖管理, 而不需要远程仓库或者 pom.xml 或者 ivy 配置文件</li>
-<li>优先支持 Ant 式的任务和构建</li>
-<li>基于 <code>groovy</code> 的构建脚本</li>
-<li>有丰富的领域模型来描述你的构建</li>
-</ul>
-<h3 id="1-1-_关于用户指南">1.1. 关于用户指南</h3><p>这份用户指南，就像Gradle自身一样，还在积极的发展之中，Gradle的一些功能没有被完全展示出来，现在的一些内容也不是很清晰，如果你更加了解Gradle，我们需要你的帮助来完善Gradle文档，你可以在<a href="http://www.gradle.org/contribute" target="_blank" rel="external">Gradle Web Site</a>了解如何为文档贡献力量</p>
-<p>通过这本指南, 你将会看到一些代表 Gradle 任务之间依赖关系的图表. 类似于 UML 依赖关系<br>的表示方法, 从一个任务 A 指向另一个任务 B 的箭头代表A依赖于B.</p>
-<h2 id="2-概述">2.概述</h2><h3 id="2-1-_特点">2.1. 特点</h3><ol>
-<li><p><code>声明式构建和合约构建</code><br>Gradle 的核心是基于 Groovy 的 领域特定语言 (DSL), 具有十分优秀的扩展性. Gradle 通过提<br>供可以随意集成的声明式语言元素将声明性构建推到了一个新的高度. 这些元素也为 Java,<br>Groovy, OSGi, Web 和Scala 等项目提供基于合约构建的支持. 而且, 这种声明式语言是可扩展<br>的. 你可以添加自己的语言元素或加强现有的语言元素, 从而提供简洁, 易于维护和易于理解的<br>构建.</p>
-</li>
-<li><p><code>基于依赖的编程语言</code>声明式语言位于通用任务图 ( general purpose task graph ) 的顶端，它可以被充分利用在你<br>的构建中. 它具有强大的灵活性, 可以满足使用者对 Gradle 的一些特别的需求.</p>
-</li>
-<li><code>让构建结构化</code><br>Gradle 的易适应性和丰富性可让你在构建里直接套用通用的设计原则. 例如, 你可以非常容易<br>地使用一些可重用的组件来构成你的构建. 但是不必要的间接内联内容是不合适的. 不要强行<br>拆分已经结合在一起的部分 (例如, 在你的项目层次结构中). 避免使构建难以维护. 总之, 你可<br>以创建一个结构良好，易于维护和易于理解的构建.</li>
-<li><code>API深化</code><br>你会非常乐意在整个构建执行的生命周期中使用 Gradle, 因为Gradle 允许你管理和定制它的<br>配置和执行行为.</li>
-<li><code>Gradle 扩展</code><br>Gradle 扩展得非常好. 不管是简单的独立项目还是大型的多项目构建, 它都能显著的提高效率.<br>这是真正的结构构建. 顶尖水平的构建功能，还可以解决许多大公司碰到的构建 性能低下的问<br>题.</li>
-<li><code>多项目构建</code><br>Gradle 对多项目的支持是非常出色的. 项目依赖是很重要的部分. 它允许你模拟在多项目构建<br>中项目的关系，这正是你所要关注的地方. Gradle 遵从你的布局, 反过来就不是.<br>Gradle 提供了局部构建的功能. 如果你构建一个单独的子项目, Gradle 会构建这个子项目依赖<br>的所有子项目. 你也可以选择依赖于另一个特别的子项目重新构建这些子项目. 这样在一些大<br>型项目里就可以节省非常多的时间.</li>
-<li><code>多种方式来管理你的依赖</code><br>不同的团队有不同的管理外部依赖的方法. Gradle 对于任何管理策略都提供了合适的支持. 从<br>远程 Maven 和 Ivy 库的依赖管理到本地文件系统的 jars 或者 dirs.</li>
-<li><code>Gradle 是第一个构建整合工具</code><br>Ant 的 tasks是 Gradle 中很重要的部分, 更有趣是 Ant 的 projects 也是十分重要的部分.<br>Gradle 可以直接引入Ant 项目, 并在运行时直接将 Ant targets 转换成 Gradle tasks. 你可以从<br>Gradle 中依赖它们, 并增强它们的功能, 甚至可以在 build.xml 文件中声明 Gradle tasks 的依<br>赖. 并且properties, paths 等也可以通过同样的方法集成进来.<br>Gradle 完全支持你已有的 Maven 或者 lvy 仓库来构造发布或者提取依赖. Gradle 也提供了一<br>个转化器, 用来将 maven 的 pom.xml 文件转换成 Gradle 脚本. 在运行时引入 Maven 项目也<br>会在稍后推出.</li>
-<li><code>易于迁移</code><br>Gradle 可以兼容任何结构. 因此你可以直接在你的产品构建的分支上开发你的 Gradle 构建,<br>并且二者可以并行. 我们通常建议编写一些测试代码来确保它们的功能是相同的. 通过这种方<br>式, 在迁移的时候就不会显得那么混乱和不可靠, 这是通过婴儿学步的方式来获得最佳的实践.</li>
-<li><code>Groovy</code><br>Gradle 的构建脚本是通过 Groovy 编写的而不是 XML. 但是并不像其他方式, 这并不是为了简<br>单的展示用动态语言编写的原始脚本有多么强大. 不然的话, 只会导致维护构建变得非常困难.<br>Gradle 的整个设计是朝着一种语言的方向开发的, 并不是一种死板的框架. Groovy 就像胶水一<br>样, 把你像实现的构想和抽象的 Gradle 粘在一起. Gradle提供了一些标准的构想, 但是他们并<br>不享有任何形式的特权. 相比于其他声明式构建系统，对我们来说这是一个比较突出的特点.</li>
-<li><code>Gradle 包装器</code><br>Gradle 包装器允许你在没有安装 Gradle 的机器上运行 Gradle 构建. 在一些持续集成的服务<br>器上, 这个功能将非常有用. 它同样也能降低使用一个开源项目的门槛, 也就是说构建它将会非<br>常简单. 这个包装器对于公司来说也是很有吸引力的. 它并不需要为客户机提供相应的管理防<br>范. 这种方式同样也能强制某一个版本 Gradle 的使用从而最小化某些支持问题.</li>
-<li><code>免费和开源</code><br>Gradle 是一个开源项目, 遵循 ASL 许可.</li>
-</ol>
-<h3 id="2-2-_为什么选择Groovy">2.2. 为什么选择Groovy</h3><p>我们认为在构建脚本时，使用内部DSL［DSL：Domain Specific Languages,特定领域语言］(基于动态语言)，和XML相比，有很大优势，DSL有很多，为什么选择了Gradle？答案就在Gradle的使用背景中，虽然Gradle是通用的核心构建工具，但是主要运用在java项目上，在这些项目中，团队成员非常熟悉java，我们认为构建应该对团队全体成员尽量清晰明了</p>
-<p>在这种情况下，你可能争论为什么不直接用java作为脚本构建语言，这的确是个合理的疑问，对于你的团队来说，java拥有最好的清晰度和最低的学习成本，但是由于java语言的限制，java作为脚本构建语言，并不是那么强大和出色[^hello].像Python，Groovy和Ruby这些语言表现更好，我们选择了Groovy，他最适合java开发人员，他的基本语法，类系统，包结构和其他一些特征，都和java相同，在和java的共同基础上，Groovy能做的更多.</p>
-<p>对于熟悉Ruby,Python或者有志于学习它们的java开发者，以上依据都不成立了，Gradle的设计同时也适合用Ruby，Python来设计脚本构建引擎，只是现在不是我们的当务之急，我们乐于支持任何团体来开发更多的脚本构建引擎.</p>
-<p>[^hello]: 在 <a href="http://www.defmacro.org/ramblings/lisp.html" target="_blank" rel="external">http://www.defmacro.org/ramblings/lisp.html</a> 你可以看到一篇比较Ant，XML，Java和Lisp的有趣文章， 如果java的语法和Groovy的语法一样的话，那将非常有趣</p>
-<h1 id="使用现有的构建">使用现有的构建</h1><h2 id="3-安装Gradle">3.安装Gradle</h2><h3 id="3-1前提">3.1前提</h3><p>Gradle 需要安装一个 Java JDK 或者 JRE. 而且 Java 版本必须至少是 6 以上. (to check, use java -version). Gradle 有自带 Groovy 库, 所以没必要安装 Groovy. 任何已经安装的 Groovy 会被 Gradle 忽略.</p>
-<p>Gradle 使用任何已经存在在你的路径中的 JDK (可以通过 java -version 检查, 如果有就说明系统已经安装了 Java 环境). 或者, 你也可以设置 JAVA_HOME 环境参数来指定希望使用的JDK的安装目录.</p>
-<h3 id="3-2_下载">3.2 下载</h3><p>You can download one of the Gradle distributions from the <a href="http://www.gradle.org/downloads" target="_blank" rel="external">Gradle web site</a>.</p>
-<h3 id="3-3_解压">3.3 解压</h3><p>The Gradle distribution comes packaged as a ZIP. The full distribution contains:</p>
-<ul>
-<li>The Gradle binaries.</li>
-<li>The user guide (HTML and PDF).</li>
-<li>The DSL reference guide.</li>
-<li>The API documentation (Javadoc and Groovydoc).</li>
-<li>Extensive samples, including the examples referenced in the user guide, along with some complete and more complex builds you can use as a starting point for your own build.</li>
-<li>The binary sources. This is for reference only. If you want to build Gradle you need to download the source distribution or checkout the sources from the source repository. See the<a href="http://gradle.org/development/" target="_blank" rel="external">Gradle web site</a> for details.</li>
-</ul>
-<h3 id="3-4_环境变量">3.4 环境变量</h3><p>For running Gradle, add GRADLE_HOME/bin to your PATH environment variable. Usually, this is sufficient to run Gradle.</p>
-<h3 id="3-5_运行和测试安装">3.5 运行和测试安装</h3><p>ou run Gradle via the gradle command. To check if Gradle is properly installed just type gradle -v. The output shows the Gradle version and also the local environment configuration (Groovy, JVM version, OS, etc.). The displayed Gradle version should match the distribution you have downloaded.</p>
-<h3 id="3-6_JVM_设置">3.6 JVM 设置</h3><p>JVM 选项可以通过设置环境变量来更改. 您可以使用 GRADLE_OPTS 或者 JAVA_OPTS.<br>JAVA_OPTS 是一个用于 JAVA 应用的环境变量. 一个典型的用例是在 JAVA_OPTS 里设置HTTP代理服务器(proxy),<br>GRADLE_OPTS 是内存选项. 这些变量可以在 gradle 的一开始就设置或者通过 gradlew 脚本来设置.</p>
-<p>注意，目前Gradle不能通过命令行设置jvm.</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2178,7 +2265,7 @@ public abstract void onFault(CustomError fault);
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
+               src="http://mzeht.com/uploads/avatar.png"
                alt="mzeht" />
           <p class="site-author-name" itemprop="name">mzeht</p>
           <p class="site-description motion-element" itemprop="description">学习总结 思考感悟 知识管理</p>
@@ -2186,17 +2273,17 @@ public abstract void onFault(CustomError fault);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
-              <span class="site-state-item-name">日志</span>
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">分类</span>
-              
+                <span class="site-state-item-name">categories</span>
+              </a>
             </div>
           
 
@@ -2204,7 +2291,7 @@ public abstract void onFault(CustomError fault);
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">标签</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -2255,13 +2342,13 @@ public abstract void onFault(CustomError fault);
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
@@ -2338,9 +2425,28 @@ public abstract void onFault(CustomError fault);
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"mzeht"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+  
+
+
 
 
 
