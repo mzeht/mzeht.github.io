@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-04-13T09:35:04.000Z</updated>
+  <updated>2016-05-19T07:45:05.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://mzeht.com/2016/04/13/%E4%BC%81%E4%B8%9A%E5%BE%81%E4%BF%A1%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AB%9E%E4%BA%89%E5%93%81%E5%88%86%E6%9E%90/"/>
     <id>http://mzeht.com/2016/04/13/企业征信客户端竞争品分析/</id>
     <published>2016-04-13T09:12:31.000Z</published>
-    <updated>2016-04-13T09:35:04.000Z</updated>
+    <updated>2016-05-19T07:45:05.000Z</updated>
     <content type="html"><![CDATA[<h1 id="企加">企加</h1><h2 id="图例">图例</h2><p><img src="http://7xsxyu.com2.z0.glb.clouddn.com/gif/jiaohuqjiahome.gif" alt=""></p>
 <h2 id="布局">布局</h2><p>1.首页是传统的tab 和view的切换模式，中间的按钮“企业查询”重点突出<br>2，进入app第一个模块是企业头条，分为推荐和我的关注，推荐是所有企业的新闻，我的关注是关注的企业相关头条。</p>
 <h2 id="颜色">颜色</h2><p>以蓝白黑灰为主，白色背景，蓝色主题</p>
@@ -30,6 +30,7 @@
 <h2 id="颜色-1">颜色</h2><p>以红色为主题，白色背景，图标颜色很多</p>
 <h2 id="交互细节-1">交互细节</h2><p>搜索区域下整体滑动，保持搜索区域始终可见，新闻区域不触发下拉刷新，点击刷新的方式</p>
 <h2 id="小结-1">小结</h2><p>系统状态栏的设置整体感较强</p>
+<p><a href="https://www.jianguoyun.com/p/DftAlPkQpN36BRjD1BQ" target="_blank" rel="external">Excel分析文档下载</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="企加">企加</h1><h2 id="图例">图例</h2><p><img src="http://7xsxyu.com2.z0.glb.clouddn.com/gif/jiaohuqjiahome.gif" alt=""></p>
