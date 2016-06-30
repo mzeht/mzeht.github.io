@@ -94,6 +94,7 @@ We’ve just pushed Android Studio 2.0 Pr">
 下载地址http://tools.android.com/download/studio/builds/2-0-preview-9这里有最新的版本更新消息之前的preview 2.0 的确有不可忽视的bug 
 
 We’ve just pushed Android Studio 2.0 Pr">
+<meta property="og:updated_time" content="2016-02-02T10:59:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Studio 2.0 Preview 9">
 <meta name="twitter:description" content="一不注意android studio preview 2.0 又要升级了，升级到preview2.0 9版本
@@ -291,6 +292,15 @@ We’ve just pushed Android Studio 2.0 Pr">
 
           
           
+             <span id="/2016/02/02/Android-Studio-2-0-Preview-9/" class="leancloud_visitors" data-flag-title="Android Studio 2.0 Preview 9">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
 
           
         </div>
@@ -312,7 +322,7 @@ We’ve just pushed Android Studio 2.0 Pr">
 </blockquote>
 <p> <strong>We’ve also continued to fix various Instant Run scenarios; in particular, using APK splits on API 23 seems to trigger some platform bugs, so for now we’ve switched over to using multidex for coldswap for both Lollipop and Marshmallow.</strong></p>
 <p>没错，果然是bug，就是打包出问题,个人经历为生成的apk fragment资源管理混乱，主题资源编译出错，同样的打包方式，viewpage切换一个出错一个正常，过渡动画一个默认，一个自定义，导致我用回了1.5稳定版，不知道这个版本彻底解决没，从preview 9 开始 默认使用gradle2.10版本</p>
-<p>gradle的android构建插件为<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:2.0.0-alpha6'</span></span><br></pre></td></tr></table></figure></p>
+<p>gradle的android构建插件为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classpath &apos;com.android.tools.build:gradle:2.0.0-alpha6&apos;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -424,7 +434,7 @@ We’ve just pushed Android Studio 2.0 Pr">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -441,7 +451,7 @@ We’ve just pushed Android Studio 2.0 Pr">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -628,6 +638,99 @@ We’ve just pushed Android Studio 2.0 Pr">
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Xs5aiTlfu7f3IpPWImJpnwgp-gzGzoHsz", "rNSn9trau7MT2M4fUCC0rdva");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

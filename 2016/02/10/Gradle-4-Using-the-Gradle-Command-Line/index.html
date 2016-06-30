@@ -92,10 +92,12 @@
 4.1 执行多重任务你能使用命令通过一个脚本来执行多个任务，例如这个命令gradle compile test,他会执行compite和test两个任务，gradle会按照命令行中的任务顺序来有序执行，也会运行其依赖项目，每个任务仅仅只执行一次，无论它在脚本中如何被引用，是直接指定还是作为其他任务的">
 <meta property="og:image" content="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png">
 <meta property="og:image" content="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png">
+<meta property="og:updated_time" content="2016-02-11T02:42:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gradle.4 Using the Gradle Command-Line">
 <meta name="twitter:description" content="4.通过命令行使用gradle这张将介绍使用gradle命令行的基础知识，就像你在前几章看到的那样
 4.1 执行多重任务你能使用命令通过一个脚本来执行多个任务，例如这个命令gradle compile test,他会执行compite和test两个任务，gradle会按照命令行中的任务顺序来有序执行，也会运行其依赖项目，每个任务仅仅只执行一次，无论它在脚本中如何被引用，是直接指定还是作为其他任务的">
+<meta name="twitter:image" content="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png">
 
 
 
@@ -306,6 +308,15 @@
 
           
           
+             <span id="/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/" class="leancloud_visitors" data-flag-title="Gradle.4 Using the Gradle Command-Line">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
 
           
         </div>
@@ -325,19 +336,19 @@
 <p>图4.1 task依赖图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png" alt=""><br><code>官方演示图错了，test不是指向complie，而是complie指向test</code></p>
 <p>例4.1 执行多任务脚本</p>
 <p>build.gradle</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">task</span> <span class="keyword">compile</span> &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'compiling source'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> compileTest(dependsOn: <span class="keyword">compile</span>) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'compiling unit tests'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> test(dependsOn: [<span class="keyword">compile</span>, compileTest]) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'running unit tests'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> dist(dependsOn: [<span class="keyword">compile</span>, test]) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'building the distribution'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">task compile &lt;&lt; &#123;</div><div class="line">    println &apos;compiling source&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task compileTest(dependsOn: compile) &lt;&lt; &#123;</div><div class="line">    println &apos;compiling unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task test(dependsOn: [compile, compileTest]) &lt;&lt; &#123;</div><div class="line">    println &apos;running unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task dist(dependsOn: [compile, test]) &lt;&lt; &#123;</div><div class="line">    println &apos;building the distribution&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>gradle dist test的输出</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle dist test</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1</span> secs</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
 <p>每个任务只执行了一次，所以gradle test test 和 gradle test 的结果是一样的</p>
 <p>这是本人测试的，第一次速度明显很慢<br>参考<a href="https://docs.gradle.org/2.11/userguide/gradle_daemon.html" target="_blank" rel="external">https://docs.gradle.org/2.11/userguide/gradle_daemon.html</a></p>
 <p>windows:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">if</span> not exist <span class="string">"%USERPROFILE%/.gradle"</span> mkdir <span class="string">"%USERPROFILE%/.gradle"</span>) &amp;&amp; (<span class="built_in">echo</span> org.gradle.daemon=<span class="literal">true</span> &gt;&gt; <span class="string">"%USERPROFILE%/.gradle/gradle.properties"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">if</span> not exist <span class="string">"%USERPROFILE%/.gradle"</span> mkdir <span class="string">"%USERPROFILE%/.gradle"</span>) &amp;&amp; (<span class="built_in">echo</span> org.gradle.daemon=<span class="literal">true</span> &gt;&gt; <span class="string">"%USERPROFILE%/.gradle/gradle.properties"</span>)</div></pre></td></tr></table></figure>
 <p>UNIX:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;touch ~<span class="regexp">/.gradle/gradle</span>.properties &amp;&amp; echo <span class="string">"org.gradle.daemon=true"</span> <span class="prompt">&gt;&gt; </span>~<span class="regexp">/.gradle/gradle</span>.properties</span><br></pre></td></tr></table></figure>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">➜  <span class="constant">Desktop </span> gradle dist test</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">4.446</span> secs</span><br><span class="line"></span><br><span class="line"><span class="constant">This </span>build could be faster, please consider using the <span class="constant">Gradle Daemon:</span> <span class="symbol">https:</span>/<span class="regexp">/docs.gradle.org/</span><span class="number">2.8</span>/userguide/gradle_daemon.html</span><br><span class="line">➜  <span class="constant">Desktop </span> gradle dist test</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1.768</span> secs</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;touch ~/.gradle/gradle.properties &amp;&amp; echo &quot;org.gradle.daemon=true&quot; &gt;&gt; ~/.gradle/gradle.properties</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">➜  Desktop  gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 4.446 secs</div><div class="line"></div><div class="line">This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.8/userguide/gradle_daemon.html</div><div class="line">➜  Desktop  gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1.768 secs</div></pre></td></tr></table></figure>
 <h2 id="4-2执行任务">4.2执行任务</h2><p>你能通过使用-x 命令来排除某些任务的执行，我们来使用之前的脚本来演示</p>
 <p>例4.2 执行任务<br>gradle dist -x test的输出</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle dist -x test</span><br><span class="line">:compile</span><br><span class="line">compiling source</span><br><span class="line">:dist</span><br><span class="line">building <span class="operator">the</span> distribution</span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL</span><br><span class="line"></span><br><span class="line">Total <span class="built_in">time</span>: <span class="number">1</span> <span class="built_in">secs</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist -x test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
 <p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png" alt=""></p>
 <p><code>官方演示图错了，test不是指向complie，而是complie指向test</code></p>
 <p>从这个示例的输出,可以看到test任务没有执行,即使这是一个dist的依赖任务。你还会注意到依赖于test的任务中,compileTest没有执行。但是test依赖的另一个任务,如complie,仍会被执行。</p>
@@ -347,21 +358,21 @@
 <h2 id="4-4_任务名缩写">4.4 任务名缩写</h2><p>当你命令行指定任务时，不需要提供全名，只要能足够辨认出该任务，在上面同样的脚本中，我们会通过执行<code>gradle -d</code>来执行dist任务</p>
 <p>Example 4.3. Abbreviated task name</p>
 <p>Output of gradle di</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle di</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1</span> secs</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; gradle di</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
 <p>你也可以缩写驼峰命名的每个词，例如，可以通过<code>gradle compTest</code>甚至<code>gradle cT</code>来执行 compileTest 任务</p>
 <p>Example 4.4. Abbreviated camel case task name<br>Output of gradle cT</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle cT</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1</span> secs</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; gradle cT</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
 <p>在使用缩写的同时也可以使用 －x 命令</p>
 <h2 id="4-5选择执行的脚本">4.5选择执行的脚本</h2><p>当运行gradle命令时，会从当前路径查找脚本文件，你也可以使用 －b 命令来选择其他文件，如果使用－b命令，setting.gradle 文件就不会被使用，例如：</p>
 <p>Example 4.5. Selecting the project using a build file</p>
 <p>subdir/myproject.gradle</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">task</span> hello &lt;&lt; &#123;</span><br><span class="line">    <span class="title">println</span> <span class="string">"using build file '<span class="variable">$buildFile</span>.name' in '<span class="variable">$buildFile</span>.parentFile.name'."</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">task hello &lt;&lt; &#123;</div><div class="line">    println &quot;using build file &apos;$buildFile.name&apos; in &apos;$buildFile.parentFile.name&apos;.&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Output of gradle -q -b subdir/myproject.gradle hello</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle -<span class="tag">q</span> -<span class="tag">b</span> subdir/myproject<span class="class">.gradle</span> hello</span><br><span class="line">using build file <span class="string">'myproject.gradle'</span> <span class="keyword">in</span> <span class="string">'subdir'</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; gradle -q -b subdir/myproject.gradle hello</div><div class="line">using build file &apos;myproject.gradle&apos; in &apos;subdir&apos;.</div></pre></td></tr></table></figure>
 <p>或者，你可以使用 －p 命令来指定文件路径，多个工程中，你应该使用－p命令 而不是 －b 命令</p>
 <p>Example 4.6. Selecting the project using project directory</p>
 <p>Output of gradle -q -p subdir hello</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle -<span class="tag">q</span> -<span class="tag">p</span> subdir hello</span><br><span class="line">using build file <span class="string">'build.gradle'</span> <span class="keyword">in</span> <span class="string">'subdir'</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; gradle -q -p subdir hello</div><div class="line">using build file &apos;build.gradle&apos; in &apos;subdir&apos;.</div></pre></td></tr></table></figure>
 <h2 id="4-6获得构建信息">4.6获得构建信息</h2>
       
     </div>
@@ -473,7 +484,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -490,7 +501,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -677,6 +688,99 @@
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Xs5aiTlfu7f3IpPWImJpnwgp-gzGzoHsz", "rNSn9trau7MT2M4fUCC0rdva");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

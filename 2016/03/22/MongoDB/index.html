@@ -96,12 +96,14 @@ Document和BSONMongoDB中保存的数据格式为BSON，如：。
 MongoDB中数据的基本">
 <meta property="og:image" content="http://7xqtsx.com1.z0.glb.clouddn.com/bson.jpg">
 <meta property="og:image" content="http://7xqtsx.com1.z0.glb.clouddn.com/insert1.png">
+<meta property="og:updated_time" content="2016-04-24T17:38:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB">
 <meta name="twitter:description" content="简单介绍简介MongoDB是一个基于分布式文件存储的数据库，由C++语言编写，旨在为WEB应用提供可扩展的高性能数据存储解决方案。
 MongoDB是一个高性能，开源，无模式的文档型数据库，官方给自己的定义是Key-value存储(高性能和高扩展)和传统RDBMS(丰富的查询和功能)之间的一座桥梁
 Document和BSONMongoDB中保存的数据格式为BSON，如：。
 MongoDB中数据的基本">
+<meta name="twitter:image" content="http://7xqtsx.com1.z0.glb.clouddn.com/bson.jpg">
 
 
 
@@ -312,6 +314,15 @@ MongoDB中数据的基本">
 
           
           
+             <span id="/2016/03/22/MongoDB/" class="leancloud_visitors" data-flag-title="MongoDB">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
 
           
         </div>
@@ -342,7 +353,7 @@ MongoDB中数据的基本">
 <h2 id="批量插入文档">批量插入文档</h2><p>insert语句不但可以插入单个文档，还可以一次性插入多个文档。</p>
 <p>插入多个文档时，insert命令的参数为一个数组，数组元素为BSON格式的文档。</p>
 <p>多个文档可以放在一个数组内，一次插入多条数据，例如：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.insert([&#123;<span class="property">name</span>:<span class="string">"tommy"</span>&#125;,&#123;<span class="property">name</span>:<span class="string">"xiaoming"</span>&#125;])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.users.insert([&#123;name:&quot;tommy&quot;&#125;,&#123;name:&quot;xiaoming&quot;&#125;])</div></pre></td></tr></table></figure>
 <p>文档批量插入非常方便，但是使用批量插入时也有一些问题需要注意，因为BSON格式的限制，一次插入的数据量不能超过16M，在一个insert命令中插入多条数据时，MongoDB不保证完全成功或完全失败。</p>
 <p>使用insert命令将以下数据一次性插入person集合中。</p>
 <p>文／Te_Lee（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">http://www.jianshu.com/p/1e402922ee32/</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
@@ -372,7 +383,7 @@ MongoDB中数据的基本">
 </tr>
 </tbody>
 </table>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.person.insert([</span><br><span class="line"> &#123;<span class="string">name:</span><span class="string">"Mary"</span>,  <span class="string">age:</span><span class="number">21</span>, <span class="string">status:</span><span class="string">"A"</span>&#125;,</span><br><span class="line"> &#123;<span class="string">name:</span><span class="string">"Lucy"</span>,  <span class="string">age:</span><span class="number">89</span>, <span class="string">status:</span><span class="string">"A"</span>&#125;,</span><br><span class="line"> &#123;<span class="string">name:</span><span class="string">"Jacky"</span>, <span class="string">age:</span><span class="number">30</span>, <span class="string">status:</span><span class="string">"A"</span>&#125; </span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">db.person.insert([</div><div class="line"> &#123;name:&quot;Mary&quot;,  age:21, status:&quot;A&quot;&#125;,</div><div class="line"> &#123;name:&quot;Lucy&quot;,  age:89, status:&quot;A&quot;&#125;,</div><div class="line"> &#123;name:&quot;Jacky&quot;, age:30, status:&quot;A&quot;&#125; </div><div class="line">]);</div></pre></td></tr></table></figure>
 <h2 id="查询文档">查询文档</h2><p>在MongoDB中，查询指向特定的文档集合，查询设定条件，指明MongoDB需要返回的文档；查询也可以包含一个投影，指定返回的字段。</p>
 <p>如下图，在查询过程指定了一个查询条件和一个排序修饰。</p>
 
@@ -486,7 +497,7 @@ MongoDB中数据的基本">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -503,7 +514,7 @@ MongoDB中数据的基本">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -690,6 +701,99 @@ MongoDB中数据的基本">
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Xs5aiTlfu7f3IpPWImJpnwgp-gzGzoHsz", "rNSn9trau7MT2M4fUCC0rdva");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

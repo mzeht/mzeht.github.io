@@ -130,7 +130,7 @@
   
 
   <div class="container one-collumn sidebar-position-left 
-   page-home 
+  
  ">
     <div class="headband"></div>
 
@@ -251,6 +251,177 @@
             
               
                 
+                <a class="post-title-link" href="/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/" itemprop="url">
+                  Gradle.4 Using the Gradle Command-Line
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-02-10T01:12:31+08:00" content="Feb 10 2016">
+              Feb 10 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/文档/" itemprop="url" rel="index">
+                    <span itemprop="name">文档</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/" class="leancloud_visitors" data-flag-title="Gradle.4 Using the Gradle Command-Line">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="4-通过命令行使用gradle">4.通过命令行使用gradle</h1><p>这张将介绍使用gradle命令行的基础知识，就像你在前几章看到的那样</p>
+<h2 id="4-1_执行多重任务">4.1 执行多重任务</h2><p>你能使用命令通过一个脚本来执行多个任务，例如这个命令<code>gradle compile test</code>,他会执行compite和test两个任务，gradle会按照命令行中的任务顺序来有序执行，也会运行其依赖项目，每个任务仅仅只执行一次，无论它在脚本中如何被引用，是直接指定还是作为其他任务的依赖，或者两者都是，让我们来看一个例子.</p>
+<p>以下四个任务，<code>dist</code>和<code>test</code>都依赖于<code>complie</code>，执行<code>gradle dist test</code>，结果<code>complie</code>任务只会运行一次.</p>
+<p>图4.1 task依赖图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png" alt=""><br><code>官方演示图错了，test不是指向complie，而是complie指向test</code></p>
+<p>例4.1 执行多任务脚本</p>
+<p>build.gradle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">task compile &lt;&lt; &#123;</div><div class="line">    println &apos;compiling source&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task compileTest(dependsOn: compile) &lt;&lt; &#123;</div><div class="line">    println &apos;compiling unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task test(dependsOn: [compile, compileTest]) &lt;&lt; &#123;</div><div class="line">    println &apos;running unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task dist(dependsOn: [compile, test]) &lt;&lt; &#123;</div><div class="line">    println &apos;building the distribution&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>gradle dist test的输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
+<p>每个任务只执行了一次，所以gradle test test 和 gradle test 的结果是一样的</p>
+<p>这是本人测试的，第一次速度明显很慢<br>参考<a href="https://docs.gradle.org/2.11/userguide/gradle_daemon.html" target="_blank" rel="external">https://docs.gradle.org/2.11/userguide/gradle_daemon.html</a></p>
+<p>windows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">if</span> not exist <span class="string">"%USERPROFILE%/.gradle"</span> mkdir <span class="string">"%USERPROFILE%/.gradle"</span>) &amp;&amp; (<span class="built_in">echo</span> org.gradle.daemon=<span class="literal">true</span> &gt;&gt; <span class="string">"%USERPROFILE%/.gradle/gradle.properties"</span>)</div></pre></td></tr></table></figure>
+<p>UNIX:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;touch ~/.gradle/gradle.properties &amp;&amp; echo &quot;org.gradle.daemon=true&quot; &gt;&gt; ~/.gradle/gradle.properties</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">➜  Desktop  gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 4.446 secs</div><div class="line"></div><div class="line">This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.8/userguide/gradle_daemon.html</div><div class="line">➜  Desktop  gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1.768 secs</div></pre></td></tr></table></figure>
+<h2 id="4-2执行任务">4.2执行任务</h2><p>你能通过使用-x 命令来排除某些任务的执行，我们来使用之前的脚本来演示</p>
+<p>例4.2 执行任务<br>gradle dist -x test的输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist -x test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
+<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png" alt=""></p>
+<p><code>官方演示图错了，test不是指向complie，而是complie指向test</code></p>
+<p>从这个示例的输出,可以看到test任务没有执行,即使这是一个dist的依赖任务。你还会注意到依赖于test的任务中,compileTest没有执行。但是test依赖的另一个任务,如complie,仍会被执行。</p>
+<h2 id="4-3如何在构建失败的时候继续构建">4.3如何在构建失败的时候继续构建</h2><p>默认情况下，gradle将会在任何任务失败时中止执行。这使得构建更快地完成，但隐藏了其他错误。为了在一个单一的构建尽可能多的发现可能失败的任务，你可以使用—continue选项。</p>
+<p>当—continue执行，gradle将执行每项任务，而不是只要遇到第一个故障就停止。遇到的每一个故障将在构建结束时报告。</p>
+<p>如果一个任务失败，依赖于它的任何后续任务将不会被执行，因为这样做是不安全的。例如，如果complie的代码发生错误，test就不会被执行，因为test任务依赖于complie任务（直接或间接地） 。</p>
+<h2 id="4-4_任务名缩写">4.4 任务名缩写</h2><p>当你命令行指定任务时，不需要提供全名，只要能足够辨认出该任务，在上面同样的脚本中，我们会通过执行<code>gradle -d</code>来执行dist任务</p>
+<p>Example 4.3. Abbreviated task name</p>
+<p>Output of gradle di</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; gradle di</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
+<p>你也可以缩写驼峰命名的每个词，例如，可以通过<code>gradle compTest</code>甚至<code>gradle cT</code>来执行 compileTest 任务</p>
+<p>Example 4.4. Abbreviated camel case task name<br>Output of gradle cT</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; gradle cT</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
+<p>在使用缩写的同时也可以使用 －x 命令</p>
+<h2 id="4-5选择执行的脚本">4.5选择执行的脚本</h2><p>当运行gradle命令时，会从当前路径查找脚本文件，你也可以使用 －b 命令来选择其他文件，如果使用－b命令，setting.gradle 文件就不会被使用，例如：</p>
+<p>Example 4.5. Selecting the project using a build file</p>
+<p>subdir/myproject.gradle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">task hello &lt;&lt; &#123;</div><div class="line">    println &quot;using build file &apos;$buildFile.name&apos; in &apos;$buildFile.parentFile.name&apos;.&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Output of gradle -q -b subdir/myproject.gradle hello</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; gradle -q -b subdir/myproject.gradle hello</div><div class="line">using build file &apos;myproject.gradle&apos; in &apos;subdir&apos;.</div></pre></td></tr></table></figure>
+<p>或者，你可以使用 －p 命令来指定文件路径，多个工程中，你应该使用－p命令 而不是 －b 命令</p>
+<p>Example 4.6. Selecting the project using project directory</p>
+<p>Output of gradle -q -p subdir hello</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; gradle -q -p subdir hello</div><div class="line">using build file &apos;build.gradle&apos; in &apos;subdir&apos;.</div></pre></td></tr></table></figure>
+<h2 id="4-6获得构建信息">4.6获得构建信息</h2>
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/02/06/Gradle-User-Guide/" itemprop="url">
                   Gradle User Guide
                 </a>
@@ -305,6 +476,15 @@
           
 
           
+          
+             <span id="/2016/02/06/Gradle-User-Guide/" class="leancloud_visitors" data-flag-title="Gradle User Guide">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -459,6 +639,15 @@
 
           
           
+             <span id="/2016/02/02/Android-Studio-2-0-Preview-9/" class="leancloud_visitors" data-flag-title="Android Studio 2.0 Preview 9">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
 
           
         </div>
@@ -482,7 +671,7 @@
 </blockquote>
 <p> <strong>We’ve also continued to fix various Instant Run scenarios; in particular, using APK splits on API 23 seems to trigger some platform bugs, so for now we’ve switched over to using multidex for coldswap for both Lollipop and Marshmallow.</strong></p>
 <p>没错，果然是bug，就是打包出问题,个人经历为生成的apk fragment资源管理混乱，主题资源编译出错，同样的打包方式，viewpage切换一个出错一个正常，过渡动画一个默认，一个自定义，导致我用回了1.5稳定版，不知道这个版本彻底解决没，从preview 9 开始 默认使用gradle2.10版本</p>
-<p>gradle的android构建插件为<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:2.0.0-alpha6'</span></span><br></pre></td></tr></table></figure></p>
+<p>gradle的android构建插件为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classpath &apos;com.android.tools.build:gradle:2.0.0-alpha6&apos;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -586,6 +775,15 @@
           
 
           
+          
+             <span id="/2016/02/01/NavigationView-TabLayout-Viewpage/" class="leancloud_visitors" data-flag-title="NavigationView+TabLayout+Viewpage">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -707,6 +905,15 @@
           
 
           
+          
+             <span id="/2016/01/30/SwipeRefreshLayoutBasic/" class="leancloud_visitors" data-flag-title="SwipeRefreshLayoutBasic">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -1109,6 +1316,15 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
 
           
           
+             <span id="/2015/06/02/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
 
           
         </div>
@@ -1125,13 +1341,13 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
         
           
             <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="86" src="http://music.163.com/outchain/player?type=2&id=247529&auto=0&height=66"></iframe>
 
@@ -1237,6 +1453,15 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
           
 
           
+          
+             <span id="/2015/03/10/2015-03-10-markdown/" class="leancloud_visitors" data-flag-title="markdown 语法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -1405,7 +1630,7 @@ __MarkDown__
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1422,7 +1647,7 @@ __MarkDown__
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -1594,6 +1819,99 @@ __MarkDown__
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Xs5aiTlfu7f3IpPWImJpnwgp-gzGzoHsz", "rNSn9trau7MT2M4fUCC0rdva");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

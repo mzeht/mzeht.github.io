@@ -83,17 +83,18 @@
 
 
 <meta name="description" content="Example 4.1. Executing multiple tasksbuild.gradle
-123456789101112131415task compile &amp;lt;&amp;lt; &amp;#123;    println &apos;compiling source&apos;&amp;#125;task compileTest(dependsOn: compile) &amp;lt;&amp;lt; &amp;#123;    println &apos;">
+123456789101112131415task compile &amp;lt;&amp;lt; &amp;#123;    println &amp;apos;compiling source&amp;apos;&amp;#125;task compileTest(dependsOn: compile) &amp;lt;&amp;lt; &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="User Gradle sample">
 <meta property="og:url" content="http://mzeht.com/2016/02/10/User-Gradle-sample/index.html">
 <meta property="og:site_name" content="my soul my beats">
 <meta property="og:description" content="Example 4.1. Executing multiple tasksbuild.gradle
-123456789101112131415task compile &amp;lt;&amp;lt; &amp;#123;    println &apos;compiling source&apos;&amp;#125;task compileTest(dependsOn: compile) &amp;lt;&amp;lt; &amp;#123;    println &apos;">
+123456789101112131415task compile &amp;lt;&amp;lt; &amp;#123;    println &amp;apos;compiling source&amp;apos;&amp;#125;task compileTest(dependsOn: compile) &amp;lt;&amp;lt; &amp;#123;">
+<meta property="og:updated_time" content="2016-02-09T17:27:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="User Gradle sample">
 <meta name="twitter:description" content="Example 4.1. Executing multiple tasksbuild.gradle
-123456789101112131415task compile &amp;lt;&amp;lt; &amp;#123;    println &apos;compiling source&apos;&amp;#125;task compileTest(dependsOn: compile) &amp;lt;&amp;lt; &amp;#123;    println &apos;">
+123456789101112131415task compile &amp;lt;&amp;lt; &amp;#123;    println &amp;apos;compiling source&amp;apos;&amp;#125;task compileTest(dependsOn: compile) &amp;lt;&amp;lt; &amp;#123;">
 
 
 
@@ -285,6 +286,15 @@
 
           
           
+             <span id="/2016/02/10/User-Gradle-sample/" class="leancloud_visitors" data-flag-title="User Gradle sample">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
 
           
         </div>
@@ -299,12 +309,12 @@
 
       
         <h1 id="Example_4-1-_Executing_multiple_tasks">Example 4.1. Executing multiple tasks</h1><p>build.gradle</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">task</span> <span class="keyword">compile</span> &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'compiling source'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> compileTest(dependsOn: <span class="keyword">compile</span>) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'compiling unit tests'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> test(dependsOn: [<span class="keyword">compile</span>, compileTest]) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'running unit tests'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> dist(dependsOn: [<span class="keyword">compile</span>, test]) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">println</span> <span class="string">'building the distribution'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">task compile &lt;&lt; &#123;</div><div class="line">    println &apos;compiling source&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task compileTest(dependsOn: compile) &lt;&lt; &#123;</div><div class="line">    println &apos;compiling unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task test(dependsOn: [compile, compileTest]) &lt;&lt; &#123;</div><div class="line">    println &apos;running unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task dist(dependsOn: [compile, test]) &lt;&lt; &#123;</div><div class="line">    println &apos;building the distribution&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Output of gradle dist test</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle dist test</span><br><span class="line"><span class="symbol">:compile</span></span><br><span class="line">compiling source</span><br><span class="line"><span class="symbol">:compileTest</span></span><br><span class="line">compiling unit tests</span><br><span class="line"><span class="symbol">:test</span></span><br><span class="line">running unit tests</span><br><span class="line"><span class="symbol">:dist</span></span><br><span class="line">building the distribution</span><br><span class="line"></span><br><span class="line"><span class="constant">BUILD SUCCESSFUL</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Total </span><span class="symbol">time:</span> <span class="number">1</span> secs</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
 <h1 id="Example_4-2-_Excluding_tasks">Example 4.2. Excluding tasks</h1><p>Output of gradle dist -x test</p>
 <p>你能通过使用-x 命令来排除某些任务的执行，我们来使用之前的脚本来演示</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle dist -x test</span><br><span class="line">:compile</span><br><span class="line">compiling source</span><br><span class="line">:dist</span><br><span class="line">building <span class="operator">the</span> distribution</span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL</span><br><span class="line"></span><br><span class="line">Total <span class="built_in">time</span>: <span class="number">1</span> <span class="built_in">secs</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist -x test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -416,7 +426,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -433,7 +443,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -620,6 +630,99 @@
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Xs5aiTlfu7f3IpPWImJpnwgp-gzGzoHsz", "rNSn9trau7MT2M4fUCC0rdva");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
