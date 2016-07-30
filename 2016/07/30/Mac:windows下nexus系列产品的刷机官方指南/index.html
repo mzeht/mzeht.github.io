@@ -96,7 +96,7 @@ To flash a device using one of th">
 To flash a device using one of th">
 <meta property="og:image" content="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/11576201.jpg">
 <meta property="og:image" content="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/11576201.jpg">
-<meta property="og:updated_time" content="2016-07-30T08:20:26.000Z">
+<meta property="og:updated_time" content="2016-07-30T08:57:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac/windows下nexus系列产品的刷机官方指南">
 <meta name="twitter:description" content="注意事项1.仅针对官方镜像2.需要下载官方镜像，需要翻墙或者国内寻找搬运资源3.nexus刷入新系统后，开机需要网络验证激活（部分可以跳过），需要网络环境能够翻墙，请自行解决  
@@ -382,6 +382,8 @@ To flash a device using one of th">
 <li>Execute:<br>fastboot flashing lock<br>or, for older devices, running:<br>fastboot oem lock</li>
 </ol>
 <p>Locking bootloader will wipe the data on some devices. After locking the bootloader, if you want to flash the device again, you must run <code>fastboot oem unlock again</code>, which will wipe the data.</p>
+<h1 id="结语">结语</h1><p>偷懒，直接上官方指南了，一些细节问题，（比如怎么下载fastboot，怎么配置系统变量）,相信能看到这篇文章和有这个意向的人都能解决。  </p>
+<p>通过此方法完美利用mac给nexus5手机和nexus7wifi刷好系统,前者网络验证可以跳过，后者不行，采用可以刷入开源固件的路由器，刷入openwrt，设置好socks代理（付费版），即可无线翻墙，顺利激活，windows上可以电脑翻墙后共享热点，期间还尝试了<code>Privoxy</code>将shadowsocks的socks5代理转为http代理,然后验证阶段，连接普通wifi,设备和mac处在同一局域网下，设置代理地址为mac上的socks代理，但是不是很理想，还是硬件翻墙来的粗暴</p>
 
       
     </div>
@@ -413,8 +415,8 @@ To flash a device using one of th">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/13/企业征信客户端竞争品分析/" rel="next" title="企业征信移动客户端竞品分析">
-                <i class="fa fa-chevron-left"></i> 企业征信移动客户端竞品分析
+              <a href="/2016/06/30/Synchronize-files-from-ftpserver/" rel="next" title="Synchronize files from ftpserver">
+                <i class="fa fa-chevron-left"></i> Synchronize files from ftpserver
               </a>
             
           </div>
@@ -491,7 +493,7 @@ To flash a device using one of th">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -508,7 +510,7 @@ To flash a device using one of th">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -544,7 +546,7 @@ To flash a device using one of th">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#镜像"><span class="nav-number">2.</span> <span class="nav-text">镜像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境准备"><span class="nav-number">3.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刷入步骤"><span class="nav-number">4.</span> <span class="nav-text">刷入步骤</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#镜像"><span class="nav-number">2.</span> <span class="nav-text">镜像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境准备"><span class="nav-number">3.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刷入步骤"><span class="nav-number">4.</span> <span class="nav-text">刷入步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
           </div>
         </section>
