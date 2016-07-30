@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-07-30T08:57:34.000Z</updated>
+  <updated>2016-07-30T09:01:39.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -19,9 +19,9 @@
     <link href="http://mzeht.com/2016/07/30/Mac:windows%E4%B8%8Bnexus%E7%B3%BB%E5%88%97%E4%BA%A7%E5%93%81%E7%9A%84%E5%88%B7%E6%9C%BA%E5%AE%98%E6%96%B9%E6%8C%87%E5%8D%97/"/>
     <id>http://mzeht.com/2016/07/30/Mac:windows下nexus系列产品的刷机官方指南/</id>
     <published>2016-07-30T07:26:44.000Z</published>
-    <updated>2016-07-30T08:57:34.000Z</updated>
+    <updated>2016-07-30T09:01:39.000Z</updated>
     <content type="html"><![CDATA[<h1 id="注意事项">注意事项</h1><p>1.仅针对官方镜像<br>2.需要下载官方镜像，需要翻墙或者国内寻找搬运资源<br>3.nexus刷入新系统后，开机需要网络验证激活（部分可以跳过），需要网络环境能够翻墙，请自行解决  </p>
-<h1 id="镜像">镜像</h1><p>1.前往<a href="https://developers.google.com/android/nexus/images" target="_blank" rel="external">镜像官网</a><br>2.<img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/11576201.jpg" alt=""><br>右侧选择对应的设备,同意相关协议，选择下载镜像<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/11576201.jpg" alt=""><br>这里以6p为例子，镜像列表从上到下，从旧到新</p>
+<h1 id="镜像">镜像</h1><p>1.前往<a href="https://developers.google.com/android/nexus/images" target="_blank" rel="external">镜像官网</a><br>2.<img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/11576201.jpg" alt=""><br>右侧选择对应的设备,同意相关协议，选择下载镜像<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/27674143.jpg" alt=""><br>这里以6p为例子，镜像列表从上到下，从旧到新</p>
 <h1 id="环境准备">环境准备</h1><p>1.fastboot工具  </p>
 <p>To flash a device using one of the system images below (or one of your own), you need the latest fastboot tool. You can get it from one of the sources below.</p>
 <ul>
@@ -496,9 +496,9 @@
 <l]]>
     </summary>
     
-      <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
-    
       <category term="mongodb" scheme="http://mzeht.com/tags/mongodb/"/>
+    
+      <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
     
       <category term="项目" scheme="http://mzeht.com/categories/%E9%A1%B9%E7%9B%AE/"/>
     
