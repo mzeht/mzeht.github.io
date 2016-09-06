@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-09-06T19:26:16.000Z</updated>
+  <updated>2016-09-06T19:30:26.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://mzeht.com/2016/09/07/Android-Studio-Gradle-%E8%BF%9B%E9%98%B6%E8%AE%BE%E7%BD%AE/"/>
     <id>http://mzeht.com/2016/09/07/Android-Studio-Gradle-进阶设置/</id>
     <published>2016-09-06T17:10:55.000Z</published>
-    <updated>2016-09-06T19:26:16.000Z</updated>
+    <updated>2016-09-06T19:30:26.000Z</updated>
     <content type="html"><![CDATA[<h2 id="配置独立的签名信息">配置独立的签名信息</h2><p>一般来说，我们可以直接把签名的信息明文写在gradle配置文件中，但是在多人协作或者开源代码的时候不是很方便，前者可能存放签名文件的位置需要修改，后者则希望隐藏签名信息，在看不少开源项目的时候，发现很多是这样做的</p>
 <p>signingConfigs位置， <code>android的下一级</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">signingConfigs &#123;</div><div class="line">        release &#123;</div><div class="line">            storeFile file(RELEASE_STORE_FILE)</div><div class="line">            storePassword RELEASE_STORE_PASSWORD</div><div class="line">            keyAlias RELEASE_KEY_ALIAS</div><div class="line">            keyPassword RELEASE_KEY_PASSWORD</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
@@ -50,11 +50,11 @@
     <![CDATA[<h2 id="配置独立的签名信息">配置独立的签名信息</h2><p>一般来说，我们可以直接把签名的信息明文写在gradle配置文件中，但是在多人协作或者开源代码的时候不是很方便，前者可能存放签名文件的位置需要修改，后者则希望隐藏签名信息，在看不少开源项目的时候，发现很多是这样]]>
     </summary>
     
-      <category term="Android Studio" scheme="http://mzeht.com/tags/Android-Studio/"/>
-    
       <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
     
-      <category term="default" scheme="http://mzeht.com/categories/default/"/>
+      <category term="Android Studio" scheme="http://mzeht.com/tags/Android-Studio/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
     
   </entry>
   
