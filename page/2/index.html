@@ -251,6 +251,125 @@
             
               
                 
+                <a class="post-title-link" href="/2016/02/25/eclipes-to-androidstudio/" itemprop="url">
+                  Android project from eclipes to androidstudio
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-02-25T14:55:23+08:00" content="Feb 25 2016">
+              Feb 25 2016
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/25/eclipes-to-androidstudio/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/25/eclipes-to-androidstudio/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/02/25/eclipes-to-androidstudio/" class="leancloud_visitors" data-flag-title="Android project from eclipes to androidstudio">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="jar包冲突">jar包冲突</h2><blockquote>
+<p>Error:Execution failed for task ‘:app:transformResourcesWithMergeJavaResForDebug’.<br>com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/LICENSE.txt<br>      File1: /Users/wpmac/AndroidStudioProjects/Android_XinJiang/app/libs/httpmime-4.1.1.jar<br>      File2: /Users/wpmac/AndroidStudioProjects/Android_XinJiang/app/libs/commons-codec-1.4.jar</p>
+</blockquote>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">packagingOptions &#123;</div><div class="line">     exclude &apos;META-INF/DEPENDENCIES&apos;</div><div class="line">     exclude &apos;META-INF/NOTICE&apos;</div><div class="line">     exclude &apos;META-INF/LICENSE&apos;</div><div class="line">     exclude &apos;META-INF/LICENSE.txt&apos;</div><div class="line">     exclude &apos;META-INF/NOTICE.txt&apos;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h2 id="图片资源报错">图片资源报错</h2><blockquote>
+<p>AAPT: /Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-xhdpi/suspected_association_normal.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited<br>AAPT err(Facade for 203993302) : No Delegate set : lost message:/Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-xhdpi/register_info_normal.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited<br>AAPT: /Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-xxhdpi/attention_pressed.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited<br>AAPT: /Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-hdpi/splash_imageview.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited<br>AAPT: /Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-xhdpi/province_select.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited</p>
+</blockquote>
+<p>buildtools 23.0.2  warning: iCCP: Not recognizing known sRGB profile that has been edited</p>
+<p>21.1.1 no warning   iCCP: Not recognizing known sRGB profile that has been edited</p>
+<p>not a png file :check png file </p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/02/14/Meterial-design-for-developer/" itemprop="url">
                   Meterial design for developer
                 </a>
@@ -1887,7 +2006,7 @@ __MarkDown__
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1895,7 +2014,7 @@ __MarkDown__
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1904,7 +2023,7 @@ __MarkDown__
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
