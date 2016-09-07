@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-09-06T19:30:26.000Z</updated>
+  <updated>2016-09-07T10:59:06.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -13,6 +13,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Intellij IDEA Mac OS X KeyMap 中文版]]></title>
+    <link href="http://mzeht.com/2016/09/07/Intellij-IDEA-Mac-OS-X-KeyMap-%E4%B8%AD%E6%96%87%E7%89%88/"/>
+    <id>http://mzeht.com/2016/09/07/Intellij-IDEA-Mac-OS-X-KeyMap-中文版/</id>
+    <published>2016-09-07T10:52:50.000Z</published>
+    <updated>2016-09-07T10:59:06.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="官方版本">官方版本</h1><p><a href="https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard_mac.pdf" target="_blank" rel="external">官方版本</a></p>
+<h1 id="翻译版本预览">翻译版本预览</h1><p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-9-7/44368370.jpg" alt=""></p>
+<h1 id="翻译版本下载">翻译版本下载</h1><p><a href="https://www.jianguoyun.com/p/DSblRVAQpN36BRi7jBs" target="_blank" rel="external">Word版本下载</a></p>
+<p><a href="https://www.jianguoyun.com/p/DSMleAUQpN36BRi9jBs" target="_blank" rel="external">PDF版本下载</a></p>
+<p><a href="https://www.jianguoyun.com/p/DQuCALMQpN36BRi-jBs" target="_blank" rel="external">JPG版本下载</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="官方版本">官方版本</h1><p><a href="https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard_mac.pdf" target=]]>
+    </summary>
+    
+      <category term="Mac" scheme="http://mzeht.com/tags/Mac/"/>
+    
+      <category term="Intellij IDEA" scheme="http://mzeht.com/tags/Intellij-IDEA/"/>
+    
+      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Android Studio Gradle 进阶设置]]></title>
@@ -50,9 +74,9 @@
     <![CDATA[<h2 id="配置独立的签名信息">配置独立的签名信息</h2><p>一般来说，我们可以直接把签名的信息明文写在gradle配置文件中，但是在多人协作或者开源代码的时候不是很方便，前者可能存放签名文件的位置需要修改，后者则希望隐藏签名信息，在看不少开源项目的时候，发现很多是这样]]>
     </summary>
     
-      <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
-    
       <category term="Android Studio" scheme="http://mzeht.com/tags/Android-Studio/"/>
+    
+      <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
     
       <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
     
@@ -1746,105 +1770,6 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
     <summary type="html">
     <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
     </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[markdown 语法]]></title>
-    <link href="http://mzeht.com/2015/03/10/2015-03-10-markdown/"/>
-    <id>http://mzeht.com/2015/03/10/2015-03-10-markdown/</id>
-    <published>2015-03-09T16:00:00.000Z</published>
-    <updated>2016-07-23T19:09:48.000Z</updated>
-    <content type="html"><![CDATA[<p>Markdown是一种转化文本的轻量级工具，兼顾可读性和易用性。</p>
-<h1 id="1-_标题">1. 标题</h1><p>代码：</p>
-<pre><code><span class="preprocessor"># Title1</span>
-<span class="preprocessor">## Title2</span>
-<span class="preprocessor">### Title3</span>
-<span class="preprocessor">#### Title4</span>
-<span class="preprocessor">##### Title5</span>
-<span class="preprocessor">###### Title6</span>
-</code></pre><p>效果：</p>
-<h1 id="Title1">Title1</h1><h2 id="Title2">Title2</h2><h3 id="Title3">Title3</h3><h4 id="Title4">Title4</h4><h5 id="Title5">Title5</h5><h6 id="Title6">Title6</h6><h1 id="2-_引用">2. 引用</h1><p>代码：</p>
-<pre><code><span class="blockquote">&gt; Reference1</span>
-<span class="blockquote">&gt; &gt; Reference2</span>
-<span class="blockquote">&gt; &gt; &gt; Reference3</span>
-</code></pre><p>效果：</p>
-<blockquote>
-<p>Reference1</p>
-<blockquote>
-<p>Reference2</p>
-<blockquote>
-<p>Reference3</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h1 id="3-_列表">3. 列表</h1><p>代码：</p>
-<pre><code><span class="bullet">+ </span>Row1
-<span class="bullet">- </span>Row2
-<span class="bullet">* </span>Row3
-<span class="bullet">1. </span>Row4
-<span class="bullet">2. </span>Row5
-</code></pre><p>效果：</p>
-<ul>
-<li>Row1</li>
-</ul>
-<ul>
-<li>Row2</li>
-</ul>
-<ul>
-<li>Row3</li>
-</ul>
-<ol>
-<li>Row4</li>
-<li>Row5</li>
-</ol>
-<h1 id="4-_代码">4. 代码</h1><p>代码：</p>
-<pre><code><span class="escape">`C</span>ode1<span class="escape">`
-</span>
-    Code2
-</code></pre><p>效果：</p>
-<p><code>Code1</code></p>
-<pre><code>Code2
-</code></pre><h1 id="5-_链接与图片">5. 链接与图片</h1><p>代码：</p>
-<pre><code>[<span class="link_label">WeiPhone</span>](<span class="link_url">http://bbs.weiphone.com "威锋网"</span>)
-
-[<span class="link_label">WPER</span>][<span class="link_reference">ref</span>]
-[<span class="link_reference">ref</span>]:<span class="link_url"> http://bbs.wper.com (威智网)</span>
-
-![<span class="link_label">WeiPhone</span>](<span class="link_url">http://bbsimages.weiphone.com/images/weiphone/logo.png "威锋论坛"</span>)
-
-![<span class="link_label">WPER</span>][<span class="link_reference">pic</span>]
-[<span class="link_reference">pic</span>]:<span class="link_url"> http://bbs.wper.com/static/image/wper/logo.png "威智网"</span>
-
-<span class="xml"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"http://bbsimages.weiphone.com/images/weiphone/logo.png"</span> <span class="attribute">alt</span>=<span class="value">"BBS"</span> <span class="attribute">title</span>=<span class="value">"威锋网"</span> <span class="attribute">width</span>=<span class="value">"200"</span>/ &gt;</span></span>
-</code></pre><p>效果：</p>
-<p><a href="http://bbs.weiphone.com" title="威锋网" target="_blank" rel="external">WeiPhone</a></p>
-<p><a href="http://bbs.wper.com" title="锋科技" target="_blank" rel="external">WPER</a></p>
-<p><img src="http://bbsimages.weiphone.com/images/weiphone/logo.png" alt="WeiPhone" title="威锋论坛"></p>
-<p><img src="http://bbs.wper.com/static/image/wper/logo.png" alt="WPER" title="威智网"></p>
-<p><img src="http://bbsimages.weiphone.com/images/weiphone/logo.png" alt="WeiPhone" title="威锋网" width="200"></p>
-<h1 id="6-_强调">6. 强调</h1><p>代码：</p>
-<pre><code><span class="keyword">*</span>MarkDown<span class="keyword">*</span>
-_MarkDown_
-<span class="keyword">*</span><span class="keyword">*</span>MarkDown<span class="keyword">*</span><span class="keyword">*</span>
-__MarkDown__
-</code></pre><p>效果：</p>
-<p><em>MarkDown</em><br><em>MarkDown</em><br><strong>MarkDown</strong><br><strong>MarkDown</strong></p>
-<h1 id="7-_转义字符">7. 转义字符</h1><p>代码：</p>
-<pre><code><span class="string">\\</span> <span class="string">\`</span> <span class="string">\*</span> <span class="string">\_</span> <span class="string">\{</span> <span class="string">\}</span> <span class="string">\[</span> <span class="string">\]</span> <span class="string">\(</span> <span class="string">\)</span> <span class="string">\#</span> <span class="string">\+</span> <span class="string">\-</span> <span class="string">\.</span> <span class="string">\!</span>
-</code></pre><p>效果：</p>
-<p>\ ` * _ { } [ ] ( ) # + - . !</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Markdown是一种转化文本的轻量级工具，兼顾可读性和易用性。</p>
-<h1 id="1-_标题">1. 标题</h1><p>代码：</p>
-<pre><code><span class="preprocessor"># Title1</span>
-<span clas]]>
-    </summary>
-    
-      <category term="markdown" scheme="http://mzeht.com/tags/markdown/"/>
-    
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
     
   </entry>
   

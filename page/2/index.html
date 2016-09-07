@@ -251,6 +251,330 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/15/Nodejs入门/" itemprop="url">
+                  Nodejs入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-03-15T19:38:32+08:00" content="Mar 15 2016">
+              Mar 15 2016
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/15/Nodejs入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/15/Nodejs入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/03/15/Nodejs入门/" class="leancloud_visitors" data-flag-title="Nodejs入门">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>总结<a href="http://www.hubwiz.com/course/5359f6f6ec7452081a7873d8/" target="_blank" rel="external">http://www.hubwiz.com/course/5359f6f6ec7452081a7873d8/</a></p>
+<h1 id="快速入门">快速入门</h1><h2 id="hello_world">hello world</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(&apos;hello world&apos;);</div></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; hello world</div></pre></td></tr></table></figure>
+<h2 id="回调函数">回调函数</h2><p>由于node是一个异步事件驱动的平台，所以在代码中我们经常需要使用回调函数。下面是回调函数应用的经典示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(&apos;callback is called&apos;);</div><div class="line">&#125;,2000);</div></pre></td></tr></table></figure>
+<p>我们传给setTimeout函数传入了一个匿名函数和一个调用时间2000(毫秒)，运行程序后等待2秒，可以看到输出了”callback is called”。</p>
+<h2 id="标准回调函数">标准回调函数</h2><p>node.js中回调函数格式是约定俗成的，它有两个参数，第一个参数为err，第二个参数为data，顾名思义，err是错误信息，data则是返回的数据，示例如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function(err,data)&#123;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了养成良好的编码习惯，在以后的课程示例或练习中，回调函数格式都将采用这样的格式。</p>
+<h2 id="获取模块">获取模块</h2><p>为了支持快速开发，node平台上提供了大量的模块，封装了各自不同的功能，那么我们将如何调获取想要的模块呢，下来我们就来介绍。 在node中，我们可以使用require函数，具体语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">require(&quot;模块&quot;);</div></pre></td></tr></table></figure>
+<p>怎么样，是不是很简单很方便，通过require函数我们就可以获取相应模块进而使用它的任意功能了。</p>
+<h2 id="使用模块">使用模块</h2><p>os模块可提供操作系统的一些基本信息，它的一些常用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var os = require(&quot;os&quot;);</div><div class="line"> </div><div class="line">var result = os.platform(); //查看操作系统平台</div><div class="line">           //os.release(); 查看操作系统版本</div><div class="line">           //os.type();  查看操作系统名称</div><div class="line">           //os.arch();  查看操作系统CPU架构</div><div class="line"> </div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<h1 id="进程管理">进程管理</h1><h2 id="简介">简介</h2><p>process是一个全局内置对象，可以在代码中的任何位置访问此对象，这个对象代表我们的node.js代码宿主的操作系统进程对象。</p>
+<p>使用process对象可以截获进程的异常、退出等事件，也可以获取进程的当前目录、环境变量、内存占用等信息，还可以执行进程退出、工作目录切换等操作。</p>
+<p>下面我们一起来学习一下process对象的一些常用方法。</p>
+<h2 id="cwd函数的基本用法">cwd函数的基本用法</h2><p>当我们想要查看应用程序当前目录时，可以使用cwd函数，使用语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">process.cwd();</div></pre></td></tr></table></figure>
+<h2 id="chdir函数的基本用法">chdir函数的基本用法</h2><p>如果需要改变应用程序目录，就要使用chdir函数了，它的用法如下：</p>
+<p>process.chdir(“目录”);</p>
+<h2 id="stdout的基本用法">stdout的基本用法</h2><p>stdout是标准输出流，它是干什么的呢？请下看下面的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">console.log = function(d)&#123;</div><div class="line">    process.stdout.write(d+&apos;\n&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>没错，它的作用就是将内容打印到输出设备上，console.log就是封装了它。</p>
+<h2 id="stderr的基本用法">stderr的基本用法</h2><p>stderr是标准错误流，和stdout的作用差不多，不同的是它是用来打印错误信息的，我们可以通过它来捕获错误信息，基本使用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">process.stderr.write(输入内容);</div></pre></td></tr></table></figure>
+<h2 id="stdin的基本用法">stdin的基本用法</h2><p>stdin是进程的输入流,我们可以通过注册事件的方式来获取输入的内容，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">process.stdin.on(&apos;readable&apos;, function() &#123;</div><div class="line">  var chunk = process.stdin.read();</div><div class="line">  if (chunk !== null) &#123;</div><div class="line">    process.stdout.write(&apos;data: &apos; + chunk);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>示例中的chunk就是输入流中的内容。</p>
+<h2 id="exit函数的基本用法">exit函数的基本用法</h2><p>如果你需要在程序内杀死进程，退出程序，可以使用exit函数，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">process.exit(code);</div></pre></td></tr></table></figure>
+<p>参数code为退出后返回的代码，如果省略则默认返回0；</p>
+<h2 id="注册事件">注册事件</h2><p>前面讲到如何在输入流中打印信息，当我们需要获取stdout内容的时候应该怎么做呢？请看如下的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">process.stdout.on(&apos;data&apos;,function(data)&#123;</div><div class="line">   console.log(data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>为stdout注册data事件，我们就可以拿到它输出的内容了。</p>
+<h2 id="设置编码">设置编码</h2><p>在我们的输入输出的内容中有中文的时候，可能会乱码的问题，这是因为编码不同造成的，所以在这种情况下需要为流设置编码，如下示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">process.stdin.setEncoding(编码);</div><div class="line"> </div><div class="line">process.stdout.setEncoding(编码);</div><div class="line"> </div><div class="line">process.stderr.setEncoding(编码);</div></pre></td></tr></table></figure>
+<h2 id="课程小结">课程小结</h2><p>process的常用方法就讲到这里了，如果你想了解更多可以参考以下地址：</p>
+<p><a href="http://nodejs.cn/api/process" target="_blank" rel="external">http://nodejs.cn/api/process</a><br><a href="http://nodeapi.ucdok.com/#/api/process.html" target="_blank" rel="external">http://nodeapi.ucdok.com/#/api/process.html</a></p>
+<h1 id="文件I/O_fs模块的基本用法">文件I/O fs模块的基本用法</h1><p>开发中我们经常会有文件I/O的需求，node.js中提供一个名为fs的模块来支持I/O操作，fs模块的文件I/O是对标准POSIX函数的简单封装。</p>
+<h2 id="writeFile函数的基本用法">writeFile函数的基本用法</h2><p>文件I/O，写入是必修课之一。fs模块提供writeFile函数，可以异步的将数据写入一个文件, 如果文件已经存在则会被替换。用法如下：</p>
+<blockquote>
+<p>例：fs.writeFile(filename, data, callback)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var fs= require(&quot;fs&quot;);</div><div class="line"> </div><div class="line">fs.writeFile(&apos;test.txt&apos;, &apos;Hello Node&apos;, function (err) &#123;</div><div class="line">   if (err) throw err;</div><div class="line">   console.log(&apos;Saved successfully&apos;); //文件被保存</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>数据参数可以是string或者是Buffer,编码格式参数可选，默认为”utf8”，回调函数只有一个参数err。</p>
+<h2 id="appendFile函数的基本用法">appendFile函数的基本用法</h2><p>writeFile函数虽然可以写入文件，但是如果文件已经存在，我们只是想添加一部分内容，它就不能满足我们的需求了，很幸运，fs模块中还有appendFile函数，它可以将新的内容追加到已有的文件中，如果文件不存在，则会创建一个新的文件。使用方法如下：</p>
+<blockquote>
+<p>例：fs.appendFile(文件名,数据,编码,回调函数(err));</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var fs= require(&quot;fs&quot;);</div><div class="line"> </div><div class="line">fs.appendFile(&apos;test.txt&apos;, &apos;data to append&apos;, function (err) &#123;</div><div class="line">   if (err) throw err;</div><div class="line"> </div><div class="line">    //数据被添加到文件的尾部</div><div class="line">    console.log(&apos;The &quot;data to append&quot; was appended to file!&apos;); </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>编码格式默认为”utf8”</p>
+<h2 id="exists函数的基本用法">exists函数的基本用法</h2><p>如何检查一个文件是否存在呢？我想exists函数可以帮助你，用法如下：</p>
+<blockquote>
+<p>例：fs.exists(文件，回调函数(exists));</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">exists的回调函数只有一个参数，类型为布尔型，通过它来表示文件是否存在。</div><div class="line"></div><div class="line">var fs= require(&quot;fs&quot;);</div><div class="line"> </div><div class="line">fs.exists(&apos;/etc/passwd&apos;, function (exists) &#123;</div><div class="line">  console.log(exists ? &quot;存在&quot; : &quot;不存在!&quot;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="rename函数的基本用法">rename函数的基本用法</h2><p>修改文件名称是我们经常会遇见的事情，rename函数提供修改名称服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var fs= require(&quot;fs&quot;);</div><div class="line"> </div><div class="line">fs.rename(旧文件，新文件，回调函数(err)&#123;</div><div class="line">   if (err) throw err;</div><div class="line">   console.log(&apos;Successful modification,&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="rename函数的基本用法-1">rename函数的基本用法</h2><p>移动文件也是我们经常会遇见的，可是fs没有专门移动文件的函数，但是我们可以通过rename函数来达到移动文件的目的，示例如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"> </div><div class="line">fs.rename(oldPath,newPath,function (err) &#123;</div><div class="line">   if (err) throw err;</div><div class="line">   console.log(&apos;renamed complete&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="readFile函数的基本用法">readFile函数的基本用法</h2><p>读取文件是最常用到的功能之一，使用fs模块读取文件语法如下：</p>
+<blockquote>
+<p>例：fs.readFile(文件,编码,回调函数);</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"> </div><div class="line">fs.readFile(文件名, function (err, data) &#123;</div><div class="line">  if (err) throw err;</div><div class="line">  console.log(data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>回调函数里面的data,就是读取的文件内容。</p>
+<h2 id="unlink函数的基本用法">unlink函数的基本用法</h2><p>面对一堆垃圾的文件总是有想删除的冲动，我有强迫症？你才有呢。</p>
+<p>好在有unlink函数，终于得救了，示例如下：</p>
+<blockquote>
+<p>例：fs.unlink(文件,回调函数(err));</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"> </div><div class="line">fs.unlink(文件, function(err) &#123;</div><div class="line">  if (err) throw err;</div><div class="line">  console.log(&apos;successfully deleted&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="mkdir函数的基本用法">mkdir函数的基本用法</h2><p>除了针对文件的操作，目录的创建、删除也经常遇到的，下面我们来看看node.js中如何创建目录：</p>
+<blockquote>
+<p>fs.mkdir(路径，权限，回调函数(err));<br>参数</p>
+</blockquote>
+<p>路径：新创建的目录。<br>权限：可选参数，只在linux下有效，表示目录的权限，默认为0777，表示文件所有者、文件所有者所在的组的用户、所有用户，都有权限进行读、写、执行的操作。<br>回调函数：当发生错误时，错误信息会传递给回调函数的err参数。</p>
+<h2 id="rmdir函数的基本用法">rmdir函数的基本用法</h2><p>删除目录也是必不可少的功能，rmdir函数可以删除指定的目录：</p>
+<blockquote>
+<p>例：fs.rmdir(路径，回调函数(err));</p>
+</blockquote>
+<p>var fs = require(‘fs’);</p>
+<p>fs.rmdir(path, function(err) {<br>  if (err) throw err;<br>  console.log(‘ok’);<br>});</p>
+<h2 id="readdir函数的基本用法">readdir函数的基本用法</h2><p>如果要读取目录下所有的文件应该怎么办呢？readdir函数可以读取到指定目录下所有的文件，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"> </div><div class="line">fs.readdir(目录,回调函数(err,files));</div></pre></td></tr></table></figure>
+<p>回调函数 (callback) 接受两个参数 (err, files) 其中 files 是一个存储目录中所包含的文件名称的数组，数组中不包括 ‘.’ 和 ‘..’。</p>
+<h2 id="课程小结-1">课程小结</h2><p>文件I/O是最基本的操作，应该熟悉掌握。</p>
+<p>fs模块不但提供异步的文件操作，还提供相应的同步操作方法，需要指出的是，nodejs采用异步I/O正是为了避免I/O时的等待时间，提高CPU的利用率，所以在选择使用异步或同步方法的时候需要权衡取舍。</p>
+<p>本节课程讲解了fs模块常用的一些功能，当然它还有更多强大的功能，如果你想了解更多，可以参考以下资料：</p>
+<p><a href="http://nodejs.cn/api/fs" target="_blank" rel="external">http://nodejs.cn/api/fs</a></p>
+<p><a href="http://nodeapi.ucdok.com/#/api/fs.html" target="_blank" rel="external">http://nodeapi.ucdok.com/#/api/fs.html</a></p>
+<h1 id="url处理_url模块的基本用法">url处理 url模块的基本用法</h1><p>node.js为互联网而生，和url打交道是无法避免的了，url模块提供一些基础的url处理。</p>
+<h2 id="parse函数的基础用法">parse函数的基础用法</h2><p>parse函数的作用是解析url，返回一个json格式的数组，请看如下示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var url = require(&apos;url&apos;);</div><div class="line">url.parse(&apos;http://www.baidu.com&apos;);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123; protocol: &apos;http:&apos;,</div><div class="line">  slashes: null,</div><div class="line">  auth: null,</div><div class="line">  host: null,</div><div class="line">  port: null,</div><div class="line">  hostname: null,</div><div class="line">  hash: null,</div><div class="line">  search: null,</div><div class="line">  query: null,</div><div class="line">  pathname: &apos;www.baidu.com&apos;,</div><div class="line">  path: &apos;www.baidu.com&apos;,</div><div class="line">  href: &apos;http://www.baidu.com&apos; &#125;</div></pre></td></tr></table></figure>
+<h2 id="parse函数_——_条件解析">parse函数 —— 条件解析</h2><p>parse函数的第二个参数是布尔类型，当参数为true时，会将查询条件也解析成json格式的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var url = require(&apos;url&apos;);</div><div class="line">url.parse(&apos;http://www.baidu.com?page=1&apos;,true);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123; protocol: &apos;http:&apos;,</div><div class="line">  slashes: true,</div><div class="line">  auth: null,</div><div class="line">  host: &apos;www.baidu.com&apos;,</div><div class="line">  port: null,</div><div class="line">  hostname: &apos;www.baidu.com&apos;,</div><div class="line">  hash: null,</div><div class="line">  search: &apos;?page=1&apos;,</div><div class="line">  query: &#123; page: &apos;1&apos; &#125;,</div><div class="line">  pathname: &apos;/&apos;,</div><div class="line">  path: &apos;/?page=1&apos;,</div><div class="line">  href: &apos;http://www.baidu.com/?page=1&apos; &#125;</div></pre></td></tr></table></figure>
+<p>试一试，当参数分别为true和false时，返回数据中的query字段的内容有什么不同。</p>
+<h2 id="parse函数_——_解析主机">parse函数 —— 解析主机</h2><p>parse函数的第三个参数也是布尔类型的，当参数为true，解析时会将url的”//“和第一个”/“之间的部分解析为主机名，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var url = require(&apos;url&apos;);</div><div class="line">url.parse(&apos;http://www.baidu.com/news&apos;,false,true);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123; protocol: &apos;http:&apos;,</div><div class="line">  slashes: true,</div><div class="line">  auth: null,</div><div class="line">  host: &apos;www.baidu.com&apos;,</div><div class="line">  port: null,</div><div class="line">  hostname: &apos;www.baidu.com&apos;,</div><div class="line">  hash: null,</div><div class="line">  search: null,</div><div class="line">  query: null,</div><div class="line">  pathname: &apos;/news&apos;,</div><div class="line">  path: &apos;/news&apos;,</div><div class="line">  href: &apos;http://www.baidu.com/news&apos; &#125;</div></pre></td></tr></table></figure>
+<h2 id="format函数的基础用法">format函数的基础用法</h2><p>format函数的作用与parse相反，它的参数是一个JSON对象，返回一个组装好的url地址，请看如下示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var url = require(&apos;url&apos;);</div><div class="line">url.format(&#123;</div><div class="line">protocol: &apos;http:&apos;,</div><div class="line">hostname:&apos;www.baidu.com&apos;,</div><div class="line">port:&apos;80&apos;,</div><div class="line">pathname :&apos;/news&apos;,</div><div class="line">query:&#123;page:1&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://www.baidu.com/news?page=1</div></pre></td></tr></table></figure>
+<p>参数JSON对象的字段跟parse函数解析后返回的JSON字段一一对应。</p>
+<p>试一试传入一个对象，看看返回url是什么。</p>
+<h2 id="resolve函数的基础用法">resolve函数的基础用法</h2><p>resolve函数的参数是两个路径，第一个路径是开始的路径或者说当前路径，第二个则是想要去往的路径，返回值是一个组装好的url，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var url = require(&apos;url&apos;);</div><div class="line">url.resolve(&apos;http://example.com/&apos;, &apos;/one&apos;)  // &apos;http://example.com/one&apos;</div><div class="line">url.resolve(&apos;http://example.com/one&apos;, &apos;/two&apos;) // &apos;http://example.com/two&apos;</div></pre></td></tr></table></figure>
+<p>动动手，试一试resolve函数。</p>
+<h2 id="课程小结-2">课程小结</h2><p>本节课程讲解了url模块常用的一些功能，如果你想了解更多，可以参考以下资料：</p>
+<p><a href="http://nodejs.cn/api/url" target="_blank" rel="external">http://nodejs.cn/api/url</a></p>
+<h1 id="path优化_path模块的基本用法">path优化 path模块的基本用法</h1><p>本模块包含一套用于处理和转换文件路径的工具集,用于处理目录的对象，提高用户开发效率，让我们一起来快速的认识path对象的一些常用方法吧！</p>
+<h2 id="normalize函数的基本用法">normalize函数的基本用法</h2><p>normalize函数将不符合规范的路径经过格式化转换为标准路径,解析路径中的.与..外，还能去掉多余的斜杠。</p>
+<p>如下示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);  </div><div class="line">var data = path.normalize(&apos;/path///normalize/hi/..&apos;);</div><div class="line">console.log(data);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;/path/normalize/&apos;</div></pre></td></tr></table></figure>
+<p>看了上面的示例，是不是感觉很So easy，赶快寻个路径试试效果吧(按步操作哟)！</p>
+<h2 id="join函数的基本用法">join函数的基本用法</h2><p>join函数将传入的多个路径拼接为标准路径并将其格式化，返回规范后的路径，避免手工拼接路径字符串的繁琐. 如下示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line">var data = path.join(&apos;///you&apos;, &apos;/are&apos;, &apos;//beautiful&apos;);</div><div class="line">console.log(data);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;/you/are/beautiful&apos;</div></pre></td></tr></table></figure>
+<h2 id="dirname函数用来返回路径中的目录名-_如下示例：">dirname函数用来返回路径中的目录名. 如下示例：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line">var data = path.dirname(&apos;/foo/strong/cool/nice&apos;); </div><div class="line">console.log(data);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;/foo/strong/cool&apos;</div></pre></td></tr></table></figure>
+<h2 id="basename函数的基本用法">basename函数的基本用法</h2><p>basename函数可返回路径中的最后一部分，并且可以对其进行条件排除. 如下示例：</p>
+<p>例1：path.basename(‘路径字符串’);</p>
+<p>例2：path.basename(‘路径字符串’, ‘[ext]’)&lt;排除[ext]后缀字符串&gt;;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);    </div><div class="line">var data1 = path.basename(&apos;/foo/strong/basename/index.html&apos;);</div><div class="line">var data2 = path.basename(&apos;/foo/strong/basename/index.html&apos;,&apos;.html&apos;);</div><div class="line">console.log(data1 + &apos; &quot;and&quot; &apos; + data2);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;index.html &quot;and&quot; index&apos;</div></pre></td></tr></table></figure>
+<h2 id="extname函数的基本用法">extname函数的基本用法</h2><p>extname函数返回路径中文件的扩展名(以最后一个’.’开始,返回’.’以及’.’以后的所有字符串,如没有’.’,则返回空字符串). 如下示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line">var data = path.extname(&apos;index.html&apos;);</div><div class="line">console.log(data);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;.html&apos;</div></pre></td></tr></table></figure>
+<h2 id="课程小结-3">课程小结</h2><p>很高兴您学完了本节课程，关于path的一些常用方法就先讲到这里了，如果您还想了解更多的话,可以参考以下地址：</p>
+<p><a href="http://nodejs.cn/api/path" target="_blank" rel="external">http://nodejs.cn/api/path</a> </p>
+<p><a href="http://nodeapi.ucdok.com/#/api/path.html" target="_blank" rel="external">http://nodeapi.ucdok.com/#/api/path.html</a></p>
+<h1 id="字符串转换_Query_String模块的基本介绍">字符串转换 Query String模块的基本介绍</h1><p>Query String模块用于实现URL参数字符串与参数对象之间的互相转换，提供了”stringify”、”parse”等一些实用函数来针对字符串进行处理，通过序列化和反序列化，来更好的应对实际开发中的条件需求，对于逻辑的处理也提供了很好的帮助，下面就让我们一起来了解学习它吧！</p>
+<h2 id="stringify函数的基本用法">stringify函数的基本用法</h2><p>stringify函数的作用就是序列化对象，也就是说将对象类型转换成一个字符串类型（默认的分割符（”&amp;”）和分配符（”=”）），本节先介绍它的基本用法，在下一节里我们将学习如何替换默认分配符，下面我们就通过以下例子来清楚的认识一下吧！</p>
+<blockquote>
+<p>例1：querystring.stringify(“对象”)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var querystring= require(&apos;querystring&apos;);</div><div class="line">var result = querystring.stringify(&#123;foo:&apos;bar&apos;,cool:[&apos;xux&apos;, &apos;yys&apos;]&#125;);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo=bar&amp;cool=xux&amp;cool=yys</div></pre></td></tr></table></figure>
+<h2 id="stringify函数的多参数用法">stringify函数的多参数用法</h2><p>这节我们来学习stringify函数的多参数用法，上节我们知道了对象被序列化为字符串之后默认是通过分割符（”&amp;”）和分配符（”=”）组成的，那可不可以改变呢，这节我们就来了解一下，是否可以自己去定义组合结果，看下面的小例子</p>
+<blockquote>
+<p>例1：querystring.stringify(“对象”，”分隔符”，”分配符”)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var querystring = require(&apos;querystring&apos;);</div><div class="line">var result = querystring.stringify(&#123;foo:&apos;bar&apos;,cool:[&apos;xux&apos;, &apos;yys&apos;]&#125;,&apos;*&apos;,&apos;$&apos;);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;foo$bar*cool$xux*cool$yys&apos;</div></pre></td></tr></table></figure>
+<h2 id="parse函数的基本用法">parse函数的基本用法</h2><p>刚刚我们已经学习了stringify函数的作用，接下来就来学习反序列化函数——parse函数，parse函数的作用就是反序列化字符串（默认是由”=”、”&amp;”拼接而成），转换得到一个对象类型。如下示例：</p>
+<blockquote>
+<p>例1：querystring.parse(“字符串”)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var querystring = require(&apos;querystring&apos;);</div><div class="line">var result = querystring.parse(&apos;foo=bar&amp;cool=xux&amp;cool=yys&apos;);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; foo: &apos;bar&apos;, cool: [&apos;xux&apos;, &apos;yys&apos;]&#125;</div></pre></td></tr></table></figure>
+<h2 id="parse函数的多参数用法">parse函数的多参数用法</h2><p>现在我们学习parse函数的扩展用法，和上节stringify函数的多参数用法不同的是，parse函数可以根据用户所自定义的分割符、分配符来反序列化字符串，从而得到相应的对象结果.如下示例：</p>
+<blockquote>
+<p>例1：querystring.parse(“字符串”，”分隔符”，”分配符”)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var querystring = require(&apos;querystring&apos;);</div><div class="line">var result = querystring.parse(&apos;foo@bar$cool@xux$cool@yys&apos;,&apos;@&apos;,&apos;$&apos;);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; foo: &apos;&apos;, bar: &apos;cool&apos;, xux: &apos;cool&apos;, yys: &apos;&apos; &#125;</div></pre></td></tr></table></figure>
+<h2 id="课程小结-4">课程小结</h2><p>很高兴您学完了本节课程，关于querystring的一些常用方法就先讲到这里了，如果您还想了解更多的话,可以参考以下地址：</p>
+<p><a href="http://nodejs.cn/api/querystring" target="_blank" rel="external">http://nodejs.cn/api/querystring</a><br><a href="http://nodeapi.ucdok.com/#/api/querystring.html" target="_blank" rel="external">http://nodeapi.ucdok.com/#/api/querystring.html</a></p>
+<h1 id="实用工具_UTIL模块的基本介绍">实用工具 UTIL模块的基本介绍</h1><p>关于模块的如何访问前面已经讲述过了，相信大家已经完全掌握了，这节课我们来学习util模块。util模块呢，是一个Node.js核心模块，提供常用函数的集合，用于弥补核心JavaScript的一些功能过于精简的不足。并且还提供了一系列常用工具，用来对数据的输出和验证。</p>
+<h2 id="inspect函数的基本用法">inspect函数的基本用法</h2><p>util.inspect(object,[showHidden],[depth],[colors])是一个将任意对象转换为字符串的函数，通常用于调试和错误输出。它至少接受一个参数object，即要转换的对象,我们来学习它的简单用法。使用语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var util = require(&apos;util&apos;);</div><div class="line">var result = util.inspect(object);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<h2 id="format函数的基本用法">format函数的基本用法</h2><p>format函数根据第一个参数，返回一个格式化字符串，第一个参数是一个可包含零个或多个占位符的字符串。每一个占位符被替换为与其对应的转换后的值，支持的占位符有：”%s(字符串)”、”%d(数字&lt;整型和浮点型&gt;)”、”%j(JSON)”、”%(单独一个百分号则不作为一个参数)”。</p>
+<p>1：如果占位符没有相对应的参数，占位符将不会被替换.如示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var util = require(&apos;util&apos;);</div><div class="line">var result = util.format(&apos;%s:%s&apos;, &apos;foo&apos;);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;foo:%s&apos;</div></pre></td></tr></table></figure>
+<p>2：如果有多个参数占位符，额外的参数将会调用util.inspect()转换为字符串。这些字符串被连接在一起，并且以空格分隔。如示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var util = require(&apos;util&apos;);</div><div class="line">var result = util.format(&apos;%s:%s&apos;, &apos;foo&apos;, &apos;bar&apos;, &apos;baz&apos;);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;foo:bar baz&apos;</div></pre></td></tr></table></figure>
+<p>3：如果第一个参数是一个非格式化字符串，则会把所有的参数转成字符串并以空格隔开拼接在一块，而且返回该字符串。如示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var util = require(&apos;util&apos;);</div><div class="line">var result = util.format(1, 2, 3);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;1 2 3&apos;</div></pre></td></tr></table></figure>
+<h2 id="isArray函数的基本用法">isArray函数的基本用法</h2><p>isArray函数可以判断对象是否为数组类型，是则返回ture,否则为false。语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var util = require(&apos;util&apos;);</div><div class="line">var result = util.isArray(object);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<h2 id="isDate函数的基本用法">isDate函数的基本用法</h2><p>isDate函数可以判断对象是否为日期类型，是则返回ture,否则返回false。语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var util = require(&apos;util&apos;);</div><div class="line">var result = util.isDate(object);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<h2 id="isRegExp函数的基本用法">isRegExp函数的基本用法</h2><p>isRegExp函数可以判断对象是否为正则类型，是则返回ture,否则返回false。语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var util = require(&apos;util&apos;);</div><div class="line">var result = util.isRegExp(object);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+<h2 id="课程小结-5">课程小结</h2><p>很高兴您学完了本节课程，关于util模块的一些常用方法就先讲到这里了，如果您还想了解更多的话,可以参考以下地址：</p>
+<p><a href="http://nodejs.cn/api/util" target="_blank" rel="external">http://nodejs.cn/api/util</a></p>
+<p><a href="http://nodeapi.ucdok.com/#/api/util.html" target="_blank" rel="external">http://nodeapi.ucdok.com/#/api/util.html</a></p>
+<h1 id="子进程_child_process模块的基本介绍">子进程 child_process模块的基本介绍</h1><p>众所周知node.js是基于单线程模型架构，这样的设计可以带来高效的CPU利用率，但是无法却利用多个核心的CPU，为了解决这个问题，node.js提供了child_process模块，通过多进程来实现对多核CPU的利用. child_process模块提供了四个创建子进程的函数，分别是spawn，exec，execFile和fork。</p>
+<h2 id="pawn函数的简单用法">pawn函数的简单用法</h2><p>spawn函数用给定的命令发布一个子进程，只能运行指定的程序，参数需要在列表中给出。如下示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var child_process = require(&apos;child_process&apos;);</div><div class="line">var child = child_process.spawn( command );</div><div class="line">child.stdout.on(&apos;data&apos;, function(data) &#123;</div><div class="line">  console.log(data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>通过执行命令得到返回结果，我们就可以拿到标准输出流数据了。</p>
+<h2 id="exec函数的简单用法">exec函数的简单用法</h2><p>exec也是一个创建子进程的函数，与spawn函数不同它可以直接接受一个回调函数作为参数，回调函数有三个参数，分别是err, stdout , stderr，基本使用方法如下：</p>
+<p>var child_process = require(‘child_process’);<br>child_process.exec( command , function(err, stdout , stderr ) {<br>  console.log( stdout );<br>});<br>exec函数可以直接接受一个回调函数作为参数，回调函数有三个参数，分别是err, stdout,stderr，非常方便直接使用，</p>
+<h2 id="execFile函数的简单用法">execFile函数的简单用法</h2><p>execFile函数与exec函数类似，但execFile函数更显得精简，因为它可以直接执行所指定的文件，基本使用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var child_process = require(&apos;child_process&apos;);</div><div class="line">child_process.execFile( file , function(err, stdout , stderr ) &#123;</div><div class="line">  console.log( stdout );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>execFile与spawn的参数相似，也需要分别指定执行的命令和参数，但可以接受一个回调函数，与exec的回调函数相同。</p>
+<h2 id="execFile函数的简单用法-1">execFile函数的简单用法</h2><p>execFile函数与exec函数类似，但execFile函数更显得精简，因为它可以直接执行所指定的文件，基本使用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var child_process = require(&apos;child_process&apos;);</div><div class="line">child_process.execFile( file , function(err, stdout , stderr ) &#123;</div><div class="line">  console.log( stdout );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>execFile与spawn的参数相似，也需要分别指定执行的命令和参数，但可以接受一个回调函数，与exec的回调函数相同。</p>
+<h2 id="课程小结-6">课程小结</h2><p>恭喜你学完了本节课程，关于child_process的四个函数的基本简单用法，就先讲到这里了，如果您还想深入了解学习的话,可以参考以下地址：</p>
+<p><a href="http://nodejs.cn/api/child_process" target="_blank" rel="external">http://nodejs.cn/api/child_process</a><br><a href="http://nodeapi.ucdok.com/#/api/child_process.html" target="_blank" rel="external">http://nodeapi.ucdok.com/#/api/child_process.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/02/25/eclipes-to-androidstudio/" itemprop="url">
                   Android project from eclipes to androidstudio
                 </a>
@@ -1754,218 +2078,11 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/10/2015-03-10-markdown/" itemprop="url">
-                  markdown 语法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-03-10T00:00:00+08:00" content="Mar 10 2015">
-              Mar 10 2015
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/文档/" itemprop="url" rel="index">
-                    <span itemprop="name">文档</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/03/10/2015-03-10-markdown/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/10/2015-03-10-markdown/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2015/03/10/2015-03-10-markdown/" class="leancloud_visitors" data-flag-title="markdown 语法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">visitors </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Markdown是一种转化文本的轻量级工具，兼顾可读性和易用性。</p>
-<h1 id="1-_标题">1. 标题</h1><p>代码：</p>
-<pre><code><span class="preprocessor"># Title1</span>
-<span class="preprocessor">## Title2</span>
-<span class="preprocessor">### Title3</span>
-<span class="preprocessor">#### Title4</span>
-<span class="preprocessor">##### Title5</span>
-<span class="preprocessor">###### Title6</span>
-</code></pre><p>效果：</p>
-<h1 id="Title1">Title1</h1><h2 id="Title2">Title2</h2><h3 id="Title3">Title3</h3><h4 id="Title4">Title4</h4><h5 id="Title5">Title5</h5><h6 id="Title6">Title6</h6><h1 id="2-_引用">2. 引用</h1><p>代码：</p>
-<pre><code><span class="blockquote">&gt; Reference1</span>
-<span class="blockquote">&gt; &gt; Reference2</span>
-<span class="blockquote">&gt; &gt; &gt; Reference3</span>
-</code></pre><p>效果：</p>
-<blockquote>
-<p>Reference1</p>
-<blockquote>
-<p>Reference2</p>
-<blockquote>
-<p>Reference3</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h1 id="3-_列表">3. 列表</h1><p>代码：</p>
-<pre><code><span class="bullet">+ </span>Row1
-<span class="bullet">- </span>Row2
-<span class="bullet">* </span>Row3
-<span class="bullet">1. </span>Row4
-<span class="bullet">2. </span>Row5
-</code></pre><p>效果：</p>
-<ul>
-<li>Row1</li>
-</ul>
-<ul>
-<li>Row2</li>
-</ul>
-<ul>
-<li>Row3</li>
-</ul>
-<ol>
-<li>Row4</li>
-<li>Row5</li>
-</ol>
-<h1 id="4-_代码">4. 代码</h1><p>代码：</p>
-<pre><code><span class="escape">`C</span>ode1<span class="escape">`
-</span>
-    Code2
-</code></pre><p>效果：</p>
-<p><code>Code1</code></p>
-<pre><code>Code2
-</code></pre><h1 id="5-_链接与图片">5. 链接与图片</h1><p>代码：</p>
-<pre><code>[<span class="link_label">WeiPhone</span>](<span class="link_url">http://bbs.weiphone.com "威锋网"</span>)
-
-[<span class="link_label">WPER</span>][<span class="link_reference">ref</span>]
-[<span class="link_reference">ref</span>]:<span class="link_url"> http://bbs.wper.com (威智网)</span>
-
-![<span class="link_label">WeiPhone</span>](<span class="link_url">http://bbsimages.weiphone.com/images/weiphone/logo.png "威锋论坛"</span>)
-
-![<span class="link_label">WPER</span>][<span class="link_reference">pic</span>]
-[<span class="link_reference">pic</span>]:<span class="link_url"> http://bbs.wper.com/static/image/wper/logo.png "威智网"</span>
-
-<span class="xml"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"http://bbsimages.weiphone.com/images/weiphone/logo.png"</span> <span class="attribute">alt</span>=<span class="value">"BBS"</span> <span class="attribute">title</span>=<span class="value">"威锋网"</span> <span class="attribute">width</span>=<span class="value">"200"</span>/ &gt;</span></span>
-</code></pre><p>效果：</p>
-<p><a href="http://bbs.weiphone.com" title="威锋网" target="_blank" rel="external">WeiPhone</a></p>
-<p><a href="http://bbs.wper.com" title="锋科技" target="_blank" rel="external">WPER</a></p>
-<p><img src="http://bbsimages.weiphone.com/images/weiphone/logo.png" alt="WeiPhone" title="威锋论坛"></p>
-<p><img src="http://bbs.wper.com/static/image/wper/logo.png" alt="WPER" title="威智网"></p>
-<p><img src="http://bbsimages.weiphone.com/images/weiphone/logo.png" alt="WeiPhone" title="威锋网" width="200"></p>
-<h1 id="6-_强调">6. 强调</h1><p>代码：</p>
-<pre><code><span class="keyword">*</span>MarkDown<span class="keyword">*</span>
-_MarkDown_
-<span class="keyword">*</span><span class="keyword">*</span>MarkDown<span class="keyword">*</span><span class="keyword">*</span>
-__MarkDown__
-</code></pre><p>效果：</p>
-<p><em>MarkDown</em><br><em>MarkDown</em><br><strong>MarkDown</strong><br><strong>MarkDown</strong></p>
-<h1 id="7-_转义字符">7. 转义字符</h1><p>代码：</p>
-<pre><code><span class="string">\\</span> <span class="string">\`</span> <span class="string">\*</span> <span class="string">\_</span> <span class="string">\{</span> <span class="string">\}</span> <span class="string">\[</span> <span class="string">\]</span> <span class="string">\(</span> <span class="string">\)</span> <span class="string">\#</span> <span class="string">\+</span> <span class="string">\-</span> <span class="string">\.</span> <span class="string">\!</span>
-</code></pre><p>效果：</p>
-<p>\ ` * _ { } [ ] ( ) # + - . !</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2006,7 +2123,7 @@ __MarkDown__
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -2023,7 +2140,7 @@ __MarkDown__
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
