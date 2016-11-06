@@ -251,6 +251,554 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/30/SwipeRefreshLayoutBasic/" itemprop="url">
+                  SwipeRefreshLayoutBasic
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-01-30T00:20:12+08:00" content="Jan 30 2016">
+              Jan 30 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/30/SwipeRefreshLayoutBasic/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/30/SwipeRefreshLayoutBasic/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/01/30/SwipeRefreshLayoutBasic/" class="leancloud_visitors" data-flag-title="SwipeRefreshLayoutBasic">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="SwipeRefreshLayout配合Recyclerview实现下拉刷新列表">SwipeRefreshLayout配合Recyclerview实现下拉刷新列表</h1><p><img src="https://github.com/mzeht/SwipeRefreshListDemo/blob/master/app/src/main/res/acess/sample.gif" alt="image"></p>
+<p><img src="https://github.com/mzeht/SwipeRefreshListDemo/blob/master/app/src/main/res/acess/click.gif" alt="image"></p>
+<p>SwipeRefreshLayout是google官方的刷新控件<br>Recyclerview则是未来取代listview，girdview等的新控件</p>
+<p>.IDE android studio 1.5(2.o preview之前apk打包有bug，暂时不用了)</p>
+<p>.Demo地址 <a href="https://github.com/mzeht/SwipeRefreshListDemo" target="_blank" rel="external">https://github.com/mzeht/SwipeRefreshListDemo</a> </p>
+<h2 id="-MainActivity">.MainActivity</h2><p>activity_main.xml</p>
+<pre><code>&lt;?xml <span class="variable">version=</span><span class="string">"1.0"</span> <span class="variable">encoding=</span><span class="string">"utf-8"</span>?&gt;
+&lt;android.support.design.widget.CoordinatorLayout
+xmlns:<span class="variable">android=</span><span class="string">"http://schemas.android.com/apk/res/android"</span>
+xmlns:<span class="variable">app=</span><span class="string">"http://schemas.android.com/apk/res-auto"</span>
+xmlns:<span class="variable">tools=</span><span class="string">"http://schemas.android.com/tools"</span>
+android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
+android:<span class="variable">fitsSystemWindows=</span><span class="string">"true"</span>
+tools:<span class="variable">context=</span><span class="string">"com.example.mzeht.swiperefreshlistdemo.MainActivity"</span>&gt;
+
+&lt;android.support.design.widget.AppBarLayout
+    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">theme=</span><span class="string">"@style/AppTheme.AppBarOverlay"</span>&gt;
+
+    &lt;android.support.v7.widget.Toolbar
+        android:<span class="variable">id=</span><span class="string">"@+id/toolbar"</span>
+        android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+        android:<span class="variable">layout_height=</span><span class="string">"?attr/actionBarSize"</span>
+        android:<span class="variable">background=</span><span class="string">"?attr/colorPrimary"</span>
+        app:<span class="variable">popupTheme=</span><span class="string">"@style/AppTheme.PopupOverlay"</span>/&gt;
+
+&lt;/android.support.design.widget.AppBarLayout&gt;
+
+&lt;include <span class="variable">layout=</span><span class="string">"@layout/content_main"</span>/&gt;
+
+&lt;android.support.design.widget.FloatingActionButton
+    android:<span class="variable">id=</span><span class="string">"@+id/fab"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">layout_gravity=</span><span class="string">"bottom|end"</span>
+    android:<span class="variable">layout_margin=</span><span class="string">"@dimen/fab_margin"</span>
+    android:<span class="variable">src=</span><span class="string">"@android:drawable/ic_dialog_email"</span>/&gt;
+
+&lt;/android.support.design.widget.CoordinatorLayout&gt;
+</code></pre><h2 id="-在其中的content_main-xml">.在其中的content_main.xml</h2><p>SwipeRefreshLayout 嵌套一个子元素 （如有多个，可用FrameLayout封装成一个）</p>
+<pre><code>    &lt;?xml <span class="variable">version=</span><span class="string">"1.0"</span> <span class="variable">encoding=</span><span class="string">"utf-8"</span>?&gt;
+&lt;RelativeLayout
+        xmlns:<span class="variable">android=</span><span class="string">"http://schemas.android.com/apk/res/android"</span>
+    xmlns:<span class="variable">app=</span><span class="string">"http://schemas.android.com/apk/res-    auto"</span>
+    xmlns:<span class="variable">tools=</span><span class="string">"http://schemas.android.com/tools"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
+    app:<span class="variable">layout_behavior=</span><span class="string">"@string/    appbar_scrolling_view_behavior"</span>
+    tools:<span class="variable">context=</span><span class="string">"com.example.mzeht.swiperefreshlistdemo.MainActivity"</span>
+    tools:<span class="variable">showIn=</span><span class="string">"@layout/activity_main"</span>&gt;
+
+&lt;android.support.v4.widget.SwipeRefreshLayout
+    android:<span class="variable">id=</span><span class="string">"@+id/swiperefresh"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>&gt;
+    &lt;android.support.v7.widget.RecyclerView
+        android:<span class="variable">id=</span><span class="string">"@+id/recycler"</span>
+        android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+        android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>&gt;
+    &lt;/android.support.v7.widget.RecyclerView&gt;
+&lt;/android.support.v4.widget.SwipeRefreshLayout&gt;
+&lt;/RelativeLayout&gt;
+</code></pre><h2 id="-RecyclerView的Item">.RecyclerView的Item</h2><p>*同经典的listviewItem，只是adapter略有区别</p>
+<pre><code>&lt;?xml <span class="variable">version=</span><span class="string">"1.0"</span> <span class="variable">encoding=</span><span class="string">"utf-8"</span>?&gt;
+&lt;LinearLayout xmlns:<span class="variable">android=</span><span class="string">"http://schemas.android.com/apk/res/android"</span>
+          xmlns:<span class="variable">tools=</span><span class="string">"http://schemas.android.com/tools"</span>
+          android:<span class="variable">orientation=</span><span class="string">"horizontal"</span>
+          android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
+          android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
+android:<span class="variable">id=</span><span class="string">"@+id/ll"</span>&gt;
+
+&lt;ImageView
+    android:<span class="variable">id=</span><span class="string">"@+id/image"</span>
+    android:<span class="variable">src=</span><span class="string">"@mipmap/ic_launcher"</span>
+    android:<span class="variable">padding=</span><span class="string">"5dp"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">focusable=</span><span class="string">"false"</span>
+    /&gt;
+&lt;TextView
+    android:<span class="variable">id=</span><span class="string">"@+id/tv"</span>
+    android:<span class="variable">layout_width=</span><span class="string">"wrap_content"</span>
+    android:<span class="variable">textSize=</span><span class="string">"18sp"</span>
+    android:<span class="variable">gravity=</span><span class="string">"center"</span>
+    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
+    android:<span class="variable">focusable=</span><span class="string">"false"</span>
+    tools:<span class="variable">text=</span><span class="string">"ss"</span>/&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre><h2 id="-RecyclerView的分割线">.RecyclerView的分割线</h2><p>*RecyclerView 默认没有分割线，需要自定义一个，希望以后有默认可选，这里定义一个</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyItemDecoration</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ItemDecoration</span> </span>{
+<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] ATTRS = {android.R.attr.listDivider};
+<span class="keyword">private</span> Drawable mDivider;
+<span class="function"><span class="keyword">public</span> <span class="title">MyItemDecoration</span><span class="params">(Context context)</span>
+</span>{
+    TypedArray array = context.obtainStyledAttributes(ATTRS);
+    <span class="comment">// 获取分隔条</span>
+    mDivider = array.getDrawable(<span class="number">0</span>);
+    array.recycle();
+}
+<span class="annotation">@Override</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDrawOver</span><span class="params">(Canvas c, RecyclerView parent, RecyclerView.State state)</span>
+</span>{
+    <span class="keyword">super</span>.onDrawOver(c, parent, state);
+    <span class="keyword">int</span> count = parent.getChildCount();
+    <span class="keyword">int</span> left = parent.getPaddingLeft();
+    <span class="keyword">int</span> right = parent.getWidth()-parent.getPaddingRight();
+    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++)
+    {
+        View v = parent.getChildAt(i);
+        RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) v.getLayoutParams();
+        <span class="keyword">int</span> top = v.getBottom() + params.bottomMargin;
+        <span class="keyword">int</span> bottom = top + mDivider.getIntrinsicHeight();
+        mDivider.setBounds(left,top,right,bottom);
+        mDivider.draw(c);
+    }
+}
+
+}
+</code></pre><p>*MainActivity</p>
+<pre><code>mRecyclerView= (RecyclerView) findViewById(R.id.recycler);
+mRefreshlayout= (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+mLinearLayoutManager = <span class="keyword">new</span> LinearLayoutManager(<span class="keyword">this</span>);
+mAdapter = <span class="keyword">new</span> MainRecyclerAdapter(DataSource.generateData(<span class="number">20</span>),MainActivity.<span class="keyword">this</span>);
+mRecyclerView.setAdapter(mAdapter);
+
+<span class="comment">//每个item高度一致，可设置为true，提高性能</span>
+mRecyclerView.setHasFixedSize(<span class="keyword">true</span>);
+mRecyclerView.setLayoutManager(mLinearLayoutManager);
+<span class="comment">//分隔线</span>
+mRecyclerView.addItemDecoration(<span class="keyword">new</span> MyItemDecoration(<span class="keyword">this</span>));
+mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefreshLayout.OnRefreshListener() {
+    <span class="annotation">@Override</span>
+    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span> </span>{
+
+        <span class="keyword">new</span> UpdateTask().execute();
+
+    }
+});
+</code></pre><p>   *开启异步任务模拟耗时操作</p>
+<pre><code>   <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateTask</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">AsyncTask&lt;Void</span>,<span class="title">Void</span>,<span class="title">List&lt;String&gt;&gt;</span>
+</span>{
+    <span class="annotation">@Override</span>
+    <span class="keyword">protected</span> <span class="type">List</span>&lt;<span class="type">String</span>&gt; doInBackground(<span class="type">Void</span>... params)
+    {
+        <span class="keyword">try</span>
+        {
+            <span class="type">Thread</span>.sleep(<span class="number">2000</span>);
+        } <span class="keyword">catch</span> (<span class="type">InterruptedException</span> e)
+        {
+            e.printStackTrace();
+        }
+        <span class="type">List</span>&lt;<span class="type">String</span>&gt; strings = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+        strings.add(<span class="string">"新数据1"</span>);
+        strings.add(<span class="string">"新数据2"</span>);
+        strings.add(<span class="string">"新数据3"</span>);
+        strings.add(<span class="string">"新数据4"</span>);
+        <span class="keyword">return</span> strings;
+    }
+    <span class="annotation">@Override</span>
+    <span class="keyword">protected</span> void onPostExecute(<span class="type">List</span>&lt;<span class="type">String</span>&gt; strings)
+    {
+        mAdapter.addItems(strings);
+        <span class="comment">//通知刷新完毕</span>
+        mRefreshlayout.setRefreshing(<span class="literal">false</span>);
+        <span class="comment">//滚动到列首部---&gt;这是一个很方便的api，可以滑动到指定位置</span>
+        mRecyclerView.scrollToPosition(<span class="number">0</span>);
+    }
+}
+</code></pre><h2 id="RecylerView的Item点击事件监听，内部各个子控件的监听">RecylerView的Item点击事件监听，内部各个子控件的监听</h2><pre><code>*在设计复杂listview 的时候，往往有Item点击事件和各个子控件的事件需要监听
+*但是RecylerView没有提供OnItemOnclick的方法，需要我们自己去写
+首先定义一个外部接口
+
+```java
+
+<span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">OnListClickListener</span> {
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemClick</span><span class="params">(View view,String data)</span></span>;
+
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemTextClick</span><span class="params">(View view,String data)</span></span>;
+
+
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemIconClick</span><span class="params">(View view ,String data)</span></span>;
+}
+</code></pre><p>*适配Adapter</p>
+<p>public class MainRecyclerAdapter extends RecyclerView.Adapter<mainrecycleradapter.viewholder> {</mainrecycleradapter.viewholder></p>
+<pre><code><span class="keyword">private</span> List&lt;String&gt; datas = <span class="keyword">null</span>;
+<span class="keyword">private</span> OnListClickListener mListener;
+
+<span class="function"><span class="keyword">public</span> <span class="title">MainRecyclerAdapter</span><span class="params">(List&lt;String&gt; datas,OnListClickListener l)</span>
+</span>{
+    <span class="keyword">this</span>.datas = datas;
+    <span class="keyword">this</span>.mListener=l;
+}
+<span class="annotation">@Override</span>
+<span class="keyword">public</span> <span class="function">ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span>
+</span>{
+    <span class="keyword">final</span> View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, <span class="keyword">false</span>);
+<span class="comment">//        itemView.setOnClickListener(new View.OnClickListener()</span>
+<span class="comment">//        {</span>
+<span class="comment">//            @Override</span>
+<span class="comment">//            public void onClick(View v)</span>
+<span class="comment">//            {</span>
+<span class="comment">//                if(mListener != null)</span>
+<span class="comment">//                {</span>
+<span class="comment">//                    mListener.OnItemClick(v, (String) itemView.getTag());</span>
+<span class="comment">//                }</span>
+<span class="comment">//            }</span>
+<span class="comment">//        });</span>
+    ViewHolder viewHolder= <span class="keyword">new</span> ViewHolder(itemView);
+
+
+
+
+    <span class="keyword">return</span> viewHolder;
+}
+<span class="annotation">@Override</span>
+<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(<span class="keyword">final</span> ViewHolder holder, <span class="keyword">final</span> <span class="keyword">int</span> position)</span>
+</span>{
+    String s = datas.get(position);
+    holder.bindData(s);
+    holder.itemView.setTag(s);
+    holder.mContent.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+            mListener.OnItemTextClick(holder.mContent, (String) holder.itemView.getTag());
+        }
+    });
+
+    holder.mImageView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+            mListener.OnItemIconClick(holder.mImageView, (String) holder.itemView.getTag());
+        }
+    });
+
+    holder.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+            mListener.OnItemClick(v, (String) holder.itemView.getTag());
+        }
+    });
+
+
+}
+<span class="annotation">@Override</span>
+<span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span>
+</span>{
+    <span class="function"><span class="keyword">return</span> datas.<span class="title">size</span><span class="params">()</span></span>;
+}
+<span class="javadoc">/**
+ * 批量增加
+ * */</span>
+<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">addItems</span><span class="params">(List&lt;String&gt; items)</span>
+</span>{
+    <span class="keyword">if</span> (items == <span class="keyword">null</span>)
+        <span class="keyword">return</span>;
+    <span class="keyword">this</span>.datas.addAll(<span class="number">0</span>, items);
+    <span class="keyword">this</span>.notifyItemRangeInserted(<span class="number">0</span>, items.size());
+}
+
+<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span>
+</span>{
+    <span class="keyword">private</span> TextView mContent;
+    <span class="keyword">private</span> ImageView mImageView;
+    <span class="function"><span class="keyword">public</span> <span class="title">ViewHolder</span><span class="params">(View itemView)</span>
+    </span>{
+        <span class="keyword">super</span>(itemView);
+        mContent = (TextView) itemView.findViewById(R.id.tv);
+        mImageView= (ImageView) itemView.findViewById(R.id.image);
+    }
+    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">bindData</span><span class="params">(String s)</span>
+    </span>{
+        <span class="keyword">if</span> (s != <span class="keyword">null</span>)
+            mContent.setText(s);
+    }
+
+}
+}
+</code></pre><p>*通过对Item的根试图的监听，实现Item点击监听，不用设置最外层布局id，可以看出，Recyclerview强制对listview进行复用，对子控件的个性化定制在bind操作中进行，接口事件传递到Activity层，可以通过TAG传递数据，解耦合，如：</p>
+<pre><code> @<span class="type">Override</span>
+    public void <span class="type">OnItemClick</span>(<span class="type">View</span> view, <span class="type">String</span> <span class="typedef"><span class="keyword">data</span>) <span class="container">{
+    <span class="type">Toast</span>.<span class="title">makeText</span>(<span class="type">MainActivity</span>.<span class="title">this</span>, "来自<span class="type">Item</span>的点击事件:" + <span class="title">data</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).<span class="title">show</span>();
+
+}</span></span>
+
+@<span class="type">Override</span>
+<span class="title">public</span> void <span class="type">OnItemTextClick</span>(<span class="type">View</span> view, <span class="type">String</span> <span class="typedef"><span class="keyword">data</span>) <span class="container">{
+    <span class="type">Toast</span>.<span class="title">makeText</span>(<span class="type">MainActivity</span>.<span class="title">this</span>, "来自<span class="title">text</span>的点击事件:" + <span class="title">data</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).<span class="title">show</span>();
+
+}</span></span>
+
+@<span class="type">Override</span>
+<span class="title">public</span> void <span class="type">OnItemIconClick</span>(<span class="type">View</span> view, <span class="type">String</span> <span class="typedef"><span class="keyword">data</span>) <span class="container">{
+    <span class="type">Toast</span>.<span class="title">makeText</span>(<span class="type">MainActivity</span>.<span class="title">this</span>, "来自<span class="title">icon</span>的点击事件:" + <span class="title">data</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).<span class="title">show</span>();
+
+}</span></span>
+</code></pre>
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/02/hello-world/" itemprop="url">
+                  Hello World
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-06-02T12:30:10+08:00" content="Jun 2 2015">
+              Jun 2 2015
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/02/hello-world/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/02/hello-world/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/06/02/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="86" src="http://music.163.com/outchain/player?type=2&id=247529&auto=0&height=66"></iframe>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/03/10/2015-03-10-markdown/" itemprop="url">
                   markdown 语法
                 </a>
@@ -330,85 +878,164 @@
       
         
           
-            <p>Markdown是一种转化文本的轻量级工具，兼顾可读性和易用性。</p>
-<h1 id="1-_标题">1. 标题</h1><p>代码：</p>
-<pre><code><span class="preprocessor"># Title1</span>
-<span class="preprocessor">## Title2</span>
-<span class="preprocessor">### Title3</span>
-<span class="preprocessor">#### Title4</span>
-<span class="preprocessor">##### Title5</span>
-<span class="preprocessor">###### Title6</span>
-</code></pre><p>效果：</p>
-<h1 id="Title1">Title1</h1><h2 id="Title2">Title2</h2><h3 id="Title3">Title3</h3><h4 id="Title4">Title4</h4><h5 id="Title5">Title5</h5><h6 id="Title6">Title6</h6><h1 id="2-_引用">2. 引用</h1><p>代码：</p>
-<pre><code><span class="blockquote">&gt; Reference1</span>
-<span class="blockquote">&gt; &gt; Reference2</span>
-<span class="blockquote">&gt; &gt; &gt; Reference3</span>
-</code></pre><p>效果：</p>
-<blockquote>
-<p>Reference1</p>
-<blockquote>
-<p>Reference2</p>
-<blockquote>
-<p>Reference3</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h1 id="3-_列表">3. 列表</h1><p>代码：</p>
-<pre><code><span class="bullet">+ </span>Row1
-<span class="bullet">- </span>Row2
-<span class="bullet">* </span>Row3
-<span class="bullet">1. </span>Row4
-<span class="bullet">2. </span>Row5
-</code></pre><p>效果：</p>
+            <h1 id="Cmd_Markdown_简明语法手册">Cmd Markdown 简明语法手册</h1><p>标签： Cmd-Markdown</p>
+<hr>
+<h3 id="1-_斜体和粗体">1. 斜体和粗体</h3><p>使用 <em> 和 *</em> 表示斜体和粗体。</p>
+<p>示例：</p>
+<p>这是 <em>斜体</em>，这是 <strong>粗体</strong>。</p>
+<h3 id="2-_分级标题">2. 分级标题</h3><p>使用 === 表示一级标题，使用 —- 表示二级标题。</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">这是一个一级标题</div><div class="line">============================</div><div class="line"></div><div class="line">这是一个二级标题</div><div class="line">--------------------------------------------------</div><div class="line"></div><div class="line">### 这是一个三级标题</div></pre></td></tr></table></figure>
+<p>你也可以选择在行首加井号表示不同级别的标题 (H1-H6)，例如：# H1, ## H2, ### H3，#### H4。</p>
+<h3 id="3-_外链接">3. 外链接</h3><p>使用 [描述](链接地址) 为文字增加外链接。</p>
+<p>示例：</p>
+<p>这是去往 <a href="http://ghosertblog.github.com" target="_blank" rel="external">本人博客</a> 的链接。</p>
+<h3 id="4-_无序列表">4. 无序列表</h3><p>使用 *，+，- 表示无序列表。</p>
+<p>示例：</p>
 <ul>
-<li>Row1</li>
+<li>无序列表项 一</li>
+<li>无序列表项 二</li>
+<li>无序列表项 三</li>
 </ul>
-<ul>
-<li>Row2</li>
-</ul>
-<ul>
-<li>Row3</li>
-</ul>
+<h3 id="5-_有序列表">5. 有序列表</h3><p>使用数字和点表示有序列表。</p>
+<p>示例：</p>
 <ol>
-<li>Row4</li>
-<li>Row5</li>
+<li>有序列表项 一</li>
+<li>有序列表项 二</li>
+<li>有序列表项 三</li>
 </ol>
-<h1 id="4-_代码">4. 代码</h1><p>代码：</p>
-<pre><code><span class="escape">`C</span>ode1<span class="escape">`
-</span>
-    Code2
-</code></pre><p>效果：</p>
-<p><code>Code1</code></p>
-<pre><code>Code2
-</code></pre><h1 id="5-_链接与图片">5. 链接与图片</h1><p>代码：</p>
-<pre><code>[<span class="link_label">WeiPhone</span>](<span class="link_url">http://bbs.weiphone.com "威锋网"</span>)
+<h3 id="6-_文字引用">6. 文字引用</h3><p>使用 &gt; 表示文字引用。</p>
+<p>示例：</p>
+<blockquote>
+<p>野火烧不尽，春风吹又生。</p>
+</blockquote>
+<h3 id="7-_行内代码块">7. 行内代码块</h3><p>使用 `代码` 表示行内代码块。</p>
+<p>示例：</p>
+<p>让我们聊聊 <code>html</code>。</p>
+<h3 id="8-_代码块">8.  代码块</h3><p>使用 四个缩进空格 表示代码块。</p>
+<p>示例：</p>
+<pre><code>这是一个代码块，此行左侧有四个不可见的空格。
+</code></pre><h3 id="9-_插入图像">9.  插入图像</h3><p>使用 ![描述](图片链接地址) 插入图像。</p>
+<p>示例：</p>
+<p><img src="https://www.zybuluo.com/static/img/my_head.jpg" alt="我的头像"></p>
+<h1 id="Cmd_Markdown_高阶语法手册">Cmd Markdown 高阶语法手册</h1><h3 id="1-_内容目录">1. 内容目录</h3><p>在段落中填写 <code>[TOC]</code> 以显示全文内容的目录结构。</p>
+<p>[TOC]</p>
+<h3 id="2-_标签分类">2. 标签分类</h3><p>在编辑区任意行的列首位置输入以下代码给文稿标签：</p>
+<p>标签： 数学 英语 Markdown</p>
+<p>或者</p>
+<p>Tags： 数学 英语 Markdown</p>
+<h3 id="3-_删除线">3. 删除线</h3><p>使用 ~~ 表示删除线。</p>
+<p><del>这是一段错误的文本。</del></p>
+<h3 id="4-_注脚">4. 注脚</h3><p>使用 [^keyword] 表示注脚。</p>
+<p>这是一个注脚[^footnote]的样例。</p>
+<p>这是第二个注脚[^footnote2]的样例。</p>
+<h3 id="5-_LaTeX_公式">5. LaTeX 公式</h3><p>$ 表示行内公式：</p>
+<p>质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达。</p>
+<p>$$ 表示整行公式：</p>
+<p>$$\sum_{i=1}^n a_i=0$$</p>
+<p>$$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$</p>
+<p>$$\sum^{j-1}<em>{k=0}{\widehat{\gamma}</em>{kj} z_k}$$</p>
+<p>访问 <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">MathJax</a> 参考更多使用方法。</p>
+<h3 id="6-_加强的代码块">6. 加强的代码块</h3><p>支持四十一种编程语言的语法高亮的显示，行号显示。</p>
+<p>非代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install vim-gnome</div></pre></td></tr></table></figure>
+<p>Python 示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@requires_authorization</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">somefunc</span><span class="params">(param1=<span class="string">''</span>, param2=<span class="number">0</span>)</span>:</span></div><div class="line">    <span class="string">'''A docstring'''</span></div><div class="line">    <span class="keyword">if</span> param1 &gt; param2: <span class="comment"># interesting</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'Greater'</span></div><div class="line">    <span class="keyword">return</span> (param2 - param1 + <span class="number">1</span>) <span class="keyword">or</span> <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>message = <span class="string">'''interpreter</span></div><div class="line"><span class="meta">... </span>prompt'''</div></pre></td></tr></table></figure>
+<p>JavaScript 示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* nth element in the fibonacci series.</div><div class="line">* @param n &gt;= 0</div><div class="line">* @return the nth element, &gt;= 0.</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">1</span>, b = <span class="number">1</span>;</div><div class="line">  <span class="keyword">var</span> tmp;</div><div class="line">  <span class="keyword">while</span> (--n &gt;= <span class="number">0</span>) &#123;</div><div class="line">    tmp = a;</div><div class="line">    a += b;</div><div class="line">    b = tmp;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">document</span>.write(fib(<span class="number">10</span>));</div></pre></td></tr></table></figure>
+<h3 id="7-_流程图">7. 流程图</h3><h4 id="示例">示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: Start:&gt;https://www.zybuluo.com</div><div class="line">io=&gt;inputoutput: verification</div><div class="line">op=&gt;operation: Your Operation</div><div class="line">cond=&gt;condition: Yes or No?</div><div class="line">sub=&gt;subroutine: Your Subroutine</div><div class="line">e=&gt;end</div><div class="line"></div><div class="line">st-&gt;io-&gt;op-&gt;cond</div><div class="line">cond(yes)-&gt;e</div><div class="line">cond(no)-&gt;sub-&gt;io</div></pre></td></tr></table></figure>
+<h4 id="更多语法参考：流程图语法参考">更多语法参考：<a href="http://adrai.github.io/flowchart.js/" target="_blank" rel="external">流程图语法参考</a></h4><h3 id="8-_序列图">8. 序列图</h3><h4 id="示例_1">示例 1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Alice-&gt;Bob: Hello Bob, how are you?</div><div class="line">Note right of Bob: Bob thinks</div><div class="line">Bob--&gt;Alice: I am good thanks!</div></pre></td></tr></table></figure>
+<h4 id="示例_2">示例 2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Title: Here is a title</div><div class="line">A-&gt;B: Normal line</div><div class="line">B--&gt;C: Dashed line</div><div class="line">C-&gt;&gt;D: Open arrow</div><div class="line">D--&gt;&gt;A: Dashed open arrow</div></pre></td></tr></table></figure>
+<h4 id="更多语法参考：序列图语法参考">更多语法参考：<a href="http://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="external">序列图语法参考</a></h4><h3 id="9-_甘特图">9. 甘特图</h3><p>甘特图内在思想简单。基本是一条线条图，横轴表示时间，纵轴表示活动（项目），线条表示在整个期间上计划和实际的活动完成情况。它直观地表明任务计划在什么时候进行，及实际进展与计划要求的对比。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">title 项目开发流程</div><div class="line">section 项目确定</div><div class="line">    需求分析       :a1, 2016-06-22, 3d</div><div class="line">    可行性报告     :after a1, 5d</div><div class="line">    概念验证       : 5d</div><div class="line">section 项目实施</div><div class="line">    概要设计      :2016-07-05  , 5d</div><div class="line">    详细设计      :2016-07-08, 10d</div><div class="line">    编码          :2016-07-15, 10d</div><div class="line">    测试          :2016-07-22, 5d</div><div class="line">section 发布验收</div><div class="line">    发布: 2d</div><div class="line">    验收: 3d</div></pre></td></tr></table></figure>
+<h4 id="更多语法参考：甘特图语法参考">更多语法参考：<a href="https://knsv.github.io/mermaid/#gant-diagrams" target="_blank" rel="external">甘特图语法参考</a></h4><h3 id="10-_Mermaid_流程图">10. Mermaid 流程图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A[Hard edge] --&gt;|Link text| B(Round edge)</div><div class="line">B --&gt; C&#123;Decision&#125;</div><div class="line">C --&gt;|One| D[Result one]</div><div class="line">C --&gt;|Two| E[Result two]</div></pre></td></tr></table></figure>
+<h4 id="更多语法参考：Mermaid_流程图语法参考">更多语法参考：<a href="https://knsv.github.io/mermaid/#flowcharts-basic-syntax" target="_blank" rel="external">Mermaid 流程图语法参考</a></h4><h3 id="11-_Mermaid_序列图">11. Mermaid 序列图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Alice-&gt;John: Hello John, how are you?</div><div class="line">loop every minute</div><div class="line">    John--&gt;Alice: Great!</div><div class="line">end</div></pre></td></tr></table></figure>
+<h4 id="更多语法参考：Mermaid_序列图语法参考">更多语法参考：<a href="https://knsv.github.io/mermaid/#sequence-diagrams" target="_blank" rel="external">Mermaid 序列图语法参考</a></h4><h3 id="12-_表格支持">12. 表格支持</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align:right">价格</th>
+<th style="text-align:center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算机</td>
+<td style="text-align:right">\$1600</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>手机</td>
+<td style="text-align:right">\$12</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td>管线</td>
+<td style="text-align:right">\$1</td>
+<td style="text-align:center">234</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-_定义型列表">13. 定义型列表</h3><p>名词 1<br>:   定义 1（左侧有一个可见的冒号和四个不可见的空格）</p>
+<p>代码块 2<br>:   这是代码块的定义（左侧有一个可见的冒号和四个不可见的空格）</p>
+<pre><code>代码块（左侧有八个不可见的空格）
+</code></pre><h3 id="14-_Html_标签">14. Html 标签</h3><p>本站支持在 Markdown 语法中嵌套 Html 标签，譬如，你可以用 Html 写一个纵跨两行的表格：</p>
+<pre><code><span class="tag">&lt;<span class="title">table</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">rowspan</span>=<span class="value">"2"</span>&gt;</span>值班人员<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span>&gt;</span>星期一<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span>&gt;</span>星期二<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span>&gt;</span>星期三<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>李强<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>张明<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>王平<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">table</span>&gt;</span>
+</code></pre><table><br>    <tr><br>        <th rowspan="2">值班人员</th><br>        <th>星期一</th>∏<br>        <th>星期二</th><br>        <th>星期三</th><br>    </tr><br>    <tr><br>        <td>李强</td><br>        <td>张明</td><br>        <td>王平</td><br>    </tr><br></table>
 
-[<span class="link_label">WPER</span>][<span class="link_reference">ref</span>]
-[<span class="link_reference">ref</span>]:<span class="link_url"> http://bbs.wper.com (威智网)</span>
-
-![<span class="link_label">WeiPhone</span>](<span class="link_url">http://bbsimages.weiphone.com/images/weiphone/logo.png "威锋论坛"</span>)
-
-![<span class="link_label">WPER</span>][<span class="link_reference">pic</span>]
-[<span class="link_reference">pic</span>]:<span class="link_url"> http://bbs.wper.com/static/image/wper/logo.png "威智网"</span>
-
-<span class="xml"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"http://bbsimages.weiphone.com/images/weiphone/logo.png"</span> <span class="attribute">alt</span>=<span class="value">"BBS"</span> <span class="attribute">title</span>=<span class="value">"威锋网"</span> <span class="attribute">width</span>=<span class="value">"200"</span>/ &gt;</span></span>
-</code></pre><p>效果：</p>
-<p><a href="http://bbs.weiphone.com" title="威锋网" target="_blank" rel="external">WeiPhone</a></p>
-<p><a href="http://bbs.wper.com" title="锋科技" target="_blank" rel="external">WPER</a></p>
-<p><img src="http://bbsimages.weiphone.com/images/weiphone/logo.png" alt="WeiPhone" title="威锋论坛"></p>
-<p><img src="http://bbs.wper.com/static/image/wper/logo.png" alt="WPER" title="威智网"></p>
-<p><img src="http://bbsimages.weiphone.com/images/weiphone/logo.png" alt="WeiPhone" title="威锋网" width="200"></p>
-<h1 id="6-_强调">6. 强调</h1><p>代码：</p>
-<pre><code><span class="keyword">*</span>MarkDown<span class="keyword">*</span>
-_MarkDown_
-<span class="keyword">*</span><span class="keyword">*</span>MarkDown<span class="keyword">*</span><span class="keyword">*</span>
-__MarkDown__
-</code></pre><p>效果：</p>
-<p><em>MarkDown</em><br><em>MarkDown</em><br><strong>MarkDown</strong><br><strong>MarkDown</strong></p>
-<h1 id="7-_转义字符">7. 转义字符</h1><p>代码：</p>
-<pre><code><span class="string">\\</span> <span class="string">\`</span> <span class="string">\*</span> <span class="string">\_</span> <span class="string">\{</span> <span class="string">\}</span> <span class="string">\[</span> <span class="string">\]</span> <span class="string">\(</span> <span class="string">\)</span> <span class="string">\#</span> <span class="string">\+</span> <span class="string">\-</span> <span class="string">\.</span> <span class="string">\!</span>
-</code></pre><p>效果：</p>
-<p>\ ` * _ { } [ ] ( ) # + - . !</p>
+<h3 id="15-_内嵌图标">15. 内嵌图标</h3><p>本站的图标系统对外开放，在文档中输入</p>
+<pre><code><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"icon-weibo"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+</code></pre><p>即显示微博的图标： <i class="icon-weibo icon-2x"></i></p>
+<p>替换 上述 <code>i 标签</code> 内的 <code>icon-weibo</code> 以显示不同的图标，例如：</p>
+<pre><code><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"icon-renren"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+</code></pre><p>即显示人人的图标： <i class="icon-renren icon-2x"></i></p>
+<p>更多的图标和玩法可以参看 <a href="http://fortawesome.github.io/Font-Awesome/3.2.1/icons/" target="_blank" rel="external">font-awesome</a> 官方网站。</p>
+<h3 id="16-_待办事宜_Todo_列表">16. 待办事宜 Todo 列表</h3><p>使用带有 [ ] 或 [x] （未完成或已完成）项的列表语法撰写一个待办事宜列表，并且支持子列表嵌套以及混用Markdown语法，例如：</p>
+<pre><code>-<span class="ruby"> [ ] **<span class="constant">Cmd</span> <span class="constant">Markdown</span> 开发**
+</span>    -<span class="ruby"> [ ] 改进 <span class="constant">Cmd</span> 渲染算法，使用局部渲染技术提高渲染效率
+</span>    -<span class="ruby"> [ ] 支持以 <span class="constant">PDF</span> 格式导出文稿
+</span>    -<span class="ruby"> [x] 新增<span class="constant">Todo</span>列表功能 [语法参考](<span class="symbol">https:</span>/<span class="regexp">/github.com/blog</span><span class="regexp">/1375-task-lists-in-gfm-issues-pulls-comments)
+</span></span>    -<span class="ruby"> [x] 改进 <span class="constant">LaTex</span> 功能
+</span>        -<span class="ruby"> [x] 修复 <span class="constant">LaTex</span> 公式渲染问题
+</span>        -<span class="ruby"> [x] 新增 <span class="constant">LaTex</span> 公式编号功能 [语法参考](<span class="symbol">http:</span>/<span class="regexp">/docs.mathjax.org/en</span><span class="regexp">/latest/tex</span>.html<span class="comment">#tex-eq-numbers)</span>
+</span>-<span class="ruby"> [ ] **七月旅行准备**
+</span>    -<span class="ruby"> [ ] 准备邮轮上需要携带的物品
+</span>    -<span class="ruby"> [ ] 浏览日本免税店的物品
+</span>    -<span class="ruby"> [x] 购买蓝宝石公主号七月一日的船票</span>
+</code></pre><p>对应显示如下待办事宜 Todo 列表：</p>
+<ul>
+<li>[ ] <strong>Cmd Markdown 开发</strong><ul>
+<li>[ ] 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率</li>
+<li>[ ] 支持以 PDF 格式导出文稿</li>
+<li>[x] 新增Todo列表功能 <a href="https://github.com/blog/1375-task-lists-in-gfm-issues-pulls-comments" target="_blank" rel="external">语法参考</a></li>
+<li>[x] 改进 LaTex 功能<ul>
+<li>[x] 修复 LaTex 公式渲染问题</li>
+<li>[x] 新增 LaTex 公式编号功能 <a href="http://docs.mathjax.org/en/latest/tex.html#tex-eq-numbers" target="_blank" rel="external">语法参考</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>[ ] <strong>七月旅行准备</strong><ul>
+<li>[ ] 准备邮轮上需要携带的物品</li>
+<li>[ ] 浏览日本免税店的物品</li>
+<li>[x] 购买蓝宝石公主号七月一日的船票</li>
+</ul>
+</li>
+</ul>
+<p>[^footnote]: 这是一个 <em>注脚</em> 的 <strong>文本</strong>。</p>
+<p>[^footnote2]: 这是另一个 <em>注脚</em> 的 <strong>文本</strong>。</p>
 
           
         
@@ -482,7 +1109,7 @@ __MarkDown__
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -490,7 +1117,7 @@ __MarkDown__
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -499,7 +1126,7 @@ __MarkDown__
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

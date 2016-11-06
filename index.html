@@ -251,6 +251,290 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/08/Android控件架构与自定义控件详解/" itemprop="url">
+                  Android控件架构与自定义控件详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T19:18:29+08:00" content="Oct 8 2016">
+              Oct 8 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/08/Android控件架构与自定义控件详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/08/Android控件架构与自定义控件详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/08/Android控件架构与自定义控件详解/" class="leancloud_visitors" data-flag-title="Android控件架构与自定义控件详解">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="View的测量">View的测量</h1><p>Android帮助测量View的类—<code>MeasureSpec</code>类<br>MeasureSpec是一个32位的int值，高两位为测量的模式，低30位为测量的大小<br>使用位运算提高并优化效率</p>
+<h2 id="测量的模式">测量的模式</h2><ul>
+<li><p><code>EXACTLY</code> 精确值模式<br>控件layout_width,layout_height属性指定为具体数值时，或者是match_parent属性时</p>
+</li>
+<li><p><code>AT_MOST</code> 最大值模式<br>控件layout_width,layout_height属性使用warp_content，控件的大小取不超过父级控件的最大值</p>
+</li>
+<li><p><code>UNSPECIFIED</code><br>不指定测量模式，可以任意大小，通常自定义View绘制时才用到</p>
+</li>
+</ul>
+<h2 id="Demo">Demo</h2><ul>
+<li><p>View类默认的<code>onMeasure()</code>方法只支持EXACTLY模式，如果该View要支持warp_content属性<br>   就必须要重写onMeasure()方法 指定AT_MOST模式下warp_content时的大小</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> @Override</div><div class="line">protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</div><div class="line">    super.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>进入`onMeasure`方法,看源码
+可以发现最终调用
+
+<span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));</div></pre></td></tr></table></figure></span>
+</code></pre><ul>
+<li><p>setMeasuredDimension(int measuredWidth, int measuredHeight)里面的参数相当于px单位   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"> public class MyView extends View &#123;</div><div class="line">    public MyView(Context context) &#123;</div><div class="line">        super(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public MyView(Context context, AttributeSet attrs) &#123;</div><div class="line">        super(context, attrs);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public MyView(Context context, AttributeSet attrs, int defStyleAttr) &#123;</div><div class="line">        super(context, attrs, defStyleAttr);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     *</div><div class="line">     * @param widthMeasureSpec</div><div class="line">     * @param heightMeasureSpec</div><div class="line">     * View类默认的onMeasure()方法只支持EXACTLY模式，如果该View要支持warp_content属性</div><div class="line">     * 就必须要重写onMeasure()方法 指定AT_MOSt模式下warp_content时的大小</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</div><div class="line">//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line">        setMeasuredDimension(measure(widthMeasureSpec), measure(heightMeasureSpec));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private int measure(int measureSpec) &#123;</div><div class="line">        int result = 0;</div><div class="line">        int specMode = MeasureSpec.getMode(measureSpec);</div><div class="line">        int specSize = MeasureSpec.getSize(measureSpec);</div><div class="line"></div><div class="line">        //精确值模式，参数直接使用</div><div class="line">        if (specMode == MeasureSpec.EXACTLY) &#123;</div><div class="line">            result = specSize;</div><div class="line"></div><div class="line">            //最大值模式，wrap_content时取不超过父级空间的最大值</div><div class="line">        &#125; else if (specMode == MeasureSpec.AT_MOST) &#123;</div><div class="line">            result = 200;</div><div class="line">            result = Math.min(result, specSize);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        /**</div><div class="line">         * 200PX</div><div class="line">         * setMeasuredDimension(int measuredWidth, int measuredHeight)里面的参数相当于px单位</div><div class="line">         */</div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/08/butterknife-8-0-1-AndroidStudio-配置/" itemprop="url">
+                  butterknife 8.0.1 AndroidStudio peizhi
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-08T19:18:29+08:00" content="Sep 8 2016">
+              Sep 8 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/配置/" itemprop="url" rel="index">
+                    <span itemprop="name">配置</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/08/butterknife-8-0-1-AndroidStudio-配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/08/butterknife-8-0-1-AndroidStudio-配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/08/butterknife-8-0-1-AndroidStudio-配置/" class="leancloud_visitors" data-flag-title="butterknife 8.0.1 AndroidStudio peizhi">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言">前言</h1><p>butterknife是一个android上的注解库，升级的很快，在7.0.1版本中只要添加依赖就可以了，但是8.0.1版本中配置稍有不同</p>
+<h2 id="在project_下的build-gradle文件下配置classpath">在project 下的build.gradle文件下配置classpath</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line"></div><div class="line">        classpath &apos;com.android.tools.build:gradle:2.1.3&apos;</div><div class="line">        classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;</div><div class="line"></div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="在moudle下的builde-gradle文件中配置plugin">在moudle下的builde.gradle文件中配置plugin</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;com.android.application&apos;</div><div class="line">apply plugin: &apos;com.neenbedankt.android-apt&apos;</div></pre></td></tr></table></figure>
+<h2 id="在moudle下的builde-gradle文件中配置dependencies">在moudle下的builde.gradle文件中配置dependencies</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;]</div><div class="line">    compile &apos;com.jakewharton:butterknife:8.0.1&apos;</div><div class="line">    apt &apos;com.jakewharton:butterknife-compiler:8.0.1&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>butterknife之所以配置变化这么大，主要是在于apt，取代了之前的注解实现方法</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/07/Intellij-IDEA-Mac-OS-X-KeyMap-中文版/" itemprop="url">
                   Intellij IDEA Mac OS X KeyMap 中文版
                 </a>
@@ -1688,543 +1972,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/18/ConnectManager网络请求的三层封装（模块－转换－底层）/" itemprop="url">
-                  ConnectManager网络请求的三层封装（模块－转换－底层）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-03-18T14:01:47+08:00" content="Mar 18 2016">
-              Mar 18 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/代码/" itemprop="url" rel="index">
-                    <span itemprop="name">代码</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/18/ConnectManager网络请求的三层封装（模块－转换－底层）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/18/ConnectManager网络请求的三层封装（模块－转换－底层）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/03/18/ConnectManager网络请求的三层封装（模块－转换－底层）/" class="leancloud_visitors" data-flag-title="ConnectManager网络请求的三层封装（模块－转换－底层）">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">visitors </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>调用层－数据解析层－底层</p>
-<h2 id="调用层">调用层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">private void getSystemToken() &#123;</div><div class="line">        GetSystemTokenParam param = new GetSystemTokenParam();</div><div class="line">        param.loginId=Constants.LOGINID;</div><div class="line">        String password=mPasswordView.getText().toString();</div><div class="line">        String encpwd=PasswordUtil.getEncPwd(Constants.LOGINID, password);</div><div class="line">        param.password= encpwd;</div><div class="line">//        param.password= password;</div><div class="line">        L.i(&quot;systemID&quot;,mUsernameView.getText().toString());</div><div class="line">        L.i(&quot;明文密码&quot;,mPasswordView.getText().toString());</div><div class="line">        L.i(&quot;loginID&quot;,Constants.LOGINID);</div><div class="line">        L.i(&quot;password 加密结果为&quot;,encpwd);</div><div class="line">        L.i(&quot;password 解密结果为&quot;,PasswordUtil.getDecPwd(Constants.LOGINID,encpwd));</div><div class="line">        ConnectManager.getInstance().getSystemToken(param,Tokencallback);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    private final AbstractRequestListener&lt;GetSystemTokenBean&gt; Tokencallback = new AbstractRequestListener&lt;GetSystemTokenBean&gt;() &#123;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onComplete(GetSystemTokenBean bean) &#123;</div><div class="line">            tokenBean = bean;</div><div class="line">            tHandler.sendEmptyMessage(ActivityForResultUtil.REQUEST_DATA_SUCCESS);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onError(CustomError customError) &#123;</div><div class="line"></div><div class="line">            Message msg = tHandler.obtainMessage();</div><div class="line">            msg.obj = customError;</div><div class="line">            msg.what = ActivityForResultUtil.REQUEST_DATA_ERROR;</div><div class="line">            tHandler.sendMessage(msg);</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onFault(CustomError fault) &#123;</div><div class="line"></div><div class="line">            Message msg = tHandler.obtainMessage();</div><div class="line">            msg.obj = fault;</div><div class="line">            msg.what = ActivityForResultUtil.REQUEST_DATA_FAULT;</div><div class="line">            tHandler.sendMessage(msg);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
-<h2 id="数据转化层">数据转化层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">    * 请求systemToken</div><div class="line">    *</div><div class="line">    * @param params</div><div class="line">    * @param callback</div><div class="line">    */</div><div class="line">   public void getSystemToken(final GetSystemTokenParam params,</div><div class="line">                            final AbstractRequestListener&lt;GetSystemTokenBean&gt; callback) &#123;</div><div class="line">       exector.execute(new Runnable() &#123;</div><div class="line"></div><div class="line">           @Override</div><div class="line">           public void run() &#123;</div><div class="line"></div><div class="line">               try &#123;</div><div class="line">                   String method = params.getParam().getString(&quot;method&quot;);</div><div class="line">                   String response = HttpConnectionUtil.openUrl(</div><div class="line">                           Constants.SERVER_URL + method, &quot;GET&quot;,</div><div class="line">                           params.getParam(),false);</div><div class="line">                   GetSystemTokenBean bean = GetSystemTokenBean.getSystemTokenBean(response);</div><div class="line">                   if (callback != null) &#123;</div><div class="line">                       callback.onComplete(bean);</div><div class="line">                   &#125;</div><div class="line">               &#125; catch (RuntimeException e) &#123;</div><div class="line">                   e.printStackTrace();</div><div class="line">                   if (callback != null) &#123;</div><div class="line">                       callback.onFault(new CustomError(network_error));</div><div class="line">                   &#125;</div><div class="line">               &#125; catch (JSONException e) &#123;</div><div class="line">                   e.printStackTrace();</div><div class="line">                   if (callback != null) &#123;</div><div class="line">                       callback.onError(new CustomError(json_error));</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line"></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h2 id="网络底层">网络底层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">    * 发送http请求</div><div class="line">    *</div><div class="line">    * @param url</div><div class="line">    * @param method</div><div class="line">    *            GET 或 POST</div><div class="line">    * @param params</div><div class="line">    * @return</div><div class="line">    */</div><div class="line">   public static String openUrl(String url, String method, Bundle params,boolean Token) &#123;</div><div class="line">       if (method.equals(&quot;GET&quot;)) &#123;</div><div class="line">           if (params != null) &#123;</div><div class="line">               url = url + &quot;?&quot; + encodeUrl(params);</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       String response = &quot;&quot;;</div><div class="line"></div><div class="line">       try &#123;</div><div class="line">           L.i(method + &quot; URL: &quot; + url);</div><div class="line">           HttpClient httpClient = HttpConnectionUtil.getNewHttpClient();</div><div class="line">           HttpGet httpGet = new HttpGet(url);</div><div class="line">           if(Token==false)&#123;</div><div class="line"></div><div class="line">           &#125;else&#123;</div><div class="line"></div><div class="line">               httpGet.setHeader(&quot;systemToken&quot;, Constants.SYSTEMTOKEN);</div><div class="line">           &#125;</div><div class="line">           //连接超时</div><div class="line">           httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 20000);</div><div class="line">           // 读取超时</div><div class="line">           httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 20000);</div><div class="line"></div><div class="line">           HttpResponse resp = httpClient.execute(httpGet);</div><div class="line"></div><div class="line">           if (resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) &#123;</div><div class="line">               L.i(LOG_TAG, &quot;httpGet fail, status code = &quot; + resp.getStatusLine().getStatusCode());</div><div class="line"></div><div class="line">           &#125;else&#123;</div><div class="line">               response = EntityUtils.toString(resp.getEntity());</div><div class="line"></div><div class="line">           &#125;</div><div class="line">       &#125; catch (Exception e) &#123;</div><div class="line">           throw new RuntimeException(e.getMessage(), e);</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       L.i(&quot;LOG_TAG&quot;+response);</div><div class="line">       return response;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="具体封装">具体封装</h1><h2 id="AbstractRequestListener">AbstractRequestListener</h2><p>public abstract class AbstractRequestListener<t extends="" object="">{</t></p>
-<pre><code>/<span class="keyword">*</span><span class="keyword">*</span>
- <span class="keyword">*</span> 将response请求解析为针对具体请求的bean
- <span class="keyword">*</span>
- <span class="keyword">*</span> <span class="comment">@param response</span>
- <span class="keyword">*</span>             请求完成后的响应字符串
- <span class="keyword">*</span> <span class="comment">@return</span>
- <span class="keyword">*</span>             若解析成功，返回解析后的对象，否则返回null
- <span class="keyword">*</span>/
-<span class="comment">@SuppressWarnings("unchecked")</span>
-public T parse(String response) {
-    Class<span class="variable">&lt;?&gt;</span> c = this.getGenericType();
-    try {
-        Constructor<span class="variable">&lt;T&gt;</span> constructor = (Constructor<span class="variable">&lt;T&gt;</span>) c.getDeclaredConstructor(String.class);
-        T result = constructor.newInstance(response);
-        return result;
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-    return null;
-}
-
-/<span class="keyword">*</span><span class="keyword">*</span>
- <span class="keyword">*</span> 获取T的类型
- <span class="keyword">*</span> <span class="comment">@param</span>
- <span class="keyword">*</span> <span class="comment">@return</span>
- <span class="keyword">*</span>/
-private Class<span class="variable">&lt;?&gt;</span> getGenericType() {
-    Type genType = getClass().getGenericSuperclass();
-    if (!(genType instanceof ParameterizedType)) {
-        return Object.class;
-    }
-    Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-    if (params.length <span class="variable">&lt; 1) {
-        throw new RuntimeException("Index outof bounds");
-    }
-    if (!(params[0] instanceof Class)) {
-        return Object.class;
-    }
-    return (Class&lt;?&gt;</span>) params[0];
-}
-
- /<span class="keyword">*</span><span class="keyword">*</span>
- <span class="keyword">*</span> 请求完成后以对象形式返回服务器的响应的结果
- <span class="keyword">*</span>
- <span class="keyword">*</span> <span class="comment">@param bean</span>
- <span class="keyword">*</span>             服务器返回的响应字符串解析后得到的对象
- <span class="keyword">*</span>        
- <span class="keyword">*</span>/
-public abstract void onComplete(T bean);
-
-/<span class="keyword">*</span><span class="keyword">*</span>
- <span class="keyword">*</span> 服务器返回了错误结果，已经正确的链接上了服务器但有错误如：缺少参数.等
- <span class="keyword">*</span>
- <span class="keyword">*</span> <span class="comment">@param customError</span>
- <span class="keyword">*</span>/
-public abstract void onError(CustomError customError);
-
-/<span class="keyword">*</span><span class="keyword">*</span>
- <span class="keyword">*</span> 在请求期间发生了严重问题（如：网络故障、访问的地址不存在等）
- <span class="keyword">*</span>
- <span class="keyword">*</span> <span class="comment">@param fault</span>
- <span class="keyword">*</span>/
-public abstract void onFault(CustomError fault);
-</code></pre><p>}</p>
-<h2 id="CustomError">CustomError</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">public class CustomError extends RuntimeException &#123;</div><div class="line"></div><div class="line">	private static final long serialVersionUID = 1L;</div><div class="line">    /**</div><div class="line">     * 错误码</div><div class="line">     */</div><div class="line">	private int mErrorCode;</div><div class="line"></div><div class="line">	/** 原始响应URL */</div><div class="line">	private String mResponse;</div><div class="line"></div><div class="line">	public CustomError() &#123;</div><div class="line">		super();</div><div class="line">	&#125;</div><div class="line">	public CustomError(String errorMessage) &#123;</div><div class="line">		super(errorMessage);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public CustomError(int errorCode, String errorMessage, String orgResponse) &#123;</div><div class="line">		super(errorMessage);</div><div class="line">		this.mErrorCode = errorCode;</div><div class="line">		this.mResponse = orgResponse;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public String getOrgResponse() &#123;</div><div class="line">		return mResponse;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int  getErrorCode() &#123;</div><div class="line">		return mErrorCode;</div><div class="line">	&#125;</div><div class="line">	@Override</div><div class="line">	public String toString() &#123;</div><div class="line">		return &quot;errorCode:&quot; + this.mErrorCode + &quot;\nerrorMessage:&quot;</div><div class="line">				+ this.getMessage() + &quot;\norgResponse:&quot; + this.mResponse;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * 将服务器返回的errorMessage转换成定义的易于理解的字符串</div><div class="line">	 *</div><div class="line">	 * @param errorCode</div><div class="line">	 * 			服务器返回的错误代码</div><div class="line">	 * @param errorMessage</div><div class="line">	 * 			服务器返回的错误字符串，和错误代码一一对应</div><div class="line">	 * @return</div><div class="line">	 */</div><div class="line">	public static String interpretErrorMessage(int errorCode, String errorMessage) &#123;</div><div class="line">		switch (errorCode)</div><div class="line">		&#123;</div><div class="line">			/**</div><div class="line">			 * 错误处理</div><div class="line">			 */</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		return errorMessage;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="RequestParam">RequestParam</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> */</div><div class="line">public abstract class RequestParam &#123;</div><div class="line"></div><div class="line"></div><div class="line">	/**</div><div class="line">	 * 设置请求参数</div><div class="line">	 * @return</div><div class="line">	 */</div><div class="line">    public abstract Bundle getParam();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="ResponseBean">ResponseBean</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">public abstract class ResponseBean implements Serializable &#123;</div><div class="line"></div><div class="line">	public String response;</div><div class="line">	//</div><div class="line"></div><div class="line">	public ResponseBean()</div><div class="line">	&#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	public ResponseBean(String response) throws JSONException &#123;</div><div class="line">		// TODO Auto-generated constructor stub</div><div class="line"></div><div class="line">		if(response == null || response.equals(&quot;&quot;) ||response.equals(&quot;null&quot;))</div><div class="line">			throw new JSONException(&quot;数据解析异常&quot;);</div><div class="line"></div><div class="line">		this.response = response;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setResponse(String response)&#123;</div><div class="line">		this.response = response;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public String getResponse() &#123;</div><div class="line">		return response;</div><div class="line">	&#125;</div><div class="line">	/**</div><div class="line">	 * 保存</div><div class="line">	 */</div><div class="line">	protected  void saveModel()</div><div class="line">	&#123;</div><div class="line">		   L.i(&quot;save_model&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * 更新</div><div class="line">	 */</div><div class="line">	protected  void updateModel()</div><div class="line">	&#123;</div><div class="line">		 L.i(&quot;update_model&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	/**</div><div class="line">	 * 删除</div><div class="line">	 */</div><div class="line">	protected   void deleteModel()</div><div class="line">	&#123;</div><div class="line">		 L.i(&quot;delete_model&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="用法">用法</h1><p>参见Demo，给别人做的毕业设计。</p>
-<p>Demo地址<a href="https://github.com/mzeht/ZhiHuiYun" target="_blank" rel="external">https://github.com/mzeht/ZhiHuiYun</a></p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/17/express框架/" itemprop="url">
-                  express框架
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-03-17T12:08:02+08:00" content="Mar 17 2016">
-              Mar 17 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/文档/" itemprop="url" rel="index">
-                    <span itemprop="name">文档</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/17/express框架/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/17/express框架/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/03/17/express框架/" class="leancloud_visitors" data-flag-title="express框架">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">visitors </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="基础知识">基础知识</h1><h2 id="Express介绍">Express介绍</h2><p>　　npm提供了大量的第三方模块，其中不乏许多Web框架，比如我们本章节要讲述的一个轻量级的Web框架 ——— Express。</p>
-<p>　　Express是一个简洁、灵活的node.js Web应用开发框架, 它提供一系列强大的功能，比如：模板解析、静态文件服务、中间件、路由控制等等,并且还可以使用插件或整合其他模块来帮助你创建各种 Web和移动设备应用,是目前最流行的基于Node.js的Web开发框架，并且支持Ejs、jade等多种模板，可以快速地搭建一个具有完整功能的网站。</p>
-<p>　　好，下面我们就开始吧！</p>
-<p>NPM安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install express</div></pre></td></tr></table></figure>
-<p>获取、引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div></pre></td></tr></table></figure>
-<p>通过变量“app”我们就可以调用express的各种方法了，好戏刚刚开始，继续加油吧！</p>
-<h2 id="创建应用">创建应用</h2><p>　　认识了Express框架，我们开始创建我们的第一个express应用。</p>
-<p>　　在我们的默认项目主文件app.js添加如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line">app.get(&apos;/&apos;, function (request, response) &#123;  </div><div class="line">   response.send(&apos;Hello World!&apos;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>　　说明：在后面课程学习中，我们会统一使用80端口用于监听请求。</p>
-<p>　　添加完毕之后，通过右侧栏的“测试地址”来查看浏览器内容，当看到“Hello World!”内容就表明一个简单的express应用已经创建成功了。
-　　</p>
-<h2 id="get请求">get请求</h2><p>　前面我们实现了一个简单的express应用，下面我们就开始具体讲述它的具体实现，首先我们先来学习Express的常用方法。</p>
-<p>　　get方法 —— 根据请求路径来处理客户端发出的GET请求。</p>
-<p>　　格式：app.get(path,function(request, response));</p>
-<p>　　path为请求的路径，第二个参数为处理请求的回调函数，有两个参数分别是request和response，代表请求信息和响应信息。</p>
-<p>如下示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line"> </div><div class="line">app.get(&apos;/&apos;, function(request, response) &#123;</div><div class="line">   response.send(&apos;Welcome to the homepage!&apos;);</div><div class="line">&#125;);</div><div class="line">app.get(&apos;/about&apos;, function(request, response) &#123;</div><div class="line">   response.send(&apos;Welcome to the about page!&apos;);</div><div class="line">&#125;);</div><div class="line">app.get(&quot;*&quot;, function(request, response) &#123;</div><div class="line">    response.send(&quot;404 error!&quot;);</div><div class="line">&#125;);</div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>　　上面示例中，指定了about页面路径、根路径和所有路径的处理方法。并且在回调函数内部，使用HTTP回应的send方法，表示向浏览器发送一个字符串。</p>
-<p>　　参照以上代码，试试自己设定一个get请求路径，然后浏览器访问该地址是否可以请求成功。
-　　</p>
-<h2 id="all函数的基本用法">all函数的基本用法</h2><p>　　和get函数不同app.all()函数可以匹配所有的HTTP动词，也就是说它可以过滤所有路径的请求，如果使用all函数定义中间件，那么就相当于所有请求都必须先通过此该中间件。</p>
-<p>格式：app.all(path,function(request, response));</p>
-<p>如下所示，我们使用all函数在请求之前设置响应头属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">var express = require(&quot;express&quot;);</div><div class="line">var app = express();</div><div class="line"> </div><div class="line">app.all(&quot;*&quot;, function(request, response, next) &#123;</div><div class="line">    response.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text/html;charset=utf-8&quot; &#125;);      //设置响应头属性值</div><div class="line">    next();</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.get(&quot;/&quot;, function(request, response) &#123;</div><div class="line">    response.end(&quot;欢迎来到首页!&quot;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.get(&quot;/about&quot;, function(request, response) &#123;</div><div class="line">    response.end(&quot;欢迎来到about页面!&quot;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.get(&quot;*&quot;, function(request, response) &#123;</div><div class="line">    response.end(&quot;404 - 未找到!&quot;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>　　上面代码参数中的“*”表示对所有路径有效，这个方法在给特定前缀路径或者任意路径上处理时会特别有用，不管我们请求任何路径都会事先经过all函数。
-　　</p>
-<h2 id="use基本用法1">use基本用法1</h2><p>use是express调用中间件的方法，它返回一个函数。</p>
-<p>格式：app.use([path], function(request, response, next){});</p>
-<p>可选参数path默认为”/“。</p>
-<p>1.使用中间件</p>
-<p>app.use(express.static(path.join(__dirname, ‘/‘)));<br>如上呢，我们就使用use函数调用express中间件设定了静态文件目录的访问路径(这里假设为根路径)。</p>
-<p>2.如何连续调用两个中间件呢，如下示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line"> </div><div class="line">app.use(function(request, response, next)&#123;</div><div class="line">    console.log(&quot;method：&quot;+request.method+&quot; ==== &quot;+&quot;url：&quot;+request.url);</div><div class="line">    next();</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.use(function(request, response)&#123;</div><div class="line">    response.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text/html;charset=utf-8&quot; &#125;);</div><div class="line">    response.end(&apos;示例：连续调用两个中间件&apos;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>回调函数的next参数，表示接受其他中间件的调用，函数体中的next()，表示将请求数据传递给下一个中间件。</p>
-<p>上面代码先调用第一个中间件，在控制台输出一行信息，然后通过next()，调用第二个中间件，输出HTTP回应。由于第二个中间件没有调用next方法，所以req对象就不再向后传递了。</p>
-<h2 id="use基本用法2">use基本用法2</h2><p>use方法不仅可以调用中间件，还可以根据请求的网址，返回不同的网页内容，如下示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">var express = require(&quot;express&quot;);</div><div class="line">var app = express();</div><div class="line"> </div><div class="line">app.use(function(request, response, next) &#123;</div><div class="line">   if(request.url == &quot;/&quot;) &#123;</div><div class="line">      response.send(&quot;Welcome to the homepage!&quot;);</div><div class="line">   &#125;else &#123;</div><div class="line">      next();</div><div class="line">   &#125;</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.use(function(request, response, next) &#123;</div><div class="line">   if(request.url == &quot;/about&quot;) &#123;</div><div class="line">     response.send(&quot;Welcome to the about page!&quot;);</div><div class="line">   &#125;else &#123;</div><div class="line">     next();</div><div class="line">   &#125;</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.use(function(request, response) &#123;</div><div class="line">  response.send(&quot;404 error!&quot;);</div><div class="line">&#125;);</div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>上面代码通过request.url属性，判断请求的网址，从而返回不同的内容。</p>
-<h2 id="回调函数">回调函数</h2><p>　　Express回调函数有两个参数，分别是request(简称req)和response(简称res)，request代表客户端发来的HTTP请求，response代表发向客户端的HTTP回应，这两个参数都是对象。示例如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function(req, res) &#123;</div><div class="line"> </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="获取主机名、路径名">获取主机名、路径名</h2><p>　　今天我们就先来学习如何使用req对象来处理客户端发来的HTTP请求。</p>
-<p>1.req.host返回请求头里取的主机名(不包含端口号)。</p>
-<p>2.req.path返回请求的URL的路径名。</p>
-<p>如下示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line"> </div><div class="line">app.listen(8000);</div><div class="line"></div><div class="line">app.get(&quot;*&quot;, function(req, res) &#123;</div><div class="line">    console.log(req.path);</div><div class="line">    //console.log(req.host);</div><div class="line">    res.send(&quot;req.host获取主机名，req.path获取请求路径名!&quot;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>试一试在浏览器中输入任意一个请求路径，通过req查看主机名或请求路径。</p>
-<p><a href="http://localhost:8000/about" target="_blank" rel="external">http://localhost:8000/about</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/about</div><div class="line">/favicon.ico</div></pre></td></tr></table></figure>
-<h2 id="query基本用法">query基本用法</h2><p>　　query是一个可获取客户端get请求路径参数的对象属性，包含着被解析过的请求参数对象，默认为{}。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line"> </div><div class="line">app.get(&quot;*&quot;, function(req, res) &#123;</div><div class="line">    console.log(req.query.参数名);</div><div class="line">    res.send(&quot;测试query属性!&quot;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>通过req.query获取get请求路径的对象参数值。</p>
-<p>格式：req.query.参数名；请求路径如下示例：</p>
-<blockquote>
-<p>例1： /search?n=Lenka</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">req.query.n  // &quot;Lenka&quot;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>例2： /shoes?order=desc&amp;shoe[color]=blue&amp;shoe[type]=converse</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">req.query.order  // &quot;desc&quot;</div><div class="line"> </div><div class="line">req.query.shoe.color  // &quot;blue&quot;</div><div class="line"> </div><div class="line">req.query.shoe.type  // &quot;converse&quot;</div></pre></td></tr></table></figure>
-<p>试一试get请求一个带参数路径，使用“req.query.参数名”方法获取请求参数值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.get(&apos;/about&apos;,function(req,res)&#123;</div><div class="line">    console.log(req.query.name);</div><div class="line">    res.send(&quot;name=&quot;+req.query.name);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><a href="http://localhost:8000/about?name=mzeht&amp;name=jj" target="_blank" rel="external">http://localhost:8000/about?name=mzeht&amp;name=jj</a></p>
-<p>name=mzeht,jj</p>
-<h2 id="param基本用法">param基本用法</h2><p>和属性query一样，通过req.param我们也可以获取被解析过的请求参数对象的值。</p>
-<p>格式：req.param(“参数名”)；请求路径如下示例：</p>
-<p>例1： 获取请求根路径的参数值，如/?n=Lenka，方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line"> </div><div class="line">app.get(&quot;/&quot;, function(req, res) &#123;</div><div class="line">    console.log(req.param(&quot;n&quot;)); //Lenka</div><div class="line">    res.send(&quot;使用req.param属性获取请求根路径的参数对象值!&quot;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>例2：我们也可以获取具有相应路由规则的请求对象，假设路由规则为 /user/:name/，请求路径/user/mike,如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.get(&quot;/user/:name/&quot;, function(req, res) &#123;</div><div class="line">    console.log(req.param(&quot;name&quot;)); //mike</div><div class="line">    res.send(&quot;使用req.param属性获取具有路由规则的参数对象值!&quot;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>PS：所谓“路由”，就是指为不同的访问路径，指定不同的处理方法。<br>如果没有相应参数的数据 req.param 返回值为undefined;</p>
-<p>看了上面的示例，试一试使用req.param属性解析一个请求路径对象，并获取请求参数值。</p>
-<h2 id="params基本用法">params基本用法</h2><p>和param相似，但params是一个可以解析包含着有复杂命名路由规则的请求对象的属性。</p>
-<p>格式：req.params.参数名；</p>
-<p>例1. 如上课时请求根路径的例子，我们就可以这样获取，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line"> </div><div class="line">app.get(&quot;/user/:name/&quot;, function(req, res) &#123;</div><div class="line">    console.log(req.params.name); //mike</div><div class="line">    res.send(&quot;使用req.params属性获取具有路由规则的参数对象值!&quot;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>查看运行结果，和param属性功能是一样的，同样获取name参数值。</p>
-<p>例2：当然我们也可以请求复杂的路由规则，如/user/:name/:id，假设请求地址为：/user/mike/123，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.get(&quot;/user/:name/:id&quot;, function(req, res) &#123;</div><div class="line">    console.log(req.params.id); //&quot;123&quot;</div><div class="line">    res.send(&quot;使用req.params属性复杂路由规则的参数对象值!&quot;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>对于请求地址具有路由规则的路径来说，属性params比param属性是不是又强大了那么一点点呢！</p>
-<h2 id="send基本用法">send基本用法</h2><p>send()方法向浏览器发送一个响应信息，并可以智能处理不同类型的数据。格式如下：</p>
-<p>res.send([body|status], [body]);<br>1.当参数为一个String时，Content-Type默认设置为”text/html”。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">res.send(&apos;Hello World&apos;); //Hello World</div></pre></td></tr></table></figure>
-<p>2.当参数为Array或Object时，Express会返回一个JSON。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">res.send(&#123; user: &apos;tobi&apos; &#125;); //&#123;&quot;user&quot;:&quot;tobi&quot;&#125;</div><div class="line">res.send([1,2,3]); //[1,2,3]</div></pre></td></tr></table></figure>
-<p>3.当参数为一个Number时，并且没有上面提到的任何一条在响应体里，Express会帮你设置一个响应体，比如：200会返回字符”OK”。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">res.send(200); // OK</div><div class="line">res.send(404); // Not Found</div><div class="line">res.send(500); // Internal Server Error</div></pre></td></tr></table></figure>
-<p>send方法在输出响应时会自动进行一些设置，比如HEAD信息、HTTP缓存支持等等。</p>
-<p>ps:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Fri, 18 Mar 2016 11:02:43 GMT express deprecated req.param(name): Use req.params, req.body, or req.query instead at app.js:37:21</div><div class="line">Fri, 18 Mar 2016 11:02:43 GMT express deprecated req.param(name): Use req.params, req.body, or req.query instead at app.js:38:21</div><div class="line">Fri, 18 Mar 2016 11:02:43 GMT express deprecated res.send(status): Use res.sendStatus(status) instead at app.js:42:9</div></pre></td></tr></table></figure>
-<h1 id="准备登陆">准备登陆</h1><h2 id="模板引擎">模板引擎</h2><p>　　从本节课程开始我们要使用express框架实现一个简单的用户登陆功能，让我们先准备一下相关资源。</p>
-<p>　　在nodejs中使用express框架，它默认的是ejs和jade渲染模板，今天我们就以ejs模板为例，讲述模板渲染网页模板的基础功能。</p>
-<p>1.ejs模板安装方法</p>
-<p>npm install ejs<br>2.目录下安装好了之后，如何调用呢，如下所示：</p>
-<p>//指定渲染模板文件的后缀名为ejs<br>app.set(‘view engine’, ‘ejs’);<br>默认ejs模板只支持渲染以ejs为扩展名的文件，可能在使用的时候会觉得它的代码书写方式很不爽还是想用html的形式去书写，该怎么办呢，这时就得去修改模板引擎了，也就会用到express的engine函数。</p>
-<p>engine注册模板引擎的函数，处理指定的后缀名文件。</p>
-<p>// 修改模板文件的后缀名为html<br>app.set( ‘view engine’, ‘html’ );<br>// 运行ejs模块<br>app.engine( ‘.html’, require( ‘ejs’ ).<strong>express );<br>“</strong>express”，ejs模块的一个公共属性，表示要渲染的文件扩展名。</p>
-<h2 id="静态资源">静态资源</h2><p>由于环境的限制，这里我们就不使用静态资源了，但是实际开发中我们肯定会用到，具体使用规则已在下面列出，可参考。</p>
-<p>如果要在网页中加载静态文件（css、js、img），就需要另外指定一个存放静态文件的目录，当浏览器发出非HTML文件请求时，服务器端就会到这个目录下去寻找相关文件。</p>
-<p>1.项目目录下添加一个存放静态文件的目录为public。</p>
-<p>2.在public目录下在添加三个存放js、css、img的目录，相应取名为javascripts、stylesheets、images。</p>
-<p>3.然后就可以把相关文件放到相应的目录下了。</p>
-<p>4.比如，浏览器发出如下的样式表请求：</p>
-<p> <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen"><br>服务器端就到public/stylesheets/目录中寻找bootstrap.min.css文件。</p>
-<p>有了静态目录文件，我们还得在启动文件里告诉它这个静态文件路径，需要指定一下，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(express.static(require(&apos;path&apos;).join(__dirname, &apos;public&apos;)));</div></pre></td></tr></table></figure>
-<p>PS：express.static —— 指定静态文件的查找目录。</p>
-<p>使用use函数调用中间件指定express静态访问目录，’public’就是我们我们新建的用来存放静态文件的总目录。</p>
-<h2 id="添加视图">添加视图</h2><p>好，下面我们就来添加网页模板了，项目中我们会新建一个目录用来单独存放模板文件，这里我们就统一放到根路径上了。</p>
-<p>下面开始新建index.html、login.html、home.html三个页面。</p>
-<p>index.html页面参考内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&quot;height:400px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);&quot;&gt;</div><div class="line">    &lt;div style=&quot;margin-left: 35px;&quot;&gt;</div><div class="line"># 首页</div><div class="line"></div><div class="line"></div><div class="line">        &lt;form action=&quot;#&quot;  role=&quot;form&quot; style=&quot;margin-top: 90px;margin-left: 60px;&quot;&gt;</div><div class="line"># 欢迎进入首页！</div><div class="line">            &lt;div style=&quot;margin-top: 145px;&quot;&gt;</div><div class="line">                &lt;input type=&quot;button&quot; value=&quot;登 陆&quot; /&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/form&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<p>login.html页面参考内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">    &lt;title&gt;用户登录&lt;/title&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;script src=&quot;http://code.jquery.com/jquery-2.1.1.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">...</div><div class="line"> </div><div class="line">&lt;div style=&quot;height:300px;width:350px;margin:100px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);&quot;&gt;</div><div class="line">    &lt;div style=&quot;width:200px;margin:auto;margin-top:50px;&quot;&gt;</div><div class="line"># 用户登录</div><div class="line">        &lt;form action=&quot;#&quot;  role=&quot;form&quot; method=&quot;post&quot; &gt;</div><div class="line">            &lt;input id=&quot;username&quot; type=&quot;text&quot; name=&quot;username&quot; style=&quot;margin: 20px 0px;&quot; /&gt;</div><div class="line">            &lt;input id=&quot;password&quot; type=&quot;password&quot; name=&quot;password&quot; /&gt;</div><div class="line">            &lt;div style=&quot;margin-top:30px;margin-left:125px;&quot;&gt;</div><div class="line">                &lt;input type=&quot;button&quot; value=&quot;登 陆&quot; /&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/form&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<p>home.html页面参考内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&quot;height:400px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);&quot;&gt;</div><div class="line">    &lt;div style=&quot;margin-left: 45px;&quot;&gt;</div><div class="line"># 主页</div><div class="line">        &lt;form action=&quot;#&quot;  role=&quot;form&quot; style=&quot;margin-top: 90px;&quot;&gt;</div><div class="line"># 登陆成功！</div><div class="line">            &lt;div style=&quot;margin-top: 145px;&quot;&gt;</div><div class="line">                &lt;input  type=&quot;button&quot; value=&quot;退 出&quot; /&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/form&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<p>和静态文件一样，我们也要设置views存放的目录，如下：<br>// 设定views变量，意为视图存放的目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.set(&apos;views&apos;, __dirname);</div></pre></td></tr></table></figure>
-<p>有了网页模板和指定目录，下面就可以访问它们了。</p>
-<h2 id="访问视图">访问视图</h2><p>我们要如何对网页模板进行访问呢，这就要用到res对象的render函数了。</p>
-<p>1.render函数，对网页模板进行渲染。</p>
-<p>2.格式：res.render(view, [locals], callback);</p>
-<p>3.参数view就是模板的文件名callback用来处理返回的渲染后的字符串，options、callback可省略，在渲染模板时locals可为其模板传入变量值，在模板中就可以调用所传变量了，在后面我们会讲述具体使用方法，也可先自行使用看其效果。</p>
-<p>4.比如渲染我们刚刚添加的index.html页面，我们就可以在app.js中写入如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line">var path = require(&apos;path&apos;);</div><div class="line"> </div><div class="line">app.set(&apos;views&apos;, __dirname);</div><div class="line"> </div><div class="line">app.set( &apos;view engine&apos;, &apos;html&apos; );</div><div class="line">app.engine( &apos;.html&apos;, require( &apos;ejs&apos; ).__express );</div><div class="line"> </div><div class="line">app.get(&apos;/&apos;, function(req, res) &#123;</div><div class="line">    res.render(&apos;index&apos;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.listen(8000);</div></pre></td></tr></table></figure>
-<p>运行之后在测试地址我们就可以看到所渲染的index页面了，试一试其他页面是否也可渲染成功？</p>
-<h2 id="redirect基本用法">redirect基本用法</h2><p>redirect方法允许网址的重定向，跳转到指定的url并且可以指定status，默认为302方式。</p>
-<p>格式：res.redirect([status], url);</p>
-<p>例1：使用一个完整的url跳转到一个完全不同的域名。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">res.redirect(&quot;http://www.hubwiz.com&quot;);</div></pre></td></tr></table></figure>
-<p>例2：跳转指定页面，比如登陆页，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">res.redirect(&quot;login&quot;);</div></pre></td></tr></table></figure>
-<p>后面我们开始实现登陆功能，先试一下redirect重定向，跳转到我们网站如何？</p>
-<h1 id="实现登陆">实现登陆</h1><h2 id="访问视图-1">访问视图</h2><p>前面我们已经添加了视图模板并学习了访问视图的方法，那我们就先回顾一下。</p>
-<p>1.参考以下代码，地址栏访问这几个请求路径查看是否可以成功。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">app.get(&apos;/&apos;, function(req, res) &#123;</div><div class="line">    res.render(&apos;index&apos;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.get(&apos;/login&apos;,function(req,res)&#123;</div><div class="line">    res.render(&apos;login&apos;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.get(&apos;/home&apos;,function(req,res)&#123;</div><div class="line">    res.render(&apos;home&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>当浏览器看到了相应的视图页面就说明我们的代码是没有问题的，继续加油吧！</p>
-<h2 id="用户登陆">用户登陆</h2><p>前面我们学习了express的get请求方法，今天我们就学习它的post请求方法。</p>
-<p>1.post方法 —— 根据请求路径来处理客户端发出的Post请求。</p>
-<p>2.格式：app.post(path,function(req, res));</p>
-<p>3.和get方法一样，path为请求的路径，第二个参数为处理请求的回调函数，req和res分别代表请求信息和响应信息。</p>
-<p>4.例如处理login的post请求，如下示例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">app.post(&apos;/login&apos;,function(req,res)&#123;</div><div class="line"> </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>了解了post方法，下面我们就开始使用post来实现简单的用户登陆功能。</p>
-<h2 id="body基本用法">body基本用法</h2><p>实现登陆之前我们先来了解一个属性 —— body。</p>
-<p>body属性解析客户端的post请求参数，通过它可获取请求路径的参数值。</p>
-<p>格式：req.body.参数名；</p>
-<p>下面我们就来测试body属性的功能，做一些准备工作。</p>
-<p>修改login.html，为登陆按钮增加登陆事件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;button&quot; onclick=&quot;login();&quot; value=&quot;登 陆&quot;&gt;</div><div class="line">function login()&#123;</div><div class="line">   var username = $(&apos;#username&apos;).val();</div><div class="line">   var data = &#123; &quot;username&quot;: username &#125;;</div><div class="line">   $.ajax(&#123;</div><div class="line">           url:&apos;/login&apos;,</div><div class="line">           type:&apos;POST&apos;,</div><div class="line">           data:data</div><div class="line">          &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>要想使用body属性解析post请求参数值，我们需要先安装和引用express的两个中间件body-parser和multer，具体方法如下：。<br>2.1安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install body-parser</div><div class="line">npm install multer</div></pre></td></tr></table></figure>
-<p>2.2引用和调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var bodyParser = require(&apos;body-parser&apos;);</div><div class="line">var multer = require(&apos;multer&apos;);</div><div class="line">   ......</div><div class="line">app.use(bodyParser.json());</div><div class="line">app.use(bodyParser.urlencoded(&#123; extended: true &#125;));</div><div class="line">app.use(multer());</div></pre></td></tr></table></figure>
-<p>中间件body-parser和multer用于处理和解析post请求的数据。</p>
-<h2 id="body基本用法(2)">body基本用法(2)</h2><p>到这里我们就可以测试post请求的body属性的简单用法了。</p>
-<p>1.修改好之后的完整的文件app.js如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line">var bodyParser = require(&apos;body-parser&apos;);</div><div class="line">var multer = require(&apos;multer&apos;);</div><div class="line">app.set(&apos;views&apos;, __dirname);</div><div class="line">app.set( &apos;view engine&apos;, &apos;html&apos; );</div><div class="line">app.engine( &apos;.html&apos;, require( &apos;ejs&apos; ).__express );</div><div class="line">app.use(bodyParser.json());</div><div class="line">app.use(bodyParser.urlencoded(&#123; extended: true &#125;));</div><div class="line">app.use(multer());</div><div class="line">app.get(&apos;/&apos;,function(req,res)&#123;</div><div class="line">    res.render(&apos;login&apos;);</div><div class="line">&#125;);</div><div class="line">app.post(&quot;/login&quot;, function(req, res) &#123;</div><div class="line">    console.log(&quot;用户名称为：&quot; + req.body.username);</div><div class="line">&#125;);</div><div class="line">app.listen(8000);</div></pre></td></tr></table></figure>
-<p>通过测试地址访问浏览器，试试录入任意一个用户名登录，查看通过body属性是否可以成功获取？</p>
-<h2 id="准备登陆-1">准备登陆</h2><p>接下来我们就开始实现登陆功能，让我们要先做一些准备工作，为相关按钮添加点击事件、链接。</p>
-<p>1.修改index.html，增加登陆链接。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[登 录](login)</div></pre></td></tr></table></figure></p>
-<p>2.强化login页面的login方法，实现一个简单的post请求：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function login()&#123;</div><div class="line">   var username = $(&apos;#username&apos;).val();</div><div class="line">   var password = $(&apos;#password&apos;).val();</div><div class="line">   var data = &#123; &quot;username&quot;: username, &quot;password&quot;:password&#125;;</div><div class="line">   $.ajax(&#123;</div><div class="line">            url:&apos;login&apos;,</div><div class="line">            type:&apos;POST&apos;,</div><div class="line">            data:data,</div><div class="line">            success:function(data,status)&#123;</div><div class="line">                 if(status == &apos;success&apos;)&#123;</div><div class="line">                     location.href=&apos;home&apos;;</div><div class="line">                   &#125;</div><div class="line">            &#125;,</div><div class="line">            error:function(data,status,e)&#123;</div><div class="line">                 if(status == &quot;error&quot;)&#123;</div><div class="line">                      location.href=&apos;login&apos;;</div><div class="line">                    &#125;</div><div class="line">                  &#125;</div><div class="line">              &#125;);</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
-<p>网页模板准备已经就绪，下面我们开始修改启动文件app.js的内容。</p>
-<h2 id="准备登陆-2">准备登陆</h2><p>下面我们就开始修改app启动文件的内容。</p>
-<p>1.修改post方法，这里假设数据库中用户名的名字为admin、密码为admin。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">app.post(&apos;/login&apos;,function(req,res)&#123;</div><div class="line">    var user=&#123;</div><div class="line">        username:&apos;admin&apos;,</div><div class="line">        password:&apos;admin&apos;</div><div class="line">    &#125;</div><div class="line">if(req.body.username==user.username&amp;&amp;req.body.password==user.password)</div><div class="line">    &#123; </div><div class="line">       res.send(200);</div><div class="line">    &#125;else&#123;</div><div class="line">       res.send( 404 );</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">2.一个完整的启动文件app.js如下所示：</div><div class="line"></div><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line">var bodyParser = require(&apos;body-parser&apos;);</div><div class="line">var multer = require(&apos;multer&apos;);</div><div class="line"> </div><div class="line">app.set(&apos;views&apos;, __dirname);</div><div class="line">app.set( &apos;view engine&apos;, &apos;html&apos; );</div><div class="line">app.engine( &apos;.html&apos;, require( &apos;ejs&apos; ).__express );</div><div class="line"> </div><div class="line">app.use(bodyParser.json());</div><div class="line">app.use(bodyParser.urlencoded(&#123; extended: true &#125;));</div><div class="line">app.use(multer());</div><div class="line"> </div><div class="line">app.get(&apos;/&apos;, function(req, res) &#123;</div><div class="line">    res.render(&apos;index&apos;);</div><div class="line">&#125;);</div><div class="line">app.get(&apos;/home&apos;,function(req,res)&#123;</div><div class="line">    res.render(&apos;home&apos;);</div><div class="line">&#125;);</div><div class="line">app.get(&apos;/login&apos;,function(req,res)&#123;</div><div class="line">    res.render(&apos;login&apos;);</div><div class="line">&#125;);</div><div class="line">app.post(&apos;/login&apos;,function(req,res)&#123;</div><div class="line">    var user=&#123;</div><div class="line">        username:&apos;admin&apos;,</div><div class="line">        password:&apos;admin&apos;</div><div class="line">    &#125;</div><div class="line"> if(req.body.username==user.username&amp;&amp;req.body.password==user.password)      &#123;</div><div class="line">      res.send(200);</div><div class="line">   &#125;else&#123;</div><div class="line">      res.send( 404 );</div><div class="line">   &#125;</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>到这里，一个简单的Post登录就完成了，使用浏览器运行本地端口试试效果吧！</p>
-<h2 id="访问控制">访问控制</h2><p>简单登陆部分按照我们的求已经完成了，但网站好些并不安全，反复测试我们发现，home.html页面本来是登陆以后才访问的，现在我们不需登陆，直接在浏览器输入也可访问，这样肯定是不能被允许的，那么我们还得再次对登陆功能进行强化。</p>
-<p>1.login.html页面增加EJS模板变量&lt;%- message %&gt;保存登陆提示信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">    &lt;%- message %&gt;</div><div class="line"># 用户登录</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>2.home.html页面，登陆成功后跳转并传入用户名：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 恭喜_&lt;%= user.username %&gt;_，登陆成功！</div></pre></td></tr></table></figure>
-<p>PS：使用EJS模板变量值使用&lt;%= variable_name %&gt;输出方式，字符串输出时默认经过escape转义编码。 当我们想要输出一些动态生成的HTML标签时可使用&lt;%- variable_nam %&gt;输出方式，这种方式不会被escape转义编码。</p>
-<p>3.home.html页面添加退出链接，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[退 出](logout)</div></pre></td></tr></table></figure></p>
-<h2 id="访问控制-1">访问控制</h2><p>修改好了模板页，下面开始修改启动文件app.js的内容。</p>
-<p>1.安装模块express-session并引用，安装、引用不在讲述。</p>
-<p>2.使用新模块进行访问时间限制，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var session = require(&apos;express-session&apos;);</div><div class="line">...</div><div class="line">app.use(session(&#123;</div><div class="line">    secret:&apos;secret&apos;,</div><div class="line">    resave:true,</div><div class="line">    saveUninitialized:false,</div><div class="line">    cookie:&#123;</div><div class="line">        maxAge:1000*60*10  //过期时间设置(单位毫秒)</div><div class="line">    &#125;</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
-<p>3.app.js文件新增中间件并设置模板变量值，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app.use(function(req, res, next)&#123;</div><div class="line">    res.locals.user = req.session.user;</div><div class="line">    var err = req.session.error;</div><div class="line">    res.locals.message = &apos;&apos;;</div><div class="line">    if (err) res.locals.message = &apos;&lt;div style=&quot;margin-bottom: 20px;color:red;&quot;&gt;&apos; + err + &apos;&lt;/div&gt;&apos;;</div><div class="line">    next();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>res.locals对象保存在一次请求范围内的响应体中的本地变量值。</p>
-<p>PS：注意，中间件的放置顺序很重要，等同于执行顺序。而且，中间件必须放在HTTP动词方法之前，否则不会执行。</p>
-<p>4.增加logout路径处理(用户登陆退出)和index路径请求处理，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app.get(&apos;/logout&apos;, function(req, res)&#123;</div><div class="line">    req.session.user = null;</div><div class="line">    req.session.error = null;</div><div class="line">    res.redirect(&apos;index&apos;);</div><div class="line">&#125;);</div><div class="line">app.get(&apos;/index&apos;, function(req, res) &#123;</div><div class="line">    res.render(&apos;index&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>5.修改home路径请求处理，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app.get(&apos;/home&apos;,function(req,res)&#123;</div><div class="line">    if(req.session.user)&#123;</div><div class="line">        res.render(&apos;home&apos;);</div><div class="line">    &#125;else&#123;</div><div class="line">        req.session.error = &quot;请先登录&quot;</div><div class="line">        res.redirect(&apos;login&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>5.修改路径为login的Post请求</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">app.post(&apos;/login&apos;,function(req,res)&#123;</div><div class="line">    var user=&#123;</div><div class="line">        username:&apos;admin&apos;,</div><div class="line">        password:&apos;admin&apos;</div><div class="line">    &#125;</div><div class="line"> if(req.body.username==user.username&amp;&amp;req.body.password==user.password)&#123;</div><div class="line">        req.session.user = user;</div><div class="line">        res.send(200);</div><div class="line">    &#125;else&#123;</div><div class="line">        req.session.error = &quot;用户名或密码不正确&quot;;</div><div class="line">        res.send( 404 );</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>好，全部修改完毕，再次访问测试地址试试效果吧！</p>
-<h1 id="路由登陆">路由登陆</h1><h2 id="路由介绍">路由介绍</h2><p>路由 ————为不同的访问路径，指定不同的处理方法。 在app.js中我们指定了app.get、app.post的不同路径的多个路由规则，在实际开发应用中，也会碰到具有多个路由记录的情况，针对这个问题，我们就要对这些路由记录做分开处理，以便于管理。</p>
-<p>我们还是在登陆例子的基础上做如下修改。</p>
-<p>1.添加三个js文件，名称分别为login、home、logout。</p>
-<p>2.login.js文件，添加如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">module.exports = function ( app ) &#123;</div><div class="line">    app.get(&apos;/login&apos;,function(req,res)&#123;</div><div class="line">        res.render(&apos;login&apos;);</div><div class="line">    &#125;);</div><div class="line"> </div><div class="line">    app.post(&apos;/login&apos;,function(req,res)&#123;</div><div class="line">        var user=&#123;</div><div class="line">            username:&apos;admin&apos;,</div><div class="line">            password:&apos;admin&apos;</div><div class="line">        &#125;</div><div class="line">        if(req.body.username==user.username&amp;&amp;req.body.password==user.password)&#123;</div><div class="line">            req.session.user = user;</div><div class="line">            res.send(200);</div><div class="line">        &#125;else&#123;</div><div class="line">            req.session.error = &quot;用户名或密码不正确&quot;</div><div class="line">            res.send( 404 );</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>3.home.js文件，添加如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">module.exports = function ( app ) &#123;</div><div class="line">    app.get(&apos;/home&apos;,function(req,res)&#123;</div><div class="line">        if(req.session.user)&#123;</div><div class="line">            res.render(&apos;home&apos;);</div><div class="line">        &#125;else&#123;</div><div class="line">            req.session.error = &quot;请先登录&quot;</div><div class="line">            res.redirect(&apos;login&apos;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="使用路由2">使用路由2</h2><p>4.logout.js文件，添加如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">module.exports = function ( app ) &#123;</div><div class="line">    app.get(&apos;/logout&apos;, function(req, res)&#123;</div><div class="line">        req.session.user = null;</div><div class="line">        req.session.error = null;</div><div class="line">        res.redirect(&apos;index&apos;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>5.app.js文件中请求路径为logout、home、login的代码就可以删除了</p>
-<p>6.新增的三个文件我们改如何使用呢，很简单，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">require(&apos;./login&apos;)(app);</div><div class="line">require(&apos;./home&apos;)(app);</div><div class="line">require(&apos;./logout&apos;)(app);</div></pre></td></tr></table></figure>
-<p>对，就是这么简单，我们只需引用路由的目录即可。</p>
-<p>到这里我们的用户登陆功能就安全了，现学现用赶快试试效果吧！</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2270,7 +2017,7 @@ public abstract void onFault(CustomError fault);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -2278,7 +2025,7 @@ public abstract void onFault(CustomError fault);
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2287,7 +2034,7 @@ public abstract void onFault(CustomError fault);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

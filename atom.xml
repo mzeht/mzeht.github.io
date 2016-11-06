@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-09-07T10:59:06.000Z</updated>
+  <updated>2016-11-06T09:56:05.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -13,6 +13,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Android控件架构与自定义控件详解]]></title>
+    <link href="http://mzeht.com/2016/10/08/Android%E6%8E%A7%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://mzeht.com/2016/10/08/Android控件架构与自定义控件详解/</id>
+    <published>2016-10-08T11:18:29.000Z</published>
+    <updated>2016-11-06T09:56:05.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="View的测量">View的测量</h1><p>Android帮助测量View的类—<code>MeasureSpec</code>类<br>MeasureSpec是一个32位的int值，高两位为测量的模式，低30位为测量的大小<br>使用位运算提高并优化效率</p>
+<h2 id="测量的模式">测量的模式</h2><ul>
+<li><p><code>EXACTLY</code> 精确值模式<br>控件layout_width,layout_height属性指定为具体数值时，或者是match_parent属性时</p>
+</li>
+<li><p><code>AT_MOST</code> 最大值模式<br>控件layout_width,layout_height属性使用warp_content，控件的大小取不超过父级控件的最大值</p>
+</li>
+<li><p><code>UNSPECIFIED</code><br>不指定测量模式，可以任意大小，通常自定义View绘制时才用到</p>
+</li>
+</ul>
+<h2 id="Demo">Demo</h2><ul>
+<li><p>View类默认的<code>onMeasure()</code>方法只支持EXACTLY模式，如果该View要支持warp_content属性<br>   就必须要重写onMeasure()方法 指定AT_MOST模式下warp_content时的大小</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> @Override</div><div class="line">protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</div><div class="line">    super.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>进入`onMeasure`方法,看源码
+可以发现最终调用
+
+<span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));</div></pre></td></tr></table></figure></span>
+</code></pre><ul>
+<li><p>setMeasuredDimension(int measuredWidth, int measuredHeight)里面的参数相当于px单位   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"> public class MyView extends View &#123;</div><div class="line">    public MyView(Context context) &#123;</div><div class="line">        super(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public MyView(Context context, AttributeSet attrs) &#123;</div><div class="line">        super(context, attrs);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public MyView(Context context, AttributeSet attrs, int defStyleAttr) &#123;</div><div class="line">        super(context, attrs, defStyleAttr);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     *</div><div class="line">     * @param widthMeasureSpec</div><div class="line">     * @param heightMeasureSpec</div><div class="line">     * View类默认的onMeasure()方法只支持EXACTLY模式，如果该View要支持warp_content属性</div><div class="line">     * 就必须要重写onMeasure()方法 指定AT_MOSt模式下warp_content时的大小</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</div><div class="line">//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line">        setMeasuredDimension(measure(widthMeasureSpec), measure(heightMeasureSpec));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private int measure(int measureSpec) &#123;</div><div class="line">        int result = 0;</div><div class="line">        int specMode = MeasureSpec.getMode(measureSpec);</div><div class="line">        int specSize = MeasureSpec.getSize(measureSpec);</div><div class="line"></div><div class="line">        //精确值模式，参数直接使用</div><div class="line">        if (specMode == MeasureSpec.EXACTLY) &#123;</div><div class="line">            result = specSize;</div><div class="line"></div><div class="line">            //最大值模式，wrap_content时取不超过父级空间的最大值</div><div class="line">        &#125; else if (specMode == MeasureSpec.AT_MOST) &#123;</div><div class="line">            result = 200;</div><div class="line">            result = Math.min(result, specSize);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        /**</div><div class="line">         * 200PX</div><div class="line">         * setMeasuredDimension(int measuredWidth, int measuredHeight)里面的参数相当于px单位</div><div class="line">         */</div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="View的测量">View的测量</h1><p>Android帮助测量View的类—<code>MeasureSpec</code>类<br>MeasureSpec是一个32位的int值，高两位为测量的模式，低30位为测量的大小<br>使用位运算提高并优化效率</]]>
+    </summary>
+    
+      <category term="AndroidHero" scheme="http://mzeht.com/tags/AndroidHero/"/>
+    
+      <category term="笔记" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[butterknife 8.0.1 AndroidStudio peizhi]]></title>
+    <link href="http://mzeht.com/2016/09/08/butterknife-8-0-1-AndroidStudio-%E9%85%8D%E7%BD%AE/"/>
+    <id>http://mzeht.com/2016/09/08/butterknife-8-0-1-AndroidStudio-配置/</id>
+    <published>2016-09-08T11:18:29.000Z</published>
+    <updated>2016-11-06T09:09:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="前言">前言</h1><p>butterknife是一个android上的注解库，升级的很快，在7.0.1版本中只要添加依赖就可以了，但是8.0.1版本中配置稍有不同</p>
+<h2 id="在project_下的build-gradle文件下配置classpath">在project 下的build.gradle文件下配置classpath</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line"></div><div class="line">        classpath &apos;com.android.tools.build:gradle:2.1.3&apos;</div><div class="line">        classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;</div><div class="line"></div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="在moudle下的builde-gradle文件中配置plugin">在moudle下的builde.gradle文件中配置plugin</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;com.android.application&apos;</div><div class="line">apply plugin: &apos;com.neenbedankt.android-apt&apos;</div></pre></td></tr></table></figure>
+<h2 id="在moudle下的builde-gradle文件中配置dependencies">在moudle下的builde.gradle文件中配置dependencies</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;]</div><div class="line">    compile &apos;com.jakewharton:butterknife:8.0.1&apos;</div><div class="line">    apt &apos;com.jakewharton:butterknife-compiler:8.0.1&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>butterknife之所以配置变化这么大，主要是在于apt，取代了之前的注解实现方法</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="前言">前言</h1><p>butterknife是一个android上的注解库，升级的很快，在7.0.1版本中只要添加依赖就可以了，但是8.0.1版本中配置稍有不同</p>
+<h2 id="在project_下的build-gradle文件下配置classpat]]>
+    </summary>
+    
+      <category term="AndroidStudio" scheme="http://mzeht.com/tags/AndroidStudio/"/>
+    
+      <category term="Butterknife" scheme="http://mzeht.com/tags/Butterknife/"/>
+    
+      <category term="配置" scheme="http://mzeht.com/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Intellij IDEA Mac OS X KeyMap 中文版]]></title>
@@ -258,7 +323,7 @@
     <link href="http://mzeht.com/2016/04/13/%E4%BC%81%E4%B8%9A%E5%BE%81%E4%BF%A1%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AB%9E%E4%BA%89%E5%93%81%E5%88%86%E6%9E%90/"/>
     <id>http://mzeht.com/2016/04/13/企业征信客户端竞争品分析/</id>
     <published>2016-04-13T09:12:31.000Z</published>
-    <updated>2016-07-22T14:23:09.000Z</updated>
+    <updated>2016-10-22T08:52:15.000Z</updated>
     <content type="html"><![CDATA[<h1 id="企加">企加</h1><h2 id="图例">图例</h2><p><img src="http://7xsxyu.com2.z0.glb.clouddn.com/gif/jiaohuqjiahome.gif" alt=""></p>
 <h2 id="布局">布局</h2><p>1.首页是传统的tab 和view的切换模式，中间的按钮“企业查询”重点突出<br>2，进入app第一个模块是企业头条，分为推荐和我的关注，推荐是所有企业的新闻，我的关注是关注的企业相关头条。</p>
 <h2 id="颜色">颜色</h2><p>以蓝白黑灰为主，白色背景，蓝色主题</p>
@@ -1427,349 +1492,6 @@ public abstract void onFault(CustomError fault);
       <category term="ViewPage" scheme="http://mzeht.com/tags/ViewPage/"/>
     
       <category term="代码" scheme="http://mzeht.com/categories/%E4%BB%A3%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[SwipeRefreshLayoutBasic]]></title>
-    <link href="http://mzeht.com/2016/01/30/SwipeRefreshLayoutBasic/"/>
-    <id>http://mzeht.com/2016/01/30/SwipeRefreshLayoutBasic/</id>
-    <published>2016-01-29T16:20:12.000Z</published>
-    <updated>2016-02-02T09:21:05.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="SwipeRefreshLayout配合Recyclerview实现下拉刷新列表">SwipeRefreshLayout配合Recyclerview实现下拉刷新列表</h1><p><img src="https://github.com/mzeht/SwipeRefreshListDemo/blob/master/app/src/main/res/acess/sample.gif" alt="image"></p>
-<p><img src="https://github.com/mzeht/SwipeRefreshListDemo/blob/master/app/src/main/res/acess/click.gif" alt="image"></p>
-<p>SwipeRefreshLayout是google官方的刷新控件<br>Recyclerview则是未来取代listview，girdview等的新控件</p>
-<p>.IDE android studio 1.5(2.o preview之前apk打包有bug，暂时不用了)</p>
-<p>.Demo地址 <a href="https://github.com/mzeht/SwipeRefreshListDemo" target="_blank" rel="external">https://github.com/mzeht/SwipeRefreshListDemo</a> </p>
-<h2 id="-MainActivity">.MainActivity</h2><p>activity_main.xml</p>
-<pre><code>&lt;?xml <span class="variable">version=</span><span class="string">"1.0"</span> <span class="variable">encoding=</span><span class="string">"utf-8"</span>?&gt;
-&lt;android.support.design.widget.CoordinatorLayout
-xmlns:<span class="variable">android=</span><span class="string">"http://schemas.android.com/apk/res/android"</span>
-xmlns:<span class="variable">app=</span><span class="string">"http://schemas.android.com/apk/res-auto"</span>
-xmlns:<span class="variable">tools=</span><span class="string">"http://schemas.android.com/tools"</span>
-android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
-android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
-android:<span class="variable">fitsSystemWindows=</span><span class="string">"true"</span>
-tools:<span class="variable">context=</span><span class="string">"com.example.mzeht.swiperefreshlistdemo.MainActivity"</span>&gt;
-
-&lt;android.support.design.widget.AppBarLayout
-    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
-    android:<span class="variable">layout_height=</span><span class="string">"wrap_content"</span>
-    android:<span class="variable">theme=</span><span class="string">"@style/AppTheme.AppBarOverlay"</span>&gt;
-
-    &lt;android.support.v7.widget.Toolbar
-        android:<span class="variable">id=</span><span class="string">"@+id/toolbar"</span>
-        android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
-        android:<span class="variable">layout_height=</span><span class="string">"?attr/actionBarSize"</span>
-        android:<span class="variable">background=</span><span class="string">"?attr/colorPrimary"</span>
-        app:<span class="variable">popupTheme=</span><span class="string">"@style/AppTheme.PopupOverlay"</span>/&gt;
-
-&lt;/android.support.design.widget.AppBarLayout&gt;
-
-&lt;include <span class="variable">layout=</span><span class="string">"@layout/content_main"</span>/&gt;
-
-&lt;android.support.design.widget.FloatingActionButton
-    android:<span class="variable">id=</span><span class="string">"@+id/fab"</span>
-    android:<span class="variable">layout_width=</span><span class="string">"wrap_content"</span>
-    android:<span class="variable">layout_height=</span><span class="string">"wrap_content"</span>
-    android:<span class="variable">layout_gravity=</span><span class="string">"bottom|end"</span>
-    android:<span class="variable">layout_margin=</span><span class="string">"@dimen/fab_margin"</span>
-    android:<span class="variable">src=</span><span class="string">"@android:drawable/ic_dialog_email"</span>/&gt;
-
-&lt;/android.support.design.widget.CoordinatorLayout&gt;
-</code></pre><h2 id="-在其中的content_main-xml">.在其中的content_main.xml</h2><p>SwipeRefreshLayout 嵌套一个子元素 （如有多个，可用FrameLayout封装成一个）</p>
-<pre><code>    &lt;?xml <span class="variable">version=</span><span class="string">"1.0"</span> <span class="variable">encoding=</span><span class="string">"utf-8"</span>?&gt;
-&lt;RelativeLayout
-        xmlns:<span class="variable">android=</span><span class="string">"http://schemas.android.com/apk/res/android"</span>
-    xmlns:<span class="variable">app=</span><span class="string">"http://schemas.android.com/apk/res-    auto"</span>
-    xmlns:<span class="variable">tools=</span><span class="string">"http://schemas.android.com/tools"</span>
-    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
-    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
-    app:<span class="variable">layout_behavior=</span><span class="string">"@string/    appbar_scrolling_view_behavior"</span>
-    tools:<span class="variable">context=</span><span class="string">"com.example.mzeht.swiperefreshlistdemo.MainActivity"</span>
-    tools:<span class="variable">showIn=</span><span class="string">"@layout/activity_main"</span>&gt;
-
-&lt;android.support.v4.widget.SwipeRefreshLayout
-    android:<span class="variable">id=</span><span class="string">"@+id/swiperefresh"</span>
-    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
-    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>&gt;
-    &lt;android.support.v7.widget.RecyclerView
-        android:<span class="variable">id=</span><span class="string">"@+id/recycler"</span>
-        android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
-        android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>&gt;
-    &lt;/android.support.v7.widget.RecyclerView&gt;
-&lt;/android.support.v4.widget.SwipeRefreshLayout&gt;
-&lt;/RelativeLayout&gt;
-</code></pre><h2 id="-RecyclerView的Item">.RecyclerView的Item</h2><p>*同经典的listviewItem，只是adapter略有区别</p>
-<pre><code>&lt;?xml <span class="variable">version=</span><span class="string">"1.0"</span> <span class="variable">encoding=</span><span class="string">"utf-8"</span>?&gt;
-&lt;LinearLayout xmlns:<span class="variable">android=</span><span class="string">"http://schemas.android.com/apk/res/android"</span>
-          xmlns:<span class="variable">tools=</span><span class="string">"http://schemas.android.com/tools"</span>
-          android:<span class="variable">orientation=</span><span class="string">"horizontal"</span>
-          android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span>
-          android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
-android:<span class="variable">id=</span><span class="string">"@+id/ll"</span>&gt;
-
-&lt;ImageView
-    android:<span class="variable">id=</span><span class="string">"@+id/image"</span>
-    android:<span class="variable">src=</span><span class="string">"@mipmap/ic_launcher"</span>
-    android:<span class="variable">padding=</span><span class="string">"5dp"</span>
-    android:<span class="variable">layout_width=</span><span class="string">"wrap_content"</span>
-    android:<span class="variable">layout_height=</span><span class="string">"wrap_content"</span>
-    android:<span class="variable">focusable=</span><span class="string">"false"</span>
-    /&gt;
-&lt;TextView
-    android:<span class="variable">id=</span><span class="string">"@+id/tv"</span>
-    android:<span class="variable">layout_width=</span><span class="string">"wrap_content"</span>
-    android:<span class="variable">textSize=</span><span class="string">"18sp"</span>
-    android:<span class="variable">gravity=</span><span class="string">"center"</span>
-    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span>
-    android:<span class="variable">focusable=</span><span class="string">"false"</span>
-    tools:<span class="variable">text=</span><span class="string">"ss"</span>/&gt;
-
-&lt;/LinearLayout&gt;
-</code></pre><h2 id="-RecyclerView的分割线">.RecyclerView的分割线</h2><p>*RecyclerView 默认没有分割线，需要自定义一个，希望以后有默认可选，这里定义一个</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyItemDecoration</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ItemDecoration</span> </span>{
-<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] ATTRS = {android.R.attr.listDivider};
-<span class="keyword">private</span> Drawable mDivider;
-<span class="function"><span class="keyword">public</span> <span class="title">MyItemDecoration</span><span class="params">(Context context)</span>
-</span>{
-    TypedArray array = context.obtainStyledAttributes(ATTRS);
-    <span class="comment">// 获取分隔条</span>
-    mDivider = array.getDrawable(<span class="number">0</span>);
-    array.recycle();
-}
-<span class="annotation">@Override</span>
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDrawOver</span><span class="params">(Canvas c, RecyclerView parent, RecyclerView.State state)</span>
-</span>{
-    <span class="keyword">super</span>.onDrawOver(c, parent, state);
-    <span class="keyword">int</span> count = parent.getChildCount();
-    <span class="keyword">int</span> left = parent.getPaddingLeft();
-    <span class="keyword">int</span> right = parent.getWidth()-parent.getPaddingRight();
-    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++)
-    {
-        View v = parent.getChildAt(i);
-        RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) v.getLayoutParams();
-        <span class="keyword">int</span> top = v.getBottom() + params.bottomMargin;
-        <span class="keyword">int</span> bottom = top + mDivider.getIntrinsicHeight();
-        mDivider.setBounds(left,top,right,bottom);
-        mDivider.draw(c);
-    }
-}
-
-}
-</code></pre><p>*MainActivity</p>
-<pre><code>mRecyclerView= (RecyclerView) findViewById(R.id.recycler);
-mRefreshlayout= (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
-mLinearLayoutManager = <span class="keyword">new</span> LinearLayoutManager(<span class="keyword">this</span>);
-mAdapter = <span class="keyword">new</span> MainRecyclerAdapter(DataSource.generateData(<span class="number">20</span>),MainActivity.<span class="keyword">this</span>);
-mRecyclerView.setAdapter(mAdapter);
-
-<span class="comment">//每个item高度一致，可设置为true，提高性能</span>
-mRecyclerView.setHasFixedSize(<span class="keyword">true</span>);
-mRecyclerView.setLayoutManager(mLinearLayoutManager);
-<span class="comment">//分隔线</span>
-mRecyclerView.addItemDecoration(<span class="keyword">new</span> MyItemDecoration(<span class="keyword">this</span>));
-mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefreshLayout.OnRefreshListener() {
-    <span class="annotation">@Override</span>
-    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span> </span>{
-
-        <span class="keyword">new</span> UpdateTask().execute();
-
-    }
-});
-</code></pre><p>   *开启异步任务模拟耗时操作</p>
-<pre><code>   <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateTask</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">AsyncTask&lt;Void</span>,<span class="title">Void</span>,<span class="title">List&lt;String&gt;&gt;</span>
-</span>{
-    <span class="annotation">@Override</span>
-    <span class="keyword">protected</span> <span class="type">List</span>&lt;<span class="type">String</span>&gt; doInBackground(<span class="type">Void</span>... params)
-    {
-        <span class="keyword">try</span>
-        {
-            <span class="type">Thread</span>.sleep(<span class="number">2000</span>);
-        } <span class="keyword">catch</span> (<span class="type">InterruptedException</span> e)
-        {
-            e.printStackTrace();
-        }
-        <span class="type">List</span>&lt;<span class="type">String</span>&gt; strings = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();
-        strings.add(<span class="string">"新数据1"</span>);
-        strings.add(<span class="string">"新数据2"</span>);
-        strings.add(<span class="string">"新数据3"</span>);
-        strings.add(<span class="string">"新数据4"</span>);
-        <span class="keyword">return</span> strings;
-    }
-    <span class="annotation">@Override</span>
-    <span class="keyword">protected</span> void onPostExecute(<span class="type">List</span>&lt;<span class="type">String</span>&gt; strings)
-    {
-        mAdapter.addItems(strings);
-        <span class="comment">//通知刷新完毕</span>
-        mRefreshlayout.setRefreshing(<span class="literal">false</span>);
-        <span class="comment">//滚动到列首部---&gt;这是一个很方便的api，可以滑动到指定位置</span>
-        mRecyclerView.scrollToPosition(<span class="number">0</span>);
-    }
-}
-</code></pre><h2 id="RecylerView的Item点击事件监听，内部各个子控件的监听">RecylerView的Item点击事件监听，内部各个子控件的监听</h2><pre><code>*在设计复杂listview 的时候，往往有Item点击事件和各个子控件的事件需要监听
-*但是RecylerView没有提供OnItemOnclick的方法，需要我们自己去写
-首先定义一个外部接口
-
-```java
-
-<span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">OnListClickListener</span> {
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemClick</span><span class="params">(View view,String data)</span></span>;
-
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemTextClick</span><span class="params">(View view,String data)</span></span>;
-
-
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemIconClick</span><span class="params">(View view ,String data)</span></span>;
-}
-</code></pre><p>*适配Adapter</p>
-<p>public class MainRecyclerAdapter extends RecyclerView.Adapter<mainrecycleradapter.viewholder> {</mainrecycleradapter.viewholder></p>
-<pre><code><span class="keyword">private</span> List&lt;String&gt; datas = <span class="keyword">null</span>;
-<span class="keyword">private</span> OnListClickListener mListener;
-
-<span class="function"><span class="keyword">public</span> <span class="title">MainRecyclerAdapter</span><span class="params">(List&lt;String&gt; datas,OnListClickListener l)</span>
-</span>{
-    <span class="keyword">this</span>.datas = datas;
-    <span class="keyword">this</span>.mListener=l;
-}
-<span class="annotation">@Override</span>
-<span class="keyword">public</span> <span class="function">ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span>
-</span>{
-    <span class="keyword">final</span> View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, <span class="keyword">false</span>);
-<span class="comment">//        itemView.setOnClickListener(new View.OnClickListener()</span>
-<span class="comment">//        {</span>
-<span class="comment">//            @Override</span>
-<span class="comment">//            public void onClick(View v)</span>
-<span class="comment">//            {</span>
-<span class="comment">//                if(mListener != null)</span>
-<span class="comment">//                {</span>
-<span class="comment">//                    mListener.OnItemClick(v, (String) itemView.getTag());</span>
-<span class="comment">//                }</span>
-<span class="comment">//            }</span>
-<span class="comment">//        });</span>
-    ViewHolder viewHolder= <span class="keyword">new</span> ViewHolder(itemView);
-
-
-
-
-    <span class="keyword">return</span> viewHolder;
-}
-<span class="annotation">@Override</span>
-<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(<span class="keyword">final</span> ViewHolder holder, <span class="keyword">final</span> <span class="keyword">int</span> position)</span>
-</span>{
-    String s = datas.get(position);
-    holder.bindData(s);
-    holder.itemView.setTag(s);
-    holder.mContent.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
-        <span class="annotation">@Override</span>
-        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
-            mListener.OnItemTextClick(holder.mContent, (String) holder.itemView.getTag());
-        }
-    });
-
-    holder.mImageView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
-        <span class="annotation">@Override</span>
-        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
-            mListener.OnItemIconClick(holder.mImageView, (String) holder.itemView.getTag());
-        }
-    });
-
-    holder.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
-        <span class="annotation">@Override</span>
-        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
-            mListener.OnItemClick(v, (String) holder.itemView.getTag());
-        }
-    });
-
-
-}
-<span class="annotation">@Override</span>
-<span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span>
-</span>{
-    <span class="function"><span class="keyword">return</span> datas.<span class="title">size</span><span class="params">()</span></span>;
-}
-<span class="javadoc">/**
- * 批量增加
- * */</span>
-<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">addItems</span><span class="params">(List&lt;String&gt; items)</span>
-</span>{
-    <span class="keyword">if</span> (items == <span class="keyword">null</span>)
-        <span class="keyword">return</span>;
-    <span class="keyword">this</span>.datas.addAll(<span class="number">0</span>, items);
-    <span class="keyword">this</span>.notifyItemRangeInserted(<span class="number">0</span>, items.size());
-}
-
-<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span>
-</span>{
-    <span class="keyword">private</span> TextView mContent;
-    <span class="keyword">private</span> ImageView mImageView;
-    <span class="function"><span class="keyword">public</span> <span class="title">ViewHolder</span><span class="params">(View itemView)</span>
-    </span>{
-        <span class="keyword">super</span>(itemView);
-        mContent = (TextView) itemView.findViewById(R.id.tv);
-        mImageView= (ImageView) itemView.findViewById(R.id.image);
-    }
-    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">bindData</span><span class="params">(String s)</span>
-    </span>{
-        <span class="keyword">if</span> (s != <span class="keyword">null</span>)
-            mContent.setText(s);
-    }
-
-}
-}
-</code></pre><p>*通过对Item的根试图的监听，实现Item点击监听，不用设置最外层布局id，可以看出，Recyclerview强制对listview进行复用，对子控件的个性化定制在bind操作中进行，接口事件传递到Activity层，可以通过TAG传递数据，解耦合，如：</p>
-<pre><code> @<span class="type">Override</span>
-    public void <span class="type">OnItemClick</span>(<span class="type">View</span> view, <span class="type">String</span> <span class="typedef"><span class="keyword">data</span>) <span class="container">{
-    <span class="type">Toast</span>.<span class="title">makeText</span>(<span class="type">MainActivity</span>.<span class="title">this</span>, "来自<span class="type">Item</span>的点击事件:" + <span class="title">data</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).<span class="title">show</span>();
-
-}</span></span>
-
-@<span class="type">Override</span>
-<span class="title">public</span> void <span class="type">OnItemTextClick</span>(<span class="type">View</span> view, <span class="type">String</span> <span class="typedef"><span class="keyword">data</span>) <span class="container">{
-    <span class="type">Toast</span>.<span class="title">makeText</span>(<span class="type">MainActivity</span>.<span class="title">this</span>, "来自<span class="title">text</span>的点击事件:" + <span class="title">data</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).<span class="title">show</span>();
-
-}</span></span>
-
-@<span class="type">Override</span>
-<span class="title">public</span> void <span class="type">OnItemIconClick</span>(<span class="type">View</span> view, <span class="type">String</span> <span class="typedef"><span class="keyword">data</span>) <span class="container">{
-    <span class="type">Toast</span>.<span class="title">makeText</span>(<span class="type">MainActivity</span>.<span class="title">this</span>, "来自<span class="title">icon</span>的点击事件:" + <span class="title">data</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).<span class="title">show</span>();
-
-}</span></span>
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="SwipeRefreshLayout配合Recyclerview实现下拉刷新列表">SwipeRefreshLayout配合Recyclerview实现下拉刷新列表</h1><p><img src="https://github.com/mzeht/SwipeRe]]>
-    </summary>
-    
-      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
-    
-      <category term="Matertal Design" scheme="http://mzeht.com/tags/Matertal-Design/"/>
-    
-      <category term="代码" scheme="http://mzeht.com/categories/%E4%BB%A3%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://mzeht.com/2015/06/02/hello-world/"/>
-    <id>http://mzeht.com/2015/06/02/hello-world/</id>
-    <published>2015-06-02T04:30:10.000Z</published>
-    <updated>2016-02-06T17:02:00.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="86" src="http://music.163.com/outchain/player?type=2&id=247529&auto=0&height=66"></iframe>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
-    </summary>
     
   </entry>
   
