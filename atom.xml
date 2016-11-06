@@ -139,9 +139,9 @@
     <![CDATA[<h2 id="配置独立的签名信息">配置独立的签名信息</h2><p>一般来说，我们可以直接把签名的信息明文写在gradle配置文件中，但是在多人协作或者开源代码的时候不是很方便，前者可能存放签名文件的位置需要修改，后者则希望隐藏签名信息，在看不少开源项目的时候，发现很多是这样]]>
     </summary>
     
-      <category term="Android Studio" scheme="http://mzeht.com/tags/Android-Studio/"/>
-    
       <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
+    
+      <category term="Android Studio" scheme="http://mzeht.com/tags/Android-Studio/"/>
     
       <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
     
