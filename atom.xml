@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-11-10T10:36:55.000Z</updated>
+  <updated>2016-11-10T16:36:18.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -13,6 +13,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[ListView使用技巧]]></title>
+    <link href="http://mzeht.com/2016/10/10/2016-11-11/"/>
+    <id>http://mzeht.com/2016/10/10/2016-11-11/</id>
+    <published>2016-10-10T14:20:33.000Z</published>
+    <updated>2016-11-10T16:36:18.000Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li>[ ] 本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<ul>
+<li>[ ] 本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑</li>
+</ul>
+]]>
+    </summary>
+    
+      <category term="AndroidHero" scheme="http://mzeht.com/tags/AndroidHero/"/>
+    
+      <category term="笔记" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Android控件架构与自定义控件详解]]></title>
@@ -1573,34 +1596,6 @@ public abstract void onFault(CustomError fault);
     </summary>
     
       <category term="AndroidStudio" scheme="http://mzeht.com/tags/AndroidStudio/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[NavigationView+TabLayout+Viewpage]]></title>
-    <link href="http://mzeht.com/2016/02/01/NavigationView-TabLayout-Viewpage/"/>
-    <id>http://mzeht.com/2016/02/01/NavigationView-TabLayout-Viewpage/</id>
-    <published>2016-02-01T09:28:41.000Z</published>
-    <updated>2016-04-24T17:54:37.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="NavigationView配合TabLayout+Viewpage">NavigationView配合TabLayout+Viewpage</h2><p>fragment实现多页面切换，适合搭建框架.</p>
-<p>Demo地址<a href="https://github.com/mzeht/ZhiHuiYun" target="_blank" rel="external">https://github.com/mzeht/ZhiHuiYun</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="NavigationView配合TabLayout+Viewpage">NavigationView配合TabLayout+Viewpage</h2><p>fragment实现多页面切换，适合搭建框架.</p>
-<p>Demo地址<a href="https://]]>
-    </summary>
-    
-      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
-    
-      <category term="Matertal Design" scheme="http://mzeht.com/tags/Matertal-Design/"/>
-    
-      <category term="NavigationView" scheme="http://mzeht.com/tags/NavigationView/"/>
-    
-      <category term="TabLyout" scheme="http://mzeht.com/tags/TabLyout/"/>
-    
-      <category term="ViewPage" scheme="http://mzeht.com/tags/ViewPage/"/>
-    
-      <category term="代码" scheme="http://mzeht.com/categories/%E4%BB%A3%E7%A0%81/"/>
     
   </entry>
   
