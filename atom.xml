@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-11-10T16:40:49.000Z</updated>
+  <updated>2016-11-10T17:56:31.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -19,15 +19,11 @@
     <link href="http://mzeht.com/2016/10/10/ListView%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
     <id>http://mzeht.com/2016/10/10/ListView使用技巧/</id>
     <published>2016-10-10T14:20:33.000Z</published>
-    <updated>2016-11-10T16:40:49.000Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li>[ ] 本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑</li>
-</ul>
+    <updated>2016-11-10T17:56:31.000Z</updated>
+    <content type="html"><![CDATA[<p>本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<ul>
-<li>[ ] 本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑</li>
-</ul>
+    <![CDATA[<p>本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑</p>
 ]]>
     </summary>
     
