@@ -1889,14 +1889,14 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
     </entry>
     
     <entry>
-      <title><![CDATA[categories]]></title>
-      <url>http://mzeht.com/categories/index.html</url>
+      <title><![CDATA[读书]]></title>
+      <url>http://mzeht.com/reading/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[读书]]></title>
-      <url>http://mzeht.com/reading/index.html</url>
+      <title><![CDATA[categories]]></title>
+      <url>http://mzeht.com/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
