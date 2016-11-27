@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-11-22T12:57:11.000Z</updated>
+  <updated>2016-11-27T10:17:19.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -15,12 +15,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Android Scroll分析]]></title>
+    <link href="http://mzeht.com/2016/10/12/Android%20Scroll%E5%88%86%E6%9E%90/"/>
+    <id>http://mzeht.com/2016/10/12/Android Scroll分析/</id>
+    <published>2016-10-12T14:20:33.000Z</published>
+    <updated>2016-11-27T10:17:19.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
+<a id="more"></a>
+<h2 id="Android坐标系">Android坐标系</h2><p>Android坐标系以屏幕左上角为原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-22/68901668.jpg" alt=""></p>
+<h2 id="视图坐标系">视图坐标系</h2><p>子视图以父视图左上角为坐标原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/13206722.jpg" alt=""><br>触控事件中，通过getX(),getY()获得的坐标就是视图中的坐标系</p>
+<h2 id="触控事件">触控事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//单点触摸按下动作</div><div class="line">   public static final int ACTION_DOWN             = 0;</div><div class="line">   </div><div class="line">   //单点触摸离开动作</div><div class="line">   public static final int ACTION_UP               = 1;</div><div class="line">   </div><div class="line">  //触摸点移动动作</div><div class="line">   public static final int ACTION_MOVE             = 2;</div><div class="line">   </div><div class="line">  //触摸动作取消</div><div class="line">   public static final int ACTION_CANCEL           = 3;</div><div class="line">   </div><div class="line">  //触摸动作超出边界</div><div class="line">   public static final int ACTION_OUTSIDE          = 4;</div><div class="line"></div><div class="line">   //多点触摸按下动作</div><div class="line">   public static final int ACTION_POINTER_DOWN     = 5;</div><div class="line">   </div><div class="line">   //多点离开动作</div><div class="line">   public static final int ACTION_POINTER_UP       = 6;</div><div class="line"></div><div class="line">   public static final int ACTION_HOVER_MOVE       = 7;</div><div class="line"></div><div class="line">   </div><div class="line">   public static final int ACTION_SCROLL           = 8;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_ENTER      = 9;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_EXIT       = 10;</div><div class="line"></div><div class="line"></div><div class="line">   public static final int ACTION_BUTTON_PRESS   = 11;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_BUTTON_RELEASE  = 12;</div></pre></td></tr></table></figure>
+<p>一般在View的onTouchEvent方法中对event.getAction()进行筛选控制，（不涉及多点触控的情况下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Override</div><div class="line">public boolean onTouchEvent(MotionEvent event) &#123;</div><div class="line">    int x = (int) event.getX();</div><div class="line">    int y = (int) event.getY();</div><div class="line">    switch (event.getAction()) &#123;</div><div class="line">        case MotionEvent.ACTION_DOWN:</div><div class="line">            lastX = (int) event.getX();</div><div class="line">            lastY = (int) event.getY();</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_MOVE:</div><div class="line">            int offsetX = x - lastX;</div><div class="line">            int offsetY = y - lastY;</div><div class="line">            ((View) getParent()).scrollBy(-offsetX, -offsetY);</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_UP:</div><div class="line">            // 手指离开时，执行滑动过程</div><div class="line">            View viewGroup = ((View) getParent());</div><div class="line">            mScroller.startScroll(</div><div class="line">                    viewGroup.getScrollX(),</div><div class="line">                    viewGroup.getScrollY(),</div><div class="line">                    -viewGroup.getScrollX(),</div><div class="line">                    -viewGroup.getScrollY());</div><div class="line">            invalidate();</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>系统提供了很多获取坐标值，相对距离的坐标值的方法，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/82371833.jpg" alt=""></p>
+<p>大概分为两类：</p>
+<hr>
+<p>View提供的获取坐标的方法<br>getTop(): 获取到View自身顶边到其父布局顶部的距离<br>getLeft() : 获取到View自身左边到其父布局左边的距离<br>getRight():<br>getBottom();</p>
+<hr>
+<p>MotionEvent提供的方法<br>getX():    获取点击事件距离控件左边的距离，即视图坐标<br>getY():获取点击事件距离控件顶部的距离，即视图坐标<br>getRawX():获取点击事件距离整个屏幕左边的距离，即绝对坐标<br>getRawY():….</p>
+<h1 id="实现滑动的七种方法">实现滑动的七种方法</h1><h2 id="layout方法">layout方法</h2>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
+    
+      <category term="Scroll" scheme="http://mzeht.com/tags/Scroll/"/>
+    
+      <category term="笔记" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/AndroidHero/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[ListView使用技巧]]></title>
     <link href="http://mzeht.com/2016/10/10/ListView%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
     <id>http://mzeht.com/2016/10/10/ListView使用技巧/</id>
     <published>2016-10-10T14:20:33.000Z</published>
-    <updated>2016-11-22T12:57:11.000Z</updated>
-    <content type="html"><![CDATA[<p>本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑</p>
+    <updated>2016-11-27T10:17:24.000Z</updated>
+    <content type="html"><![CDATA[<p>本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑<br><a id="more"></a></p>
 <h1 id="常用优化技巧">常用优化技巧</h1><h2 id="使用ViewHolder">使用ViewHolder</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">public class NotifyAdapter extends BaseAdapter &#123;</div><div class="line"></div><div class="line">    private List&lt;String&gt; mData;</div><div class="line">    private LayoutInflater mInflater;</div><div class="line"></div><div class="line">    public NotifyAdapter(Context context, List&lt;String&gt; data) &#123;</div><div class="line">        this.mData = data;</div><div class="line">        mInflater = LayoutInflater.from(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int getCount() &#123;</div><div class="line">        return mData.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public Object getItem(int position) &#123;</div><div class="line">        return mData.get(position);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public long getItemId(int position) &#123;</div><div class="line">        return position;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public View getView(int position, View convertView, ViewGroup parent) &#123;</div><div class="line">        ViewHolder holder = null;</div><div class="line">        // 判断是否缓存</div><div class="line">        if (convertView == null) &#123;</div><div class="line">            holder = new ViewHolder();</div><div class="line">            // 通过LayoutInflater实例化布局</div><div class="line">            convertView = mInflater.inflate(R.layout.notify_item, null);</div><div class="line">            holder.img = (ImageView) convertView.findViewById(R.id.imageView);</div><div class="line">            holder.title = (TextView) convertView.findViewById(R.id.textView);</div><div class="line">            convertView.setTag(holder);</div><div class="line">        &#125; else &#123;</div><div class="line">            // 通过tag找到缓存的布局</div><div class="line">            holder = (ViewHolder) convertView.getTag();</div><div class="line">        &#125;</div><div class="line">        // 设置布局中控件要显示的视图</div><div class="line">        holder.img.setBackgroundResource(R.mipmap.ic_launcher);</div><div class="line">        holder.title.setText(mData.get(position));</div><div class="line">        return convertView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public final class ViewHolder &#123;</div><div class="line">        public ImageView img;</div><div class="line">        public TextView title;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="UI设置">UI设置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//分割线</div><div class="line">android:divider=&quot;@android:color/darker_gray&quot;</div><div class="line">android:dividerHeight=&quot;10dp&quot;</div><div class="line">//设置为透明</div><div class="line">android:divider=&quot;@null&quot;</div><div class="line">//取消滚动条</div><div class="line">android:scrollbars=&quot;none&quot;</div><div class="line">取消item点击效果</div><div class="line">android:listSelector=&quot;@android:color/transparent&quot;</div></pre></td></tr></table></figure>
 <h2 id="设置需要显示的Item">设置需要显示的Item</h2><hr>
@@ -50,13 +85,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">public class FocusListViewTest extends Activity &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.focus);</div><div class="line">        ListView listView = (ListView) findViewById(R.id.focus_listView);</div><div class="line">        List&lt;String&gt; data = new ArrayList&lt;String&gt;();</div><div class="line">        data.add(&quot;I am item 1&quot;);</div><div class="line">        data.add(&quot;I am item 2&quot;);</div><div class="line">        data.add(&quot;I am item 3&quot;);</div><div class="line">        data.add(&quot;I am item 4&quot;);</div><div class="line">        data.add(&quot;I am item 5&quot;);</div><div class="line">        final FocusListViewAdapter adapter = new FocusListViewAdapter(this, data);</div><div class="line">        listView.setAdapter(adapter);</div><div class="line">        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onItemClick(AdapterView&lt;?&gt; parent, View view,</div><div class="line">                                    int position, long id) &#123;</div><div class="line">                adapter.setCurrentItem(position);</div><div class="line">                /**</div><div class="line">                 * listView 初次绘制某一项数据时调用geiview方法</div><div class="line">                 * 之后需要notifyDataSetChanged才能重绘View</div><div class="line">                 */</div><div class="line">                adapter.notifyDataSetChanged();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑</p>
-<h1 id="常用优化技巧">常用优化技巧</h1><h2 id="使用ViewHolder">使用ViewHolder</h2><figure class="highlight plain"><table>]]>
+    <![CDATA[<p>本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑<br>]]>
+    
     </summary>
     
-      <category term="AndroidHero" scheme="http://mzeht.com/tags/AndroidHero/"/>
+      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
+    
+      <category term="ListView" scheme="http://mzeht.com/tags/ListView/"/>
     
       <category term="笔记" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/AndroidHero/"/>
     
   </entry>
   
@@ -65,8 +104,9 @@
     <link href="http://mzeht.com/2016/10/08/Android%E6%8E%A7%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E8%AF%A6%E8%A7%A3/"/>
     <id>http://mzeht.com/2016/10/08/Android控件架构与自定义控件详解/</id>
     <published>2016-10-08T11:18:29.000Z</published>
-    <updated>2016-11-10T10:36:55.000Z</updated>
+    <updated>2016-11-27T10:17:12.000Z</updated>
     <content type="html"><![CDATA[<h1 id="View的测量">View的测量</h1><p>Android帮助测量View的类—<code>MeasureSpec</code>类<br>MeasureSpec是一个32位的int值，高两位为测量的模式，低30位为测量的大小<br>使用位运算提高并优化效率</p>
+<a id="more"></a>
 <h2 id="测量的模式">测量的模式</h2><ul>
 <li><p><code>EXACTLY</code> 精确值模式<br>控件layout_width,layout_height属性指定为具体数值时，或者是match_parent属性时</p>
 </li>
@@ -200,12 +240,17 @@
 <p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-10/470111.jpg" alt=""></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="View的测量">View的测量</h1><p>Android帮助测量View的类—<code>MeasureSpec</code>类<br>MeasureSpec是一个32位的int值，高两位为测量的模式，低30位为测量的大小<br>使用位运算提高并优化效率</]]>
+    <![CDATA[<h1 id="View的测量">View的测量</h1><p>Android帮助测量View的类—<code>MeasureSpec</code>类<br>MeasureSpec是一个32位的int值，高两位为测量的模式，低30位为测量的大小<br>使用位运算提高并优化效率</p>]]>
+    
     </summary>
     
-      <category term="AndroidHero" scheme="http://mzeht.com/tags/AndroidHero/"/>
+      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
+    
+      <category term="自定义控件" scheme="http://mzeht.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
     
       <category term="笔记" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/AndroidHero/"/>
     
   </entry>
   
@@ -214,23 +259,26 @@
     <link href="http://mzeht.com/2016/09/08/butterknife-8-0-1-AndroidStudio-%E9%85%8D%E7%BD%AE/"/>
     <id>http://mzeht.com/2016/09/08/butterknife-8-0-1-AndroidStudio-配置/</id>
     <published>2016-09-08T11:18:29.000Z</published>
-    <updated>2016-11-06T09:09:55.000Z</updated>
+    <updated>2016-11-27T10:20:44.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><p>butterknife是一个android上的注解库，升级的很快，在7.0.1版本中只要添加依赖就可以了，但是8.0.1版本中配置稍有不同</p>
+<a id="more"></a>
 <h2 id="在project_下的build-gradle文件下配置classpath">在project 下的build.gradle文件下配置classpath</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line"></div><div class="line">        classpath &apos;com.android.tools.build:gradle:2.1.3&apos;</div><div class="line">        classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;</div><div class="line"></div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="在moudle下的builde-gradle文件中配置plugin">在moudle下的builde.gradle文件中配置plugin</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;com.android.application&apos;</div><div class="line">apply plugin: &apos;com.neenbedankt.android-apt&apos;</div></pre></td></tr></table></figure>
 <h2 id="在moudle下的builde-gradle文件中配置dependencies">在moudle下的builde.gradle文件中配置dependencies</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;]</div><div class="line">    compile &apos;com.jakewharton:butterknife:8.0.1&apos;</div><div class="line">    apt &apos;com.jakewharton:butterknife-compiler:8.0.1&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>butterknife之所以配置变化这么大，主要是在于apt，取代了之前的注解实现方法</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="前言">前言</h1><p>butterknife是一个android上的注解库，升级的很快，在7.0.1版本中只要添加依赖就可以了，但是8.0.1版本中配置稍有不同</p>
-<h2 id="在project_下的build-gradle文件下配置classpat]]>
+    <![CDATA[<h1 id="前言">前言</h1><p>butterknife是一个android上的注解库，升级的很快，在7.0.1版本中只要添加依赖就可以了，但是8.0.1版本中配置稍有不同</p>]]>
+    
     </summary>
     
       <category term="AndroidStudio" scheme="http://mzeht.com/tags/AndroidStudio/"/>
     
       <category term="Butterknife" scheme="http://mzeht.com/tags/Butterknife/"/>
     
-      <category term="配置" scheme="http://mzeht.com/categories/%E9%85%8D%E7%BD%AE/"/>
+      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Android/"/>
     
   </entry>
   
@@ -239,7 +287,7 @@
     <link href="http://mzeht.com/2016/09/07/Intellij-IDEA-Mac-OS-X-KeyMap-%E4%B8%AD%E6%96%87%E7%89%88/"/>
     <id>http://mzeht.com/2016/09/07/Intellij-IDEA-Mac-OS-X-KeyMap-中文版/</id>
     <published>2016-09-07T10:52:50.000Z</published>
-    <updated>2016-09-07T10:59:06.000Z</updated>
+    <updated>2016-11-27T10:20:55.000Z</updated>
     <content type="html"><![CDATA[<h1 id="官方版本">官方版本</h1><p><a href="https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard_mac.pdf" target="_blank" rel="external">官方版本</a></p>
 <h1 id="翻译版本预览">翻译版本预览</h1><p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-9-7/44368370.jpg" alt=""></p>
 <h1 id="翻译版本下载">翻译版本下载</h1><p><a href="https://www.jianguoyun.com/p/DSblRVAQpN36BRi7jBs" target="_blank" rel="external">Word版本下载</a></p>
@@ -254,7 +302,9 @@
     
       <category term="Intellij IDEA" scheme="http://mzeht.com/tags/Intellij-IDEA/"/>
     
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+      <category term="工具" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="IDE" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/IDE/"/>
     
   </entry>
   
@@ -263,8 +313,9 @@
     <link href="http://mzeht.com/2016/09/07/Android-Studio-Gradle-%E8%BF%9B%E9%98%B6%E8%AE%BE%E7%BD%AE/"/>
     <id>http://mzeht.com/2016/09/07/Android-Studio-Gradle-进阶设置/</id>
     <published>2016-09-06T17:10:55.000Z</published>
-    <updated>2016-09-06T19:30:26.000Z</updated>
+    <updated>2016-11-27T10:21:04.000Z</updated>
     <content type="html"><![CDATA[<h2 id="配置独立的签名信息">配置独立的签名信息</h2><p>一般来说，我们可以直接把签名的信息明文写在gradle配置文件中，但是在多人协作或者开源代码的时候不是很方便，前者可能存放签名文件的位置需要修改，后者则希望隐藏签名信息，在看不少开源项目的时候，发现很多是这样做的</p>
+<a id="more"></a>
 <p>signingConfigs位置， <code>android的下一级</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">signingConfigs &#123;</div><div class="line">        release &#123;</div><div class="line">            storeFile file(RELEASE_STORE_FILE)</div><div class="line">            storePassword RELEASE_STORE_PASSWORD</div><div class="line">            keyAlias RELEASE_KEY_ALIAS</div><div class="line">            keyPassword RELEASE_KEY_PASSWORD</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
 <p>在对应位置引用常量，在properties中再进行具体赋值<br>在gradle.properties中</p>
@@ -291,14 +342,17 @@
 <p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-9-7/37008097.jpg" alt=""></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="配置独立的签名信息">配置独立的签名信息</h2><p>一般来说，我们可以直接把签名的信息明文写在gradle配置文件中，但是在多人协作或者开源代码的时候不是很方便，前者可能存放签名文件的位置需要修改，后者则希望隐藏签名信息，在看不少开源项目的时候，发现很多是这样]]>
+    <![CDATA[<h2 id="配置独立的签名信息">配置独立的签名信息</h2><p>一般来说，我们可以直接把签名的信息明文写在gradle配置文件中，但是在多人协作或者开源代码的时候不是很方便，前者可能存放签名文件的位置需要修改，后者则希望隐藏签名信息，在看不少开源项目的时候，发现很多是这样做的</p>]]>
+    
     </summary>
     
       <category term="Android Studio" scheme="http://mzeht.com/tags/Android-Studio/"/>
     
       <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
     
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Android/"/>
     
   </entry>
   
@@ -307,10 +361,10 @@
     <link href="http://mzeht.com/2016/09/04/Data-Binding-Guide/"/>
     <id>http://mzeht.com/2016/09/04/Data-Binding-Guide/</id>
     <published>2016-09-04T06:37:50.000Z</published>
-    <updated>2016-09-04T06:59:26.000Z</updated>
+    <updated>2016-11-27T10:21:15.000Z</updated>
     <content type="html"><![CDATA[<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-9-4/6040336.jpg" alt=""></p>
 <h2 id="前言">前言</h2><p>2016的Google IO 大会上，Android 团队发布了一个数据绑定框架（Data Binding Library）。以后可以直接在 layout 布局 xml 文件中绑定数据了，无需再 findViewById 然后手工设置数据了。其语法和使用方式和 JSP 中的 EL 表达式非常类似。</p>
-<p>看到google出品的<a href="https://developer.android.com/topic/libraries/data-binding/index.html" target="_blank" rel="external">Data Binding Library</a>本来是想边翻译边写写demo，但是csdn上已经有人翻译了，没必要重复劳动，直接拿来链接：</p>
+<p>看到google出品的<a href="https://developer.android.com/topic/libraries/data-binding/index.html" target="_blank" rel="external">Data Binding Library</a>本来是想边翻译边写写demo，但是csdn上已经有人翻译了，没必要重复劳动，直接拿来链接：<br><a id="more"></a></p>
 <h1 id="Data_Binding_Guide——google官方文档翻译（上）"><a href="http://blog.csdn.net/u014486880/article/details/50508133" target="_blank" rel="external">Data Binding Guide——google官方文档翻译（上）</a></h1><h1 id="Data_Binding_Guide——google官方文档翻译（下）"><a href="http://blog.csdn.net/u014486880/article/details/50531110" target="_blank" rel="external"> Data Binding Guide——google官方文档翻译（下）</a></h1><h2 id="防坑指南">防坑指南</h2><p>引入DataBindingLibrary从最初发布开始，已经有了变化，起初是</p>
 <p>在项目的 gradle 配置文件中添加依赖项：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dependencies &#123; classpath &quot;com.android.tools.build:gradle:1.2.3&quot; classpath &quot;com.android.databinding:dataBinder:1.0-rc0&quot; &#125;</div></pre></td></tr></table></figure>
@@ -331,12 +385,16 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-9-4/6040336.jpg" alt=""></p>
-<h2 id="前言">前言</h2><p>2016的Google IO 大会上，Android 团队发布了一个数]]>
+<h2 id="前言">前言</h2><p>2016的Google IO 大会上，Android 团队发布了一个数据绑定框架（Data Binding Library）。以后可以直接在 layout 布局 xml 文件中绑定数据了，无需再 findViewById 然后手工设置数据了。其语法和使用方式和 JSP 中的 EL 表达式非常类似。</p>
+<p>看到google出品的<a href="https://developer.android.com/topic/libraries/data-binding/index.html">Data Binding Library</a>本来是想边翻译边写写demo，但是csdn上已经有人翻译了，没必要重复劳动，直接拿来链接：<br>]]>
+    
     </summary>
     
       <category term="Data Binding" scheme="http://mzeht.com/tags/Data-Binding/"/>
     
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Android/"/>
     
   </entry>
   
@@ -345,8 +403,9 @@
     <link href="http://mzeht.com/2016/07/30/Mac:windows%E4%B8%8Bnexus%E7%B3%BB%E5%88%97%E4%BA%A7%E5%93%81%E7%9A%84%E5%88%B7%E6%9C%BA%E5%AE%98%E6%96%B9%E6%8C%87%E5%8D%97/"/>
     <id>http://mzeht.com/2016/07/30/Mac:windows下nexus系列产品的刷机官方指南/</id>
     <published>2016-07-30T07:26:44.000Z</published>
-    <updated>2016-07-30T09:01:39.000Z</updated>
+    <updated>2016-11-27T10:22:20.000Z</updated>
     <content type="html"><![CDATA[<h1 id="注意事项">注意事项</h1><p>1.仅针对官方镜像<br>2.需要下载官方镜像，需要翻墙或者国内寻找搬运资源<br>3.nexus刷入新系统后，开机需要网络验证激活（部分可以跳过），需要网络环境能够翻墙，请自行解决  </p>
+<a id="more"></a>
 <h1 id="镜像">镜像</h1><p>1.前往<a href="https://developers.google.com/android/nexus/images" target="_blank" rel="external">镜像官网</a><br>2.<img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/11576201.jpg" alt=""><br>右侧选择对应的设备,同意相关协议，选择下载镜像<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/27674143.jpg" alt=""><br>这里以6p为例子，镜像列表从上到下，从旧到新</p>
 <h1 id="环境准备">环境准备</h1><p>1.fastboot工具  </p>
 <p>To flash a device using one of the system images below (or one of your own), you need the latest fastboot tool. You can get it from one of the sources below.</p>
@@ -396,15 +455,17 @@
 <p>通过此方法完美利用mac给nexus5手机和nexus7wifi刷好系统,前者网络验证可以跳过，后者不行，采用可以刷入开源固件的路由器，刷入openwrt，设置好socks代理（付费版），即可无线翻墙，顺利激活，windows上可以电脑翻墙后共享热点，期间还尝试了<code>Privoxy</code>将shadowsocks的socks5代理转为http代理,然后验证阶段，连接普通wifi,设备和mac处在同一局域网下，设置代理地址为mac上的socks代理，但是不是很理想，还是硬件翻墙来的粗暴</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="注意事项">注意事项</h1><p>1.仅针对官方镜像<br>2.需要下载官方镜像，需要翻墙或者国内寻找搬运资源<br>3.nexus刷入新系统后，开机需要网络验证激活（部分可以跳过），需要网络环境能够翻墙，请自行解决  </p>
-<h1 id="镜像">镜像</]]>
+    <![CDATA[<h1 id="注意事项">注意事项</h1><p>1.仅针对官方镜像<br>2.需要下载官方镜像，需要翻墙或者国内寻找搬运资源<br>3.nexus刷入新系统后，开机需要网络验证激活（部分可以跳过），需要网络环境能够翻墙，请自行解决  </p>]]>
+    
     </summary>
     
       <category term="Mac" scheme="http://mzeht.com/tags/Mac/"/>
     
       <category term="Nexus" scheme="http://mzeht.com/tags/Nexus/"/>
     
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+      <category term="综合" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="其他" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/%E5%85%B6%E4%BB%96/"/>
     
   </entry>
   
@@ -413,7 +474,7 @@
     <link href="http://mzeht.com/2016/06/30/Synchronize-files-from-ftpserver/"/>
     <id>http://mzeht.com/2016/06/30/Synchronize-files-from-ftpserver/</id>
     <published>2016-06-30T13:10:57.000Z</published>
-    <updated>2016-07-30T08:46:08.000Z</updated>
+    <updated>2016-11-27T10:21:53.000Z</updated>
     <content type="html"><![CDATA[<h1 id="项目功能">项目功能</h1><ol>
 <li>软件为运行于安卓平台的客户端软件。</li>
 <li>客户端软件运行于一台19寸屏的安卓媒体机上。</li>
@@ -422,6 +483,7 @@
 <li>媒体机主板通过串口外接了一块STM32单片机，STM32单片机会将采集到的PM2.5指数，温湿度信息上传，媒体板通过串口接收，并将数据显示在屏幕的最上方。通信协议见“媒体板和单片机通信协议.docx”文档。</li>
 <li>开机播放一段欢迎视频，视频打包在Android程序内部</li>
 </ol>
+<a id="more"></a>
 <h1 id="功能分析">功能分析</h1><p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-6-30/89255535.jpg" alt=""></p>
 <p>工程部分结构图</p>
 <p>LaunchActivity:播放欢迎视频</p>
@@ -458,7 +520,12 @@
     <![CDATA[<h1 id="项目功能">项目功能</h1><ol>
 <li>软件为运行于安卓平台的客户端软件。</li>
 <li>客户端软件运行于一台19寸屏的安卓媒体机上。</li>
-<li>该客户端软件有播放广告视频的功能，广告视频从FTP服务器下载，本地的视频文件每隔三分钟与FTP服务]]>
+<li>该客户端软件有播放广告视频的功能，广告视频从FTP服务器下载，本地的视频文件每隔三分钟与FTP服务器同步一次，保持本地视频和服务器视频的同步。</li>
+<li>FTP服务器的下载目录要求可配置，第一次运行该软件时弹出配置窗口，要求输入服务器IP地址，用户名和密码，以及服务器视频所在的目录路径。配置完成后，以后运行不再需要重新配置。</li>
+<li>媒体机主板通过串口外接了一块STM32单片机，STM32单片机会将采集到的PM2.5指数，温湿度信息上传，媒体板通过串口接收，并将数据显示在屏幕的最上方。通信协议见“媒体板和单片机通信协议.docx”文档。</li>
+<li>开机播放一段欢迎视频，视频打包在Android程序内部</li>
+</ol>]]>
+    
     </summary>
     
       <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
@@ -469,7 +536,9 @@
     
       <category term="同步文件" scheme="http://mzeht.com/tags/%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6/"/>
     
-      <category term="项目" scheme="http://mzeht.com/categories/%E9%A1%B9%E7%9B%AE/"/>
+      <category term="综合" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="项目" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
@@ -478,7 +547,7 @@
     <link href="http://mzeht.com/2016/04/13/%E4%BC%81%E4%B8%9A%E5%BE%81%E4%BF%A1%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AB%9E%E4%BA%89%E5%93%81%E5%88%86%E6%9E%90/"/>
     <id>http://mzeht.com/2016/04/13/企业征信客户端竞争品分析/</id>
     <published>2016-04-13T09:12:31.000Z</published>
-    <updated>2016-10-22T08:52:15.000Z</updated>
+    <updated>2016-11-27T10:28:52.000Z</updated>
     <content type="html"><![CDATA[<h1 id="企加">企加</h1><h2 id="图例">图例</h2><p><img src="http://7xsxyu.com2.z0.glb.clouddn.com/gif/jiaohuqjiahome.gif" alt=""></p>
 <h2 id="布局">布局</h2><p>1.首页是传统的tab 和view的切换模式，中间的按钮“企业查询”重点突出<br>2，进入app第一个模块是企业头条，分为推荐和我的关注，推荐是所有企业的新闻，我的关注是关注的企业相关头条。</p>
 <h2 id="颜色">颜色</h2><p>以蓝白黑灰为主，白色背景，蓝色主题</p>
@@ -500,6 +569,8 @@
     
       <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
     
+      <category term="其他" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/%E5%85%B6%E4%BB%96/"/>
+    
   </entry>
   
   <entry>
@@ -507,9 +578,10 @@
     <link href="http://mzeht.com/2016/03/22/MongoDB/"/>
     <id>http://mzeht.com/2016/03/22/MongoDB/</id>
     <published>2016-03-22T12:55:47.000Z</published>
-    <updated>2016-04-24T17:38:56.000Z</updated>
+    <updated>2016-11-27T10:22:50.000Z</updated>
     <content type="html"><![CDATA[<h1 id="简单介绍">简单介绍</h1><h2 id="简介">简介</h2><p>MongoDB是一个基于分布式文件存储的数据库，由C++语言编写，旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
 <p>MongoDB是一个高性能，开源，无模式的文档型数据库，官方给自己的定义是Key-value存储(高性能和高扩展)和传统RDBMS(丰富的查询和功能)之间的一座桥梁</p>
+<a id="more"></a>
 <h2 id="Document和BSON">Document和BSON</h2><p>MongoDB中保存的数据格式为BSON，如：。<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/bson.jpg" alt=""></p>
 <p>MongoDB中数据的基本单元称为文档(Document)，它是MongoDB的核心概念，由多个键极其关联的值有序的放置在一起组成，数据库中它对应于关系型数据库的行。</p>
 <p>数据在MongoDB中以BSON（Binary-JSON）文档的格式存储在磁盘上。</p>
@@ -561,12 +633,15 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="简单介绍">简单介绍</h1><h2 id="简介">简介</h2><p>MongoDB是一个基于分布式文件存储的数据库，由C++语言编写，旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
-<p>MongoDB是一个高性能，开源，无模式的文档型数据库，]]>
+<p>MongoDB是一个高性能，开源，无模式的文档型数据库，官方给自己的定义是Key-value存储(高性能和高扩展)和传统RDBMS(丰富的查询和功能)之间的一座桥梁</p>]]>
+    
     </summary>
     
-      <category term="mongodb" scheme="http://mzeht.com/tags/mongodb/"/>
+      <category term="MongoDb" scheme="http://mzeht.com/tags/MongoDb/"/>
     
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+      <category term="数据库" scheme="http://mzeht.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="MongoDb" scheme="http://mzeht.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDb/"/>
     
   </entry>
   
@@ -575,7 +650,7 @@
     <link href="http://mzeht.com/2016/03/21/nodejs-mongodb%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E8%B4%AD%E7%89%A9%E7%BD%91%E7%AB%99/"/>
     <id>http://mzeht.com/2016/03/21/nodejs-mongodb实现简单购物网站/</id>
     <published>2016-03-21T14:53:59.000Z</published>
-    <updated>2016-03-22T06:35:36.000Z</updated>
+    <updated>2016-11-27T10:23:21.000Z</updated>
     <content type="html"><![CDATA[<h1 id="需求与设计">需求与设计</h1><h2 id="功能介绍">功能介绍</h2><ol>
 <li><p>用户可以完成注册、登录然后登录后对商品的浏览。</p>
 </li>
@@ -586,6 +661,7 @@
 <li><p>用户可对购物车商品进行结算操作。</p>
 </li>
 </ol>
+<a id="more"></a>
 <h2 id="技术选型">技术选型</h2><p>本项目涉及使用到NodeJS、Express框架、MongoDB数据库、Mongoose对象模型库，详细介绍如下：</p>
 <p>NodeJS：Node.js采用Google Chrome浏览器的V8引擎，一个后端的Javascript运行环境，提供很多系统级的API，如文件操作、网络编程等。</p>
 <p>MongoDB：MongoDB是一个基于分布式文件存储的一个高性能，开源，无模式的文档型数据库，数据以BSON文档的格式存储在磁盘上。</p>
@@ -819,14 +895,21 @@
 </li>
 <li><p>登录之后，用户可以对相关商品进行选购并添加到购物车。</p>
 </li>
-<l]]>
-    </summary>
+<li><p>用户可以对购物车里面的商品进行增加、减少、删除操作。</p>
+</li>
+<li><p>用户可对购物车商品进行结算操作。</p>
+</li>
+</ol>]]>
     
-      <category term="mongodb" scheme="http://mzeht.com/tags/mongodb/"/>
+    </summary>
     
       <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
     
-      <category term="项目" scheme="http://mzeht.com/categories/%E9%A1%B9%E7%9B%AE/"/>
+      <category term="MongoDb" scheme="http://mzeht.com/tags/MongoDb/"/>
+    
+      <category term="综合" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="项目" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
@@ -835,8 +918,8 @@
     <link href="http://mzeht.com/2016/03/18/ConnectManager%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E7%9A%84%E4%B8%89%E5%B1%82%E5%B0%81%E8%A3%85%EF%BC%88%E6%A8%A1%E5%9D%97%EF%BC%8D%E8%BD%AC%E6%8D%A2%EF%BC%8D%E5%BA%95%E5%B1%82%EF%BC%89/"/>
     <id>http://mzeht.com/2016/03/18/ConnectManager网络请求的三层封装（模块－转换－底层）/</id>
     <published>2016-03-18T06:01:47.000Z</published>
-    <updated>2016-07-23T19:09:31.000Z</updated>
-    <content type="html"><![CDATA[<p>调用层－数据解析层－底层</p>
+    <updated>2016-11-27T10:23:50.000Z</updated>
+    <content type="html"><![CDATA[<p>基于httpclient，java封装一套Android网络请求框架<br><a id="more"></a><br>调用层－数据解析层－底层</p>
 <h2 id="调用层">调用层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">private void getSystemToken() &#123;</div><div class="line">        GetSystemTokenParam param = new GetSystemTokenParam();</div><div class="line">        param.loginId=Constants.LOGINID;</div><div class="line">        String password=mPasswordView.getText().toString();</div><div class="line">        String encpwd=PasswordUtil.getEncPwd(Constants.LOGINID, password);</div><div class="line">        param.password= encpwd;</div><div class="line">//        param.password= password;</div><div class="line">        L.i(&quot;systemID&quot;,mUsernameView.getText().toString());</div><div class="line">        L.i(&quot;明文密码&quot;,mPasswordView.getText().toString());</div><div class="line">        L.i(&quot;loginID&quot;,Constants.LOGINID);</div><div class="line">        L.i(&quot;password 加密结果为&quot;,encpwd);</div><div class="line">        L.i(&quot;password 解密结果为&quot;,PasswordUtil.getDecPwd(Constants.LOGINID,encpwd));</div><div class="line">        ConnectManager.getInstance().getSystemToken(param,Tokencallback);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    private final AbstractRequestListener&lt;GetSystemTokenBean&gt; Tokencallback = new AbstractRequestListener&lt;GetSystemTokenBean&gt;() &#123;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onComplete(GetSystemTokenBean bean) &#123;</div><div class="line">            tokenBean = bean;</div><div class="line">            tHandler.sendEmptyMessage(ActivityForResultUtil.REQUEST_DATA_SUCCESS);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onError(CustomError customError) &#123;</div><div class="line"></div><div class="line">            Message msg = tHandler.obtainMessage();</div><div class="line">            msg.obj = customError;</div><div class="line">            msg.what = ActivityForResultUtil.REQUEST_DATA_ERROR;</div><div class="line">            tHandler.sendMessage(msg);</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onFault(CustomError fault) &#123;</div><div class="line"></div><div class="line">            Message msg = tHandler.obtainMessage();</div><div class="line">            msg.obj = fault;</div><div class="line">            msg.what = ActivityForResultUtil.REQUEST_DATA_FAULT;</div><div class="line">            tHandler.sendMessage(msg);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
 <h2 id="数据转化层">数据转化层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">    * 请求systemToken</div><div class="line">    *</div><div class="line">    * @param params</div><div class="line">    * @param callback</div><div class="line">    */</div><div class="line">   public void getSystemToken(final GetSystemTokenParam params,</div><div class="line">                            final AbstractRequestListener&lt;GetSystemTokenBean&gt; callback) &#123;</div><div class="line">       exector.execute(new Runnable() &#123;</div><div class="line"></div><div class="line">           @Override</div><div class="line">           public void run() &#123;</div><div class="line"></div><div class="line">               try &#123;</div><div class="line">                   String method = params.getParam().getString(&quot;method&quot;);</div><div class="line">                   String response = HttpConnectionUtil.openUrl(</div><div class="line">                           Constants.SERVER_URL + method, &quot;GET&quot;,</div><div class="line">                           params.getParam(),false);</div><div class="line">                   GetSystemTokenBean bean = GetSystemTokenBean.getSystemTokenBean(response);</div><div class="line">                   if (callback != null) &#123;</div><div class="line">                       callback.onComplete(bean);</div><div class="line">                   &#125;</div><div class="line">               &#125; catch (RuntimeException e) &#123;</div><div class="line">                   e.printStackTrace();</div><div class="line">                   if (callback != null) &#123;</div><div class="line">                       callback.onFault(new CustomError(network_error));</div><div class="line">                   &#125;</div><div class="line">               &#125; catch (JSONException e) &#123;</div><div class="line">                   e.printStackTrace();</div><div class="line">                   if (callback != null) &#123;</div><div class="line">                       callback.onError(new CustomError(json_error));</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line"></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <h2 id="网络底层">网络底层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">    * 发送http请求</div><div class="line">    *</div><div class="line">    * @param url</div><div class="line">    * @param method</div><div class="line">    *            GET 或 POST</div><div class="line">    * @param params</div><div class="line">    * @return</div><div class="line">    */</div><div class="line">   public static String openUrl(String url, String method, Bundle params,boolean Token) &#123;</div><div class="line">       if (method.equals(&quot;GET&quot;)) &#123;</div><div class="line">           if (params != null) &#123;</div><div class="line">               url = url + &quot;?&quot; + encodeUrl(params);</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       String response = &quot;&quot;;</div><div class="line"></div><div class="line">       try &#123;</div><div class="line">           L.i(method + &quot; URL: &quot; + url);</div><div class="line">           HttpClient httpClient = HttpConnectionUtil.getNewHttpClient();</div><div class="line">           HttpGet httpGet = new HttpGet(url);</div><div class="line">           if(Token==false)&#123;</div><div class="line"></div><div class="line">           &#125;else&#123;</div><div class="line"></div><div class="line">               httpGet.setHeader(&quot;systemToken&quot;, Constants.SYSTEMTOKEN);</div><div class="line">           &#125;</div><div class="line">           //连接超时</div><div class="line">           httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 20000);</div><div class="line">           // 读取超时</div><div class="line">           httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 20000);</div><div class="line"></div><div class="line">           HttpResponse resp = httpClient.execute(httpGet);</div><div class="line"></div><div class="line">           if (resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) &#123;</div><div class="line">               L.i(LOG_TAG, &quot;httpGet fail, status code = &quot; + resp.getStatusLine().getStatusCode());</div><div class="line"></div><div class="line">           &#125;else&#123;</div><div class="line">               response = EntityUtils.toString(resp.getEntity());</div><div class="line"></div><div class="line">           &#125;</div><div class="line">       &#125; catch (Exception e) &#123;</div><div class="line">           throw new RuntimeException(e.getMessage(), e);</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       L.i(&quot;LOG_TAG&quot;+response);</div><div class="line">       return response;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
@@ -912,8 +995,8 @@ public abstract void onFault(CustomError fault);
 <p>Demo地址<a href="https://github.com/mzeht/ZhiHuiYun" target="_blank" rel="external">https://github.com/mzeht/ZhiHuiYun</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>调用层－数据解析层－底层</p>
-<h2 id="调用层">调用层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div cl]]>
+    <![CDATA[<p>基于httpclient，java封装一套Android网络请求框架<br>]]>
+    
     </summary>
     
       <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
@@ -924,7 +1007,7 @@ public abstract void onFault(CustomError fault);
     
       <category term="封装" scheme="http://mzeht.com/tags/%E5%B0%81%E8%A3%85/"/>
     
-      <category term="代码" scheme="http://mzeht.com/categories/%E4%BB%A3%E7%A0%81/"/>
+      <category term="框架" scheme="http://mzeht.com/categories/%E6%A1%86%E6%9E%B6/"/>
     
   </entry>
   
@@ -933,9 +1016,10 @@ public abstract void onFault(CustomError fault);
     <link href="http://mzeht.com/2016/03/17/express%E6%A1%86%E6%9E%B6/"/>
     <id>http://mzeht.com/2016/03/17/express框架/</id>
     <published>2016-03-17T04:08:02.000Z</published>
-    <updated>2016-03-21T14:51:29.000Z</updated>
+    <updated>2016-11-27T10:24:23.000Z</updated>
     <content type="html"><![CDATA[<h1 id="基础知识">基础知识</h1><h2 id="Express介绍">Express介绍</h2><p>　　npm提供了大量的第三方模块，其中不乏许多Web框架，比如我们本章节要讲述的一个轻量级的Web框架 ——— Express。</p>
 <p>　　Express是一个简洁、灵活的node.js Web应用开发框架, 它提供一系列强大的功能，比如：模板解析、静态文件服务、中间件、路由控制等等,并且还可以使用插件或整合其他模块来帮助你创建各种 Web和移动设备应用,是目前最流行的基于Node.js的Web开发框架，并且支持Ejs、jade等多种模板，可以快速地搭建一个具有完整功能的网站。</p>
+<a id="more"></a>
 <p>　　好，下面我们就开始吧！</p>
 <p>NPM安装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install express</div></pre></td></tr></table></figure>
@@ -1144,14 +1228,15 @@ public abstract void onFault(CustomError fault);
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="基础知识">基础知识</h1><h2 id="Express介绍">Express介绍</h2><p>　　npm提供了大量的第三方模块，其中不乏许多Web框架，比如我们本章节要讲述的一个轻量级的Web框架 ——— Express。</p>
-<p>　　Express]]>
-    </summary>
+<p>　　Express是一个简洁、灵活的node.js Web应用开发框架, 它提供一系列强大的功能，比如：模板解析、静态文件服务、中间件、路由控制等等,并且还可以使用插件或整合其他模块来帮助你创建各种 Web和移动设备应用,是目前最流行的基于Node.js的Web开发框架，并且支持Ejs、jade等多种模板，可以快速地搭建一个具有完整功能的网站。</p>]]>
     
-      <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
+    </summary>
     
       <category term="Express" scheme="http://mzeht.com/tags/Express/"/>
     
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+      <category term="Web前端" scheme="http://mzeht.com/categories/Web%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="Nodejs" scheme="http://mzeht.com/categories/Web%E5%89%8D%E7%AB%AF/Nodejs/"/>
     
   </entry>
   
@@ -1160,7 +1245,7 @@ public abstract void onFault(CustomError fault);
     <link href="http://mzeht.com/2016/03/15/Nodejs%E5%85%A5%E9%97%A8/"/>
     <id>http://mzeht.com/2016/03/15/Nodejs入门/</id>
     <published>2016-03-15T11:38:32.000Z</published>
-    <updated>2016-03-16T18:49:08.000Z</updated>
+    <updated>2016-11-27T10:24:33.000Z</updated>
     <content type="html"><![CDATA[<p>总结<a href="http://www.hubwiz.com/course/5359f6f6ec7452081a7873d8/" target="_blank" rel="external">http://www.hubwiz.com/course/5359f6f6ec7452081a7873d8/</a></p>
 <h1 id="快速入门">快速入门</h1><h2 id="hello_world">hello world</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(&apos;hello world&apos;);</div></pre></td></tr></table></figure>
 <p>输出</p>
@@ -1383,6 +1468,10 @@ public abstract void onFault(CustomError fault);
     
       <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
     
+      <category term="Web前端" scheme="http://mzeht.com/categories/Web%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="Nodejs" scheme="http://mzeht.com/categories/Web%E5%89%8D%E7%AB%AF/Nodejs/"/>
+    
   </entry>
   
   <entry>
@@ -1390,7 +1479,7 @@ public abstract void onFault(CustomError fault);
     <link href="http://mzeht.com/2016/02/25/eclipes-to-androidstudio/"/>
     <id>http://mzeht.com/2016/02/25/eclipes-to-androidstudio/</id>
     <published>2016-02-25T06:55:23.000Z</published>
-    <updated>2016-02-28T04:28:08.000Z</updated>
+    <updated>2016-11-27T10:24:52.000Z</updated>
     <content type="html"><![CDATA[<h2 id="jar包冲突">jar包冲突</h2><blockquote>
 <p>Error:Execution failed for task ‘:app:transformResourcesWithMergeJavaResForDebug’.<br>com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/LICENSE.txt<br>      File1: /Users/wpmac/AndroidStudioProjects/Android_XinJiang/app/libs/httpmime-4.1.1.jar<br>      File2: /Users/wpmac/AndroidStudioProjects/Android_XinJiang/app/libs/commons-codec-1.4.jar</p>
 </blockquote>
@@ -1409,6 +1498,10 @@ public abstract void onFault(CustomError fault);
     
       <category term="debug" scheme="http://mzeht.com/tags/debug/"/>
     
+      <category term="工具" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="IDE" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/IDE/"/>
+    
   </entry>
   
   <entry>
@@ -1416,7 +1509,7 @@ public abstract void onFault(CustomError fault);
     <link href="http://mzeht.com/2016/02/14/Meterial-design-for-developer/"/>
     <id>http://mzeht.com/2016/02/14/Meterial-design-for-developer/</id>
     <published>2016-02-14T13:05:35.000Z</published>
-    <updated>2016-03-15T11:40:45.000Z</updated>
+    <updated>2016-11-27T10:25:14.000Z</updated>
     <content type="html"><![CDATA[<h1 id="入门指南">入门指南</h1><p>如果要使用材料设计创建应用：</p>
 <ol>
 <li>请查阅材料<a href="http://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="external">设计规范</a>。<ul>
@@ -1439,7 +1532,9 @@ public abstract void onFault(CustomError fault);
     
       <category term="Meterial design" scheme="http://mzeht.com/tags/Meterial-design/"/>
     
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Android/"/>
     
   </entry>
   
@@ -1448,7 +1543,7 @@ public abstract void onFault(CustomError fault);
     <link href="http://mzeht.com/2016/02/10/User-Gradle-sample/"/>
     <id>http://mzeht.com/2016/02/10/User-Gradle-sample/</id>
     <published>2016-02-09T17:19:32.000Z</published>
-    <updated>2016-02-09T17:27:04.000Z</updated>
+    <updated>2016-11-27T10:26:12.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Example_4-1-_Executing_multiple_tasks">Example 4.1. Executing multiple tasks</h1><p>build.gradle</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">task compile &lt;&lt; &#123;</div><div class="line">    println &apos;compiling source&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task compileTest(dependsOn: compile) &lt;&lt; &#123;</div><div class="line">    println &apos;compiling unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task test(dependsOn: [compile, compileTest]) &lt;&lt; &#123;</div><div class="line">    println &apos;running unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task dist(dependsOn: [compile, test]) &lt;&lt; &#123;</div><div class="line">    println &apos;building the distribution&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Output of gradle dist test</p>
@@ -1462,7 +1557,11 @@ public abstract void onFault(CustomError fault);
 <figure class="highlight plain"]]>
     </summary>
     
-      <category term="gradle sample" scheme="http://mzeht.com/tags/gradle-sample/"/>
+      <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
+    
+      <category term="编程语言" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="Gradle" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Gradle/"/>
     
   </entry>
   
@@ -1471,7 +1570,7 @@ public abstract void onFault(CustomError fault);
     <link href="http://mzeht.com/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/"/>
     <id>http://mzeht.com/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/</id>
     <published>2016-02-09T17:12:31.000Z</published>
-    <updated>2016-02-11T02:42:52.000Z</updated>
+    <updated>2016-11-27T10:26:10.000Z</updated>
     <content type="html"><![CDATA[<h1 id="4-通过命令行使用gradle">4.通过命令行使用gradle</h1><p>这张将介绍使用gradle命令行的基础知识，就像你在前几章看到的那样</p>
 <h2 id="4-1_执行多重任务">4.1 执行多重任务</h2><p>你能使用命令通过一个脚本来执行多个任务，例如这个命令<code>gradle compile test</code>,他会执行compite和test两个任务，gradle会按照命令行中的任务顺序来有序执行，也会运行其依赖项目，每个任务仅仅只执行一次，无论它在脚本中如何被引用，是直接指定还是作为其他任务的依赖，或者两者都是，让我们来看一个例子.</p>
 <p>以下四个任务，<code>dist</code>和<code>test</code>都依赖于<code>complie</code>，执行<code>gradle dist test</code>，结果<code>complie</code>任务只会运行一次.</p>
@@ -1523,7 +1622,9 @@ public abstract void onFault(CustomError fault);
     
       <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
     
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+      <category term="编程语言" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="Gradle" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Gradle/"/>
     
   </entry>
   
@@ -1532,7 +1633,7 @@ public abstract void onFault(CustomError fault);
     <link href="http://mzeht.com/2016/02/06/Gradle-User-Guide/"/>
     <id>http://mzeht.com/2016/02/06/Gradle-User-Guide/</id>
     <published>2016-02-06T15:19:45.000Z</published>
-    <updated>2016-02-09T17:24:30.000Z</updated>
+    <updated>2016-11-27T10:26:30.000Z</updated>
     <content type="html"><![CDATA[<p>参考资料：gradle 2.11 官方文档<a href="https://docs.gradle.org/current/userguide/userguide.html" target="_blank" rel="external">https://docs.gradle.org/current/userguide/userguide.html</a></p>
 <p>Gradle User Guide<br>Version 2.10</p>
 <p>Copyright © 2007-2015 Hans Dockter, Adam Murdoch<br>Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.</p>
@@ -1593,32 +1694,9 @@ public abstract void onFault(CustomError fault);
     
       <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
     
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
+      <category term="编程语言" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Android Studio 2.0 Preview 9]]></title>
-    <link href="http://mzeht.com/2016/02/02/Android-Studio-2-0-Preview-9/"/>
-    <id>http://mzeht.com/2016/02/02/Android-Studio-2-0-Preview-9/</id>
-    <published>2016-02-02T10:40:59.000Z</published>
-    <updated>2016-07-23T19:09:38.000Z</updated>
-    <content type="html"><![CDATA[<p>一不注意android studio preview 2.0 又要升级了，升级到preview2.0 9版本</p>
-<p>下载地址<a href="http://tools.android.com/download/studio/builds/2-0-preview-9" target="_blank" rel="external">http://tools.android.com/download/studio/builds/2-0-preview-9</a><br>这里有最新的版本更新消息<br>之前的preview 2.0 的确有不可忽视的bug</p>
-<blockquote>
-<p>We’ve just pushed Android Studio 2.0 Preview 9 to the canary channel — along with 2.0.0-alpha9 of the Gradle plugin to jcenter (and as part of the bundled offline repository within the IDE).</p>
-<p>In this release, we’ve completely turned off in-memory dexing by default. We’ve spent the last couple of previews trying to fine-tune it, but there are lingering issues which continues to affect users. This should hopefully make the builds work a lot better for many of you. (If things were already working well, you can continue with in-memory dexing by turning it on with android.dexOptions.dexInProcess=true.)</p>
-</blockquote>
-<p> <strong>We’ve also continued to fix various Instant Run scenarios; in particular, using APK splits on API 23 seems to trigger some platform bugs, so for now we’ve switched over to using multidex for coldswap for both Lollipop and Marshmallow.</strong></p>
-<p>没错，果然是bug，就是打包出问题,个人经历为生成的apk fragment资源管理混乱，主题资源编译出错，同样的打包方式，viewpage切换一个出错一个正常，过渡动画一个默认，一个自定义，导致我用回了1.5稳定版，不知道这个版本彻底解决没，从preview 9 开始 默认使用gradle2.10版本</p>
-<p>gradle的android构建插件为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classpath &apos;com.android.tools.build:gradle:2.0.0-alpha6&apos;</div></pre></td></tr></table></figure></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>一不注意android studio preview 2.0 又要升级了，升级到preview2.0 9版本</p>
-<p>下载地址<a href="http://tools.android.com/download/studio/builds/2-0-preview-9"]]>
-    </summary>
-    
-      <category term="AndroidStudio" scheme="http://mzeht.com/tags/AndroidStudio/"/>
+      <category term="Gradle" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Gradle/"/>
     
   </entry>
   
