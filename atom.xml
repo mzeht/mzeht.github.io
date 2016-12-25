@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2016-11-27T10:17:19.000Z</updated>
+  <updated>2016-12-13T10:44:44.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -15,11 +15,93 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="http://mzeht.com/2016/12/13/2016-12-13/"/>
+    <id>http://mzeht.com/2016/12/13/2016-12-13/</id>
+    <published>2016-12-13T09:32:19.000Z</published>
+    <updated>2016-12-13T10:44:44.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="使用idea开发多模块多git仓库项目">使用idea开发多模块多git仓库项目</h1><h2 id="项目准备">项目准备</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">IntellijProject git clone http://10.50.85.192/mzeht/g-zx-wx.git</div><div class="line">Cloning into &apos;g-zx-wx&apos;...</div><div class="line">remote: Counting objects: 73, done.</div><div class="line">remote: Compressing objects: 100% (58/58), done.</div><div class="line">remote: Total 73 (delta 3), reused 0 (delta 0)</div><div class="line">Unpacking objects: 100% (73/73), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-zx-sys.git</div><div class="line">Cloning into &apos;g-zx-sys&apos;...</div><div class="line">remote: Counting objects: 1038, done.</div><div class="line">remote: Compressing objects: 100% (961/961), done.</div><div class="line">remote: Total 1038 (delta 29), reused 1038 (delta 29)</div><div class="line">Receiving objects: 100% (1038/1038), 3.26 MiB | 0 bytes/s, done.</div><div class="line">Resolving deltas: 100% (29/29), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-zx-redis.git</div><div class="line">Cloning into &apos;g-zx-redis&apos;...</div><div class="line">remote: Counting objects: 164, done.</div><div class="line">remote: Compressing objects: 100% (132/132), done.</div><div class="line">remote: Total 164 (delta 3), reused 164 (delta 3)</div><div class="line">Receiving objects: 100% (164/164), 116.70 KiB | 0 bytes/s, done.</div><div class="line">Resolving deltas: 100% (3/3), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-zx-company.git</div><div class="line">Cloning into &apos;g-zx-company&apos;...</div><div class="line">remote: Counting objects: 251, done.</div><div class="line">remote: Compressing objects: 100% (163/163), done.</div><div class="line">remote: Total 251 (delta 56), reused 251 (delta 56)</div><div class="line">Receiving objects: 100% (251/251), 231.52 KiB | 0 bytes/s, done.</div><div class="line">Resolving deltas: 100% (56/56), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-zx-business.git</div><div class="line">Cloning into &apos;g-zx-business&apos;...</div><div class="line">remote: Counting objects: 937, done.</div><div class="line">remote: Compressing objects: 100% (795/795), done.</div><div class="line">remote: Total 937 (delta 128), reused 937 (delta 128)</div><div class="line">Receiving objects: 100% (937/937), 1011.47 KiB | 0 bytes/s, done.</div><div class="line">Resolving deltas: 100% (128/128), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-rm-web-v1.0.git</div><div class="line">Cloning into &apos;g-rm-web-v1.0&apos;...</div><div class="line">remote: Counting objects: 4117, done.</div><div class="line">remote: Compressing objects: 100% (3072/3072), done.</div><div class="line">remote: Total 4117 (delta 621), reused 4117 (delta 621)</div><div class="line">Receiving objects: 100% (4117/4117), 47.41 MiB | 7.30 MiB/s, done.</div><div class="line">Resolving deltas: 100% (621/621), done.</div><div class="line">Checking connectivity... done.</div><div class="line">Checking out files: 100% (8698/8698), done.</div></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="使用idea开发多模块多git仓库项目">使用idea开发多模块多git仓库项目</h1><h2 id="项目准备">项目准备</h2><figure class="highlight plain"><table><tr><td class="gutter"><p]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://mzeht.com/2016/12/07/2016-12-07/"/>
+    <id>http://mzeht.com/2016/12/07/2016-12-07/</id>
+    <published>2016-12-07T01:49:14.000Z</published>
+    <updated>2016-12-07T01:53:10.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="commonapi">commonapi</h1><h2 id="运行方法">运行方法</h2><p>1.项目根目录下<br>mvn clean &amp;&amp; mvn package -Dmaven.test.skip<br>target目录下生成upg-credit-common-1.0.jar<br>2.执行upg-credit-common-1.0.jar<br>java -jar upg-credit-common-1.0.jar</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="commonapi">commonapi</h1><h2 id="运行方法">运行方法</h2><p>1.项目根目录下<br>mvn clean &amp;&amp; mvn package -Dmaven.test.skip<br>target目录下生成upg-]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Mac下的整套翻墙方案]]></title>
+    <link href="http://mzeht.com/2016/10/12/12.01mac%E4%B8%8B%E7%9A%84%E7%BF%BB%E5%A2%99%E6%96%B9%E6%A1%88/"/>
+    <id>http://mzeht.com/2016/10/12/12.01mac下的翻墙方案/</id>
+    <published>2016-10-12T14:20:33.000Z</published>
+    <updated>2016-12-25T12:02:32.000Z</updated>
+    <content type="html"><![CDATA[<p>最近brew升级网络速度很慢，加上Macos系统版本的变化，升级的变化也较大，（权限变化，需要用到brew的建议尽快升级）执行brew update老半天还失败，于是寻找命令行翻墙的解决方法，期间尝试了proxychains，效果不好，<code>我和同学os一个版本的，他可以，我的不行</code>，于是找别的解决方法</p>
+<a id="more"></a>
+<h1 id="基本准备">基本准备</h1><p>可用的shawdowsocks账号，图省事儿，我自己用的是付费的，我的推荐链接<a href="https://portal.shadowsocks.com/clientarea.php?action=products" target="_blank" rel="external">点击这里</a>，这样可以奖励我几块钱，<code>但是没什么用，我又不会去真的取出来。。。</code><br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/60755449-file_1482665290388_14ddb.png" alt=""><br>点击绿色按钮，就会看到给你的代理信息</p>
+<h1 id="安装软件">安装软件</h1><p>上面网址下载资源有ss的mac客户端，但是不能开启http代理，功能不够强大，这里我们使用<code>Shadowsocks-NG</code>客户端，是它的增强版，<br><a href="https://github.com/shadowsocks/ShadowsocksX-NG" target="_blank" rel="external">项目github地址</a><br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/70231903-file_1482665629085_119e8.png" alt=""><br>可以看到完全满足较新Mac操作系统的要求，下载之后安装</p>
+<h1 id="设置软件">设置软件</h1><p>安装好的软件上有扫描屏幕上二维码的功能，逐一点开网站的代理二维码信息，完成导入<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/61623448-file_1482665836110_12398.png" alt=""></p>
+<blockquote>
+<p>可以看到，相比于一般的ss客户端，此版本代理端口有变化，默认1086</p>
+</blockquote>
+<h1 id="浏览器端配置">浏览器端配置</h1><p>google浏览器配合插件SwitchyOmega<br>插件设置代理协议，地址，端口，以及不代理本地的常用localhost</p>
+<blockquote>
+<p>注意端口和ss客户端保持一致</p>
+</blockquote>
+<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/83024472-file_1482666059530_14152.png" alt=""></p>
+<p>日常使用选择模式 auto switch<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/64770784-file_1482666144537_5bdf.png" alt=""></p>
+<h1 id="命令行配置">命令行配置</h1><p>由于此客户端配置了http代理，所以我们在命令行中使用也很方便</p>
+<p>配置一个别名方便启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash_profile</div></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Custom Add not System</div><div class="line">alias proxy-on=&apos;export http_proxy=127.0.0.1:1087;export https_proxy=$http_proxy&apos;</div><div class="line">alias proxy-off=&apos;unset http_proxy;unset https_proxy&apos;</div></pre></td></tr></table></figure>
+<p>这样在命令行中就可以通过proxy-on，proxy-off来对需要翻墙的操作提供代理</p>
+<p>举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">➜  ~ proxy-on</div><div class="line">➜  ~ brew install ffmpeg</div><div class="line">Updating Homebrew...</div><div class="line">==&gt; Auto-updated Homebrew!</div><div class="line">Updated 1 tap (homebrew/core).</div><div class="line">==&gt; Updated Formulae</div><div class="line">proxychains-ng ✔           rmlint                     vnstat</div><div class="line">ranger                     ruby-install</div><div class="line"></div><div class="line">==&gt; Installing dependencies for ffmpeg: lame, x264, xvid</div><div class="line">==&gt; Installing ffmpeg dependency: lame</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/lame-3.99.5.sierra.bottle.1</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring lame-3.99.5.sierra.bottle.1.tar.gz</div><div class="line">🍺  /usr/local/Cellar/lame/3.99.5: 26 files, 2M</div><div class="line">==&gt; Installing ffmpeg dependency: x264</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/x264-r2728.sierra.bottle.ta</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring x264-r2728.sierra.bottle.tar.gz</div><div class="line">🍺  /usr/local/Cellar/x264/r2728: 11 files, 3.3M</div><div class="line">==&gt; Installing ffmpeg dependency: xvid</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/xvid-1.3.4.sierra.bottle.ta</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring xvid-1.3.4.sierra.bottle.tar.gz</div><div class="line">🍺  /usr/local/Cellar/xvid/1.3.4: 9 files, 1.2M</div><div class="line">==&gt; Installing ffmpeg</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/ffmpeg-3.2.2.sierra.bottle.</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring ffmpeg-3.2.2.sierra.bottle.tar.gz</div><div class="line">🍺  /usr/local/Cellar/ffmpeg/3.2.2: 239 files, 50.4M</div><div class="line">➜  ~ youtube-dl https://www.youtube.com/watch\?v\=n98cGaLi6sQ</div><div class="line">[youtube] n98cGaLi6sQ: Downloading webpage</div><div class="line">[youtube] n98cGaLi6sQ: Downloading video info webpage</div><div class="line">[youtube] n98cGaLi6sQ: Extracting video information</div><div class="line">[youtube] n98cGaLi6sQ: Downloading MPD manifest</div><div class="line">[dashsegments] Total fragments: 55</div><div class="line">[download] Destination: 【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.f136.mp4</div><div class="line">[download] 100% of 29.54MiB in 03:03</div><div class="line">[dashsegments] Total fragments: 30</div><div class="line">[download] Destination: 【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.f140.m4a</div><div class="line">[download] 100% of 4.32MiB in 01:12</div><div class="line">[ffmpeg] Merging formats into &quot;【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.mp4&quot;</div><div class="line">Deleting original file 【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.f136.mp4 (pass -k to keep)</div><div class="line">Deleting original file 【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.f140.m4a (pass -k to keep)</div></pre></td></tr></table></figure>
+<p>使用代理，更新brew，安装ffmpeg，给youtube—dl添加代理 从youtube上下载了一个mv</p>
+<hr>
+<p>相关链接：</p>
+<ol>
+<li><a href="http://www.tuicool.com/articles/zuQziir" target="_blank" rel="external">http://www.tuicool.com/articles/zuQziir</a></li>
+<li><a href="https://portal.shadowsocks.com/clientarea.php?action=products" target="_blank" rel="external">https://portal.shadowsocks.com/clientarea.php?action=products</a></li>
+<li><a href="https://github.com/shadowsocks/ShadowsocksX-NG" target="_blank" rel="external">https://github.com/shadowsocks/ShadowsocksX-NG</a></li>
+<li><a href="https://aiguge.xyz/shadowsocksx-ng/" target="_blank" rel="external">https://aiguge.xyz/shadowsocksx-ng/</a></li>
+<li>chrome-extension://padekgcemlokbadohgkifijomclgjgif/options.html#/profile/proxy</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近brew升级网络速度很慢，加上Macos系统版本的变化，升级的变化也较大，（权限变化，需要用到brew的建议尽快升级）执行brew update老半天还失败，于是寻找命令行翻墙的解决方法，期间尝试了proxychains，效果不好，<code>我和同学os一个版本的，他可以，我的不行</code>，于是找别的解决方法</p>]]>
+    
+    </summary>
+    
+      <category term="Mac" scheme="http://mzeht.com/tags/Mac/"/>
+    
+      <category term="翻墙" scheme="http://mzeht.com/tags/%E7%BF%BB%E5%A2%99/"/>
+    
+      <category term="工具" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="其他" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/%E5%85%B6%E4%BB%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Android Scroll分析]]></title>
     <link href="http://mzeht.com/2016/10/12/Android%20Scroll%E5%88%86%E6%9E%90/"/>
     <id>http://mzeht.com/2016/10/12/Android Scroll分析/</id>
     <published>2016-10-12T14:20:33.000Z</published>
-    <updated>2016-11-27T10:17:19.000Z</updated>
+    <updated>2016-12-25T11:22:48.000Z</updated>
     <content type="html"><![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
 <a id="more"></a>
 <h2 id="Android坐标系">Android坐标系</h2><p>Android坐标系以屏幕左上角为原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-22/68901668.jpg" alt=""></p>
@@ -43,9 +125,9 @@
     
       <category term="Scroll" scheme="http://mzeht.com/tags/Scroll/"/>
     
-      <category term="笔记" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/"/>
+      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
     
-      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/AndroidHero/"/>
+      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/AndroidHero/"/>
     
   </entry>
   
@@ -54,7 +136,7 @@
     <link href="http://mzeht.com/2016/10/10/ListView%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
     <id>http://mzeht.com/2016/10/10/ListView使用技巧/</id>
     <published>2016-10-10T14:20:33.000Z</published>
-    <updated>2016-11-27T10:17:24.000Z</updated>
+    <updated>2016-12-25T11:22:43.000Z</updated>
     <content type="html"><![CDATA[<p>本来想跳过的，看了下书，实在是太熟悉了，待办，先占个坑<br><a id="more"></a></p>
 <h1 id="常用优化技巧">常用优化技巧</h1><h2 id="使用ViewHolder">使用ViewHolder</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">public class NotifyAdapter extends BaseAdapter &#123;</div><div class="line"></div><div class="line">    private List&lt;String&gt; mData;</div><div class="line">    private LayoutInflater mInflater;</div><div class="line"></div><div class="line">    public NotifyAdapter(Context context, List&lt;String&gt; data) &#123;</div><div class="line">        this.mData = data;</div><div class="line">        mInflater = LayoutInflater.from(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int getCount() &#123;</div><div class="line">        return mData.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public Object getItem(int position) &#123;</div><div class="line">        return mData.get(position);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public long getItemId(int position) &#123;</div><div class="line">        return position;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public View getView(int position, View convertView, ViewGroup parent) &#123;</div><div class="line">        ViewHolder holder = null;</div><div class="line">        // 判断是否缓存</div><div class="line">        if (convertView == null) &#123;</div><div class="line">            holder = new ViewHolder();</div><div class="line">            // 通过LayoutInflater实例化布局</div><div class="line">            convertView = mInflater.inflate(R.layout.notify_item, null);</div><div class="line">            holder.img = (ImageView) convertView.findViewById(R.id.imageView);</div><div class="line">            holder.title = (TextView) convertView.findViewById(R.id.textView);</div><div class="line">            convertView.setTag(holder);</div><div class="line">        &#125; else &#123;</div><div class="line">            // 通过tag找到缓存的布局</div><div class="line">            holder = (ViewHolder) convertView.getTag();</div><div class="line">        &#125;</div><div class="line">        // 设置布局中控件要显示的视图</div><div class="line">        holder.img.setBackgroundResource(R.mipmap.ic_launcher);</div><div class="line">        holder.title.setText(mData.get(position));</div><div class="line">        return convertView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public final class ViewHolder &#123;</div><div class="line">        public ImageView img;</div><div class="line">        public TextView title;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="UI设置">UI设置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//分割线</div><div class="line">android:divider=&quot;@android:color/darker_gray&quot;</div><div class="line">android:dividerHeight=&quot;10dp&quot;</div><div class="line">//设置为透明</div><div class="line">android:divider=&quot;@null&quot;</div><div class="line">//取消滚动条</div><div class="line">android:scrollbars=&quot;none&quot;</div><div class="line">取消item点击效果</div><div class="line">android:listSelector=&quot;@android:color/transparent&quot;</div></pre></td></tr></table></figure>
@@ -93,9 +175,9 @@
     
       <category term="ListView" scheme="http://mzeht.com/tags/ListView/"/>
     
-      <category term="笔记" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/"/>
+      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
     
-      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/AndroidHero/"/>
+      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/AndroidHero/"/>
     
   </entry>
   
@@ -104,7 +186,7 @@
     <link href="http://mzeht.com/2016/10/08/Android%E6%8E%A7%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E8%AF%A6%E8%A7%A3/"/>
     <id>http://mzeht.com/2016/10/08/Android控件架构与自定义控件详解/</id>
     <published>2016-10-08T11:18:29.000Z</published>
-    <updated>2016-11-27T10:17:12.000Z</updated>
+    <updated>2016-12-25T11:22:37.000Z</updated>
     <content type="html"><![CDATA[<h1 id="View的测量">View的测量</h1><p>Android帮助测量View的类—<code>MeasureSpec</code>类<br>MeasureSpec是一个32位的int值，高两位为测量的模式，低30位为测量的大小<br>使用位运算提高并优化效率</p>
 <a id="more"></a>
 <h2 id="测量的模式">测量的模式</h2><ul>
@@ -248,9 +330,9 @@
     
       <category term="自定义控件" scheme="http://mzeht.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
     
-      <category term="笔记" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/"/>
+      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
     
-      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%AC%94%E8%AE%B0/AndroidHero/"/>
+      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/AndroidHero/"/>
     
   </entry>
   
@@ -346,9 +428,9 @@
     
     </summary>
     
-      <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
-    
       <category term="Android Studio" scheme="http://mzeht.com/tags/Android-Studio/"/>
+    
+      <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
     
       <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
     
@@ -903,9 +985,9 @@
     
     </summary>
     
-      <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
-    
       <category term="MongoDb" scheme="http://mzeht.com/tags/MongoDb/"/>
+    
+      <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
     
       <category term="综合" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/"/>
     
@@ -1535,168 +1617,6 @@ public abstract void onFault(CustomError fault);
       <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
     
       <category term="Android" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[User Gradle sample]]></title>
-    <link href="http://mzeht.com/2016/02/10/User-Gradle-sample/"/>
-    <id>http://mzeht.com/2016/02/10/User-Gradle-sample/</id>
-    <published>2016-02-09T17:19:32.000Z</published>
-    <updated>2016-11-27T10:26:12.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="Example_4-1-_Executing_multiple_tasks">Example 4.1. Executing multiple tasks</h1><p>build.gradle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">task compile &lt;&lt; &#123;</div><div class="line">    println &apos;compiling source&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task compileTest(dependsOn: compile) &lt;&lt; &#123;</div><div class="line">    println &apos;compiling unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task test(dependsOn: [compile, compileTest]) &lt;&lt; &#123;</div><div class="line">    println &apos;running unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task dist(dependsOn: [compile, test]) &lt;&lt; &#123;</div><div class="line">    println &apos;building the distribution&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Output of gradle dist test</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
-<h1 id="Example_4-2-_Excluding_tasks">Example 4.2. Excluding tasks</h1><p>Output of gradle dist -x test</p>
-<p>你能通过使用-x 命令来排除某些任务的执行，我们来使用之前的脚本来演示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist -x test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="Example_4-1-_Executing_multiple_tasks">Example 4.1. Executing multiple tasks</h1><p>build.gradle</p>
-<figure class="highlight plain"]]>
-    </summary>
-    
-      <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
-    
-      <category term="编程语言" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-      <category term="Gradle" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Gradle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Gradle.4 Using the Gradle Command-Line]]></title>
-    <link href="http://mzeht.com/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/"/>
-    <id>http://mzeht.com/2016/02/10/Gradle-4-Using-the-Gradle-Command-Line/</id>
-    <published>2016-02-09T17:12:31.000Z</published>
-    <updated>2016-11-27T10:26:10.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="4-通过命令行使用gradle">4.通过命令行使用gradle</h1><p>这张将介绍使用gradle命令行的基础知识，就像你在前几章看到的那样</p>
-<h2 id="4-1_执行多重任务">4.1 执行多重任务</h2><p>你能使用命令通过一个脚本来执行多个任务，例如这个命令<code>gradle compile test</code>,他会执行compite和test两个任务，gradle会按照命令行中的任务顺序来有序执行，也会运行其依赖项目，每个任务仅仅只执行一次，无论它在脚本中如何被引用，是直接指定还是作为其他任务的依赖，或者两者都是，让我们来看一个例子.</p>
-<p>以下四个任务，<code>dist</code>和<code>test</code>都依赖于<code>complie</code>，执行<code>gradle dist test</code>，结果<code>complie</code>任务只会运行一次.</p>
-<p>图4.1 task依赖图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png" alt=""><br><code>官方演示图错了，test不是指向complie，而是complie指向test</code></p>
-<p>例4.1 执行多任务脚本</p>
-<p>build.gradle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">task compile &lt;&lt; &#123;</div><div class="line">    println &apos;compiling source&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task compileTest(dependsOn: compile) &lt;&lt; &#123;</div><div class="line">    println &apos;compiling unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task test(dependsOn: [compile, compileTest]) &lt;&lt; &#123;</div><div class="line">    println &apos;running unit tests&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task dist(dependsOn: [compile, test]) &lt;&lt; &#123;</div><div class="line">    println &apos;building the distribution&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>gradle dist test的输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
-<p>每个任务只执行了一次，所以gradle test test 和 gradle test 的结果是一样的</p>
-<p>这是本人测试的，第一次速度明显很慢<br>参考<a href="https://docs.gradle.org/2.11/userguide/gradle_daemon.html" target="_blank" rel="external">https://docs.gradle.org/2.11/userguide/gradle_daemon.html</a></p>
-<p>windows:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">if</span> not exist <span class="string">"%USERPROFILE%/.gradle"</span> mkdir <span class="string">"%USERPROFILE%/.gradle"</span>) &amp;&amp; (<span class="built_in">echo</span> org.gradle.daemon=<span class="literal">true</span> &gt;&gt; <span class="string">"%USERPROFILE%/.gradle/gradle.properties"</span>)</div></pre></td></tr></table></figure>
-<p>UNIX:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;touch ~/.gradle/gradle.properties &amp;&amp; echo &quot;org.gradle.daemon=true&quot; &gt;&gt; ~/.gradle/gradle.properties</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">➜  Desktop  gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 4.446 secs</div><div class="line"></div><div class="line">This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.8/userguide/gradle_daemon.html</div><div class="line">➜  Desktop  gradle dist test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1.768 secs</div></pre></td></tr></table></figure>
-<h2 id="4-2执行任务">4.2执行任务</h2><p>你能通过使用-x 命令来排除某些任务的执行，我们来使用之前的脚本来演示</p>
-<p>例4.2 执行任务<br>gradle dist -x test的输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; gradle dist -x test</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/commandLineTutorialTasks.png" alt=""></p>
-<p><code>官方演示图错了，test不是指向complie，而是complie指向test</code></p>
-<p>从这个示例的输出,可以看到test任务没有执行,即使这是一个dist的依赖任务。你还会注意到依赖于test的任务中,compileTest没有执行。但是test依赖的另一个任务,如complie,仍会被执行。</p>
-<h2 id="4-3如何在构建失败的时候继续构建">4.3如何在构建失败的时候继续构建</h2><p>默认情况下，gradle将会在任何任务失败时中止执行。这使得构建更快地完成，但隐藏了其他错误。为了在一个单一的构建尽可能多的发现可能失败的任务，你可以使用—continue选项。</p>
-<p>当—continue执行，gradle将执行每项任务，而不是只要遇到第一个故障就停止。遇到的每一个故障将在构建结束时报告。</p>
-<p>如果一个任务失败，依赖于它的任何后续任务将不会被执行，因为这样做是不安全的。例如，如果complie的代码发生错误，test就不会被执行，因为test任务依赖于complie任务（直接或间接地） 。</p>
-<h2 id="4-4_任务名缩写">4.4 任务名缩写</h2><p>当你命令行指定任务时，不需要提供全名，只要能足够辨认出该任务，在上面同样的脚本中，我们会通过执行<code>gradle -d</code>来执行dist任务</p>
-<p>Example 4.3. Abbreviated task name</p>
-<p>Output of gradle di</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; gradle di</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line">:test</div><div class="line">running unit tests</div><div class="line">:dist</div><div class="line">building the distribution</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
-<p>你也可以缩写驼峰命名的每个词，例如，可以通过<code>gradle compTest</code>甚至<code>gradle cT</code>来执行 compileTest 任务</p>
-<p>Example 4.4. Abbreviated camel case task name<br>Output of gradle cT</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; gradle cT</div><div class="line">:compile</div><div class="line">compiling source</div><div class="line">:compileTest</div><div class="line">compiling unit tests</div><div class="line"></div><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 secs</div></pre></td></tr></table></figure>
-<p>在使用缩写的同时也可以使用 －x 命令</p>
-<h2 id="4-5选择执行的脚本">4.5选择执行的脚本</h2><p>当运行gradle命令时，会从当前路径查找脚本文件，你也可以使用 －b 命令来选择其他文件，如果使用－b命令，setting.gradle 文件就不会被使用，例如：</p>
-<p>Example 4.5. Selecting the project using a build file</p>
-<p>subdir/myproject.gradle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">task hello &lt;&lt; &#123;</div><div class="line">    println &quot;using build file &apos;$buildFile.name&apos; in &apos;$buildFile.parentFile.name&apos;.&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Output of gradle -q -b subdir/myproject.gradle hello</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; gradle -q -b subdir/myproject.gradle hello</div><div class="line">using build file &apos;myproject.gradle&apos; in &apos;subdir&apos;.</div></pre></td></tr></table></figure>
-<p>或者，你可以使用 －p 命令来指定文件路径，多个工程中，你应该使用－p命令 而不是 －b 命令</p>
-<p>Example 4.6. Selecting the project using project directory</p>
-<p>Output of gradle -q -p subdir hello</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; gradle -q -p subdir hello</div><div class="line">using build file &apos;build.gradle&apos; in &apos;subdir&apos;.</div></pre></td></tr></table></figure>
-<h2 id="4-6获得构建信息">4.6获得构建信息</h2>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="4-通过命令行使用gradle">4.通过命令行使用gradle</h1><p>这张将介绍使用gradle命令行的基础知识，就像你在前几章看到的那样</p>
-<h2 id="4-1_执行多重任务">4.1 执行多重任务</h2><p>你能使用命令通过一个脚本来执行]]>
-    </summary>
-    
-      <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
-    
-      <category term="编程语言" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-      <category term="Gradle" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Gradle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Gradle User Guide]]></title>
-    <link href="http://mzeht.com/2016/02/06/Gradle-User-Guide/"/>
-    <id>http://mzeht.com/2016/02/06/Gradle-User-Guide/</id>
-    <published>2016-02-06T15:19:45.000Z</published>
-    <updated>2016-11-27T10:26:30.000Z</updated>
-    <content type="html"><![CDATA[<p>参考资料：gradle 2.11 官方文档<a href="https://docs.gradle.org/current/userguide/userguide.html" target="_blank" rel="external">https://docs.gradle.org/current/userguide/userguide.html</a></p>
-<p>Gradle User Guide<br>Version 2.10</p>
-<p>Copyright © 2007-2015 Hans Dockter, Adam Murdoch<br>Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.</p>
-<h1 id="第一章：关于gradle">第一章：关于gradle</h1><h2 id="1-介绍">1.介绍</h2><p>很高兴能向大家介绍 Gradle, 这是一个构建系统, 我们认为它是 java ( JVM ) 世界中构建技术的一个飞跃.<br>Gradle 提供了:</p>
-<ul>
-<li>一个像 Ant 一样的非常灵活的通用构建工具</li>
-<li>一种可切换的, 像 maven 一样的基于合约构建的框架</li>
-<li>支持强大的多工程构建</li>
-<li>支持强大的依赖管理(基于 ApacheIvy )</li>
-<li>很好的支持你已有的 maven 和 ivy 仓库</li>
-<li>支持传递性依赖管理, 而不需要远程仓库或者 pom.xml 或者 ivy 配置文件</li>
-<li>优先支持 Ant 式的任务和构建</li>
-<li>基于 <code>groovy</code> 的构建脚本</li>
-<li>有丰富的领域模型来描述你的构建</li>
-</ul>
-<h3 id="1-1-_关于用户指南">1.1. 关于用户指南</h3><p>这份用户指南，就像Gradle自身一样，还在积极的发展之中，Gradle的一些功能没有被完全展示出来，现在的一些内容也不是很清晰，如果你更加了解Gradle，我们需要你的帮助来完善Gradle文档，你可以在<a href="http://www.gradle.org/contribute" target="_blank" rel="external">Gradle Web Site</a>了解如何为文档贡献力量</p>
-<p>通过这本指南, 你将会看到一些代表 Gradle 任务之间依赖关系的图表. 类似于 UML 依赖关系<br>的表示方法, 从一个任务 A 指向另一个任务 B 的箭头代表A依赖于B.</p>
-<h2 id="2-概述">2.概述</h2><h3 id="2-1-_特点">2.1. 特点</h3><ol>
-<li><p><code>声明式构建和合约构建</code><br>Gradle 的核心是基于 Groovy 的 领域特定语言 (DSL), 具有十分优秀的扩展性. Gradle 通过提<br>供可以随意集成的声明式语言元素将声明性构建推到了一个新的高度. 这些元素也为 Java,<br>Groovy, OSGi, Web 和Scala 等项目提供基于合约构建的支持. 而且, 这种声明式语言是可扩展<br>的. 你可以添加自己的语言元素或加强现有的语言元素, 从而提供简洁, 易于维护和易于理解的<br>构建.</p>
-</li>
-<li><p><code>基于依赖的编程语言</code>声明式语言位于通用任务图 ( general purpose task graph ) 的顶端，它可以被充分利用在你<br>的构建中. 它具有强大的灵活性, 可以满足使用者对 Gradle 的一些特别的需求.</p>
-</li>
-<li><code>让构建结构化</code><br>Gradle 的易适应性和丰富性可让你在构建里直接套用通用的设计原则. 例如, 你可以非常容易<br>地使用一些可重用的组件来构成你的构建. 但是不必要的间接内联内容是不合适的. 不要强行<br>拆分已经结合在一起的部分 (例如, 在你的项目层次结构中). 避免使构建难以维护. 总之, 你可<br>以创建一个结构良好，易于维护和易于理解的构建.</li>
-<li><code>API深化</code><br>你会非常乐意在整个构建执行的生命周期中使用 Gradle, 因为Gradle 允许你管理和定制它的<br>配置和执行行为.</li>
-<li><code>Gradle 扩展</code><br>Gradle 扩展得非常好. 不管是简单的独立项目还是大型的多项目构建, 它都能显著的提高效率.<br>这是真正的结构构建. 顶尖水平的构建功能，还可以解决许多大公司碰到的构建 性能低下的问<br>题.</li>
-<li><code>多项目构建</code><br>Gradle 对多项目的支持是非常出色的. 项目依赖是很重要的部分. 它允许你模拟在多项目构建<br>中项目的关系，这正是你所要关注的地方. Gradle 遵从你的布局, 反过来就不是.<br>Gradle 提供了局部构建的功能. 如果你构建一个单独的子项目, Gradle 会构建这个子项目依赖<br>的所有子项目. 你也可以选择依赖于另一个特别的子项目重新构建这些子项目. 这样在一些大<br>型项目里就可以节省非常多的时间.</li>
-<li><code>多种方式来管理你的依赖</code><br>不同的团队有不同的管理外部依赖的方法. Gradle 对于任何管理策略都提供了合适的支持. 从<br>远程 Maven 和 Ivy 库的依赖管理到本地文件系统的 jars 或者 dirs.</li>
-<li><code>Gradle 是第一个构建整合工具</code><br>Ant 的 tasks是 Gradle 中很重要的部分, 更有趣是 Ant 的 projects 也是十分重要的部分.<br>Gradle 可以直接引入Ant 项目, 并在运行时直接将 Ant targets 转换成 Gradle tasks. 你可以从<br>Gradle 中依赖它们, 并增强它们的功能, 甚至可以在 build.xml 文件中声明 Gradle tasks 的依<br>赖. 并且properties, paths 等也可以通过同样的方法集成进来.<br>Gradle 完全支持你已有的 Maven 或者 lvy 仓库来构造发布或者提取依赖. Gradle 也提供了一<br>个转化器, 用来将 maven 的 pom.xml 文件转换成 Gradle 脚本. 在运行时引入 Maven 项目也<br>会在稍后推出.</li>
-<li><code>易于迁移</code><br>Gradle 可以兼容任何结构. 因此你可以直接在你的产品构建的分支上开发你的 Gradle 构建,<br>并且二者可以并行. 我们通常建议编写一些测试代码来确保它们的功能是相同的. 通过这种方<br>式, 在迁移的时候就不会显得那么混乱和不可靠, 这是通过婴儿学步的方式来获得最佳的实践.</li>
-<li><code>Groovy</code><br>Gradle 的构建脚本是通过 Groovy 编写的而不是 XML. 但是并不像其他方式, 这并不是为了简<br>单的展示用动态语言编写的原始脚本有多么强大. 不然的话, 只会导致维护构建变得非常困难.<br>Gradle 的整个设计是朝着一种语言的方向开发的, 并不是一种死板的框架. Groovy 就像胶水一<br>样, 把你像实现的构想和抽象的 Gradle 粘在一起. Gradle提供了一些标准的构想, 但是他们并<br>不享有任何形式的特权. 相比于其他声明式构建系统，对我们来说这是一个比较突出的特点.</li>
-<li><code>Gradle 包装器</code><br>Gradle 包装器允许你在没有安装 Gradle 的机器上运行 Gradle 构建. 在一些持续集成的服务<br>器上, 这个功能将非常有用. 它同样也能降低使用一个开源项目的门槛, 也就是说构建它将会非<br>常简单. 这个包装器对于公司来说也是很有吸引力的. 它并不需要为客户机提供相应的管理防<br>范. 这种方式同样也能强制某一个版本 Gradle 的使用从而最小化某些支持问题.</li>
-<li><code>免费和开源</code><br>Gradle 是一个开源项目, 遵循 ASL 许可.</li>
-</ol>
-<h3 id="2-2-_为什么选择Groovy">2.2. 为什么选择Groovy</h3><p>我们认为在构建脚本时，使用内部DSL［DSL：Domain Specific Languages,特定领域语言］(基于动态语言)，和XML相比，有很大优势，DSL有很多，为什么选择了Gradle？答案就在Gradle的使用背景中，虽然Gradle是通用的核心构建工具，但是主要运用在java项目上，在这些项目中，团队成员非常熟悉java，我们认为构建应该对团队全体成员尽量清晰明了</p>
-<p>在这种情况下，你可能争论为什么不直接用java作为脚本构建语言，这的确是个合理的疑问，对于你的团队来说，java拥有最好的清晰度和最低的学习成本，但是由于java语言的限制，java作为脚本构建语言，并不是那么强大和出色[^hello].像Python，Groovy和Ruby这些语言表现更好，我们选择了Groovy，他最适合java开发人员，他的基本语法，类系统，包结构和其他一些特征，都和java相同，在和java的共同基础上，Groovy能做的更多.</p>
-<p>对于熟悉Ruby,Python或者有志于学习它们的java开发者，以上依据都不成立了，Gradle的设计同时也适合用Ruby，Python来设计脚本构建引擎，只是现在不是我们的当务之急，我们乐于支持任何团体来开发更多的脚本构建引擎.</p>
-<p>[^hello]: 在 <a href="http://www.defmacro.org/ramblings/lisp.html" target="_blank" rel="external">http://www.defmacro.org/ramblings/lisp.html</a> 你可以看到一篇比较Ant，XML，Java和Lisp的有趣文章， 如果java的语法和Groovy的语法一样的话，那将非常有趣</p>
-<h1 id="使用现有的构建">使用现有的构建</h1><h2 id="3-安装Gradle">3.安装Gradle</h2><h3 id="3-1前提">3.1前提</h3><p>Gradle 需要安装一个 Java JDK 或者 JRE. 而且 Java 版本必须至少是 6 以上. (to check, use java -version). Gradle 有自带 Groovy 库, 所以没必要安装 Groovy. 任何已经安装的 Groovy 会被 Gradle 忽略.</p>
-<p>Gradle 使用任何已经存在在你的路径中的 JDK (可以通过 java -version 检查, 如果有就说明系统已经安装了 Java 环境). 或者, 你也可以设置 JAVA_HOME 环境参数来指定希望使用的JDK的安装目录.</p>
-<h3 id="3-2_下载">3.2 下载</h3><p>You can download one of the Gradle distributions from the <a href="http://www.gradle.org/downloads" target="_blank" rel="external">Gradle web site</a>.</p>
-<h3 id="3-3_解压">3.3 解压</h3><p>The Gradle distribution comes packaged as a ZIP. The full distribution contains:</p>
-<ul>
-<li>The Gradle binaries.</li>
-<li>The user guide (HTML and PDF).</li>
-<li>The DSL reference guide.</li>
-<li>The API documentation (Javadoc and Groovydoc).</li>
-<li>Extensive samples, including the examples referenced in the user guide, along with some complete and more complex builds you can use as a starting point for your own build.</li>
-<li>The binary sources. This is for reference only. If you want to build Gradle you need to download the source distribution or checkout the sources from the source repository. See the<a href="http://gradle.org/development/" target="_blank" rel="external">Gradle web site</a> for details.</li>
-</ul>
-<h3 id="3-4_环境变量">3.4 环境变量</h3><p>For running Gradle, add GRADLE_HOME/bin to your PATH environment variable. Usually, this is sufficient to run Gradle.</p>
-<h3 id="3-5_运行和测试安装">3.5 运行和测试安装</h3><p>ou run Gradle via the gradle command. To check if Gradle is properly installed just type gradle -v. The output shows the Gradle version and also the local environment configuration (Groovy, JVM version, OS, etc.). The displayed Gradle version should match the distribution you have downloaded.</p>
-<h3 id="3-6_JVM_设置">3.6 JVM 设置</h3><p>JVM 选项可以通过设置环境变量来更改. 您可以使用 GRADLE_OPTS 或者 JAVA_OPTS.<br>JAVA_OPTS 是一个用于 JAVA 应用的环境变量. 一个典型的用例是在 JAVA_OPTS 里设置HTTP代理服务器(proxy),<br>GRADLE_OPTS 是内存选项. 这些变量可以在 gradle 的一开始就设置或者通过 gradlew 脚本来设置.</p>
-<p>注意，目前Gradle不能通过命令行设置jvm.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>参考资料：gradle 2.11 官方文档<a href="https://docs.gradle.org/current/userguide/userguide.html" target="_blank" rel="external">https://docs.gradl]]>
-    </summary>
-    
-      <category term="Gradle" scheme="http://mzeht.com/tags/Gradle/"/>
-    
-      <category term="编程语言" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-      <category term="Gradle" scheme="http://mzeht.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Gradle/"/>
     
   </entry>
   

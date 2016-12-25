@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title></title>
+      <url>http://mzeht.com/2016/12/13/2016-12-13/</url>
+      <content type="html"><![CDATA[<h1 id="使用idea开发多模块多git仓库项目">使用idea开发多模块多git仓库项目</h1><h2 id="项目准备">项目准备</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">IntellijProject git clone http://10.50.85.192/mzeht/g-zx-wx.git</div><div class="line">Cloning into &apos;g-zx-wx&apos;...</div><div class="line">remote: Counting objects: 73, done.</div><div class="line">remote: Compressing objects: 100% (58/58), done.</div><div class="line">remote: Total 73 (delta 3), reused 0 (delta 0)</div><div class="line">Unpacking objects: 100% (73/73), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-zx-sys.git</div><div class="line">Cloning into &apos;g-zx-sys&apos;...</div><div class="line">remote: Counting objects: 1038, done.</div><div class="line">remote: Compressing objects: 100% (961/961), done.</div><div class="line">remote: Total 1038 (delta 29), reused 1038 (delta 29)</div><div class="line">Receiving objects: 100% (1038/1038), 3.26 MiB | 0 bytes/s, done.</div><div class="line">Resolving deltas: 100% (29/29), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-zx-redis.git</div><div class="line">Cloning into &apos;g-zx-redis&apos;...</div><div class="line">remote: Counting objects: 164, done.</div><div class="line">remote: Compressing objects: 100% (132/132), done.</div><div class="line">remote: Total 164 (delta 3), reused 164 (delta 3)</div><div class="line">Receiving objects: 100% (164/164), 116.70 KiB | 0 bytes/s, done.</div><div class="line">Resolving deltas: 100% (3/3), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-zx-company.git</div><div class="line">Cloning into &apos;g-zx-company&apos;...</div><div class="line">remote: Counting objects: 251, done.</div><div class="line">remote: Compressing objects: 100% (163/163), done.</div><div class="line">remote: Total 251 (delta 56), reused 251 (delta 56)</div><div class="line">Receiving objects: 100% (251/251), 231.52 KiB | 0 bytes/s, done.</div><div class="line">Resolving deltas: 100% (56/56), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-zx-business.git</div><div class="line">Cloning into &apos;g-zx-business&apos;...</div><div class="line">remote: Counting objects: 937, done.</div><div class="line">remote: Compressing objects: 100% (795/795), done.</div><div class="line">remote: Total 937 (delta 128), reused 937 (delta 128)</div><div class="line">Receiving objects: 100% (937/937), 1011.47 KiB | 0 bytes/s, done.</div><div class="line">Resolving deltas: 100% (128/128), done.</div><div class="line">Checking connectivity... done.</div><div class="line">➜  IntellijProject git clone http://10.50.85.192/mzeht/g-rm-web-v1.0.git</div><div class="line">Cloning into &apos;g-rm-web-v1.0&apos;...</div><div class="line">remote: Counting objects: 4117, done.</div><div class="line">remote: Compressing objects: 100% (3072/3072), done.</div><div class="line">remote: Total 4117 (delta 621), reused 4117 (delta 621)</div><div class="line">Receiving objects: 100% (4117/4117), 47.41 MiB | 7.30 MiB/s, done.</div><div class="line">Resolving deltas: 100% (621/621), done.</div><div class="line">Checking connectivity... done.</div><div class="line">Checking out files: 100% (8698/8698), done.</div></pre></td></tr></table></figure>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title></title>
+      <url>http://mzeht.com/2016/12/07/2016-12-07/</url>
+      <content type="html"><![CDATA[<h1 id="commonapi">commonapi</h1><h2 id="运行方法">运行方法</h2><p>1.项目根目录下<br>mvn clean &amp;&amp; mvn package -Dmaven.test.skip<br>target目录下生成upg-credit-common-1.0.jar<br>2.执行upg-credit-common-1.0.jar<br>java -jar upg-credit-common-1.0.jar</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Mac下的整套翻墙方案]]></title>
+      <url>http://mzeht.com/2016/10/12/12.01mac%E4%B8%8B%E7%9A%84%E7%BF%BB%E5%A2%99%E6%96%B9%E6%A1%88/</url>
+      <content type="html"><![CDATA[<p>最近brew升级网络速度很慢，加上Macos系统版本的变化，升级的变化也较大，（权限变化，需要用到brew的建议尽快升级）执行brew update老半天还失败，于是寻找命令行翻墙的解决方法，期间尝试了proxychains，效果不好，<code>我和同学os一个版本的，他可以，我的不行</code>，于是找别的解决方法</p>
+<a id="more"></a>
+<h1 id="基本准备">基本准备</h1><p>可用的shawdowsocks账号，图省事儿，我自己用的是付费的，我的推荐链接<a href="https://portal.shadowsocks.com/clientarea.php?action=products" target="_blank" rel="external">点击这里</a>，这样可以奖励我几块钱，<code>但是没什么用，我又不会去真的取出来。。。</code><br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/60755449-file_1482665290388_14ddb.png" alt=""><br>点击绿色按钮，就会看到给你的代理信息</p>
+<h1 id="安装软件">安装软件</h1><p>上面网址下载资源有ss的mac客户端，但是不能开启http代理，功能不够强大，这里我们使用<code>Shadowsocks-NG</code>客户端，是它的增强版，<br><a href="https://github.com/shadowsocks/ShadowsocksX-NG" target="_blank" rel="external">项目github地址</a><br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/70231903-file_1482665629085_119e8.png" alt=""><br>可以看到完全满足较新Mac操作系统的要求，下载之后安装</p>
+<h1 id="设置软件">设置软件</h1><p>安装好的软件上有扫描屏幕上二维码的功能，逐一点开网站的代理二维码信息，完成导入<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/61623448-file_1482665836110_12398.png" alt=""></p>
+<blockquote>
+<p>可以看到，相比于一般的ss客户端，此版本代理端口有变化，默认1086</p>
+</blockquote>
+<h1 id="浏览器端配置">浏览器端配置</h1><p>google浏览器配合插件SwitchyOmega<br>插件设置代理协议，地址，端口，以及不代理本地的常用localhost</p>
+<blockquote>
+<p>注意端口和ss客户端保持一致</p>
+</blockquote>
+<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/83024472-file_1482666059530_14152.png" alt=""></p>
+<p>日常使用选择模式 auto switch<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-12-25/64770784-file_1482666144537_5bdf.png" alt=""></p>
+<h1 id="命令行配置">命令行配置</h1><p>由于此客户端配置了http代理，所以我们在命令行中使用也很方便</p>
+<p>配置一个别名方便启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash_profile</div></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Custom Add not System</div><div class="line">alias proxy-on=&apos;export http_proxy=127.0.0.1:1087;export https_proxy=$http_proxy&apos;</div><div class="line">alias proxy-off=&apos;unset http_proxy;unset https_proxy&apos;</div></pre></td></tr></table></figure>
+<p>这样在命令行中就可以通过proxy-on，proxy-off来对需要翻墙的操作提供代理</p>
+<p>举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">➜  ~ proxy-on</div><div class="line">➜  ~ brew install ffmpeg</div><div class="line">Updating Homebrew...</div><div class="line">==&gt; Auto-updated Homebrew!</div><div class="line">Updated 1 tap (homebrew/core).</div><div class="line">==&gt; Updated Formulae</div><div class="line">proxychains-ng ✔           rmlint                     vnstat</div><div class="line">ranger                     ruby-install</div><div class="line"></div><div class="line">==&gt; Installing dependencies for ffmpeg: lame, x264, xvid</div><div class="line">==&gt; Installing ffmpeg dependency: lame</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/lame-3.99.5.sierra.bottle.1</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring lame-3.99.5.sierra.bottle.1.tar.gz</div><div class="line">🍺  /usr/local/Cellar/lame/3.99.5: 26 files, 2M</div><div class="line">==&gt; Installing ffmpeg dependency: x264</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/x264-r2728.sierra.bottle.ta</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring x264-r2728.sierra.bottle.tar.gz</div><div class="line">🍺  /usr/local/Cellar/x264/r2728: 11 files, 3.3M</div><div class="line">==&gt; Installing ffmpeg dependency: xvid</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/xvid-1.3.4.sierra.bottle.ta</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring xvid-1.3.4.sierra.bottle.tar.gz</div><div class="line">🍺  /usr/local/Cellar/xvid/1.3.4: 9 files, 1.2M</div><div class="line">==&gt; Installing ffmpeg</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/ffmpeg-3.2.2.sierra.bottle.</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring ffmpeg-3.2.2.sierra.bottle.tar.gz</div><div class="line">🍺  /usr/local/Cellar/ffmpeg/3.2.2: 239 files, 50.4M</div><div class="line">➜  ~ youtube-dl https://www.youtube.com/watch\?v\=n98cGaLi6sQ</div><div class="line">[youtube] n98cGaLi6sQ: Downloading webpage</div><div class="line">[youtube] n98cGaLi6sQ: Downloading video info webpage</div><div class="line">[youtube] n98cGaLi6sQ: Extracting video information</div><div class="line">[youtube] n98cGaLi6sQ: Downloading MPD manifest</div><div class="line">[dashsegments] Total fragments: 55</div><div class="line">[download] Destination: 【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.f136.mp4</div><div class="line">[download] 100% of 29.54MiB in 03:03</div><div class="line">[dashsegments] Total fragments: 30</div><div class="line">[download] Destination: 【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.f140.m4a</div><div class="line">[download] 100% of 4.32MiB in 01:12</div><div class="line">[ffmpeg] Merging formats into &quot;【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.mp4&quot;</div><div class="line">Deleting original file 【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.f136.mp4 (pass -k to keep)</div><div class="line">Deleting original file 【耳機時代】3D環音「STYX HELIX」MYTH&amp;ROID 戴上耳機 進入不一樣的音樂世界！-n98cGaLi6sQ.f140.m4a (pass -k to keep)</div></pre></td></tr></table></figure>
+<p>使用代理，更新brew，安装ffmpeg，给youtube—dl添加代理 从youtube上下载了一个mv</p>
+<hr>
+<p>相关链接：</p>
+<ol>
+<li><a href="http://www.tuicool.com/articles/zuQziir" target="_blank" rel="external">http://www.tuicool.com/articles/zuQziir</a></li>
+<li><a href="https://portal.shadowsocks.com/clientarea.php?action=products" target="_blank" rel="external">https://portal.shadowsocks.com/clientarea.php?action=products</a></li>
+<li><a href="https://github.com/shadowsocks/ShadowsocksX-NG" target="_blank" rel="external">https://github.com/shadowsocks/ShadowsocksX-NG</a></li>
+<li><a href="https://aiguge.xyz/shadowsocksx-ng/" target="_blank" rel="external">https://aiguge.xyz/shadowsocksx-ng/</a></li>
+<li>chrome-extension://padekgcemlokbadohgkifijomclgjgif/options.html#/profile/proxy</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android Scroll分析]]></title>
       <url>http://mzeht.com/2016/10/12/Android%20Scroll%E5%88%86%E6%9E%90/</url>
       <content type="html"><![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
@@ -1883,8 +1935,8 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
   
     
     <entry>
-      <title><![CDATA[关于]]></title>
-      <url>http://mzeht.com/about/index.html</url>
+      <title><![CDATA[categories]]></title>
+      <url>http://mzeht.com/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1895,20 +1947,20 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
     </entry>
     
     <entry>
-      <title><![CDATA[categories]]></title>
-      <url>http://mzeht.com/categories/index.html</url>
+      <title><![CDATA[tags]]></title>
+      <url>http://mzeht.com/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[关于]]></title>
+      <url>http://mzeht.com/about/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
       <title><![CDATA[search]]></title>
       <url>http://mzeht.com/serach/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[tags]]></title>
-      <url>http://mzeht.com/tags/index.html</url>
       <content type="html"></content>
     </entry>
     
