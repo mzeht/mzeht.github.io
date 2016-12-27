@@ -1941,8 +1941,8 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
     </entry>
     
     <entry>
-      <title><![CDATA[读书]]></title>
-      <url>http://mzeht.com/reading/index.html</url>
+      <title><![CDATA[search]]></title>
+      <url>http://mzeht.com/serach/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -1959,8 +1959,8 @@ mRefreshlayout.setOnRefreshListener(<span class="keyword">new</span> SwipeRefres
     </entry>
     
     <entry>
-      <title><![CDATA[search]]></title>
-      <url>http://mzeht.com/serach/index.html</url>
+      <title><![CDATA[读书]]></title>
+      <url>http://mzeht.com/reading/index.html</url>
       <content type="html"></content>
     </entry>
     
