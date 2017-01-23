@@ -321,6 +321,41 @@
   </entry>
   
   <entry>
+    <title><![CDATA[Android Scroll分析]]></title>
+    <link href="http://mzeht.com/2016/10/12/Android%20Scroll%E5%88%86%E6%9E%90/"/>
+    <id>http://mzeht.com/2016/10/12/Android Scroll分析/</id>
+    <published>2016-10-12T14:20:33.000Z</published>
+    <updated>2017-01-15T08:01:28.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
+<a id="more"></a>
+<h2 id="Android坐标系">Android坐标系</h2><p>Android坐标系以屏幕左上角为原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-22/68901668.jpg" alt=""></p>
+<h2 id="视图坐标系">视图坐标系</h2><p>子视图以父视图左上角为坐标原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/13206722.jpg" alt=""><br>触控事件中，通过getX(),getY()获得的坐标就是视图中的坐标系</p>
+<h2 id="触控事件">触控事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//单点触摸按下动作</div><div class="line">   public static final int ACTION_DOWN             = 0;</div><div class="line">   </div><div class="line">   //单点触摸离开动作</div><div class="line">   public static final int ACTION_UP               = 1;</div><div class="line">   </div><div class="line">  //触摸点移动动作</div><div class="line">   public static final int ACTION_MOVE             = 2;</div><div class="line">   </div><div class="line">  //触摸动作取消</div><div class="line">   public static final int ACTION_CANCEL           = 3;</div><div class="line">   </div><div class="line">  //触摸动作超出边界</div><div class="line">   public static final int ACTION_OUTSIDE          = 4;</div><div class="line"></div><div class="line">   //多点触摸按下动作</div><div class="line">   public static final int ACTION_POINTER_DOWN     = 5;</div><div class="line">   </div><div class="line">   //多点离开动作</div><div class="line">   public static final int ACTION_POINTER_UP       = 6;</div><div class="line"></div><div class="line">   public static final int ACTION_HOVER_MOVE       = 7;</div><div class="line"></div><div class="line">   </div><div class="line">   public static final int ACTION_SCROLL           = 8;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_ENTER      = 9;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_EXIT       = 10;</div><div class="line"></div><div class="line"></div><div class="line">   public static final int ACTION_BUTTON_PRESS   = 11;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_BUTTON_RELEASE  = 12;</div></pre></td></tr></table></figure>
+<p>一般在View的onTouchEvent方法中对event.getAction()进行筛选控制，（不涉及多点触控的情况下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Override</div><div class="line">public boolean onTouchEvent(MotionEvent event) &#123;</div><div class="line">    int x = (int) event.getX();</div><div class="line">    int y = (int) event.getY();</div><div class="line">    switch (event.getAction()) &#123;</div><div class="line">        case MotionEvent.ACTION_DOWN:</div><div class="line">            lastX = (int) event.getX();</div><div class="line">            lastY = (int) event.getY();</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_MOVE:</div><div class="line">            int offsetX = x - lastX;</div><div class="line">            int offsetY = y - lastY;</div><div class="line">            ((View) getParent()).scrollBy(-offsetX, -offsetY);</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_UP:</div><div class="line">            // 手指离开时，执行滑动过程</div><div class="line">            View viewGroup = ((View) getParent());</div><div class="line">            mScroller.startScroll(</div><div class="line">                    viewGroup.getScrollX(),</div><div class="line">                    viewGroup.getScrollY(),</div><div class="line">                    -viewGroup.getScrollX(),</div><div class="line">                    -viewGroup.getScrollY());</div><div class="line">            invalidate();</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>系统提供了很多获取坐标值，相对距离的坐标值的方法，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/82371833.jpg" alt=""></p>
+<p>大概分为两类：</p>
+<hr>
+<p>View提供的获取坐标的方法<br>getTop(): 获取到View自身顶边到其父布局顶部的距离<br>getLeft() : 获取到View自身左边到其父布局左边的距离<br>getRight():<br>getBottom();</p>
+<hr>
+<p>MotionEvent提供的方法<br>getX():    获取点击事件距离控件左边的距离，即视图坐标<br>getY():获取点击事件距离控件顶部的距离，即视图坐标<br>getRawX():获取点击事件距离整个屏幕左边的距离，即绝对坐标<br>getRawY():….</p>
+<h1 id="实现滑动的七种方法">实现滑动的七种方法</h1><h2 id="layout方法">layout方法</h2>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
+    
+      <category term="Scroll" scheme="http://mzeht.com/tags/Scroll/"/>
+    
+      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/AndroidHero/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Mac下的整套翻墙方案]]></title>
     <link href="http://mzeht.com/2016/10/12/12.01mac%E4%B8%8B%E7%9A%84%E7%BF%BB%E5%A2%99%E6%96%B9%E6%A1%88/"/>
     <id>http://mzeht.com/2016/10/12/12.01mac下的翻墙方案/</id>
@@ -371,41 +406,6 @@
       <category term="工具" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/"/>
     
       <category term="其他" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/%E5%85%B6%E4%BB%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Android Scroll分析]]></title>
-    <link href="http://mzeht.com/2016/10/12/Android%20Scroll%E5%88%86%E6%9E%90/"/>
-    <id>http://mzeht.com/2016/10/12/Android Scroll分析/</id>
-    <published>2016-10-12T14:20:33.000Z</published>
-    <updated>2017-01-15T08:01:28.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
-<a id="more"></a>
-<h2 id="Android坐标系">Android坐标系</h2><p>Android坐标系以屏幕左上角为原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-22/68901668.jpg" alt=""></p>
-<h2 id="视图坐标系">视图坐标系</h2><p>子视图以父视图左上角为坐标原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/13206722.jpg" alt=""><br>触控事件中，通过getX(),getY()获得的坐标就是视图中的坐标系</p>
-<h2 id="触控事件">触控事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//单点触摸按下动作</div><div class="line">   public static final int ACTION_DOWN             = 0;</div><div class="line">   </div><div class="line">   //单点触摸离开动作</div><div class="line">   public static final int ACTION_UP               = 1;</div><div class="line">   </div><div class="line">  //触摸点移动动作</div><div class="line">   public static final int ACTION_MOVE             = 2;</div><div class="line">   </div><div class="line">  //触摸动作取消</div><div class="line">   public static final int ACTION_CANCEL           = 3;</div><div class="line">   </div><div class="line">  //触摸动作超出边界</div><div class="line">   public static final int ACTION_OUTSIDE          = 4;</div><div class="line"></div><div class="line">   //多点触摸按下动作</div><div class="line">   public static final int ACTION_POINTER_DOWN     = 5;</div><div class="line">   </div><div class="line">   //多点离开动作</div><div class="line">   public static final int ACTION_POINTER_UP       = 6;</div><div class="line"></div><div class="line">   public static final int ACTION_HOVER_MOVE       = 7;</div><div class="line"></div><div class="line">   </div><div class="line">   public static final int ACTION_SCROLL           = 8;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_ENTER      = 9;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_EXIT       = 10;</div><div class="line"></div><div class="line"></div><div class="line">   public static final int ACTION_BUTTON_PRESS   = 11;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_BUTTON_RELEASE  = 12;</div></pre></td></tr></table></figure>
-<p>一般在View的onTouchEvent方法中对event.getAction()进行筛选控制，（不涉及多点触控的情况下）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Override</div><div class="line">public boolean onTouchEvent(MotionEvent event) &#123;</div><div class="line">    int x = (int) event.getX();</div><div class="line">    int y = (int) event.getY();</div><div class="line">    switch (event.getAction()) &#123;</div><div class="line">        case MotionEvent.ACTION_DOWN:</div><div class="line">            lastX = (int) event.getX();</div><div class="line">            lastY = (int) event.getY();</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_MOVE:</div><div class="line">            int offsetX = x - lastX;</div><div class="line">            int offsetY = y - lastY;</div><div class="line">            ((View) getParent()).scrollBy(-offsetX, -offsetY);</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_UP:</div><div class="line">            // 手指离开时，执行滑动过程</div><div class="line">            View viewGroup = ((View) getParent());</div><div class="line">            mScroller.startScroll(</div><div class="line">                    viewGroup.getScrollX(),</div><div class="line">                    viewGroup.getScrollY(),</div><div class="line">                    -viewGroup.getScrollX(),</div><div class="line">                    -viewGroup.getScrollY());</div><div class="line">            invalidate();</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>系统提供了很多获取坐标值，相对距离的坐标值的方法，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/82371833.jpg" alt=""></p>
-<p>大概分为两类：</p>
-<hr>
-<p>View提供的获取坐标的方法<br>getTop(): 获取到View自身顶边到其父布局顶部的距离<br>getLeft() : 获取到View自身左边到其父布局左边的距离<br>getRight():<br>getBottom();</p>
-<hr>
-<p>MotionEvent提供的方法<br>getX():    获取点击事件距离控件左边的距离，即视图坐标<br>getY():获取点击事件距离控件顶部的距离，即视图坐标<br>getRawX():获取点击事件距离整个屏幕左边的距离，即绝对坐标<br>getRawY():….</p>
-<h1 id="实现滑动的七种方法">实现滑动的七种方法</h1><h2 id="layout方法">layout方法</h2>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>]]>
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
-    
-      <category term="Scroll" scheme="http://mzeht.com/tags/Scroll/"/>
-    
-      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/AndroidHero/"/>
     
   </entry>
   
