@@ -1,0 +1,809 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Spring boot整合retrofit简化三方接口调用 | </title>
+    <meta name="author" content="mzeht">
+    
+    <meta name="description" content="talking is cheap show me the code">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Spring boot整合retrofit简化三方接口调用"/>
+    <meta property="og:site_name" content="my soul your beats"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="my soul your beats" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="brown darken-1">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">my soul your beats</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav brown darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-27/32465516.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">mzeht</p>
+                        <p class="desc">Java/Android/后端</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav brown darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/移动开发/">
+                    移动开发 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/移动开发/AndroidHero/">
+                    AndroidHero <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/移动开发/Android/">
+                    Android <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/工具/">
+                    工具 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/工具/IDE/">
+                    IDE <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/工具/markdown/">
+                    markdown <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/工具/其他/">
+                    其他 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/框架/">
+                    框架 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/编程语言/">
+                    编程语言 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/编程语言/Gradle/">
+                    Gradle <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/综合/">
+                    综合 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/综合/其他/">
+                    其他 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/综合/项目/">
+                    项目 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/数据库/">
+                    数据库 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/数据库/MongoDb/">
+                    MongoDb <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Web前端/">
+                    Web前端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Web前端/Nodejs/">
+                    Nodejs <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/后端开发/">
+                    后端开发 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/后端开发/java/">
+                    java <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/文档/">
+                    文档 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/文档/其他/">
+                    其他 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/运维/">
+                    运维 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper brown darken-1">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/后端开发/">后端开发</a><a class="breadcrumb" href="/categories/后端开发/java/">java</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Spring boot整合retrofit简化三方接口调用</h1>
+    
+
+
+            </div>
+            <time class="light-green-link-context" datetime="2017-01-22T07:05:33.000Z"><a href="/2017/01/22/在springboot中使用retrofit加快三方接口调用/">Jan 22 2017</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Spring-boot/" class="chip light-green">Spring boot</a>
+        
+            <a href="/tags/retrofit/" class="chip light-green">retrofit</a>
+        
+            <a href="/tags/okHttp/" class="chip light-green">okHttp</a>
+        
+    </div>
+
+
+            <div class="toc light-green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#引入依赖"><span class="section table-of-contents-text">引入依赖</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#初步实现方法（不结合spring特性）"><span class="section table-of-contents-text">初步实现方法（不结合spring特性）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#结合springboot，去除工厂类，改为注入"><span class="section table-of-contents-text">结合springboot，去除工厂类，改为注入</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry light-green-link-context">
+                <p>公司改用srpingboot微服务架构后，服务之间的调用十分频繁，而同事的写法都是基于httpclient的简单工具类，写起来比较混乱，手动调用json转换为实体类，后期维护不方便，而且接口地址，参数（手动拼接）不好管理，于是想到了我在android中常常使用的retrofit+okhttp，于是动手移植到springboot项目上</p>
+<a id="more"></a>
+<h1 id="引入依赖">引入依赖</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;com.squareup.retrofit2&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;retrofit&lt;/artifactId&gt;</div><div class="line">			&lt;version&gt;2.1.0&lt;/version&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line"></div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;com.squareup.retrofit2&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;converter-gson&lt;/artifactId&gt;</div><div class="line">			&lt;version&gt;2.1.0&lt;/version&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;logging-interceptor&lt;/artifactId&gt;</div><div class="line">			&lt;version&gt;3.1.2&lt;/version&gt;</div><div class="line">		&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>从上到下为retrofit基本框架，gson解析器，日志拦截器</p>
+<h2 id="初步实现方法（不结合spring特性）">初步实现方法（不结合spring特性）</h2><p>提炼返回格式，使用泛型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">public class BasicResult&lt;T&gt; implements Serializable &#123;</div><div class="line"></div><div class="line">	private static final long serialVersionUID = 517161603122400300L;</div><div class="line">	private boolean success = false;</div><div class="line">	private String message;</div><div class="line">	private T data;</div><div class="line"></div><div class="line">	public BasicResult(boolean success , String message)&#123;</div><div class="line">		this.success = success ;</div><div class="line">		this.message = message ;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public BasicResult(boolean success , String message, T data)&#123;</div><div class="line">		this.success = success ;</div><div class="line">		this.message = message ;</div><div class="line">		this.data = data ;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * @return the success</div><div class="line">	 */</div><div class="line">	public final boolean isSuccess() &#123;</div><div class="line">		return success;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * @param success</div><div class="line">	 *            the success to set</div><div class="line">	 */</div><div class="line">	public final void setSuccess(boolean success) &#123;</div><div class="line">		this.success = success;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * @return the message</div><div class="line">	 */</div><div class="line">	public final String getMessage() &#123;</div><div class="line">		return message;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * @param message</div><div class="line">	 *            the message to set</div><div class="line">	 */</div><div class="line">	public final void setMessage(String message) &#123;</div><div class="line">		this.message = message;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public T getData() &#123;</div><div class="line">		return data;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setData(T data) &#123;</div><div class="line">		this.data = data;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定义请求体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class Useregister &#123;</div><div class="line"></div><div class="line">    private String companyName;	//公司名称	string</div><div class="line">    private String emailAddress;    //邮箱地址	string</div><div class="line">    private String password; //登录密码;	string</div><div class="line">    private String phoneNumber;	//手机号码	string</div><div class="line">    private String verificationCode;	//验证码</div><div class="line"></div><div class="line">    ....</div></pre></td></tr></table></figure>
+<p>定义api接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public interface UserApi &#123;</div><div class="line"></div><div class="line">    @POST(&quot;/common/user/v1/register&quot;)</div><div class="line">    Call&lt;BasicResult&gt; listRepos(@Body Useregister useregister);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>构造api接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">public class ApiRetrofit &#123;</div><div class="line"></div><div class="line">    public UserApi userApi;</div><div class="line">    public static final String USER_BASE_URL = &quot;http://10.10.168.79:10100/&quot;;</div><div class="line"></div><div class="line">    public UserApi getUserApi() &#123;</div><div class="line">        return userApi;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ApiRetrofit() &#123;</div><div class="line">        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() &#123;</div><div class="line">            public void log(String s) &#123;</div><div class="line">                //打印日志</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);</div><div class="line">        OkHttpClient client = new OkHttpClient.Builder()</div><div class="line">                .addInterceptor(logInterceptor)</div><div class="line">                .build();</div><div class="line">        Retrofit retrofit_user = new Retrofit.Builder()</div><div class="line">                .baseUrl(USER_BASE_URL)</div><div class="line">                .client(client)</div><div class="line">                .addConverterFactory(GsonConverterFactory.create())</div><div class="line">                .build();</div><div class="line">        userApi = retrofit_user.create(UserApi.class);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>工厂类提供单列api</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class ApiFactory &#123;</div><div class="line">    protected static final Object monitor = new Object();</div><div class="line">    static UserApi userApi = null;</div><div class="line"></div><div class="line">    public static UserApi getUserApi() &#123;</div><div class="line">        synchronized (monitor) &#123;</div><div class="line">            if (userApi == null) &#123;</div><div class="line">                userApi = new ApiRetrofit().getUserApi();</div><div class="line">            &#125;</div><div class="line">            return userApi;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>较为通用的java实现，没有结合spring注入的特性，</p>
+<p>实际调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Useregister useregister=new Useregister();</div><div class="line">Call&lt;BaseResult&gt; res=ApiFactory.getUserApi.listRepos(useregister);</div><div class="line">Response&lt;BaseResult&gt; response = call.execute();</div><div class="line">if (!response.isSuccessful()) &#123;</div><div class="line">            throw new Exception(response.message());</div><div class="line">&#125; else &#123;</div><div class="line">            return response.body();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BaseResult里面传入实体类也是OK的，可以直接拿到解析好的实体对象，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Call&lt;ApiResult&lt;UserBean&gt;&gt; call = apiRetrofit.getCommonApi().info(userParam);</div><div class="line">        Response&lt;ApiResult&lt;UserBean&gt;&gt; response = call.execute();</div><div class="line">        if (!response.isSuccessful()) &#123;</div><div class="line">            throw new Exception(response.message());</div><div class="line">        &#125; else &#123;</div><div class="line">            return response.body();</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h2 id="结合springboot，去除工厂类，改为注入">结合springboot，去除工厂类，改为注入</h2><p>以上实现在非spring框架下也可用，但是既然用了spring，就要好好利用，spring框架下还有工厂类代码，有点说不过去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Component</div><div class="line">public class ApiRetrofit &#123;</div><div class="line"></div><div class="line">    private static final Logger log = Logger.getLogger(ApiRetrofit.class);</div><div class="line"></div><div class="line">    private CommonApi commonApi;</div><div class="line"></div><div class="line">    public CommonApi getCommonApi() &#123;</div><div class="line">        return commonApi;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private CorpApi corpApi;</div><div class="line"></div><div class="line">    public CorpApi getCorpApi()&#123;</div><div class="line">        return corpApi;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Value(&quot;$&#123;api.common&#125;&quot;)</div><div class="line">    private  String COMMON_BASE_URL ;//= &quot;http://10.10.168.79:10100/&quot;;</div><div class="line"></div><div class="line">    @Value(&quot;$&#123;api.corp&#125;&quot;)</div><div class="line">    private String CROP_BASE_URL;</div><div class="line"></div><div class="line">    @PostConstruct</div><div class="line">    public void init()&#123;</div><div class="line">        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLogger());</div><div class="line">        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);</div><div class="line"></div><div class="line">        OkHttpClient client = new OkHttpClient.Builder()</div><div class="line">                .addNetworkInterceptor(logInterceptor)</div><div class="line">                .build();</div><div class="line"></div><div class="line">        Retrofit retrofit_common = new Retrofit.Builder()</div><div class="line">                .baseUrl(COMMON_BASE_URL)</div><div class="line">                .client(client)</div><div class="line">                .addConverterFactory(GsonConverterFactory.create())</div><div class="line">                .build();</div><div class="line">        commonApi = retrofit_common.create(CommonApi.class);</div><div class="line"></div><div class="line">        Retrofit retrofit_corp = new Retrofit.Builder()</div><div class="line">                .baseUrl(CROP_BASE_URL+&quot;/&quot;)</div><div class="line">                .client(client)</div><div class="line">                .addConverterFactory(GsonConverterFactory.create())</div><div class="line">                .build();</div><div class="line">        corpApi = retrofit_corp.create(CorpApi.class);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    private class HttpLogger implements HttpLoggingInterceptor.Logger &#123;</div><div class="line">//        private StringBuilder mMessage = new StringBuilder();</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void log(String message) &#123;</div><div class="line">            log.info(message);</div><div class="line">//</div><div class="line">//            if (message.startsWith(&quot;--&gt; POST&quot;)) &#123;</div><div class="line">//                mMessage.setLength(0);</div><div class="line">//                mMessage.append(&quot;\n&quot;);</div><div class="line">//            &#125;</div><div class="line">//            // 以&#123;&#125;或者[]形式的说明是响应结果的json数据，需要进行格式化</div><div class="line">//            if ((message.startsWith(&quot;&#123;&quot;) &amp;&amp; message.endsWith(&quot;&#125;&quot;))</div><div class="line">//                    || (message.startsWith(&quot;[&quot;) &amp;&amp; message.endsWith(&quot;]&quot;))) &#123;</div><div class="line">//                message = JSONUtil.formatJson(message);</div><div class="line">//            &#125;</div><div class="line">//            mMessage.append(message.concat(&quot;\n&quot;));</div><div class="line">//            // 请求或者响应结束，打印整条日志</div><div class="line">//            if (message.startsWith(&quot;&lt;-- END HTTP&quot;)) &#123;</div><div class="line">//                log.info(mMessage.toString());</div><div class="line">//            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>@Value注入配置的baseurl的值<br>@Component 申明注入<br>@PostConstruct 在构造方法前初始化相关变量</p>
+<p>实际调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line">     * 获取用户信息</div><div class="line">     * @param phone</div><div class="line">     * @return</div><div class="line">     * @throws Exception</div><div class="line">     */</div><div class="line">    public ApiResult&lt;UserBean&gt; info(String phone) throws Exception &#123;</div><div class="line">        if (StringUtils.isEmpty(phone))</div><div class="line">            throw new Exception(&quot;手机号不能为空&quot;);</div><div class="line">        UserParam userParam = new UserParam();</div><div class="line">        userParam.setPhoneNumber(phone);</div><div class="line">        Call&lt;ApiResult&lt;UserBean&gt;&gt; call = apiRetrofit.getCommonApi().info(userParam);</div><div class="line">        Response&lt;ApiResult&lt;UserBean&gt;&gt; response = call.execute();</div><div class="line">        if (!response.isSuccessful()) &#123;</div><div class="line">            throw new Exception(response.message());</div><div class="line">        &#125; else &#123;</div><div class="line">            return response.body();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+
+                
+<p class="light-green-link-context">
+    <a href="/2017/01/24/阿里云centos配置nginx/" rel="next" title="阿里云Centos配置nginx">
+    上一篇：阿里云Centos配置nginx
+  </a>
+</p>
+
+
+
+<p class="light-green-link-context">
+    <a href="/2017/01/03/spring boot 初步整合redis/" rel="next" title="Spring boot整合redis">
+    下一篇：Spring boot整合redis
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="2017/01/22/在springboot中使用retrofit加快三方接口调用/" data-title="Spring boot整合retrofit简化三方接口调用" data-url="http://mzeht.com/2017/01/22/在springboot中使用retrofit加快三方接口调用/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'mzeht'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large light-green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect red" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse purple"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer brown darken-1 darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/2865942514" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/mzeht" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                <div class="site-visitors-container white-text">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+                    </span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>
+                        <i class="fa fa-eye"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址（测试友情链接）</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright light-green-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('light-green lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge light-green"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword light-green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword light-green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
