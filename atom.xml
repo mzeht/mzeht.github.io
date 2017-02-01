@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2017-01-23T16:52:17.000Z</updated>
+  <updated>2017-02-01T14:46:20.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -13,6 +13,251 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Centos下docker导致的升级内核]]></title>
+    <link href="http://mzeht.com/2017/02/01/2017-02-01/"/>
+    <id>http://mzeht.com/2017/02/01/2017-02-01/</id>
+    <published>2017-02-01T05:50:42.000Z</published>
+    <updated>2017-02-01T14:46:20.000Z</updated>
+    <content type="html"><![CDATA[<p>接着上一篇文章</p>
+<p>形如下面的错误出现了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker run --rm -ti ubuntu:14.04 bin/bash                                       </div><div class="line">FATA[0000] Error response from daemon: mkdir /var/lib/docker/overlay/c4a8f5e516d401534f2d994f5546f7e08639ffd675eb3573267f76d79394f172-init/merged/dev/shm: invalid argument</div></pre></td></tr></table></figure>
+<p>Centos下安装docker正常，拉取镜像正常，就在启动容器的时候报错<br><a id="more"></a></p>
+<p>一番谷歌，github</p>
+<p><a href="https://github.com/docker/docker/issues/10294" target="_blank" rel="external">https://github.com/docker/docker/issues/10294</a></p>
+<h1 id="首先检查docker_info">首先检查docker info</h1><p>如果有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">WARNING: bridge-nf-call-iptables is disabled</div><div class="line">WARNING: bridge-nf-call-ip6tables is disabled</div></pre></td></tr></table></figure>
+<p>就需要添加内核参数，具体看上一篇</p>
+<p>之后看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Fixed...</div><div class="line"></div><div class="line">from docker official site.</div><div class="line"></div><div class="line">To configure Docker to use the overlay storage driver your Docker host must be running version 3.18 of the Linux kernel (preferably newer) with the overlay kernel module loaded. OverlayFS can operate on top of most supported Linux filesystems. However, ext4 is currently recommended for use in production environments.</div><div class="line">so, update kernel from 3.10.0 to 3.18.0 + fixed the issue.</div></pre></td></tr></table></figure>
+<p>提示我们要升级Centos内核3.10.0 to 3.18.0 + </p>
+<h1 id="升级内核">升级内核</h1><h2 id="查看机器内核版本">查看机器内核版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">uname -r</div><div class="line">4.9.6-1.el7.elrepo.x86_64</div></pre></td></tr></table></figure>
+<p>这里我是升级后在写的文章，升级之前是3.10</p>
+<h2 id="查看Linux各版本内核">查看Linux各版本内核</h2><p><a href="https://www.kernel.org/" target="_blank" rel="external">网站地址</a></p>
+<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-2-1/55278371-file_1485959943374_7bc7.png" alt=""></p>
+<p>稳定版 4.9.7</p>
+<h2 id="导入key">导入key</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</div></pre></td></tr></table></figure>
+<h2 id="安装elrepo的yum源">安装elrepo的yum源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm</div></pre></td></tr></table></figure>
+<h2 id="安装内核">安装内核</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum --enablerepo=elrepo-kernel install  kernel-ml-devel kernel-ml -y</div></pre></td></tr></table></figure>
+<h2 id="查看默认启动顺序">查看默认启动顺序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">awk -F\&apos; &apos;$1==&quot;menuentry &quot; &#123;print $2&#125;&apos; /etc/grub2.cfg</div><div class="line">CentOS Linux (4.9.6-1.el7.elrepo.x86_64) 7 (Core)</div><div class="line">CentOS Linux (3.10.0-514.2.2.el7.x86_64) 7 (Core)</div><div class="line">CentOS Linux (3.10.0-327.22.2.el7.x86_64) 7 (Core)</div><div class="line">CentOS Linux (3.10.0-327.el7.x86_64) 7 (Core)</div><div class="line">CentOS Linux (0-rescue-7d26c16f128042a684ea474c9e2c240f) 7 (Core)</div></pre></td></tr></table></figure>
+<h2 id="调整启动顺序">调整启动顺序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grub2-set-default 0</div></pre></td></tr></table></figure>
+<h2 id="重新启动">重新启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">reboot</div></pre></td></tr></table></figure>
+<h2 id="验证">验证</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> uname -r</div><div class="line">4.9.6-1.el7.elrepo.x86_64</div></pre></td></tr></table></figure>
+<p>成功</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>接着上一篇文章</p>
+<p>形如下面的错误出现了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker run --rm -ti ubuntu:14.04 bin/bash                                       </div><div class="line">FATA[0000] Error response from daemon: mkdir /var/lib/docker/overlay/c4a8f5e516d401534f2d994f5546f7e08639ffd675eb3573267f76d79394f172-init/merged/dev/shm: invalid argument</div></pre></td></tr></table></figure>
+<p>Centos下安装docker正常，拉取镜像正常，就在启动容器的时候报错<br>]]>
+    
+    </summary>
+    
+      <category term="Centos" scheme="http://mzeht.com/tags/Centos/"/>
+    
+      <category term="运维" scheme="http://mzeht.com/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="docker" scheme="http://mzeht.com/categories/%E8%BF%90%E7%BB%B4/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Centos下docker部署rap]]></title>
+    <link href="http://mzeht.com/2017/02/01/Centos%E4%B8%8Bdocker%E9%83%A8%E7%BD%B2rap/"/>
+    <id>http://mzeht.com/2017/02/01/Centos下docker部署rap/</id>
+    <published>2017-02-01T05:43:42.000Z</published>
+    <updated>2017-02-01T14:28:01.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://rap.taobao.org/org/index.do" target="_blank" rel="external">rap官网</a><br><a href="https://github.com/thx/RAP/wiki/home_cn" target="_blank" rel="external">rapgithub地址</a></p>
+<p>RAP是一个GUI的WEB接口管理工具。在RAP中，您可定义接口的URL、请求&amp;响应细节格式等等。通过分析这些数据，RAP提供MOCK服务、测试服务等自动化工具。RAP同时提供大量企业级功能，帮助企业和团队高效的工作。</p>
+<p>在前后端分离的开发模式下，我们通常需要定义一份接口文档来规范接口的具体信息。如一个请求的地址、有几个参数、参数名称及类型含义等等。RAP 首先方便团队录入、查看和管理这些接口文档，并通过分析结构化的文档数据，重复利用并生成自测数据、提供自测控制台等等… 大幅度提升开发效率</p>
+<a id="more"></a>
+<p>1.<code>强大的GUI工具</code> 给力的用户体验，你将会爱上使用RAP来管理您的API文档。<br>2.<code>完善的MOCK服务</code> 文档定义好的瞬间，所有接口已经准备就绪。有了MockJS，无论您的业务模型有多复杂，它都能很好的满足。</p>
+<h1 id="安装docker">安装docker</h1><p>由于我是在阿里云上的服务器</p>
+<h2 id="采用阿里云的脚本进行安装">采用阿里云的脚本进行安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -</div></pre></td></tr></table></figure>
+<h2 id="添加内核参数">添加内核参数</h2><p>默认配置下，在 CentOS 使用 Docker 可能会碰到下面的这些警告信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">WARNING: bridge-nf-call-iptables is disabled</div><div class="line">WARNING: bridge-nf-call-ip6tables is disabled</div></pre></td></tr></table></figure>
+<p>很不巧我就遇到了</p>
+<p>添加内核配置参数以启用这些功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo tee -a /etc/sysctl.conf &lt;&lt;-EOF</div><div class="line">net.bridge.bridge-nf-call-ip6tables = 1</div><div class="line">net.bridge.bridge-nf-call-iptables = 1</div><div class="line">EOF</div></pre></td></tr></table></figure>
+<p>然后重新加载 sysctl.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo sysctl -p</div></pre></td></tr></table></figure>
+<h1 id="配置加速器">配置加速器</h1><p> 参考阿里云论坛的一篇文章<a href="https://yq.aliyun.com/articles/29941" target="_blank" rel="external">here</a></p>
+<p>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来<br>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service<br>然后再将加速器地址添加到配置文件的启动命令<br>重启Docker就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</div><div class="line">sudo sed -i &quot;s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon --registry-mirror=&lt;your accelerate address&gt;|g&quot; /etc/systemd/system/docker.service</div><div class="line">sudo systemctl daemon-reload</div><div class="line">sudo service docker restart</div></pre></td></tr></table></figure>
+<p>your accelerate address 处填入阿里云账号分配的加速器地址</p>
+<h1 id="拉取镜像">拉取镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">docker search rap</div><div class="line">NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</div><div class="line">neo4j                           Neo4j is a highly scalable, robust native ...   282       [OK]</div><div class="line">r-base                          R is a system for statistical computation ...   147       [OK]</div><div class="line">arangodb                        ArangoDB - a distributed database with a f...   78        [OK]</div><div class="line">orientdb                        OrientDB a Multi-Model Open Source NoSQL D...   46        [OK]</div><div class="line">ubuntu-debootstrap              debootstrap --variant=minbase --components...   27        [OK]</div><div class="line">rapidftr/rapidftr               UNICEF RapidFTR (Family Tracing and Reunif...   2                    [OK]</div><div class="line">rapi/psgi                       Image for running PSGI apps, comes with Ra...   2                    [OK]</div><div class="line">huangfushun/rap                 ali rap web ui docker file                      1                    [OK]</div><div class="line">lihuansse/rap                   RAP 接口管理工具                                      1</div><div class="line">masonliu/rap                    Docker Image for RAP https://github.com/th...   1</div><div class="line">rapidoid                        Rapidoid is a high-performance HTTP server...   1         [OK]</div><div class="line">ukgovdatascience/rap-docker     Environment for reproducible analytical pi...   0                    [OK]</div><div class="line">rapidreg/rapidreg                                                               0                    [OK]</div><div class="line">raphiz/raphael.li                                                               0                    [OK]</div><div class="line">rapi/rapidapp                   Standard RapidApp base image, from officia...   0                    [OK]</div><div class="line">team19awshack/rapidprowebhook   RapidProWebhook                                 0                    [OK]</div><div class="line">tp81/rapidstorm                 RapidSTORM docker image                         0                    [OK]</div><div class="line">qdsang/rap                      docker rap alpine                               0                    [OK]</div><div class="line">raphsfeir/raphaelsfeir          Portfolio and blog for me                       0                    [OK]</div><div class="line">rapidpro/rapidpro-base          Base Python 2.7 + geolibs Docker image for...   0                    [OK]</div><div class="line">tonimichel/rapidflask           A boilerplate flask application for easy s...   0                    [OK]</div><div class="line">andreweskeclarke/rapidftr                                                       0                    [OK]</div><div class="line">raphiz/mathe.raphael.li                                                         0                    [OK]</div><div class="line">raphaelgroup/magi                                                               0                    [OK]</div><div class="line">divio/rapidpro                  RapidPro in docker.                             0                    [OK]</div></pre></td></tr></table></figure>
+<p>这里选择lihuansse/rap</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull lihuansse/rap</div></pre></td></tr></table></figure>
+<p>创建并启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name rap -p 8080:8080 -d lihuansse/rap:latest</div></pre></td></tr></table></figure>
+<p>然而就在即将完成这最后一步的时候</p>
+<p>形如下面的错误出现了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker run --rm -ti ubuntu:14.04 bin/bash                                       </div><div class="line">FATA[0000] Error response from daemon: mkdir /var/lib/docker/overlay/c4a8f5e516d401534f2d994f5546f7e08639ffd675eb3573267f76d79394f172-init/merged/dev/shm: invalid argument</div></pre></td></tr></table></figure>
+<p>请看下回分解</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://rap.taobao.org/org/index.do">rap官网</a><br><a href="https://github.com/thx/RAP/wiki/home_cn">rapgithub地址</a></p>
+<p>RAP是一个GUI的WEB接口管理工具。在RAP中，您可定义接口的URL、请求&amp;响应细节格式等等。通过分析这些数据，RAP提供MOCK服务、测试服务等自动化工具。RAP同时提供大量企业级功能，帮助企业和团队高效的工作。</p>
+<p>在前后端分离的开发模式下，我们通常需要定义一份接口文档来规范接口的具体信息。如一个请求的地址、有几个参数、参数名称及类型含义等等。RAP 首先方便团队录入、查看和管理这些接口文档，并通过分析结构化的文档数据，重复利用并生成自测数据、提供自测控制台等等… 大幅度提升开发效率</p>]]>
+    
+    </summary>
+    
+      <category term="Centos" scheme="http://mzeht.com/tags/Centos/"/>
+    
+      <category term="运维" scheme="http://mzeht.com/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="docker" scheme="http://mzeht.com/categories/%E8%BF%90%E7%BB%B4/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[docker相关概念]]></title>
+    <link href="http://mzeht.com/2017/02/01/dokcer%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/"/>
+    <id>http://mzeht.com/2017/02/01/dokcer相关概念/</id>
+    <published>2017-02-01T03:43:42.000Z</published>
+    <updated>2017-02-01T03:53:58.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Docker_容器">Docker 容器</h2><p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</p>
+<p>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。因此容器可以拥有自己的 root 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。也因为这种隔离的特性，很多人初学 Docker 时常常会把容器和虚拟机搞混。</p>
+<a id="more"></a>
+<p>前面讲过镜像使用的是分层存储，容器也是如此。每一个容器运行时，是以镜像为基础层，在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为容器存储层。</p>
+<p>容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。</p>
+<p>按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。</p>
+<p>数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此，使用数据卷后，容器可以随意删除、重新 run，数据却不会丢失。</p>
+<h2 id="Docker_镜像">Docker 镜像</h2><p>我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:14.04 就包含了完整的一套 Ubuntu 14.04 最小系统的 root 文件系统。</p>
+<p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
+<h3 id="分层存储">分层存储</h3><p>因为镜像包含操作系统完整的 root 文件系统，其体积往往是庞大的，因此在 Docker 设计时，就充分利用 Union FS 的技术，将其设计为分层存储的架构。所以严格来说，镜像并非是像一个 ISO 那样的打包文件，镜像只是一个虚拟的概念，其实际体现并非由一个文件组成，而是由一组文件系统组成，或者说，由多层文件系统联合组成。</p>
+<p>镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。比如，删除前一层文件的操作，实际不是真的删除前一层的文件，而是仅在当前层标记为该文件已删除。在最终容器运行的时候，虽然不会看到这个文件，但是实际上该文件会一直跟随镜像。因此，在构建镜像的时候，需要额外小心，每一层尽量只包含该层需要添加的东西，任何额外的东西应该在该层构建结束前清理掉。</p>
+<p>分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为基础层，然后进一步添加新的层，以定制自己所需的内容，构建新的镜像。</p>
+<p>关于镜像构建，将会在后续相关章节中做进一步的讲解。</p>
+<h2 id="Docker_Registry">Docker Registry</h2><p>镜像构建完成后，可以很容易的在当前宿主上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，<a href="https://docs.docker.com/registry/" target="_blank" rel="external">Docker Registry</a> 就是这样的服务。</p>
+<p>一个 <strong>Docker Registry</strong> 中可以包含多个<strong>仓库</strong>（Repository）；每个仓库可以包含多个<strong>标签</strong>（Tag）；每个标签对应一个镜像。</p>
+<p>一般而言，一个仓库包含的是同一个软件的不同版本的镜像，而标签则用于对应于软件的的不同版本。我们可以通过 <code>&lt;仓库名&gt;:&lt;标签&gt;</code> 的格式来指定具体是哪个版本的镜像。如果不给出标签，将以 <code>latest</code> 作为默认标签。</p>
+<p>以 <a href="https://hub.docker.com/_/ubuntu/" target="_blank" rel="external">Ubuntu 镜像</a> 为例，<code>ubuntu</code> 是仓库的名字，其内包含有不同的版本标签，如，<code>14.04</code>, <code>16.04</code>。我们可以通过 <code>ubuntu:14.04</code>，或者 <code>ubuntu:16.04</code> 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 <code>ubuntu</code>，那将视为 <code>ubuntu:latest</code>。</p>
+<p>仓库名经常以 <em>两段式路径</em> 形式出现，比如 <code>jwilder/nginx-proxy</code>，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。</p>
+<h3 id="Docker_Registry_公开服务">Docker Registry 公开服务</h3><p>Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。一般这类公开服务允许用户免费上传、下载公开的镜像，并可能提供收费服务供用户管理私有镜像。</p>
+<p>最常使用的 Registry 公开服务是官方的 <a href="https://hub.docker.com/" target="_blank" rel="external">Docker Hub</a>，这也是默认的 Registry，并拥有大量的高质量的官方镜像。除此以外，还有 <a href="https://coreos.com/" target="_blank" rel="external">CoreOS</a> 的 <a href="https://quay.io/repository/" target="_blank" rel="external">Quay.io</a>，CoreOS 相关的镜像存储在这里；Google 的 <a href="https://cloud.google.com/container-registry/" target="_blank" rel="external">Google Container Registry</a>，<a href="http://kubernetes.io/" target="_blank" rel="external">Kubernetes</a> 的镜像使用的就是这个服务。</p>
+<p>由于某些原因，在国内访问这些服务可能会比较慢。国内的一些云服务商提供了针对 Docker Hub 的镜像服务（Registry Mirror），这些镜像服务被称为<strong>加速器</strong>。常见的有 <a href="https://cr.console.aliyun.com/#/accelerator" target="_blank" rel="external">阿里云加速器</a>、<a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="external">DaoCloud 加速器</a>、<a href="http://docs.alauda.cn/feature/accelerator.html" target="_blank" rel="external">灵雀云加速器</a>等。使用加速器会直接从国内的地址下载 Docker Hub 的镜像，比直接从官方网站下载速度会提高很多。在后面的章节中会有进一步如何配置加速器的讲解。</p>
+<p>国内也有一些云服务商提供类似于 Docker Hub 的公开服务。比如 <a href="https://hub.tenxcloud.com/" target="_blank" rel="external">时速云镜像仓库</a>、<a href="https://c.163.com/hub#/m/library/" target="_blank" rel="external">网易云镜像服务</a>、<a href="https://hub.daocloud.io/" target="_blank" rel="external">DaoCloud 镜像市场</a>、<a href="https://cr.console.aliyun.com" target="_blank" rel="external">阿里云镜像库</a>等。</p>
+<h3 id="私有_Docker_Registry">私有 Docker Registry</h3><p>除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 <a href="https://hub.docker.com/_/registry/" target="_blank" rel="external">Docker Registry 镜像</a>，可以直接使用做为私有 Registry 服务。在后续的相关章节中，会有进一步的搭建私有 Registry 服务的讲解。</p>
+<p>开源的 Docker Registry 镜像只提供了 <a href="https://docs.docker.com/registry/spec/api/" target="_blank" rel="external">Docker Registry API</a> 的服务端实现，足以支持 <code>docker</code> 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。在官方的商业化版本 <a href="https://docs.docker.com/datacenter/dtr/2.0/" target="_blank" rel="external">Docker Trusted Registry</a> 中，提供了这些高级功能。</p>
+<p>除了官方的 Docker Registry 外，还有第三方软件实现了 Docker Registry API，甚至提供了用户界面以及一些高级功能。比如，<a href="http://vmware.github.io/harbor/index_cn.html" target="_blank" rel="external">VMWare Harbor</a> 和 <a href="https://www.sonatype.com/docker" target="_blank" rel="external">Sonatype Nexus</a>。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Docker_容器">Docker 容器</h2><p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</p>
+<p>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。因此容器可以拥有自己的 root 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。也因为这种隔离的特性，很多人初学 Docker 时常常会把容器和虚拟机搞混。</p>]]>
+    
+    </summary>
+    
+      <category term="docker" scheme="http://mzeht.com/tags/docker/"/>
+    
+      <category term="运维" scheme="http://mzeht.com/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="docker" scheme="http://mzeht.com/categories/%E8%BF%90%E7%BB%B4/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[mac下docker的应用]]></title>
+    <link href="http://mzeht.com/2017/01/28/Mac%E4%B8%8Bdocker%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://mzeht.com/2017/01/28/Mac下docker的应用/</id>
+    <published>2017-01-28T01:17:42.000Z</published>
+    <updated>2017-02-01T14:08:12.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="mac安装docker">mac安装docker</h1><p><a href="https://download.docker.com/mac/stable/Docker.dmg" target="_blank" rel="external">下载地址</a><br>一路next</p>
+<p>最新版<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-1-28/31352377-file_1485609643545_57d2.png" alt=""></p>
+<p>安装好以上安装包后，打开kitematic,提示下载此软件，<br>下载好后拖入application</p>
+<p> kitematic是docker收购的gui客户端<br> <a id="more"></a><br> ktematic启动方式既可以是监控已运行的docker，也可以是另启动一个虚拟机，如图<br> <img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-2-1/67359041-file_1485919722478_98b.png" alt=""><br> 此处建议前者（启动速度快，ktematic默认就是前者启动方式，后者还要virtualbox）</p>
+<p> <img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-2-1/41048694-file_1485919676611_9d85.png" alt=""></p>
+<p>上图左侧就是docker客户端启动后，存在的容器及相关信息，可以运行，重启，查看dockerhub上的文档，有容器内日志，web项目右侧还有预览画面，非常方便，但是相关命令还是要熟悉，gui为辅助，大部分服务器上的操作还是要靠手敲命令</p>
+<h2 id="配置加速器">配置加速器</h2><p><a href="https://cr.console.aliyun.com/#/accelerator" target="_blank" rel="external">阿里云加速器获取地址</a><br>注册一个阿里云账号，访问以上地址，查看加速器，就可以看到分配的加速器地址</p>
+<p><a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="external">DaoCloud加速器</a><br>注册并获得加速器地址</p>
+<p>到客户端的Daemon选项卡配置获取到的地址<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-2-1/58855725-file_1485919966984_1093e.png" alt=""><br>preferens-Damon-Basic<br>Registry mirrors</p>
+<h2 id="命令测试">命令测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">➜  ~ docker --version</div><div class="line">Docker version 1.13.0, build 49bf474</div><div class="line">➜  ~ docker--compose --version</div><div class="line">zsh: command not found: docker--compose</div><div class="line">➜  ~ docker-compose --version</div><div class="line">docker-compose version 1.10.0, build 4bd6f1a</div><div class="line">➜  ~ docker-machine --version</div><div class="line">docker-machine version 0.9.0, build 15fd4c7</div><div class="line">➜  ~</div></pre></td></tr></table></figure>
+<h1 id="获取镜像">获取镜像</h1><p>docker search </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">➜  ~ docker search rap</div><div class="line">NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</div><div class="line">neo4j                           Neo4j is a highly scalable, robust native ...   282       [OK]</div><div class="line">r-base                          R is a system for statistical computation ...   147       [OK]</div><div class="line">arangodb                        ArangoDB - a distributed database with a f...   78        [OK]</div><div class="line">orientdb                        OrientDB a Multi-Model Open Source NoSQL D...   46        [OK]</div><div class="line">ubuntu-debootstrap              debootstrap --variant=minbase --components...   27        [OK]</div><div class="line">rapidftr/rapidftr               UNICEF RapidFTR (Family Tracing and Reunif...   2                    [OK]</div><div class="line">rapi/psgi                       Image for running PSGI apps, comes with Ra...   2                    [OK]</div><div class="line">masonliu/rap                    Docker Image for RAP https://github.com/th...   1</div><div class="line">huangfushun/rap                 ali rap web ui docker file                      1                    [OK]</div><div class="line">lihuansse/rap                   RAP 接口管理工具                                      1</div><div class="line">rapidoid                        Rapidoid is a high-performance HTTP server...   1         [OK]</div><div class="line">ukgovdatascience/rap-docker     Environment for reproducible analytical pi...   0                    [OK]</div><div class="line">rapidreg/rapidreg                                                               0                    [OK]</div><div class="line">raphiz/raphael.li                                                               0                    [OK]</div><div class="line">rapi/rapidapp                   Standard RapidApp base image, from officia...   0                    [OK]</div><div class="line">team19awshack/rapidprowebhook   RapidProWebhook                                 0                    [OK]</div><div class="line">tp81/rapidstorm                 RapidSTORM docker image                         0                    [OK]</div><div class="line">qdsang/rap                      docker rap alpine                               0                    [OK]</div><div class="line">raphsfeir/raphaelsfeir          Portfolio and blog for me                       0                    [OK]</div><div class="line">rapidpro/rapidpro-base          Base Python 2.7 + geolibs Docker image for...   0                    [OK]</div><div class="line">tonimichel/rapidflask           A boilerplate flask application for easy s...   0                    [OK]</div><div class="line">raphaelgroup/magi                                                               0                    [OK]</div><div class="line">andreweskeclarke/rapidftr                                                       0                    [OK]</div><div class="line">raphiz/mathe.raphael.li                                                         0                    [OK]</div><div class="line">divio/rapidpro                  RapidPro in docker.                             0                    [OK]</div></pre></td></tr></table></figure>
+<p>GUI</p>
+<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-2-1/45031596-file_1485920300648_448b.png" alt=""></p>
+<p>我有时gui客户端网络错误，修改偏好设置-网络-dns-8.8.8.8后正常</p>
+<h2 id="拉取镜像">拉取镜像</h2><p> docker pull 【镜像名称】</p>
+<h2 id="列出镜像">列出镜像</h2><p>docker images</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">➜  ~ docker images</div><div class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">mzeht/webv2         latest              8e684c1fb7d3        30 hours ago        182 MB</div><div class="line">nginx               v2                  8e684c1fb7d3        30 hours ago        182 MB</div><div class="line">nginx               latest              cc1b61406712        7 days ago          182 MB</div><div class="line">ubuntu              14.04               b969ab9f929b        11 days ago         188 MB</div><div class="line">hello-world         latest              48b5124b2768        2 weeks ago         1.84 kB</div><div class="line">centos              latest              67591570dd29        6 weeks ago         192 MB</div><div class="line">lihuansse/rap       latest              3ded84cdf4f5        3 months ago        1.14 GB</div></pre></td></tr></table></figure>
+<h2 id="删除本地镜像">删除本地镜像</h2><p>如果要删除本地的镜像，可以使用 <code>docker rmi</code> 命令，其格式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</div></pre></td></tr></table></figure>
+<p><em>注意 <code>docker rm</code> 命令是删除容器，不要混淆。</em></p>
+<h3 id="用_ID、镜像名、摘要删除镜像">用 ID、镜像名、摘要删除镜像</h3><p>其中，<code>&lt;镜像&gt;</code> 可以是 <code>镜像短 ID</code>、<code>镜像长 ID</code>、<code>镜像名</code> 或者 <code>镜像摘要</code>。</p>
+<p>比如我们有这么一些镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ docker images</div><div class="line">REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">centos                      latest              0584b3d2cf6d        3 weeks ago         196.5 MB</div><div class="line">redis                       alpine              501ad78535f0        3 weeks ago         21.03 MB</div><div class="line">docker                      latest              cf693ec9b5c7        3 weeks ago         105.1 MB</div><div class="line">nginx                       latest              e43d811ce2f4        5 weeks ago         181.5 MB</div></pre></td></tr></table></figure>
+<p>我们可以用镜像的完整 ID，也称为 <code>长 ID</code>，来删除镜像。使用脚本的时候可能会用长 ID，但是人工输入就太累了，所以更多的时候是用 <code>短 ID</code> 来删除镜像。<code>docker images</code> 默认列出的就已经是短 ID 了，一般取前3个字符以上，只要足够区分于别的镜像就可以了。</p>
+<p>比如这里，如果我们要删除 <code>redis:alpine</code> 镜像，可以执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ docker rmi 501</div><div class="line">Untagged: redis:alpine</div><div class="line">Untagged: redis@sha256:f1ed3708f538b537eb9c2a7dd50dc90a706f7debd7e1196c9264edeea521a86d</div><div class="line">Deleted: sha256:501ad78535f015d88872e13fa87a828425117e3d28075d0c117932b05bf189b7</div><div class="line">Deleted: sha256:96167737e29ca8e9d74982ef2a0dda76ed7b430da55e321c071f0dbff8c2899b</div><div class="line">Deleted: sha256:32770d1dcf835f192cafd6b9263b7b597a1778a403a109e2cc2ee866f74adf23</div><div class="line">Deleted: sha256:127227698ad74a5846ff5153475e03439d96d4b1c7f2a449c7a826ef74a2d2fa</div><div class="line">Deleted: sha256:1333ecc582459bac54e1437335c0816bc17634e131ea0cc48daa27d32c75eab3</div><div class="line">Deleted: sha256:4<span class="built_in">fc</span>455b921edf9c4aea207c51ab39b10b06540c8b4825ba57b3feed1668fa7c7</div></pre></td></tr></table></figure>
+<p>我们也可以用<code>镜像名</code>，也就是 <code>&lt;仓库名&gt;:&lt;标签&gt;</code>，来删除镜像。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ docker rmi centos</div><div class="line">Untagged: centos:latest</div><div class="line">Untagged: centos@sha256:b2f9d1c0ff5f87a4743104d099a3d561002ac500db1b9bfa02a783a46e0d366c</div><div class="line">Deleted: sha256:0584b3d2cf6d235ee310cf14b54667d889887b838d3f3d3033acd70<span class="built_in">fc</span>3c48b8a</div><div class="line">Deleted: sha256:97ca462ad9eeae25941546209454496e1d66749d53dfa2ee32bf1faabd239d38</div></pre></td></tr></table></figure>
+<p>当然，更精确的是使用 <code>镜像摘要</code> 删除镜像。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ docker images --digests</div><div class="line">REPOSITORY                  TAG                 DIGEST                                                                    IMAGE ID            CREATED             SIZE</div><div class="line">node                        slim                sha256:b4f0e0bdeb578043c1ea6862f0d40cc4afe32a4a582f3be235a3b164422be228   6e0c4c8e3913        3 weeks ago         214 MB</div><div class="line"></div><div class="line">$ docker rmi node@sha256:b4f0e0bdeb578043c1ea6862f0d40cc4afe32a4a582f3be235a3b164422be228</div><div class="line">Untagged: node@sha256:b4f0e0bdeb578043c1ea6862f0d40cc4afe32a4a582f3be235a3b164422be228</div></pre></td></tr></table></figure>
+<h3 id="Untagged_和_Deleted">Untagged 和 Deleted</h3><p>如果观察上面这几个命令的运行输出信息的话，你会注意到删除行为分为两类，一类是 <code>Untagged</code>，另一类是 <code>Deleted</code>。我们之前介绍过，镜像的唯一标识是其 ID 和摘要，而一个镜像可以有多个标签。</p>
+<p>因此当我们使用上面命令删除镜像的时候，实际上是在要求删除某个标签的镜像。所以首先需要做的是将满足我们要求的所有镜像标签都取消，这就是我们看到的 <code>Untagged</code> 的信息。因为一个镜像可以对应多个标签，因此当我们删除了所指定的标签后，可能还有别的标签指向了这个镜像，如果是这种情况，那么 <code>Delete</code> 行为就不会发生。所以并非所有的 <code>docker rmi</code> 都会产生删除镜像的行为，有可能仅仅是取消了某个标签而已。</p>
+<p>当该镜像所有的标签都被取消了，该镜像很可能会失去了存在的意义，因此会触发删除行为。镜像是多层存储结构，因此在删除的时候也是从上层向基础层方向依次进行判断删除。镜像的多层结构让镜像复用变动非常容易，因此很有可能某个其它镜像正依赖于当前镜像的某一层。这种情况，依旧不会触发删除该层的行为。直到没有任何层依赖当前层时，才会真实的删除当前层。这就是为什么，有时候会奇怪，为什么明明没有别的标签指向这个镜像，但是它还是存在的原因，也是为什么有时候会发现所删除的层数和自己 <code>docker pull</code> 看到的层数不一样的源。</p>
+<p>除了镜像依赖以外，还需要注意的是容器对镜像的依赖。如果有用这个镜像启动的容器存在（即使容器没有运行），那么同样不可以删除这个镜像。之前讲过，容器是以镜像为基础，再加一层容器存储层，组成这样的多层存储结构去运行的。因此该镜像如果被这个容器所依赖的，那么删除必然会导致故障。如果这些容器是不需要的，应该先将它们删除，然后再来删除镜像。</p>
+<h3 id="用_docker_images_命令来配合">用 docker images 命令来配合</h3><p>像其它可以承接多个实体的命令一样，可以使用 <code>docker images -q</code> 来配合使用 <code>docker rmi</code>，这样可以成批的删除希望删除的镜像。比如之前我们介绍过的，删除虚悬镜像的指令是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker rmi $(docker images -q <span class="_">-f</span> dangling=<span class="literal">true</span>)</div></pre></td></tr></table></figure>
+<p>我们在“镜像列表”章节介绍过很多过滤镜像列表的方式都可以拿过来使用。</p>
+<p>比如，我们需要删除所有仓库名为 <code>redis</code> 的镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker rmi $(docker images -q redis)</div></pre></td></tr></table></figure>
+<p>或者删除所有在 <code>mongo:3.2</code> 之前的镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker rmi $(docker images -q <span class="_">-f</span> before=mongo:3.2)</div></pre></td></tr></table></figure>
+<p>充分利用你的想象力和 Linux 命令行的强大，可以完成很多非常赞的功能。</p>
+<h2 id="容器">容器</h2><h2 id="启动容器">启动容器</h2><p>启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（stopped）的容器重新启动。</p>
+<p>因为 Docker 的容器实在太轻量级了，很多时候用户都是随时删除和新创建容器。</p>
+<h3 id="新建并启动">新建并启动</h3><p>所需要的命令主要为 <code>docker run</code>。</p>
+<p>例如，下面的命令输出一个 “Hello World”，之后终止容器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo docker run ubuntu:14.04 /bin/echo &apos;Hello world&apos;</div><div class="line">Hello world</div></pre></td></tr></table></figure></p>
+<p>这跟在本地直接执行 <code>/bin/echo &#39;hello world&#39;</code> 几乎感觉不出任何区别。</p>
+<p>下面的命令则启动一个 bash 终端，允许用户进行交互。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo docker run -t -i ubuntu:14.04 /bin/bash</div><div class="line">root@af8bae53bdd3:/#</div></pre></td></tr></table></figure></p>
+<p>其中，<code>-t</code> 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， <code>-i</code> 则让容器的标准输入保持打开。</p>
+<p>在交互模式下，用户可以通过所创建的终端来输入命令，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">root@af8bae53bdd3:/# pwd</div><div class="line">/</div><div class="line">root@af8bae53bdd3:/# ls</div><div class="line">bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var</div></pre></td></tr></table></figure>
+<p>当利用 <code>docker run</code> 来创建容器时，Docker 在后台运行的标准操作包括：</p>
+<ul>
+<li>检查本地是否存在指定的镜像，不存在就从公有仓库下载</li>
+<li>利用镜像创建并启动一个容器</li>
+<li>分配一个文件系统，并在只读的镜像层外面挂载一层可读写层</li>
+<li>从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去</li>
+<li>从地址池配置一个 ip 地址给容器</li>
+<li>执行用户指定的应用程序</li>
+<li>执行完毕后容器被终止</li>
+</ul>
+<h3 id="启动已终止容器">启动已终止容器</h3><p>可以利用 <code>docker start</code> 命令，直接将一个已经终止的容器启动运行。</p>
+<p>容器的核心为所执行的应用程序，所需要的资源都是应用程序运行所必需的。除此之外，并没有其它的资源。可以在伪终端中利用 <code>ps</code> 或 <code>top</code> 来查看进程信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">root@ba267838cc1b:/# ps</div><div class="line">  PID TTY          TIME CMD</div><div class="line">    1 ?        00:00:00 bash</div><div class="line">   11 ?        00:00:00 ps</div></pre></td></tr></table></figure>
+<p>可见，容器中仅运行了指定的 bash 应用。这种特点使得 Docker 对资源的利用率极高，是货真价实的轻量级虚拟化。</p>
+<h2 id="后台(background)运行">后台(background)运行</h2><p>更多的时候，需要让 Docker在后台运行而不是直接把执行命令的结果输出在当前宿主机下。此时，可以通过添加 <code>-d</code> 参数来实现。</p>
+<p>下面举两个例子来说明一下。</p>
+<p>如果不使用 <code>-d</code> 参数运行容器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo docker run ubuntu:14.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;</div><div class="line">hello world</div><div class="line">hello world</div><div class="line">hello world</div><div class="line">hello world</div></pre></td></tr></table></figure>
+<p>容器会把输出的结果(STDOUT)打印到宿主机上面</p>
+<p>如果使用了 <code>-d</code> 参数运行容器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo docker run -d ubuntu:14.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;</div><div class="line">77b2dc01fe0f3f1265df143181e7b9af5e05279a884f4776ee75350ea9d8017a</div></pre></td></tr></table></figure>
+<p>此时容器会在后台运行并不会把输出的结果(STDOUT)打印到宿主机上面(输出结果可以用docker logs 查看)。</p>
+<p><strong>注：</strong> 容器是否会长久运行，是和docker run指定的命令有关，和 <code>-d</code> 参数无关。</p>
+<p>使用 <code>-d</code> 参数启动后会返回一个唯一的 id，也可以通过 <code>docker ps</code> 命令来查看容器信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo docker ps</div><div class="line">CONTAINER ID  IMAGE         COMMAND               CREATED        STATUS       PORTS NAMES</div><div class="line">77b2dc01fe0f  ubuntu:14.04  /bin/sh -c &apos;while tr  2 minutes ago  Up 1 minute        agitated_wright</div></pre></td></tr></table></figure>
+<p>要获取容器的输出信息，可以通过 <code>docker logs</code> 命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo docker logs [container ID or NAMES]</div><div class="line">hello world</div><div class="line">hello world</div><div class="line">hello world</div><div class="line">. . .</div></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="mac安装docker">mac安装docker</h1><p><a href="https://download.docker.com/mac/stable/Docker.dmg">下载地址</a><br>一路next</p>
+<p>最新版<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-1-28/31352377-file_1485609643545_57d2.png" alt=""></p>
+<p>安装好以上安装包后，打开kitematic,提示下载此软件，<br>下载好后拖入application</p>
+<p> kitematic是docker收购的gui客户端<br>]]>
+    
+    </summary>
+    
+      <category term="docker" scheme="http://mzeht.com/tags/docker/"/>
+    
+      <category term="运维" scheme="http://mzeht.com/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="java" scheme="http://mzeht.com/categories/%E8%BF%90%E7%BB%B4/java/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[阿里云Centos配置nginx]]></title>
@@ -320,6 +565,41 @@
   </entry>
   
   <entry>
+    <title><![CDATA[Android Scroll分析]]></title>
+    <link href="http://mzeht.com/2016/10/12/Android%20Scroll%E5%88%86%E6%9E%90/"/>
+    <id>http://mzeht.com/2016/10/12/Android Scroll分析/</id>
+    <published>2016-10-12T14:20:33.000Z</published>
+    <updated>2017-01-15T08:01:28.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
+<a id="more"></a>
+<h2 id="Android坐标系">Android坐标系</h2><p>Android坐标系以屏幕左上角为原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-22/68901668.jpg" alt=""></p>
+<h2 id="视图坐标系">视图坐标系</h2><p>子视图以父视图左上角为坐标原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/13206722.jpg" alt=""><br>触控事件中，通过getX(),getY()获得的坐标就是视图中的坐标系</p>
+<h2 id="触控事件">触控事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//单点触摸按下动作</div><div class="line">   public static final int ACTION_DOWN             = 0;</div><div class="line">   </div><div class="line">   //单点触摸离开动作</div><div class="line">   public static final int ACTION_UP               = 1;</div><div class="line">   </div><div class="line">  //触摸点移动动作</div><div class="line">   public static final int ACTION_MOVE             = 2;</div><div class="line">   </div><div class="line">  //触摸动作取消</div><div class="line">   public static final int ACTION_CANCEL           = 3;</div><div class="line">   </div><div class="line">  //触摸动作超出边界</div><div class="line">   public static final int ACTION_OUTSIDE          = 4;</div><div class="line"></div><div class="line">   //多点触摸按下动作</div><div class="line">   public static final int ACTION_POINTER_DOWN     = 5;</div><div class="line">   </div><div class="line">   //多点离开动作</div><div class="line">   public static final int ACTION_POINTER_UP       = 6;</div><div class="line"></div><div class="line">   public static final int ACTION_HOVER_MOVE       = 7;</div><div class="line"></div><div class="line">   </div><div class="line">   public static final int ACTION_SCROLL           = 8;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_ENTER      = 9;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_EXIT       = 10;</div><div class="line"></div><div class="line"></div><div class="line">   public static final int ACTION_BUTTON_PRESS   = 11;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_BUTTON_RELEASE  = 12;</div></pre></td></tr></table></figure>
+<p>一般在View的onTouchEvent方法中对event.getAction()进行筛选控制，（不涉及多点触控的情况下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Override</div><div class="line">public boolean onTouchEvent(MotionEvent event) &#123;</div><div class="line">    int x = (int) event.getX();</div><div class="line">    int y = (int) event.getY();</div><div class="line">    switch (event.getAction()) &#123;</div><div class="line">        case MotionEvent.ACTION_DOWN:</div><div class="line">            lastX = (int) event.getX();</div><div class="line">            lastY = (int) event.getY();</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_MOVE:</div><div class="line">            int offsetX = x - lastX;</div><div class="line">            int offsetY = y - lastY;</div><div class="line">            ((View) getParent()).scrollBy(-offsetX, -offsetY);</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_UP:</div><div class="line">            // 手指离开时，执行滑动过程</div><div class="line">            View viewGroup = ((View) getParent());</div><div class="line">            mScroller.startScroll(</div><div class="line">                    viewGroup.getScrollX(),</div><div class="line">                    viewGroup.getScrollY(),</div><div class="line">                    -viewGroup.getScrollX(),</div><div class="line">                    -viewGroup.getScrollY());</div><div class="line">            invalidate();</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>系统提供了很多获取坐标值，相对距离的坐标值的方法，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/82371833.jpg" alt=""></p>
+<p>大概分为两类：</p>
+<hr>
+<p>View提供的获取坐标的方法<br>getTop(): 获取到View自身顶边到其父布局顶部的距离<br>getLeft() : 获取到View自身左边到其父布局左边的距离<br>getRight():<br>getBottom();</p>
+<hr>
+<p>MotionEvent提供的方法<br>getX():    获取点击事件距离控件左边的距离，即视图坐标<br>getY():获取点击事件距离控件顶部的距离，即视图坐标<br>getRawX():获取点击事件距离整个屏幕左边的距离，即绝对坐标<br>getRawY():….</p>
+<h1 id="实现滑动的七种方法">实现滑动的七种方法</h1><h2 id="layout方法">layout方法</h2>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
+    
+      <category term="Scroll" scheme="http://mzeht.com/tags/Scroll/"/>
+    
+      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/AndroidHero/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Mac下的整套翻墙方案]]></title>
     <link href="http://mzeht.com/2016/10/12/12.01mac%E4%B8%8B%E7%9A%84%E7%BF%BB%E5%A2%99%E6%96%B9%E6%A1%88/"/>
     <id>http://mzeht.com/2016/10/12/12.01mac下的翻墙方案/</id>
@@ -370,41 +650,6 @@
       <category term="工具" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/"/>
     
       <category term="其他" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/%E5%85%B6%E4%BB%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Android Scroll分析]]></title>
-    <link href="http://mzeht.com/2016/10/12/Android%20Scroll%E5%88%86%E6%9E%90/"/>
-    <id>http://mzeht.com/2016/10/12/Android Scroll分析/</id>
-    <published>2016-10-12T14:20:33.000Z</published>
-    <updated>2017-01-15T08:01:28.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
-<a id="more"></a>
-<h2 id="Android坐标系">Android坐标系</h2><p>Android坐标系以屏幕左上角为原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-22/68901668.jpg" alt=""></p>
-<h2 id="视图坐标系">视图坐标系</h2><p>子视图以父视图左上角为坐标原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/13206722.jpg" alt=""><br>触控事件中，通过getX(),getY()获得的坐标就是视图中的坐标系</p>
-<h2 id="触控事件">触控事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//单点触摸按下动作</div><div class="line">   public static final int ACTION_DOWN             = 0;</div><div class="line">   </div><div class="line">   //单点触摸离开动作</div><div class="line">   public static final int ACTION_UP               = 1;</div><div class="line">   </div><div class="line">  //触摸点移动动作</div><div class="line">   public static final int ACTION_MOVE             = 2;</div><div class="line">   </div><div class="line">  //触摸动作取消</div><div class="line">   public static final int ACTION_CANCEL           = 3;</div><div class="line">   </div><div class="line">  //触摸动作超出边界</div><div class="line">   public static final int ACTION_OUTSIDE          = 4;</div><div class="line"></div><div class="line">   //多点触摸按下动作</div><div class="line">   public static final int ACTION_POINTER_DOWN     = 5;</div><div class="line">   </div><div class="line">   //多点离开动作</div><div class="line">   public static final int ACTION_POINTER_UP       = 6;</div><div class="line"></div><div class="line">   public static final int ACTION_HOVER_MOVE       = 7;</div><div class="line"></div><div class="line">   </div><div class="line">   public static final int ACTION_SCROLL           = 8;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_ENTER      = 9;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_EXIT       = 10;</div><div class="line"></div><div class="line"></div><div class="line">   public static final int ACTION_BUTTON_PRESS   = 11;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_BUTTON_RELEASE  = 12;</div></pre></td></tr></table></figure>
-<p>一般在View的onTouchEvent方法中对event.getAction()进行筛选控制，（不涉及多点触控的情况下）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Override</div><div class="line">public boolean onTouchEvent(MotionEvent event) &#123;</div><div class="line">    int x = (int) event.getX();</div><div class="line">    int y = (int) event.getY();</div><div class="line">    switch (event.getAction()) &#123;</div><div class="line">        case MotionEvent.ACTION_DOWN:</div><div class="line">            lastX = (int) event.getX();</div><div class="line">            lastY = (int) event.getY();</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_MOVE:</div><div class="line">            int offsetX = x - lastX;</div><div class="line">            int offsetY = y - lastY;</div><div class="line">            ((View) getParent()).scrollBy(-offsetX, -offsetY);</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_UP:</div><div class="line">            // 手指离开时，执行滑动过程</div><div class="line">            View viewGroup = ((View) getParent());</div><div class="line">            mScroller.startScroll(</div><div class="line">                    viewGroup.getScrollX(),</div><div class="line">                    viewGroup.getScrollY(),</div><div class="line">                    -viewGroup.getScrollX(),</div><div class="line">                    -viewGroup.getScrollY());</div><div class="line">            invalidate();</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>系统提供了很多获取坐标值，相对距离的坐标值的方法，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/82371833.jpg" alt=""></p>
-<p>大概分为两类：</p>
-<hr>
-<p>View提供的获取坐标的方法<br>getTop(): 获取到View自身顶边到其父布局顶部的距离<br>getLeft() : 获取到View自身左边到其父布局左边的距离<br>getRight():<br>getBottom();</p>
-<hr>
-<p>MotionEvent提供的方法<br>getX():    获取点击事件距离控件左边的距离，即视图坐标<br>getY():获取点击事件距离控件顶部的距离，即视图坐标<br>getRawX():获取点击事件距离整个屏幕左边的距离，即绝对坐标<br>getRawY():….</p>
-<h1 id="实现滑动的七种方法">实现滑动的七种方法</h1><h2 id="layout方法">layout方法</h2>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="滑动效果的产生">滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>]]>
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
-    
-      <category term="Scroll" scheme="http://mzeht.com/tags/Scroll/"/>
-    
-      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="AndroidHero" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/AndroidHero/"/>
     
   </entry>
   
@@ -825,450 +1070,6 @@
       <category term="综合" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/"/>
     
       <category term="其他" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/%E5%85%B6%E4%BB%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Synchronize files from ftpserver]]></title>
-    <link href="http://mzeht.com/2016/06/30/Synchronize-files-from-ftpserver/"/>
-    <id>http://mzeht.com/2016/06/30/Synchronize-files-from-ftpserver/</id>
-    <published>2016-06-30T13:10:57.000Z</published>
-    <updated>2016-11-27T10:21:53.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="项目功能">项目功能</h1><ol>
-<li>软件为运行于安卓平台的客户端软件。</li>
-<li>客户端软件运行于一台19寸屏的安卓媒体机上。</li>
-<li>该客户端软件有播放广告视频的功能，广告视频从FTP服务器下载，本地的视频文件每隔三分钟与FTP服务器同步一次，保持本地视频和服务器视频的同步。</li>
-<li>FTP服务器的下载目录要求可配置，第一次运行该软件时弹出配置窗口，要求输入服务器IP地址，用户名和密码，以及服务器视频所在的目录路径。配置完成后，以后运行不再需要重新配置。</li>
-<li>媒体机主板通过串口外接了一块STM32单片机，STM32单片机会将采集到的PM2.5指数，温湿度信息上传，媒体板通过串口接收，并将数据显示在屏幕的最上方。通信协议见“媒体板和单片机通信协议.docx”文档。</li>
-<li>开机播放一段欢迎视频，视频打包在Android程序内部</li>
-</ol>
-<a id="more"></a>
-<h1 id="功能分析">功能分析</h1><p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-6-30/89255535.jpg" alt=""></p>
-<p>工程部分结构图</p>
-<p>LaunchActivity:播放欢迎视频</p>
-<p>LoginActivity：登录FTP服务器并且下载所有的视频文件</p>
-<p>DisplayActivity:播放服务器上最新的文件，并且每个三分钟检查视频的更新和废除，若有更新，则下载下来，不在服务器目录的文件删除掉，否则存储空间占用不断增加</p>
-<blockquote>
-<ul>
-<li>由于设备的网络问题和服务器等造成下载中断，不完整等，必须要有重试下载和检查下载完整的机制</li>
-<li>每播放完一组视频，若有更新，刷新播放队列，若无更新，循环播放该组视频</li>
-<li>服务器上的文件信息要实时保存到数据库，以供对比</li>
-<li>需要下载服务器指定目录下的一类文件</li>
-</ul>
-</blockquote>
-<h1 id="依赖包">依赖包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> compile fileTree(include: [&apos;*.jar&apos;], dir: &apos;libs&apos;)</div><div class="line">    compile &apos;com.android.support:recyclerview-v7:23.4.0&apos;</div><div class="line">    compile &apos;com.android.support:leanback-v17:23.4.0&apos;</div><div class="line">//    compile files(&apos;libs/commons-net-3.0.1.jar&apos;)</div><div class="line">    compile &apos;com.jakewharton:butterknife:7.0.0&apos;</div><div class="line">    compile &apos;org.xutils:xutils:3.3.26&apos;</div><div class="line">    compile files(&apos;libs/commons-net-3.3.jar&apos;)</div></pre></td></tr></table></figure>
-<h2 id="v17_Leanback_Library">v17 Leanback Library</h2><p><a href="https://developer.android.com/topic/libraries/support-library/features.html#v17-leanback" target="_blank" rel="external">https://developer.android.com/topic/libraries/support-library/features.html#v17-leanback</a><br>内置了对TV设备的支持</p>
-<h2 id="org-xutils:xutils:3-3-26">org.xutils:xutils:3.3.26</h2><p>开源框架 这里主要是用到数据库模块</p>
-<h2 id="commons-net-3-3-jar">commons-net-3.3.jar</h2><p>apache出品的与FTP服务器交互的jar包</p>
-<h1 id="技术实现">技术实现</h1><h2 id="数据库的实时更新">数据库的实时更新</h2><p>创建:在LoginActivity</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">    public static DbManager.DaoConfig daoConfig = new DbManager.DaoConfig()</div><div class="line">            .setDbName(&quot;addisplay.db&quot;)</div><div class="line">            .setTableCreateListener(new DbManager.TableCreateListener() &#123;</div><div class="line">                @Override</div><div class="line">                public void onTableCreated(DbManager db, TableEntity&lt;?&gt; table) &#123;</div><div class="line">                    Log.i(&quot;mzeht&quot;, &quot;onTableCreated&lt;&lt;&quot; + table.getName());</div><div class="line">                &#125;</div><div class="line">            &#125;)</div><div class="line">//            .setAllowTransaction(true)</div><div class="line">//            .setDbDir(new File(&quot;/mnt/sdcard/&quot;))</div><div class="line">//            .setDbVersion(1)</div><div class="line">            .setDbUpgradeListener(new DbManager.DbUpgradeListener() &#123;</div><div class="line">                @Override</div><div class="line">                public void onUpgrade(DbManager db, int oldVersion, int newVersion) &#123;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">            &#125;)</div><div class="line">            .setDbOpenListener(new DbManager.DbOpenListener() &#123;</div><div class="line">                @Override</div><div class="line">                public void onDbOpened(DbManager db) &#123;</div><div class="line">                    db.getDatabase().enableWriteAheadLogging();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">    DbManager db = x.getDb(daoConfig);</div></pre></td></tr></table></figure>
-<p>我们需要一个NewFile</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">@Table(name=&quot;mp4file_info&quot;)</div><div class="line">public class NewFile &#123;</div><div class="line">    @Column(name=&quot;id&quot;,isId = true,autoGen = true,property = &quot;&quot;)</div><div class="line">    private int id;</div><div class="line">    @Column(name = &quot;file_Name&quot;)</div><div class="line">    private String fileName;</div><div class="line">    @Column(name = &quot;file_Size&quot;)</div><div class="line">    private long fileSize;</div><div class="line">    @Column(name = &quot;file_Path&quot;)</div><div class="line">    private String filePath;</div><div class="line"></div><div class="line">    public NewFile(String fileName, long fileSize, String filePath) &#123;</div><div class="line">        this.fileName = fileName;</div><div class="line">        this.fileSize = fileSize;</div><div class="line">        this.filePath = filePath;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public NewFile() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public int getId() &#123;</div><div class="line">        return id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setId(int id) &#123;</div><div class="line">        this.id = id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public String getFileName() &#123;</div><div class="line">        return fileName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setFileName(String fileName) &#123;</div><div class="line">        this.fileName = fileName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public long getFileSize() &#123;</div><div class="line">        return fileSize;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setFileSize(long fileSize) &#123;</div><div class="line">        this.fileSize = fileSize;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public String getFilePath() &#123;</div><div class="line">        return filePath;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setFilePath(String filePath) &#123;</div><div class="line">        this.filePath = filePath;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String toString() &#123;</div><div class="line">        return &quot;NewFile&#123;&quot; +</div><div class="line">                &quot;fileName=&apos;&quot; + fileName + &apos;\&apos;&apos; +</div><div class="line">                &quot;, fileSize=&quot; + fileSize +&apos;\&apos;&apos; +</div><div class="line">                &quot;, filePath=&quot; + filePath +</div><div class="line">                &apos;&#125;&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在下载工具类中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NewFile newFile = new NewFile(file.getName(), file.getSize(), LocalSavePath + fileName);</div><div class="line">                           newFiles.add(newFile);</div><div class="line">                       &#125;</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">           //退出登陆FTP，关闭ftpCLient的连接</div><div class="line">           ftpClient.logout();</div><div class="line">           ftpClient.disconnect();</div><div class="line"></div><div class="line"></div><div class="line">           DbManager db = x.getDb(LoginActivity.daoConfig);</div><div class="line">           db.delete(NewFile.class);</div><div class="line">           db.save(newFiles);</div><div class="line">           Log.i(&quot;数据库保存实时服务器文件信息&quot;, newFiles.toString());</div></pre></td></tr></table></figure>
-<h2 id="视频的循环播放">视频的循环播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"> public void loadView(String path) &#123;</div><div class="line"></div><div class="line">        Uri uri = Uri.parse(path);</div><div class="line">        final String fileinfo = path + &quot;&quot;;</div><div class="line">        mVideoView.setVideoURI(uri);</div><div class="line">        mVideoView.start();</div><div class="line"></div><div class="line">        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() &#123;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onPrepared(MediaPlayer mp) &#123;</div><div class="line"></div><div class="line">                mp.start();// 播放</div><div class="line">                Log.i(&quot;开始播放&quot;, &quot;服务器的第&quot; + count + &quot;个文件&gt;&gt;&gt;&gt;&gt;&gt;&quot; + playFile.getName());</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() &#123;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onCompletion(MediaPlayer mp) &#123;</div><div class="line">                android.util.Log.i(&quot;播放完成&quot;, &quot;服务器的第&quot; + count + &quot;个文件&gt;&gt;&gt;&gt;&gt;&gt;&quot; + playFile.getName());</div><div class="line">                count++;</div><div class="line">                if (count &lt; displaySize) &#123;</div><div class="line">                &#125; else &#123;</div><div class="line">                    count = 0;</div><div class="line">                    playendFlag = true;</div><div class="line">                &#125;</div><div class="line">                Log.i(&quot;&quot;, &quot;count:&quot; + count + &quot;dispalysize:&quot; + displaySize);</div><div class="line">                playFile = mp4Files.get(count);</div><div class="line">                Uri uri = Uri.parse(playFile.getAbsolutePath());</div><div class="line">//                Log.i(&quot;setOnCompletionListener&quot;,playFile.getAbsolutePath());</div><div class="line">                mVideoView.setVideoURI(uri);</div><div class="line">                mVideoView.start();// 播放</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>主要是对mVideoView的两个监听</p>
-<h2 id="从数据库刷新播放列表">从数据库刷新播放列表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">private void initData() &#123;</div><div class="line"></div><div class="line">        boolean sdCardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);</div><div class="line">        String pathdir;</div><div class="line">        if (!sdCardExist) &#123;</div><div class="line">            pathdir = getFilesDir().getAbsolutePath();//新建一级主目录</div><div class="line">        &#125; else &#123;</div><div class="line">            pathdir = FileUtils.CacheDir[3];//新建一级主目录</div><div class="line">        &#125;</div><div class="line">        DbManager db = x.getDb(LoginActivity.daoConfig);</div><div class="line">        String sql = &quot;select id,file_Name,file_Size,file_Path from mp4file_info &quot;;</div><div class="line">        List&lt;DbModel&gt; dbModelAll = null;</div><div class="line">        try &#123;</div><div class="line">            dbModelAll = db.findDbModelAll(new SqlInfo(sql));</div><div class="line">        &#125; catch (DbException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        List&lt;String&gt; pathList = new ArrayList&lt;String&gt;();</div><div class="line">        for (DbModel dbmodel : dbModelAll) &#123;</div><div class="line">            String id = dbmodel.getString(&quot;id&quot;);</div><div class="line">            String file_Nanme = dbmodel.getString(&quot;file_Name&quot;);</div><div class="line">            String file_path = dbmodel.getString(&quot;file_Path&quot;);</div><div class="line">            long file_Size = dbmodel.getLong(&quot;file_Size&quot;);</div><div class="line">            pathList.add(file_path);</div><div class="line">            Log.i(&quot;需要播放:&quot;, &quot; file_Nanme&lt;&lt;&quot; + file_Nanme + &quot; file_Size&lt;&lt;&quot; + file_Size + &quot; file_path&lt;&lt;&quot; + file_path);</div><div class="line">        &#125;</div><div class="line">        mp4Files.clear();</div><div class="line">        for (String path : pathList) &#123;</div><div class="line">            File file = new File(path);</div><div class="line">            mp4Files.add(file);</div><div class="line">        &#125;</div><div class="line">        DeletediscardedFile();</div><div class="line">//        File file = new File(pathdir);</div><div class="line">//        mp4Files = file.listFiles(getFileExtensionFilter(&quot;.mp4&quot;));</div><div class="line">        displaySize = mp4Files.size();</div><div class="line">        initFlag = true;</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h2 id="删除无用的文件">删除无用的文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">private void DeletediscardedFile() &#123;</div><div class="line"></div><div class="line">        String loaclpath = getVideoFilePathStr();</div><div class="line">        File localfiles = new File(loaclpath);</div><div class="line">        File[] localfile = localfiles.listFiles();</div><div class="line">        boolean flag = false;</div><div class="line">        for (int i = 0; i &lt; localfile.length; i++) &#123;</div><div class="line">            flag = false;</div><div class="line">            for (int j = 0; j &lt; mp4Files.size(); j++) &#123;</div><div class="line">                //如果文件名称相同则不删除</div><div class="line">                String name1 = localfile[i].getAbsolutePath();</div><div class="line">                String name2 = mp4Files.get(j).getAbsolutePath();</div><div class="line">                if (name1.equals(name2)) &#123;</div><div class="line">                    flag = true;</div><div class="line">                &#125; else &#123;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            if (flag == false) &#123;</div><div class="line">                File deletefile = new File(localfile[i].getAbsolutePath());</div><div class="line">                deletefile.delete();</div><div class="line">                Log.i(&quot;deletefile:&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&quot;, localfile[i].getName());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h1 id="Thread和Hanler实现循环线程">Thread和Hanler实现循环线程</h1><p>在LoginActivity中有network和download两个线程，一个连接，一个下载，连接失败则会重试连接，成功则开启下载，下载成功则跳转展示页面，失败则重新连接</p>
-<p>在DisplayActivity中有三个线程，network，download，initdata，多出一个刷新播放队列的线程</p>
-<p>都是通过Therad和Hanler实现，循环线程，确保下载成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line">Runnable initDataTask = new Runnable() &#123;</div><div class="line">        @Override</div><div class="line">        public void run() &#123;</div><div class="line">            initData();</div><div class="line">            Message msg = new Message();</div><div class="line">            Bundle data = new Bundle();</div><div class="line">            data.putBoolean(&quot;value&quot;, initFlag);</div><div class="line">            msg.setData(data);</div><div class="line">            ihandler.sendMessage(msg);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    Handler ihandler = new Handler() &#123;</div><div class="line">        @Override</div><div class="line">        public void handleMessage(Message msg) &#123;</div><div class="line">            super.handleMessage(msg);</div><div class="line">            Bundle data = msg.getData();</div><div class="line">            flag = data.getBoolean(&quot;value&quot;);</div><div class="line">            if (flag &amp;&amp; playendFlag) &#123;</div><div class="line">                playFile = mp4Files.get(count);</div><div class="line">                playendFlag = false;</div><div class="line">                loadView(playFile.getAbsolutePath());</div><div class="line">            &#125;</div><div class="line">            // TODO</div><div class="line">            // UI界面的更新等相关操作</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line"></div><div class="line">    Runnable networkTask = new Runnable() &#123;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void run() &#123;</div><div class="line">            // TODO</div><div class="line">            // 在这里进行 http request.网络请求相关操作</div><div class="line">            ftpUtils = FTPUtils.getInstance();</div><div class="line">            flag = ftpUtils.initFTPSetting(ip, Integer.valueOf(port), name, password);</div><div class="line">            Message msg = new Message();</div><div class="line">            Bundle data = new Bundle();</div><div class="line">            data.putBoolean(&quot;value&quot;, flag);</div><div class="line">            msg.setData(data);</div><div class="line">            chandler.sendMessage(msg);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    Handler chandler = new Handler() &#123;</div><div class="line">        @Override</div><div class="line">        public void handleMessage(Message msg) &#123;</div><div class="line">            super.handleMessage(msg);</div><div class="line">            Bundle data = msg.getData();</div><div class="line">            flag = data.getBoolean(&quot;value&quot;);</div><div class="line">            if (flag) &#123;</div><div class="line">                new Thread(downloadTask).start();</div><div class="line">            &#125;</div><div class="line">            // TODO</div><div class="line">            // UI界面的更新等相关操作</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    Runnable downloadTask = new Runnable() &#123;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void run() &#123;</div><div class="line">            // TODO</div><div class="line">            // 在这里进行 http request.网络请求相关操作</div><div class="line">            String savePath = getVideoFilePathStr();</div><div class="line">                downlodFlag = ftpUtils.downLoadTypeFile(dir, savePath, &quot;mp4&quot;);</div><div class="line"></div><div class="line">            Message msg = new Message();</div><div class="line">            Bundle data = new Bundle();</div><div class="line">            data.putBoolean(&quot;value&quot;, downlodFlag);</div><div class="line">            msg.setData(data);</div><div class="line">            dhandler.sendMessage(msg);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    Handler dhandler = new Handler() &#123;</div><div class="line">        @Override</div><div class="line">        public void handleMessage(Message msg) &#123;</div><div class="line">            super.handleMessage(msg);</div><div class="line">            Bundle data = msg.getData();</div><div class="line">            flag = data.getBoolean(&quot;value&quot;);</div><div class="line">            if (flag) &#123;</div><div class="line">                new Thread(initDataTask).run();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line"></div><div class="line">    private void checkUpdateVideo() &#123;</div><div class="line"></div><div class="line">//        Intent intent= new Intent(this, UpdateService.class);</div><div class="line">//        startService(intent);</div><div class="line">        mHandler = new Handler();</div><div class="line"></div><div class="line">        mHandler.post(new Runnable() &#123;</div><div class="line">            @Override</div><div class="line">            public void run() &#123;</div><div class="line">                new Thread(networkTask).start();</div><div class="line">                mHandler.postDelayed(this, Constants.checkViedoTime);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="项目功能">项目功能</h1><ol>
-<li>软件为运行于安卓平台的客户端软件。</li>
-<li>客户端软件运行于一台19寸屏的安卓媒体机上。</li>
-<li>该客户端软件有播放广告视频的功能，广告视频从FTP服务器下载，本地的视频文件每隔三分钟与FTP服务器同步一次，保持本地视频和服务器视频的同步。</li>
-<li>FTP服务器的下载目录要求可配置，第一次运行该软件时弹出配置窗口，要求输入服务器IP地址，用户名和密码，以及服务器视频所在的目录路径。配置完成后，以后运行不再需要重新配置。</li>
-<li>媒体机主板通过串口外接了一块STM32单片机，STM32单片机会将采集到的PM2.5指数，温湿度信息上传，媒体板通过串口接收，并将数据显示在屏幕的最上方。通信协议见“媒体板和单片机通信协议.docx”文档。</li>
-<li>开机播放一段欢迎视频，视频打包在Android程序内部</li>
-</ol>]]>
-    
-    </summary>
-    
-      <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
-    
-      <category term="FTP" scheme="http://mzeht.com/tags/FTP/"/>
-    
-      <category term="线程" scheme="http://mzeht.com/tags/%E7%BA%BF%E7%A8%8B/"/>
-    
-      <category term="同步文件" scheme="http://mzeht.com/tags/%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6/"/>
-    
-      <category term="综合" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="项目" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/%E9%A1%B9%E7%9B%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[企业征信移动客户端竞品分析]]></title>
-    <link href="http://mzeht.com/2016/04/13/%E4%BC%81%E4%B8%9A%E5%BE%81%E4%BF%A1%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AB%9E%E4%BA%89%E5%93%81%E5%88%86%E6%9E%90/"/>
-    <id>http://mzeht.com/2016/04/13/企业征信客户端竞争品分析/</id>
-    <published>2016-04-13T09:12:31.000Z</published>
-    <updated>2016-11-27T10:28:52.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="企加">企加</h1><h2 id="图例">图例</h2><p><img src="http://7xsxyu.com2.z0.glb.clouddn.com/gif/jiaohuqjiahome.gif" alt=""></p>
-<h2 id="布局">布局</h2><p>1.首页是传统的tab 和view的切换模式，中间的按钮“企业查询”重点突出<br>2，进入app第一个模块是企业头条，分为推荐和我的关注，推荐是所有企业的新闻，我的关注是关注的企业相关头条。</p>
-<h2 id="颜色">颜色</h2><p>以蓝白黑灰为主，白色背景，蓝色主题</p>
-<h2 id="交互细节">交互细节</h2><p>下拉刷新自定义的”企“字设计的较好，周围边框有loadding效果，输出处理结果会以动态添加试图的形式通知客户，点击进入webview在工具栏的下方有progressbar指示进度。</p>
-<h2 id="小结">小结</h2><p>刷新的交互和中间按钮的强调设计</p>
-<h1 id="企查查">企查查</h1><h2 id="图例-1">图例</h2><p><img src="http://7xsxyu.com2.z0.glb.clouddn.com/gif/jiaohuqcchome.gif" alt=""></p>
-<h2 id="布局-1">布局</h2><p>1.侧滑式首页设计，没有下侧的切换按钮<br>2，系统栏颜色配合工具栏<br>2，从上往下依次是搜索区域，功能引导区域，热搜区域，关注区域，新闻区域</p>
-<h2 id="颜色-1">颜色</h2><p>以红色为主题，白色背景，图标颜色很多</p>
-<h2 id="交互细节-1">交互细节</h2><p>搜索区域下整体滑动，保持搜索区域始终可见，新闻区域不触发下拉刷新，点击刷新的方式</p>
-<h2 id="小结-1">小结</h2><p>系统状态栏的设置整体感较强</p>
-<p><a href="https://www.jianguoyun.com/p/DftAlPkQpN36BRjD1BQ" target="_blank" rel="external">Excel分析文档下载</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="企加">企加</h1><h2 id="图例">图例</h2><p><img src="http://7xsxyu.com2.z0.glb.clouddn.com/gif/jiaohuqjiahome.gif" alt=""></p>
-<h2 id="布局">布局<]]>
-    </summary>
-    
-      <category term="交互设计" scheme="http://mzeht.com/tags/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="文档" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/"/>
-    
-      <category term="其他" scheme="http://mzeht.com/categories/%E6%96%87%E6%A1%A3/%E5%85%B6%E4%BB%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[MongoDB]]></title>
-    <link href="http://mzeht.com/2016/03/22/MongoDB/"/>
-    <id>http://mzeht.com/2016/03/22/MongoDB/</id>
-    <published>2016-03-22T12:55:47.000Z</published>
-    <updated>2016-11-27T10:22:50.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="简单介绍">简单介绍</h1><h2 id="简介">简介</h2><p>MongoDB是一个基于分布式文件存储的数据库，由C++语言编写，旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
-<p>MongoDB是一个高性能，开源，无模式的文档型数据库，官方给自己的定义是Key-value存储(高性能和高扩展)和传统RDBMS(丰富的查询和功能)之间的一座桥梁</p>
-<a id="more"></a>
-<h2 id="Document和BSON">Document和BSON</h2><p>MongoDB中保存的数据格式为BSON，如：。<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/bson.jpg" alt=""></p>
-<p>MongoDB中数据的基本单元称为文档(Document)，它是MongoDB的核心概念，由多个键极其关联的值有序的放置在一起组成，数据库中它对应于关系型数据库的行。</p>
-<p>数据在MongoDB中以BSON（Binary-JSON）文档的格式存储在磁盘上。</p>
-<p>BSON（Binary Serialized Document Format）是一种类json的一种二进制形式的存储格式，简称Binary JSON，BSON和JSON一样，支持内嵌的文档对象和数组对象，但是BSON有JSON没有的一些数据类型，如Date和BinData类型。</p>
-<p>BSON的优点是灵活性高，但它的缺点是空间利用率不是很理想，BSON有三个特点：轻量性、可遍历性、高效性。</p>
-<h1 id="文档的增删查改">文档的增删查改</h1><h2 id="简单插入文档">简单插入文档</h2><p>在数据库中，数据插入是最基本的操作，在MongoDB使用db.collection.insert(document)语句来插入文档，如下图：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/insert1.png" alt=""></p>
-<p>document是文档数据，collection是存放文档数据的集合。</p>
-<p>例如：所有用户的信息存放在users集合中，每个用户的信息为一个user文档，插入数据:</p>
-<p>db.users.insert(user);<br>如果collection存在，document会添加到collection目录下， 如果collection不存在，数据库会先创建collection，然后再保存document。</p>
-<p>练习一下：把自己的姓名(name)和年龄(age)保存到person集合中！<br>如果想要查看已插入的person文档，可以使用：db.person.find()查看当前库中person集合里的数据。</p>
-<p>如果想要查看当前数据库中的集合列表，可以使用：show collections。</p>
-<p>db.person.insert({name:’阿牛’, age:28});</p>
-<h2 id="批量插入文档">批量插入文档</h2><p>insert语句不但可以插入单个文档，还可以一次性插入多个文档。</p>
-<p>插入多个文档时，insert命令的参数为一个数组，数组元素为BSON格式的文档。</p>
-<p>多个文档可以放在一个数组内，一次插入多条数据，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.users.insert([&#123;name:&quot;tommy&quot;&#125;,&#123;name:&quot;xiaoming&quot;&#125;])</div></pre></td></tr></table></figure>
-<p>文档批量插入非常方便，但是使用批量插入时也有一些问题需要注意，因为BSON格式的限制，一次插入的数据量不能超过16M，在一个insert命令中插入多条数据时，MongoDB不保证完全成功或完全失败。</p>
-<p>使用insert命令将以下数据一次性插入person集合中。</p>
-<p>文／Te_Lee（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">http://www.jianshu.com/p/1e402922ee32/</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th style="text-align:center">age</th>
-<th style="text-align:center">status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>mary</td>
-<td style="text-align:center">21</td>
-<td style="text-align:center">A</td>
-</tr>
-<tr>
-<td>Lucy</td>
-<td style="text-align:center">89</td>
-<td style="text-align:center">A</td>
-</tr>
-<tr>
-<td>Jacky</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">A</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">db.person.insert([</div><div class="line"> &#123;name:&quot;Mary&quot;,  age:21, status:&quot;A&quot;&#125;,</div><div class="line"> &#123;name:&quot;Lucy&quot;,  age:89, status:&quot;A&quot;&#125;,</div><div class="line"> &#123;name:&quot;Jacky&quot;, age:30, status:&quot;A&quot;&#125; </div><div class="line">]);</div></pre></td></tr></table></figure>
-<h2 id="查询文档">查询文档</h2><p>在MongoDB中，查询指向特定的文档集合，查询设定条件，指明MongoDB需要返回的文档；查询也可以包含一个投影，指定返回的字段。</p>
-<p>如下图，在查询过程指定了一个查询条件和一个排序修饰。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="简单介绍">简单介绍</h1><h2 id="简介">简介</h2><p>MongoDB是一个基于分布式文件存储的数据库，由C++语言编写，旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
-<p>MongoDB是一个高性能，开源，无模式的文档型数据库，官方给自己的定义是Key-value存储(高性能和高扩展)和传统RDBMS(丰富的查询和功能)之间的一座桥梁</p>]]>
-    
-    </summary>
-    
-      <category term="MongoDb" scheme="http://mzeht.com/tags/MongoDb/"/>
-    
-      <category term="数据库" scheme="http://mzeht.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="MongoDb" scheme="http://mzeht.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[nodejs + mongodb实现简单购物网站]]></title>
-    <link href="http://mzeht.com/2016/03/21/nodejs-mongodb%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E8%B4%AD%E7%89%A9%E7%BD%91%E7%AB%99/"/>
-    <id>http://mzeht.com/2016/03/21/nodejs-mongodb实现简单购物网站/</id>
-    <published>2016-03-21T14:53:59.000Z</published>
-    <updated>2016-11-27T10:23:21.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="需求与设计">需求与设计</h1><h2 id="功能介绍">功能介绍</h2><ol>
-<li><p>用户可以完成注册、登录然后登录后对商品的浏览。</p>
-</li>
-<li><p>登录之后，用户可以对相关商品进行选购并添加到购物车。</p>
-</li>
-<li><p>用户可以对购物车里面的商品进行增加、减少、删除操作。</p>
-</li>
-<li><p>用户可对购物车商品进行结算操作。</p>
-</li>
-</ol>
-<a id="more"></a>
-<h2 id="技术选型">技术选型</h2><p>本项目涉及使用到NodeJS、Express框架、MongoDB数据库、Mongoose对象模型库，详细介绍如下：</p>
-<p>NodeJS：Node.js采用Google Chrome浏览器的V8引擎，一个后端的Javascript运行环境，提供很多系统级的API，如文件操作、网络编程等。</p>
-<p>MongoDB：MongoDB是一个基于分布式文件存储的一个高性能，开源，无模式的文档型数据库，数据以BSON文档的格式存储在磁盘上。</p>
-<p>Express：一个简洁、灵活的基于Node.js的Web应用开发框架, 支持Ejs、jade等多种模板，并且提供一系列强大的功能，比如：模板解析、静态文件服务、中间件、路由控制等等。</p>
-<p>Mongoose：一个针对MongoDB操作的对象模型库，封装了MongoDB对文档的的一些增删改查等常用方法。</p>
-<h2 id="结构划分">结构划分</h2><p>项目主要分为以下几大模块：注册模块，登录模块，商品模块、购物车模块、结算模块。</p>
-<ol>
-<li><p>用户注册模块：填写用户名、密码、确认密码后，实现成功注册，然后进行登录。</p>
-</li>
-<li><p>用户登录模块：填写已注册的用户名称，填写正确的密码，进入商品展示页面。</p>
-</li>
-<li><p>商品模块：用户选择相关产品加入购物车。</p>
-</li>
-<li><p>购物车模块：对相关商品进行增加、减少、删除操作。</p>
-</li>
-<li><p>结算模块：对购物车内已选择商品进行结算。</p>
-</li>
-</ol>
-<p>模块结构如下图所示：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/module.jpg" alt="image"></p>
-<h2 id="流程设计">流程设计</h2><p>此流程图显示用户可以进行登录和注册操作，如果用户已经注册，则可以直接登录，若未注册则必须先注册成功后才能进行登录，登录成功后可以进入商品页浏览商品，也可以选择相关商品并可加入购物车，在购物车页面内可以对购物车商品进行相关操作，最后结选择相关商品进行结算。</p>
-<p>其流程如下图所示：</p>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/process.jpg" alt=""></p>
-<h1 id="数据库设计">数据库设计</h1><h2 id="数据库介绍">数据库介绍</h2><p>数据库的使用呢，我们这里选择了MongoDB。</p>
-<p>MongoDB的简单介绍如下：</p>
-<p>MongoDB是一个开源的NoSQL数据库，相比MySQL那样的关系型数据库，它更显得轻巧、灵活， 非常适合在数据规模很大、事务性不强的场合下使用。同时它也是一个对象数据库，没有表、行等概念，也没有固定的模式和结构，所有的数据以文档的形式存储，数据格式就是JSON。</p>
-<p>MongoDB —— 是一个对象数据库，没有表、行等概念，也没有固定的模式和结构，所有的数据以Document(以下简称文档)的形式存储(Document，就是一个关联数组式的对象，它的内部由属性组成，一个属性对应的值可能是一个数、字符串、日期、数组，甚至是一个嵌套的文档。)</p>
-<p>我们一共要创建三个集合，分别是user(用户)集合、commodity(商品)集合、cart(购物车)集合，后面我们会一一介绍。</p>
-<h2 id="user集合属性值展示">user集合属性值展示</h2><p>关于user集合，我们设计的属性有name(用户名)、password(密码)， 如下所示：</p>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/c_user.jpg" alt=""></p>
-<h2 id="commodity集合属性值展示">commodity集合属性值展示</h2><p>关于commodity集合，我们设计的属性有name(商品名称)、price(商品价格)、imgSrc(商品展示图片路径)， 如下所示：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/c_commodity.jpg" alt=""></p>
-<h2 id="carts集合属性值展示">carts集合属性值展示</h2><p>关于cart集合，我们设计的属性有uId(用户ID)、cId(商品ID)、cName(商品名称)、cPrice(商品价格)、cImgSrc(商品展示图片路径)、cQuantity(商品数量)、cStatus(商品结算状态，未结算为false,已结算为true)， 如下所示：<br>![](<a href="http://7xqtsx.com1.z0.glb.clouddn.com/c_cart.jpg" target="_blank" rel="external">http://7xqtsx.com1.z0.glb.clouddn.com/c_cart.jpg</a></p>
-<h1 id="详细设计">详细设计</h1><h2 id="注册模块功能设计介绍">注册模块功能设计介绍</h2><p>功能：本模块主要用于新用户注册，用户通过表单提供用户名和密码信息，系统根据用户提供的注册信息对用户进行具体操作。</p>
-<p>输入操作：用户名、密码、确认密码。</p>
-<p>对应处理：</p>
-<ol>
-<li>输入注册信息：在页面提供的表单处输入用户的用户名和密码信息，点击“注册”按钮提交表单数据信息。已注册用户，可点击“登录”按钮，进入登录页面。</li>
-</ol>
-<p>(2) 用户注册身份验证：连接数据库，以输入的“用户名”数据为查询条件来查看输入用户名是否已存在，如果用户名未注册，则提示注册成功并转到登录页进行登录，如果用户已注册，则给出用户已存在提示并重新注册。</p>
-<h2 id="注册界面">注册界面</h2><p>用户注册界面草图如下：</p>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/Register.jpg" alt=""></p>
-<h2 id="登录模块设计与实现">登录模块设计与实现</h2><p>功能：本模块主要用于对用户身份进行鉴别。用户通过表单提供用户名和密码信息，系统根据用户提供的登录信息对用户进行查询鉴别。 如果身份合法，则用户可进入商品页面。</p>
-<p>输入操作：用户名、密码。</p>
-<p>对应处理：</p>
-<ol>
-<li><p>输入用户的登录信息：在页面提供的表单处输入用户的用户名和密码信息，点击“登录”按钮提交表单数据信息。 也可点击“注册”按钮，注册新用户。</p>
-</li>
-<li><p>用户身份进行验证：连接数据库，打开user集合，检验用户登录信息。以输入的“用户名”数据为查询条件来查看用户是否存在，如果存在，继续检验其输入密码是否正确，密码和用户名都正确，则进入商品展示页面；如果用户名不存在或密码不正确，则给出相应的提示。</p>
-</li>
-</ol>
-<h2 id="登录界面草图">登录界面草图</h2><p>用户登录界面草图如下：</p>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/Login.jpg" alt=""></p>
-<h2 id="商品页面介绍">商品页面介绍</h2><p>商品页呢，我们主要要来展示商品，用户登录成功之后将会跳入商品页，可对所有商品进行查看， 每个商品信息的内容包括：商品名称、商品图片、商品价格，用户可浏览也可将其加入购物车。</p>
-<p>页面草图如下所示：</p>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/Commodity.jpg" alt=""></p>
-<h2 id="商品页面介绍-1">商品页面介绍</h2><p>关于购物车页面，主要展示用户已购买的商品，包括商品的信息、价格、数量，当然用户可以对其中商品进行增加、减少、删除操作，最后，用户可选择对其中商品进行结算，选择结算后，会提示相应的付款金额。</p>
-<p>页面草图如下所示：</p>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/Cart.jpg" alt=""></p>
-<h1 id="实现注册">实现注册</h1><h2 id="简单启动">简单启动</h2><p>首先呢，我们先新建一个项目工程目录，然后在目录下创建启动文件app.js，开始我们的第一步。</p>
-<p>这里我们会用到Express框架来实现相关功能，所以，需要先安装它，具体安装方法这里就不在做介绍了。</p>
-<p>在启动文件添加如下内容，来测试Express框架是否引用成功。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div><div class="line">app.get(&apos;/&apos;, function (req, res) &#123;  </div><div class="line">   res.send(&apos;Hello World!&apos;);</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">app.listen(80);</div></pre></td></tr></table></figure>
-<p>浏览器查看结果，如收到响应信息则表明我们项目的第一步已经成功搞定。</p>
-<h2 id="创建目录">创建目录</h2><p>项目已经启动成功，下面我们开始创建相关目录，用于存储不同的文件。</p>
-<p>说明：右侧栏”文件管理”中可添加相应目录和文件。</p>
-<ol>
-<li><p>public目录：存放静态文件。</p>
-</li>
-<li><p>routes目录：存放路由文件。</p>
-</li>
-<li><p>views目录： 存放页面文件。</p>
-</li>
-<li><p>common目录：存放公共文件。</p>
-</li>
-<li><p>public目录(可不选)，新建javascripts、stylesheets、images三个目录用以存储js、css、img相关文件。</p>
-</li>
-</ol>
-<p>这里我们内置了一些js、css文件来实现简单页面样式和操作，在页面视图中直接使用即可，引用方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;link href=&quot;example/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; &gt;</div><div class="line"> </div><div class="line">&lt;script src=&quot;example/js/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</div><div class="line"> </div><div class="line">&lt;script src=&quot;example/js/bootstrap.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
-<h2 id="添加文件">添加文件</h2><p>有了目录，我们开始添加文件，先来添加一个登录页面register.html，便于管理和开发我们统一把视图页面放到views目录下。</p>
-<p>views目录，添加register.html注册视图页，如下简单效果图：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/Register.jpg" alt=""></p>
-<p>有了视图页面，我们就可以访问它了，那要如何访问呢，这里就要使用到ejs模板了，安装方法不在阐述，直接如下引用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">app.set( &apos;view engine&apos;, &apos;html&apos; );</div><div class="line">app.engine( &apos;.html&apos;, require( &apos;ejs&apos; ).__express );</div></pre></td></tr></table></figure>
-<p>使用engine函数注册模板引擎并指定处理后缀名为html的文件。</p>
-<p>设定视图存放的目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.set(&apos;views&apos;, require(&apos;path&apos;).join(__dirname, &apos;views&apos;));</div></pre></td></tr></table></figure>
-<p>如果是在本地项目中，我们还要指定本地静态资源访问的路径,如下设置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(express.static(require(&apos;path&apos;).join(__dirname, &apos;public&apos;)));</div></pre></td></tr></table></figure>
-<h2 id="访问注册页">访问注册页</h2><p>有了视图页面，下面我们就开始访问它，app.js文件部分内容，引入相关模块资源，然后简单访问如下：</p>
-<p>app.get(‘/‘, function (req, res) {<br>    res.render(‘register’);<br>});<br>app.listen(80);<br>本节启动访问80端口，如成功看到注册页面则表示项目已经运行成功，如未看到，查看相关错误信息，是否缺少相关模块，安装和引用即可。</p>
-<h2 id="定义Schema">定义Schema</h2><p>首先在common目录内添加models.js文件用来保存各个集合的Schema文件(集合属性)，也便于我们查看和访问，具体内容如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">    user: &#123;</div><div class="line">        name: &#123; type: String, required: true &#125;,</div><div class="line">        password: &#123; type: String, required: true &#125;,</div><div class="line">        gender: &#123; type: Boolean, default: true &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>有了集合的Schema文件，如何访问呢，接着我们会介绍如何使用Model模型操作这些属性。</p>
-<h2 id="创建公共方法">创建公共方法</h2><p>还是common目录，我们在新建一个公共方法 —— dbHelper.js文件，来操作这些Schema，因为后面还会涉及此问题，所以我们写成一个公共的方法，dbHelper文件内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var mongoose = require(&apos;mongoose&apos;),</div><div class="line">    Schema = mongoose.Schema,</div><div class="line">    models = require(&apos;./models&apos;);</div><div class="line"> </div><div class="line">for(var m in models) &#123;</div><div class="line">    mongoose.model(m, new Schema(models[m]));</div><div class="line">&#125;</div><div class="line">module.exports = &#123;</div><div class="line">    getModel: function (type) &#123;</div><div class="line">        return _getModel(type);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">var _getModel = function (type) &#123;</div><div class="line">    return mongoose.model(type);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>如上所示我们通过getModel可获取集合的Model模型就可以对数据库有实质性的操作了</p>
-<p>关于Model，简单介绍：由Schema构造生成的模型，具有数据库操作的行为。</p>
-<h2 id="添加函数">添加函数</h2><p>关于dbHelper.js文件里方法的访问很简单，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">global.dbHelper = require( &apos;./common/dbHelper&apos; );</div></pre></td></tr></table></figure>
-<p>这里我们使用globa来定义全局变量dbHelper，那么dbHelper就可以在任何模块内调用了。</p>
-<p>然后我们就开始修改register视图页面，添加单击事件，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;button&quot;  onclick=&quot;register()&quot; value=&quot;注 册&quot; /&gt;</div></pre></td></tr></table></figure>
-<p>对应register()函数，大致如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function register()&#123;</div><div class="line">   //通过serialize()方法进行序列化表单值，创建文本字符串。</div><div class="line">   var data = $(&quot;form&quot;).serialize();</div><div class="line">   //例如：&quot;username=张三&amp;password=12345&quot;</div><div class="line">   $.ajax(&#123;</div><div class="line">       url:&apos;/register&apos;,</div><div class="line">       type:&apos;POST&apos;,</div><div class="line">       data:data,</div><div class="line">       success:function(data,status)&#123;</div><div class="line">           if(status == &apos;success&apos;)&#123;</div><div class="line">               location.href=&apos;register&apos;;</div><div class="line">           &#125;</div><div class="line">       &#125;,</div><div class="line">       error:function(res,err)&#123;</div><div class="line">           location.href=&apos;register&apos;;</div><div class="line">       &#125;</div><div class="line">   &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="添加路由">添加路由</h2><p>这里我们需要新建一个文件register.js，专门用来处理来之register页面的post请求， 在后面的学习中还会有多个不同处理文件，万所以我们统一管理在routes目录下，在实际开发中我们可能需要针对不同文件请求给出相应文件的处理，所以我们就做分开处理。</p>
-<p>这里贴出register.js文件处理get和post请求的相关代码以供参考，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">// app：express对象</div><div class="line">module.exports = function ( app ) &#123;</div><div class="line">  app.get(&apos;/register&apos;, function(req, res) &#123;</div><div class="line">      res.render(&apos;register&apos;);</div><div class="line">  &#125;);</div><div class="line">  app.post(&apos;/register&apos;, function (req, res) &#123;</div><div class="line">     var User = global.dbHelper.getModel(&apos;user&apos;),</div><div class="line">     uname = req.body.uname;</div><div class="line">     User.findOne(&#123;name: uname&#125;, function (error, doc) &#123;</div><div class="line">       if (doc) &#123;</div><div class="line">            req.session.error = &apos;用户名已存在！&apos;;</div><div class="line">            res.send(500);</div><div class="line">        &#125; else &#123;</div><div class="line">            User.create(&#123;</div><div class="line">                name: uname,</div><div class="line">                password: req.body.upwd</div><div class="line">            &#125;, function (error, doc) &#123;</div><div class="line">                if (error) &#123;</div><div class="line">                    res.send(500);</div><div class="line">                &#125; else &#123;</div><div class="line">                    req.session.error = &apos;用户名创建成功！&apos;;</div><div class="line">                    res.send(200);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="模块的加载和引用">模块的加载和引用</h2><p>register的post请求处理中，我们使用了session(express-session模块)还有处理post请求数据的body属性(body-parser和multer模块)，需先安装他们，然后引用即可，如下参考：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;pre&gt;</div><div class="line">//引用模块</div><div class="line">var bodyParser = require(&apos;body-parser&apos;);</div><div class="line">var multer = require(&apos;multer&apos;);</div><div class="line">var session = require(&apos;express-session&apos;);</div><div class="line"></div><div class="line"> </div><div class="line">//调用中间件使用</div><div class="line">app.use(bodyParser.json());</div><div class="line">app.use(bodyParser.urlencoded(&#123; extended: true &#125;));</div><div class="line">app.use(multer());</div></pre></td></tr></table></figure>
-<p>后面我们还会再次添加多个路由记录，所以便于管理和访问，我们可以把他们统一放到一起，比如routes目录下新建index.js文件专门用来存放添加的文件，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">module.exports = function ( app ) &#123;</div><div class="line">    require(&apos;./register&apos;)(app);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>那么我们在app.js文件中直接引用index.js文件就可以访问这些文件了，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">require(&apos;./routes&apos;)(app); //app:express对象。;</div></pre></td></tr></table></figure>
-<h2 id="中间件传递信息">中间件传递信息</h2><p>这里我们就一步到位，在register的post请求处理中我们使用了express-session模块来保存相关信息，这里我们就使用中间件来传递这些提示信息，中间件内容如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app.use(function(req, res, next)&#123;</div><div class="line">    res.locals.user = req.session.user; //保存用户信息</div><div class="line">    var err = req.session.error;  //保存结果响应信息</div><div class="line">    res.locals.message = &apos;&apos;;  // 保存html标签</div><div class="line">    if (err) res.locals.message = &apos;&lt;div class=&quot;alert alert-danger&quot; style=&quot;margin-bottom: 20px;color:red;&quot;&gt;&apos; + err + &apos;&lt;/div&gt;&apos;;</div><div class="line">    next();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>这里注意中间件的安放位置，还有我们设置了变量message并为其简单添加了样式，这里我们在register视图里就用它来作为操作结果的信息提示，直接添加&lt;%- message %&gt;到视图第一个div内即可。</p>
-<p>关于注册我们基本已经准备就绪，开始打开连接数据库并设置用户过期时间(注意执行顺序，应放置在首个中间件位置)，app.js条件内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mongoose.connect(&quot;mongodb://127.0.0.1:27017/test&quot;);</div><div class="line"> </div><div class="line">app.use(session(&#123;</div><div class="line">    secret:&apos;secret&apos;,</div><div class="line">    cookie:&#123;</div><div class="line">        maxAge:1000*60*30</div><div class="line">    &#125;</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
-<p>到这里，注册功能已经完毕，在用户注册的信息录入中，我们没有进行相关的为空、两次密码的不匹配等等验证等等(可自行添加)，赶紧注册试试吧，本地的话可以通过MongoVUE(可视化客户端)来查看数据是否成功写入数据库。</p>
-<h1 id="登陆和浏览">登陆和浏览</h1><h2 id="添加视图">添加视图</h2><p>前面我们已经实现了注册功能，用户可以成功注册，接着我们就开始让用户登录了，此节我们就实现用户的登录功能，并且登录成功后跳转商品页面查看商品。</p>
-<p>首先，我们还是在views目录下添加登录视图页面 —— login.html，效果图如下：</p>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/Login.jpg" alt=""></p>
-<h2 id="访问视图">访问视图</h2><p>有了登录页面，那么注册页面(register)的登录按钮添加指向登陆页面的链接，相应的登陆页的注册按钮也是如此。</p>
-<p>这里我们还是添加一个相对应的文件用来处理login页面的请求，routes目录下新建名为login.js的文件，先来增加一个处理get请求的方法，代码参考如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module.exports = function ( app ) &#123;</div><div class="line">    app.get(&apos;/login&apos;,function(req,res)&#123;</div><div class="line">        res.render(&apos;login&apos;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>和register文件一样添加到index.js中，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">require(&apos;./login&apos;)(app);</div></pre></td></tr></table></figure>
-<p>register视图页的register()函数的回调中，当注册成功时我们就可以跳转到登陆页面了，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">location.href=&apos;login&apos;;</div></pre></td></tr></table></figure>
-<p>好，赶紧试试登陆、注册按钮能否成功跳转吧！</p>
-<h2 id="实现登陆">实现登陆</h2><p>我们为登陆按钮增加单击事件和对应函数login()，参考如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function login()&#123;</div><div class="line">  //通过serialize()方法获取form表单内输入框用户名、密码的值</div><div class="line">  //如：&quot;username=张三&amp;password=12345&quot;</div><div class="line">  var data = $(&quot;form&quot;).serialize();</div><div class="line">  $.ajax(&#123;</div><div class="line">      url:&apos;/login&apos;,</div><div class="line">      type:&apos;POST&apos;,</div><div class="line">      data:data,</div><div class="line">      success:function(data,status)&#123;</div><div class="line">          if(status == &apos;success&apos;)&#123;</div><div class="line">              location.href=&apos;home&apos;;</div><div class="line">          &#125;</div><div class="line">      &#125;,</div><div class="line">      error:function(data,status)&#123;</div><div class="line">           if(status == &quot;error&quot;)&#123;</div><div class="line">              location.href=&apos;login&apos;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在相应的login.js文件中，我们还得添加相对应的post请求处理方法，接着我们会讲述。</p>
-<h2 id="登陆处理">登陆处理</h2><p>关于login视图页的post请求处理，我们需要判断用户所输入用户名是否存在，密码是否正确，并使用变量保存相应提示信息，当用户名和密码全部正确时，则返回成功并保存用户的个人信息，用作来判断用户的登陆状态，具体可参考register视图页的post请求。</p>
-<p>login.js文件的post请求处理代码，参考如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">app.post(&apos;/login&apos;, function (req, res) &#123;</div><div class="line">  var User = global.dbHelper.getModel(&apos;user&apos;),uname = req.body.uname;</div><div class="line">  User.findOne(&#123;name: uname&#125;, function (error, doc) &#123;</div><div class="line">           if (用户不存在) &#123;</div><div class="line">                req.session.error = &apos;用户名不存在！&apos;;</div><div class="line">                res.send(404);</div><div class="line">            &#125; else if(用户存在，密码错误) &#123;</div><div class="line">                   req.session.error = &quot;密码错误!&quot;;</div><div class="line">                   res.send(404);</div><div class="line">               &#125;else&#123; //用户名、密码正确</div><div class="line">                   req.session.user=doc;</div><div class="line">                   res.send(200);</div><div class="line">               &#125;</div><div class="line">            &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>还记得我们登陆的本地变量message嘛，用来保存html标签并包含相应提示信息，这里在登陆页面我们也可以使用，用法：&lt;%- message %&gt;，指定到相应位置即可。</p>
-<h2 id="商品页视图">商品页视图</h2><p>用户登录成功之后则跳转至home视图页面(商品主页)，就可以进行对商品的浏览和选择了。</p>
-<p>还是views目录，添加home商品视图页，如下简单效果图：</p>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/Commodity.jpg" alt=""></p>
-<p>用户成功登录之后跳转至home页，这里我们还是做分开处理，routes目录下新建home.js文件用来处理来之home也的get请求。</p>
-<p>这里我们假设如果用户未登录将不能查看商品主页，所以，在请求处理中我们还需要判断用户的登陆状态，这个可以使用我们在登录处理时所保存的用户个人信息。</p>
-<p>关于商品页的视图展示我们只需要有其名称、价格、图片，这里使用ejs模板循环展示，可参考如下方式：</p>
-<p>注：Commodity：商品集合所有数据，内置图片路径为“/example/img”</p>
-<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/home_refer.jpg" alt=""></p>
-<h2 id="请求处理">请求处理</h2><p>在home的get请求处理中，我们需要首先判断用户的登陆状态，只有用户登录了方可跳转到商品页，如果为登陆呢则跳转到登录页，而且在进入商品页的时候并传入Commodity集合的所有数据数据在页面展示。</p>
-<p>首先呢，在models.js文件中定义Commodity集合的Schema属性，共包括商品名称、商品价格、商品图片，这里简单定义如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">commodity: &#123;</div><div class="line">   name: String,</div><div class="line">   price: Number,</div><div class="line">   imgSrc: String</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>routes目录下添加home.js文件(index.js文件中引用)。</p>
-<p>具体处理方式可参考如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">module.exports = function ( app ) &#123;</div><div class="line">    app.get(&apos;/home&apos;, function (req, res) &#123;</div><div class="line">        if(req.session.user)&#123;</div><div class="line">            var Commodity = global.dbHelper.getModel(&apos;commodity&apos;);</div><div class="line">            Commodity.find(&#123;&#125;, function (error, docs) &#123;</div><div class="line">               //将Commoditys变量传入home模板</div><div class="line">               res.render(&apos;home&apos;,&#123;Commoditys:docs&#125;);</div><div class="line">            &#125;);</div><div class="line">        &#125;else&#123;</div><div class="line">            req.session.error = &quot;请先登录&quot;</div><div class="line">            res.redirect(&apos;/login&apos;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="添加商品">添加商品</h2><p>添加商品，views目录下添加addcommodity视图页面用来对商品的添加，这里简单样式参考如下：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/Addcommodity.jpg" alt=""></p>
-<p>相对应的addcommodity函数参考代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//imgSrc表示图片路径)，这里内置了5张图片，格式为：xmsz-X.jpg(X为1-5数字)。</div><div class="line">var data = $(&quot;form&quot;).serialize()+&quot;&amp;imgSrc=&quot; + &quot;xmsz-&quot;+Math.floor(Math.random()*5+1)+&quot;.jpg&quot;;</div><div class="line">$.ajax(&#123;</div><div class="line">     url:&apos;/addcommodity&apos;,</div><div class="line">     type:&apos;POST&apos;,</div><div class="line">     data:data,</div><div class="line">     success:function(data,status)&#123;</div><div class="line">         if(status == &apos;success&apos;)&#123;</div><div class="line">            alert(&apos;添加成功！&apos;)</div><div class="line">         &#125;</div><div class="line">     &#125;,</div><div class="line">     error:function(data,err)&#123;</div><div class="line">         alert(&apos;添加失败！&apos;)</div><div class="line">     &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="商品添加处理">商品添加处理</h2><p>这里我们就直接在home.js文件中添加保存商品的处理方法，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">app.get(&apos;/addcommodity&apos;, function(req, res) &#123;</div><div class="line">    res.render(&apos;addcommodity&apos;);</div><div class="line">&#125;);</div><div class="line">app.post(&apos;/addcommodity&apos;, function (req, res) &#123;</div><div class="line">    var Commodity = global.dbHelper.getModel(&apos;commodity&apos;);</div><div class="line">    Commodity.create(&#123;</div><div class="line">        name: req.body.name,</div><div class="line">        price: req.body.price,</div><div class="line">        imgSrc: req.body.imgSrc</div><div class="line">    &#125;, function (error, doc) &#123;</div><div class="line">        if (doc) &#123;</div><div class="line">            res.send(200);</div><div class="line">        &#125;else&#123;</div><div class="line">            res.send(404);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>到这里关于商品页的展示和添加就完成了</p>
-<h1 id="购物车结算">购物车结算</h1><h2 id="添加商品链接">添加商品链接</h2><p>上节课程里我们已经实现了商品的添加和展示，接下来我们开始进行对商品的操作——加入购物车。</p>
-<p>首先，商品页的加入购物车按钮、购物车查看按钮添加链接，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;a href=&quot;/addToCart/&lt;%=Commoditys[i]._id%&gt;&quot;&gt;加入购物车&lt;/a&gt;</div></pre></td></tr></table></figure>
-<p>我们先定义购物车(cart)集合的Schema属性，包含：uId(用户ID)、cId(商品ID)、cName(商品名称)、cPrice(商品价格)、cImgSrc(商品展示图片路径)、cQuantity(商品数量)、cStatus(商品结算状态，默认为false)，参考如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cart:&#123;</div><div class="line">       uId: &#123; type: String &#125;,</div><div class="line">       cId: &#123; type: String &#125;,</div><div class="line">       cName: &#123; type: String &#125;,</div><div class="line">       cPrice: &#123; type: String &#125;,</div><div class="line">       cImgSrc: &#123; type:String &#125; ,</div><div class="line">       cQuantity: &#123; type: Number &#125;,</div><div class="line">       cStatus : &#123; type: Boolean, default: false  &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<p>以上属性定义我们还是统一放到models.js文件中以方便管理和操作。<br>接着views目录下添加购物车(cart.html)视图页面，参考如下：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/Cart.jpg" alt=""></p>
-<p>购物车页面的展示实现可参考如下贴图：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/cart_refer.jpg" alt=""></p>
-<h2 id="访问视图-1">访问视图</h2><p>接着在routes目录添加cart.js文件(index.js文件中引用)，来定义路由处理规则。</p>
-<ol>
-<li>比如cart路径的处理，如下：</li>
-</ol>
-<p>1.1 检测登陆用户是否过期，已过期则跳转login页同时给出提示信息。<br>1.2 通过global.dbHelper.getModel方法获取cart模型。<br>1.3 通过find查询用户所有商品并传入模板，条件：用户ID，结算状态。<br>1.4 贴出部分代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">app.get(&apos;/cart&apos;, function(req, res) &#123;</div><div class="line">     ......</div><div class="line">   Cart.find(&#123;&quot;uId&quot;:用户ID,&quot;cStatus&quot;:false&#125;,function (error, docs) &#123;</div><div class="line">       res.render(&apos;cart&apos;,&#123;carts:docs&#125;);</div><div class="line">   &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ol>
-<li>加入购物车按钮链接所对应路径的处理，如：/addToCart/:商品id</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.get(&quot;/addToCart/:id&quot;, function(req, res) &#123;...&#125;);</div></pre></td></tr></table></figure>
-<p>2.1 通过req.params.id获取商品ID号并检测登陆用户状态。<br>2.2 通过global.dbHelper.getModel方法获取购物车(cart)、商品(commodity)模型。<br>2.3 商品已存在则进行更新操作，贴出部分参考代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Cart.update(&#123;&quot;uId&quot;:用户ID,&quot;cId&quot;:商品ID&#125;,&#123;$set:&#123;cQuantity:已有数量+1&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>2.4商品未存在则进行添加操作，贴出部分代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Commodity.findOne(&#123;&quot;_id&quot;: 商品ID&#125;, function (error, doc) &#123;</div><div class="line">        Cart.create(&#123;</div><div class="line">            uId: 用户ID,</div><div class="line">            cId: 商品ID,</div><div class="line">            cName: doc.name,</div><div class="line">            cPrice: doc.price,</div><div class="line">            cImgSrc: doc.imgSrc,</div><div class="line">            cQuantity : 1</div><div class="line">        &#125;,function(error,doc)&#123;</div><div class="line">            if(doc)&#123;</div><div class="line">                res.redirect(&apos;/home&apos;);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<h2 id="商品的单选和全选">商品的单选和全选</h2><p>在购物车页面展示还是使用ejs模板(具体实现可参考贴图)来实现用户购物车商品的展示，现期间我们用到了checkbox，这里我们就来简单的实现商品的全选和单选。</p>
-<p>首先，简单介绍实现步骤：</p>
-<ol>
-<li>用户选中全选按钮时，列表内选框全部变为勾选状态。</li>
-<li>用户取消全选按钮选中状态时，列表内选框全部取消勾选状态。</li>
-<li>列表内选框为全部勾选状态时，全选按钮为选中状态，反之不勾选。</li>
-<li>全选按钮未选中情况下，当列表内按钮全部选中则全选按钮也要被选中。<br>对于checkbox按钮如下图所示：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/checkbox.jpg" alt=""></li>
-</ol>
-<p>注：data-index属性存储索引值用来获取商品数量，data=id存储商品ID，data-price存储商品价格。</p>
-<p>实现全选：为全选框(如id为CheckAll)添加单击事件，这里我们使用prop方法设置checkbox状态、is方法判断checkbox状态，如下参考示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&apos;#CheckAll&apos;).click(function()&#123;</div><div class="line">      var self = $(this);</div><div class="line">      $(&apos;input[name=&quot;chkItem&quot;]&apos;).each(function()&#123;</div><div class="line">         $(this).prop(&quot;checked&quot;,self.is(&apos;:checked&apos;));</div><div class="line">      &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>实现单选：单选框(如name为chkItem)添加单击事件，这里我们使用prop方法设置checkbox状态、not方法判断checkbox状态，如下参考示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(&apos;input[name=&quot;chkItem&quot;]:checkbox&apos;).click(function()&#123;</div><div class="line">   var isCheck = $(&apos;input[name=&quot;chkItem&quot;]:not(:checked)&apos;).length?false:true;</div><div class="line">   $(&apos;#CheckAll&apos;).prop(&quot;checked&quot;,isCheck);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>到这里我们就简单实现了按钮的全选和单选，以上方法可供参考也可以自行思路去实现。</p>
-<h2 id="商品的增加和减少">商品的增加和减少</h2><p>前面我们实现了对于商品的单选和全选功能，下面我们就开始实现商品数量的加减。</p>
-<p>对于+、-按钮如下图所示：<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/add-subtr.jpg" alt=""></p>
-<p>简单实现步骤如下：</p>
-<ol>
-<li>定义data-type属性用于区分+、-按钮。</li>
-<li>a标签添加单击事件。并同时改变显示框的值。</li>
-<li>使用siblings()方法改变同级标签的数量值。<br>具体实现可参考如下方法：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$(&apos;.li-quantity a&apos;).click(function()&#123;</div><div class="line">    var self = $(this);</div><div class="line">    var type = self.attr(&apos;data-type&apos;),</div><div class="line">        num = parseFloat(self.siblings(&apos;input&apos;).val());</div><div class="line">    if(type == &apos;add&apos;)&#123;</div><div class="line">          num += 1;</div><div class="line">     &#125;else if(type == &apos;subtr&apos;)&#123;</div><div class="line">          if(num &gt; 1)&#123;</div><div class="line">             num -= 1;</div><div class="line">          &#125;else&#123;</div><div class="line">             return false;</div><div class="line">          &#125;</div><div class="line">     &#125;</div><div class="line">    self.siblings(&apos;input&apos;).val(num);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>到这里对于商品数量的加、减也实现了，接着我们开始实现用户选中商品的总价格计算功能。</p>
-<h2 id="计算总金额">计算总金额</h2><p>商品的状态选择和数量的加减功能我们已经实现了，选择我们就开始实现当用户选择相关商品时总金额的计算功能。</p>
-<p>实现步骤如下：</p>
-<ol>
-<li>定义公共方法，用于用户不同加、减、全选等操作时皆可调用。</li>
-<li>循环列表内所有被选中的checkbox(假设name为chkItem)。</li>
-<li>使用checkbox的相应属性值，来获取价格和数量。</li>
-<li>定义全局变量(假设为sum)存储总金额并赋值显示。<br>具体方法实现可参考如下内容：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sum = 0;</div><div class="line">$(&apos;input[name=&quot;chkItem&quot;]:checked&apos;).each(function()&#123;</div><div class="line">    var self = $(this),</div><div class="line">     price = self.attr(&apos;data-price&apos;),</div><div class="line">     index = self.attr(&apos;data-index&apos;);</div><div class="line">     var quantity = $(&apos;#Q&apos;+index).val();</div><div class="line">     sum +=(parseFloat(price)*parseFloat(quantity));</div><div class="line"> &#125;);</div><div class="line"> $(&quot;金额标签&quot;).html(&apos;￥&apos;+ sum +&apos;.00&apos;);</div></pre></td></tr></table></figure>
-<p>到这里，选中商品的价格总计功能也就简单实现了。</p>
-<h2 id="商品结算">商品结算</h2><p>关于结算功能，这里就做简单介绍，当用户点击结算按钮时，计算出被选商品的总金额，给予alert出总金额，数据库则更新相应商品的结算状态和数量，当然你也可以在购物车集合中添加一个用户消费金额的属性来保存所消费的金额总数更好，这里就简单处理了。</p>
-<p>具体功能实现这里简单介绍如下：</p>
-<ol>
-<li>定义公共方法，用于用户不同加、减、全选等操作时皆可调用。</li>
-<li>循环列表内所有被选中的checkbox(假设name为chkItem)。</li>
-<li>使用checkbox的相应属性值，来获取价格和数量。</li>
-<li>定义全局变量(假设为sum)存储总金额并赋值显示。<br>这里贴出部分实现代码，如下：</li>
-</ol>
-<p>//结算方法内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$(&apos;input[name=&quot;chkItem&quot;]:checked&apos;).each(function()&#123;</div><div class="line">     var self = $(this),</div><div class="line">         //通过data-index属性，获取索引值</div><div class="line">         index = self.attr(&apos;data-index&apos;),</div><div class="line">        //通过data-id属性，获取对应ID</div><div class="line">         ID= self.attr(&apos;data-id&apos;);</div><div class="line">     var 数量= $(&apos;#Q&apos;+index).val();</div><div class="line">     var data = &#123; &quot;cid&quot;: ID, &quot;cnum&quot;:数量&#125;;</div><div class="line">     //发送数据请求</div><div class="line">     ...   </div><div class="line">&#125;);</div><div class="line">alert(&apos;所付金额为：￥&apos;+sum);</div><div class="line">location.href = &quot;cart&quot;;</div></pre></td></tr></table></figure>
-<p>cart.js文件添加对应路由处理如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.post(&quot;路径&quot;,function(req,res)&#123;</div><div class="line">   var Cart = global.dbHelper.getModel(&apos;cart&apos;);</div><div class="line">   Cart.update(&#123;&quot;_id&quot;:req.body.ID&#125;,&#123;$set : &#123; cQuantity : req.body.数量,cStatus:true &#125;&#125;,function(error,doc)&#123; </div><div class="line">...</div></pre></td></tr></table></figure>
-<h2 id="商品删除">商品删除</h2><p>关于商品的删除功能就简单多了，我们只需获取其ID即可实现对于购物车内商品的删除操作</p>
-<p>在购物车商品的展示功能实现时，我们就可以获取其ID，如下参考：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;a href=&quot;/delFromCart/&lt;%=carts[i]._id%&gt;&quot; &gt;删除&lt;/a&gt;</div><div class="line">cart.js文件，添加对应路径处理方法，这里简单实现参考如下：</div><div class="line"></div><div class="line">app.get(&quot;/delFromCart/:id&quot;, function(req, res) &#123;</div><div class="line">   //req.params.id 获取ID号</div><div class="line">   var Cart = global.dbHelper.getModel(&apos;cart&apos;);</div><div class="line">   Cart.remove(&#123;&quot;_id&quot;:req.params.id&#125;,function(error,doc)&#123;</div><div class="line">       //成功返回1  失败返回0</div><div class="line">       if(doc &gt; 0)&#123;</div><div class="line">           res.redirect(&apos;/cart&apos;);</div><div class="line">       &#125;</div><div class="line">   &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>好，到这里所有功能都已经实现了，赶快好好回味回味所学所悟吧！</p>
-<p>附：项目源码下载地址：<a href="https://github.com/hubwiz/example-node" target="_blank" rel="external">https://github.com/hubwiz/example-node</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="需求与设计">需求与设计</h1><h2 id="功能介绍">功能介绍</h2><ol>
-<li><p>用户可以完成注册、登录然后登录后对商品的浏览。</p>
-</li>
-<li><p>登录之后，用户可以对相关商品进行选购并添加到购物车。</p>
-</li>
-<li><p>用户可以对购物车里面的商品进行增加、减少、删除操作。</p>
-</li>
-<li><p>用户可对购物车商品进行结算操作。</p>
-</li>
-</ol>]]>
-    
-    </summary>
-    
-      <category term="MongoDb" scheme="http://mzeht.com/tags/MongoDb/"/>
-    
-      <category term="Nodejs" scheme="http://mzeht.com/tags/Nodejs/"/>
-    
-      <category term="综合" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="项目" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
