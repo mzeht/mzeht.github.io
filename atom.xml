@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://mzeht.com/"/>
-  <updated>2017-02-01T14:46:20.000Z</updated>
+  <updated>2017-02-12T16:58:54.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -15,9 +15,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Mybatis-plugin收费插件破解]]></title>
+    <link href="http://mzeht.com/2017/02/10/Mybatis-plugin%E6%94%B6%E8%B4%B9%E6%8F%92%E4%BB%B6%E7%A0%B4%E8%A7%A3/"/>
+    <id>http://mzeht.com/2017/02/10/Mybatis-plugin收费插件破解/</id>
+    <published>2017-02-10T15:53:42.000Z</published>
+    <updated>2017-02-12T16:58:54.000Z</updated>
+    <content type="html"><![CDATA[<p>IDEA版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">IntelliJ IDEA 2016.3.4</div><div class="line">Build #IU-163.12024.16, built on January 31, 2017</div><div class="line">Licensed to lan yu</div><div class="line">Subscription is active until February 25, 2017</div><div class="line">JRE: 1.8.0_112-release-408-b6 x86_64</div><div class="line">JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o</div></pre></td></tr></table></figure>
+<p>Mybatis-plugin版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Version: 2.9</div></pre></td></tr></table></figure>
+<p>插件功能介绍地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://www.oschina.net/p/intellij-mybatis-plugin</div></pre></td></tr></table></figure>
+<p>破解方法来院地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://myoss.github.io/2016/MyBatis-Plugin-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">➜  IntelliJIdea2016.3 git clone https://github.com/myoss/profile.git</div><div class="line">Cloning into &apos;profile&apos;...</div><div class="line">remote: Counting objects: 297, done.</div><div class="line">remote: Total 297 (delta 0), reused 0 (delta 0), pack-reused 297</div><div class="line">Receiving objects: 100% (297/297), 87.32 KiB | 143.00 KiB/s, done.</div><div class="line">Resolving deltas: 100% (90/90), done.</div><div class="line">➜  IntelliJIdea2016.3 ls</div><div class="line">ECTranslation1.3.jar     GsonFormat.jar           Sexy_Editor.jar          availables.xml           idea-gitignore           jvm-memory-view          mybatis_plus</div><div class="line">GenerateSerialVersionUID MavenRunHelper           TranslationPlugin        codehelper.generator     jr-ide-idea              lombok-plugin            profile</div><div class="line">➜  IntelliJIdea2016.3 cd mybatis_plus</div><div class="line">➜  mybatis_plus ls</div><div class="line">lib</div><div class="line">➜  mybatis_plus cd lib</div><div class="line">➜  lib ls</div><div class="line">mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar</div><div class="line">➜  lib cp -R ~/Library/Application\ Support/IntelliJIdea2016.3/profile/idea/plugin</div><div class="line">usage: cp [-R [-H | -L | -P]] [-fi | -n] [-apvX] source_file target_file</div><div class="line">       cp [-R [-H | -L | -P]] [-fi | -n] [-apvX] source_file ... target_directory</div><div class="line">➜  lib cp -R ~/Library/Application\ Support/IntelliJIdea2016.3/profile/idea/plugin/MybatisPlugin/v2.7\~v2.87 .</div><div class="line">➜  lib ls</div><div class="line">mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar          v2.7~v2.87</div><div class="line">➜  lib cp -R ~/Library/Application\ Support/IntelliJIdea2016.3/profile/idea/plugin/MybatisPlugin/v2.7\~v2.87 .</div><div class="line">➜  lib ls</div><div class="line">mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar          v2.7~v2.87</div><div class="line">➜  lib cp -R ~/Library/Application\ Support/IntelliJIdea2016.3/profile/idea/plugin/MybatisPlugin/v2.7\~v2.87/com .</div><div class="line">➜  lib ls</div><div class="line">com                              mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar          v2.7~v2.87</div><div class="line">➜  lib jar uvf mybatis_plus.jar com</div><div class="line"></div><div class="line">正在添加: com/(输入 = 0) (输出 = 0)(存储了 0%)</div><div class="line">正在添加: com/seventh7/(输入 = 0) (输出 = 0)(存储了 0%)</div><div class="line">正在添加: com/seventh7/mybatis/(输入 = 0) (输出 = 0)(存储了 0%)</div><div class="line">正在添加: com/seventh7/mybatis/dom/(输入 = 0) (输出 = 0)(存储了 0%)</div><div class="line">正在添加: com/seventh7/mybatis/dom/model/(输入 = 0) (输出 = 0)(存储了 0%)</div><div class="line">正在添加: com/seventh7/mybatis/ref/(输入 = 0) (输出 = 0)(存储了 0%)</div><div class="line">正在添加: com/seventh7/mybatis/ref/license/(输入 = 0) (输出 = 0)(存储了 0%)</div><div class="line">正在添加: com/seventh7/mybatis/ref/license/ActivationDriver$1.class(输入 = 1926) (输出 = 797)(压缩了 58%)</div><div class="line">正在添加: com/seventh7/mybatis/ref/license/ActivationDriver.class(输入 = 1398) (输出 = 656)(压缩了 53%)</div><div class="line">正在添加: com/seventh7/mybatis/ref/RefProject$1.class(输入 = 2224) (输出 = 1092)(压缩了 50%)</div><div class="line">正在添加: com/seventh7/mybatis/ref/RefProject.class(输入 = 1982) (输出 = 919)(压缩了 53%)</div><div class="line">正在添加: com/seventh7/mybatis/service/(输入 = 0) (输出 = 0)(存储了 0%)</div><div class="line">正在添加: com/seventh7/mybatis/service/JavaService$1.class(输入 = 1408) (输出 = 613)(压缩了 56%)</div><div class="line">正在添加: com/seventh7/mybatis/service/JavaService$2.class(输入 = 1312) (输出 = 575)(压缩了 56%)</div><div class="line">正在添加: com/seventh7/mybatis/service/JavaService.class(输入 = 10921) (输出 = 4166)(压缩了 61%)</div><div class="line">正在添加: com/seventh7/mybatis/util/(输入 = 0) (输出 = 0)(存储了 0%)</div><div class="line">正在添加: com/seventh7/mybatis/util/JavaUtils$SystemData.class(输入 = 3412) (输出 = 1602)(压缩了 53%)</div><div class="line">正在添加: com/seventh7/mybatis/util/JavaUtils.class(输入 = 13339) (输出 = 4773)(压缩了 64%)</div><div class="line">正在添加: com/seventh7/mybatis/dom/model/Completion.class(输入 = 1663) (输出 = 923)(压缩了 44%)</div><div class="line">➜  lib ls</div><div class="line">com                              mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar          v2.7~v2.87</div><div class="line">➜  lib rm -rf v2.7\~v2.87</div><div class="line">➜  lib ls</div><div class="line">com                              mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar</div></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>IDEA版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div clas]]>
+    </summary>
+    
+      <category term="Mybatis" scheme="http://mzeht.com/tags/Mybatis/"/>
+    
+      <category term="IDEA" scheme="http://mzeht.com/tags/IDEA/"/>
+    
+      <category term="工具" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="破解" scheme="http://mzeht.com/categories/%E5%B7%A5%E5%85%B7/%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Centos下docker导致的升级内核]]></title>
-    <link href="http://mzeht.com/2017/02/01/2017-02-01/"/>
-    <id>http://mzeht.com/2017/02/01/2017-02-01/</id>
+    <link href="http://mzeht.com/2017/02/01/Centos%E4%B8%8Bdocker%E5%AF%BC%E8%87%B4%E7%9A%84%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8/"/>
+    <id>http://mzeht.com/2017/02/01/Centos下docker导致的升级内核/</id>
     <published>2017-02-01T05:50:42.000Z</published>
     <updated>2017-02-01T14:46:20.000Z</updated>
     <content type="html"><![CDATA[<p>接着上一篇文章</p>
@@ -299,6 +330,28 @@
   </entry>
   
   <entry>
+    <title><![CDATA[Spring cloud服务注册与发现]]></title>
+    <link href="http://mzeht.com/2017/01/22/2017-02-08/"/>
+    <id>http://mzeht.com/2017/01/22/2017-02-08/</id>
+    <published>2017-01-22T07:05:33.000Z</published>
+    <updated>2017-02-12T16:58:59.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="添加依赖">添加依赖</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</div><div class="line">	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</div><div class="line"></div><div class="line">	&lt;groupId&gt;com.example&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;mzeht-eureka&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</div><div class="line">	&lt;packaging&gt;jar&lt;/packaging&gt;</div><div class="line"></div><div class="line">	&lt;name&gt;mzeht-eureka&lt;/name&gt;</div><div class="line">	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;</div><div class="line"></div><div class="line">	&lt;parent&gt;</div><div class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;1.5.1.RELEASE&lt;/version&gt;</div><div class="line">		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</div><div class="line">	&lt;/parent&gt;</div><div class="line"></div><div class="line">	&lt;properties&gt;</div><div class="line">		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</div><div class="line">		&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</div><div class="line">		&lt;java.version&gt;1.7&lt;/java.version&gt;</div><div class="line">	&lt;/properties&gt;</div><div class="line"></div><div class="line">	&lt;dependencies&gt;</div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line"></div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</div><div class="line">			&lt;scope&gt;test&lt;/scope&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line"></div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-cloud-starter-eureka-server&lt;/artifactId&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line">	&lt;/dependencies&gt;</div><div class="line"></div><div class="line">	&lt;dependencyManagement&gt;</div><div class="line">		&lt;dependencies&gt;</div><div class="line">			&lt;dependency&gt;</div><div class="line">				&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</div><div class="line">				&lt;version&gt;Brixton.RELEASE&lt;/version&gt;</div><div class="line">				&lt;type&gt;pom&lt;/type&gt;</div><div class="line">				&lt;scope&gt;import&lt;/scope&gt;</div><div class="line">			&lt;/dependency&gt;</div><div class="line">		&lt;/dependencies&gt;</div><div class="line">	&lt;/dependencyManagement&gt;</div><div class="line"></div><div class="line">	&lt;build&gt;</div><div class="line">		&lt;plugins&gt;</div><div class="line">			&lt;plugin&gt;</div><div class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</div><div class="line">			&lt;/plugin&gt;</div><div class="line">		&lt;/plugins&gt;</div><div class="line">	&lt;/build&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="添加依赖">添加依赖</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div>]]>
+    </summary>
+    
+      <category term="Spring boot" scheme="http://mzeht.com/tags/Spring-boot/"/>
+    
+      <category term="Spring cloud" scheme="http://mzeht.com/tags/Spring-cloud/"/>
+    
+      <category term="后端开发" scheme="http://mzeht.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="java" scheme="http://mzeht.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/java/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Spring boot整合retrofit简化三方接口调用]]></title>
     <link href="http://mzeht.com/2017/01/22/%E5%9C%A8springboot%E4%B8%AD%E4%BD%BF%E7%94%A8retrofit%E5%8A%A0%E5%BF%AB%E4%B8%89%E6%96%B9%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8/"/>
     <id>http://mzeht.com/2017/01/22/在springboot中使用retrofit加快三方接口调用/</id>
@@ -435,40 +488,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Spring boot配置多数据源]]></title>
-    <link href="http://mzeht.com/2016/12/28/spring%20boot%20%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE/"/>
-    <id>http://mzeht.com/2016/12/28/spring boot 多数据源配置/</id>
-    <published>2016-12-28T14:20:33.000Z</published>
-    <updated>2017-01-23T07:02:35.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="编辑配置文件">编辑配置文件</h2><p>可以是默认的application.properties，亦可以是自定义的source.properties</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># mysql</div><div class="line">spring.datasource.one.driver-class-name=com.mysql.jdbc.Driver</div><div class="line">spring.datasource.one.url=jdbc:mysql://localhost:3306/wpspringboot</div><div class="line">spring.datasource.one.username=root</div><div class="line">spring.datasource.one.password=root</div><div class="line"></div><div class="line">spring.datasource.two.driver-class-name=com.mysql.jdbc.Driver</div><div class="line">spring.datasource.two.url=jdbc:mysql://localhost:3306/wpspringboottwo</div><div class="line">spring.datasource.two.username=root</div><div class="line">spring.datasource.two.password=root</div></pre></td></tr></table></figure>
-<p>@Configuration</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">//@EnableTransactionManagement</div><div class="line">//@PropertySource(value = &#123;&quot;classpath:config/source.properties&quot;&#125;)</div><div class="line">public class BeanConfig &#123;</div><div class="line"></div><div class="line">//    @Autowired</div><div class="line">//    private Environment env;</div><div class="line">//</div><div class="line">//</div><div class="line">//    @Bean(destroyMethod = &quot;close&quot;)</div><div class="line">//    public DataSource dataSource() &#123;</div><div class="line">//        DruidDataSource dataSource = new DruidDataSource();</div><div class="line">//        dataSource.setDriverClassName(env.getProperty(&quot;source.driverClassName&quot;).trim());</div><div class="line">//        dataSource.setUrl(env.getProperty(&quot;source.url&quot;).trim());</div><div class="line">//        dataSource.setUsername(env.getProperty(&quot;source.username&quot;).trim());</div><div class="line">//        dataSource.setPassword(env.getProperty(&quot;source.password&quot;).trim());</div><div class="line">//</div><div class="line">//        return dataSource;</div><div class="line">//    &#125;</div><div class="line">//</div><div class="line">//    @Bean</div><div class="line">//    public JdbcTemplate jdbcTemplate() &#123;</div><div class="line">//        JdbcTemplate jdbcTemplate = new JdbcTemplate();</div><div class="line">//        jdbcTemplate.setDataSource(dataSource());</div><div class="line">//        return jdbcTemplate;</div><div class="line">//    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;oneDataSource&quot;)</div><div class="line">    @Qualifier(&quot;oneDataSource&quot;)</div><div class="line">    @Primary</div><div class="line">    @ConfigurationProperties(prefix=&quot;spring.datasource.one&quot;)</div><div class="line">    public DataSource oneDataSource() &#123;</div><div class="line">        return DataSourceBuilder.create().build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;twoDataSource&quot;)</div><div class="line">    @Qualifier(&quot;twoDataSource&quot;)</div><div class="line">    @ConfigurationProperties(prefix=&quot;spring.datasource.two&quot;)</div><div class="line">    public DataSource twoDataSource() &#123;</div><div class="line">        return DataSourceBuilder.create().build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;oneJdbcTemplate&quot;)</div><div class="line">    public JdbcTemplate oneJdbcTemplate(@Qualifier(&quot;oneDataSource&quot;) DataSource dataSource) &#123;</div><div class="line">        return new JdbcTemplate(dataSource);</div><div class="line">    &#125;</div><div class="line">    @Bean(name = &quot;twoJdbcTemplate&quot;)</div><div class="line">    public JdbcTemplate twoJdbcTemplate(@Qualifier(&quot;twoDataSource&quot;) DataSource dataSource) &#123;</div><div class="line">        return new JdbcTemplate(dataSource);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">@Repository</div><div class="line">public class AuthorDaoImpl implements AuthorDao &#123;</div><div class="line">    @Autowired</div><div class="line">    @Qualifier(&quot;oneJdbcTemplate&quot;)</div><div class="line">    private JdbcTemplate jdbcTemplate;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int add(Author author) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;insert into t_author(real_name, nick_name) values(?, ?)&quot;,</div><div class="line">                author.getRealName(), author.getNickName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int update(Author author) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;update t_author set real_name = ?, nick_name = ? where id = ?&quot;,</div><div class="line">                new Object[]&#123;author.getRealName(), author.getNickName(), author.getId()&#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int delete(Long id) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;delete from t_author where id = ?&quot;, id);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public Author findAuthor(Long id) &#123;</div><div class="line">        List&lt;Author&gt; list = jdbcTemplate.query(&quot;select * from t_author where id = ?&quot;, new Object[]&#123;id&#125;, new BeanPropertyRowMapper(Author.class));</div><div class="line">        if(null != list &amp;&amp; list.size()&gt;0)&#123;</div><div class="line">            Author auhtor = list.get(0);</div><div class="line">            return auhtor;</div><div class="line">        &#125;else&#123;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public List&lt;Author&gt; findAuthorList() &#123;</div><div class="line">        List&lt;Author&gt; list = jdbcTemplate.query(&quot;select * from t_author&quot;, new Object[]&#123;&#125;, new BeanPropertyRowMapper&lt;Author&gt;(Author.class));</div><div class="line">        return list;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>试下单元测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@SpringApplicationConfiguration(WpspringbootApplication.class)</div><div class="line">public class JdbcTest &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>idea提示SpringApplicationConfiguration方法已被废弃<br>那就用自动生成的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringRunner.class)</div><div class="line">@SpringBootTest</div><div class="line">public class WpspringbootApplicationTests &#123;</div><div class="line"></div><div class="line">	@Test</div><div class="line">	public void contextLoads() &#123;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Resource(name=&quot;oneJdbcTemplate&quot;)</div><div class="line">	protected JdbcTemplate jdbcTemplate1;</div><div class="line">	@Resource(name=&quot;twoJdbcTemplate&quot;)</div><div class="line">	protected JdbcTemplate jdbcTemplate2;</div><div class="line"></div><div class="line">	@Test</div><div class="line">	public void test() throws Exception &#123;</div><div class="line">		jdbcTemplate1.update(&quot;insert into t_author(id, real_name, nick_name) values(?, ?, ?)&quot;, 5, &quot;梁桂钊&quot;, &quot;LiangGzone&quot;);</div><div class="line">		jdbcTemplate2.update(&quot;insert into t_author(id, real_name, nick_name) values(?, ?, ?)&quot;, 6, &quot;梁桂钊&quot;, &quot;LiangGzone&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行之后发现数据库中文是问号<br>数据库配置文件中配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spring.datasource.one.url=jdbc:mysql://localhost:3306/wpspringboot?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true</div></pre></td></tr></table></figure>
-<p>再次测试，正常了</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="编辑配置文件">编辑配置文件</h2><p>可以是默认的application.properties，亦可以是自定义的source.properties</p>]]>
-    
-    </summary>
-    
-      <category term="Spring boot" scheme="http://mzeht.com/tags/Spring-boot/"/>
-    
-      <category term="后端开发" scheme="http://mzeht.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="java" scheme="http://mzeht.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/java/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Spring boot整合mybatis]]></title>
     <link href="http://mzeht.com/2016/12/28/spring%20boot%E6%95%B4%E5%90%88mybatis/"/>
     <id>http://mzeht.com/2016/12/28/spring boot整合mybatis/</id>
@@ -553,6 +572,40 @@
     <summary type="html">
     <![CDATA[<p>开发环境：idea</p>
 <h1 id="初步准备">初步准备</h1><p>利用idea创建一个基本的Spring boot工程<br>java sdk 暂时用 1.7<br>GUI 选择组建时什么都不选<br>添加为Maven项目<br>此时pom文件状态为</p>]]>
+    
+    </summary>
+    
+      <category term="Spring boot" scheme="http://mzeht.com/tags/Spring-boot/"/>
+    
+      <category term="后端开发" scheme="http://mzeht.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="java" scheme="http://mzeht.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Spring boot配置多数据源]]></title>
+    <link href="http://mzeht.com/2016/12/28/spring%20boot%20%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE/"/>
+    <id>http://mzeht.com/2016/12/28/spring boot 多数据源配置/</id>
+    <published>2016-12-28T14:20:33.000Z</published>
+    <updated>2017-01-23T07:02:35.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="编辑配置文件">编辑配置文件</h2><p>可以是默认的application.properties，亦可以是自定义的source.properties</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># mysql</div><div class="line">spring.datasource.one.driver-class-name=com.mysql.jdbc.Driver</div><div class="line">spring.datasource.one.url=jdbc:mysql://localhost:3306/wpspringboot</div><div class="line">spring.datasource.one.username=root</div><div class="line">spring.datasource.one.password=root</div><div class="line"></div><div class="line">spring.datasource.two.driver-class-name=com.mysql.jdbc.Driver</div><div class="line">spring.datasource.two.url=jdbc:mysql://localhost:3306/wpspringboottwo</div><div class="line">spring.datasource.two.username=root</div><div class="line">spring.datasource.two.password=root</div></pre></td></tr></table></figure>
+<p>@Configuration</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">//@EnableTransactionManagement</div><div class="line">//@PropertySource(value = &#123;&quot;classpath:config/source.properties&quot;&#125;)</div><div class="line">public class BeanConfig &#123;</div><div class="line"></div><div class="line">//    @Autowired</div><div class="line">//    private Environment env;</div><div class="line">//</div><div class="line">//</div><div class="line">//    @Bean(destroyMethod = &quot;close&quot;)</div><div class="line">//    public DataSource dataSource() &#123;</div><div class="line">//        DruidDataSource dataSource = new DruidDataSource();</div><div class="line">//        dataSource.setDriverClassName(env.getProperty(&quot;source.driverClassName&quot;).trim());</div><div class="line">//        dataSource.setUrl(env.getProperty(&quot;source.url&quot;).trim());</div><div class="line">//        dataSource.setUsername(env.getProperty(&quot;source.username&quot;).trim());</div><div class="line">//        dataSource.setPassword(env.getProperty(&quot;source.password&quot;).trim());</div><div class="line">//</div><div class="line">//        return dataSource;</div><div class="line">//    &#125;</div><div class="line">//</div><div class="line">//    @Bean</div><div class="line">//    public JdbcTemplate jdbcTemplate() &#123;</div><div class="line">//        JdbcTemplate jdbcTemplate = new JdbcTemplate();</div><div class="line">//        jdbcTemplate.setDataSource(dataSource());</div><div class="line">//        return jdbcTemplate;</div><div class="line">//    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;oneDataSource&quot;)</div><div class="line">    @Qualifier(&quot;oneDataSource&quot;)</div><div class="line">    @Primary</div><div class="line">    @ConfigurationProperties(prefix=&quot;spring.datasource.one&quot;)</div><div class="line">    public DataSource oneDataSource() &#123;</div><div class="line">        return DataSourceBuilder.create().build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;twoDataSource&quot;)</div><div class="line">    @Qualifier(&quot;twoDataSource&quot;)</div><div class="line">    @ConfigurationProperties(prefix=&quot;spring.datasource.two&quot;)</div><div class="line">    public DataSource twoDataSource() &#123;</div><div class="line">        return DataSourceBuilder.create().build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;oneJdbcTemplate&quot;)</div><div class="line">    public JdbcTemplate oneJdbcTemplate(@Qualifier(&quot;oneDataSource&quot;) DataSource dataSource) &#123;</div><div class="line">        return new JdbcTemplate(dataSource);</div><div class="line">    &#125;</div><div class="line">    @Bean(name = &quot;twoJdbcTemplate&quot;)</div><div class="line">    public JdbcTemplate twoJdbcTemplate(@Qualifier(&quot;twoDataSource&quot;) DataSource dataSource) &#123;</div><div class="line">        return new JdbcTemplate(dataSource);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">@Repository</div><div class="line">public class AuthorDaoImpl implements AuthorDao &#123;</div><div class="line">    @Autowired</div><div class="line">    @Qualifier(&quot;oneJdbcTemplate&quot;)</div><div class="line">    private JdbcTemplate jdbcTemplate;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int add(Author author) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;insert into t_author(real_name, nick_name) values(?, ?)&quot;,</div><div class="line">                author.getRealName(), author.getNickName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int update(Author author) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;update t_author set real_name = ?, nick_name = ? where id = ?&quot;,</div><div class="line">                new Object[]&#123;author.getRealName(), author.getNickName(), author.getId()&#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int delete(Long id) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;delete from t_author where id = ?&quot;, id);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public Author findAuthor(Long id) &#123;</div><div class="line">        List&lt;Author&gt; list = jdbcTemplate.query(&quot;select * from t_author where id = ?&quot;, new Object[]&#123;id&#125;, new BeanPropertyRowMapper(Author.class));</div><div class="line">        if(null != list &amp;&amp; list.size()&gt;0)&#123;</div><div class="line">            Author auhtor = list.get(0);</div><div class="line">            return auhtor;</div><div class="line">        &#125;else&#123;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public List&lt;Author&gt; findAuthorList() &#123;</div><div class="line">        List&lt;Author&gt; list = jdbcTemplate.query(&quot;select * from t_author&quot;, new Object[]&#123;&#125;, new BeanPropertyRowMapper&lt;Author&gt;(Author.class));</div><div class="line">        return list;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>试下单元测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@SpringApplicationConfiguration(WpspringbootApplication.class)</div><div class="line">public class JdbcTest &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>idea提示SpringApplicationConfiguration方法已被废弃<br>那就用自动生成的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringRunner.class)</div><div class="line">@SpringBootTest</div><div class="line">public class WpspringbootApplicationTests &#123;</div><div class="line"></div><div class="line">	@Test</div><div class="line">	public void contextLoads() &#123;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Resource(name=&quot;oneJdbcTemplate&quot;)</div><div class="line">	protected JdbcTemplate jdbcTemplate1;</div><div class="line">	@Resource(name=&quot;twoJdbcTemplate&quot;)</div><div class="line">	protected JdbcTemplate jdbcTemplate2;</div><div class="line"></div><div class="line">	@Test</div><div class="line">	public void test() throws Exception &#123;</div><div class="line">		jdbcTemplate1.update(&quot;insert into t_author(id, real_name, nick_name) values(?, ?, ?)&quot;, 5, &quot;梁桂钊&quot;, &quot;LiangGzone&quot;);</div><div class="line">		jdbcTemplate2.update(&quot;insert into t_author(id, real_name, nick_name) values(?, ?, ?)&quot;, 6, &quot;梁桂钊&quot;, &quot;LiangGzone&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行之后发现数据库中文是问号<br>数据库配置文件中配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spring.datasource.one.url=jdbc:mysql://localhost:3306/wpspringboot?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true</div></pre></td></tr></table></figure>
+<p>再次测试，正常了</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="编辑配置文件">编辑配置文件</h2><p>可以是默认的application.properties，亦可以是自定义的source.properties</p>]]>
     
     </summary>
     
@@ -957,119 +1010,6 @@
       <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
     
       <category term="Android" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Data Binding Guide]]></title>
-    <link href="http://mzeht.com/2016/09/04/Data-Binding-Guide/"/>
-    <id>http://mzeht.com/2016/09/04/Data-Binding-Guide/</id>
-    <published>2016-09-04T06:37:50.000Z</published>
-    <updated>2016-11-27T10:21:15.000Z</updated>
-    <content type="html"><![CDATA[<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-9-4/6040336.jpg" alt=""></p>
-<h2 id="前言">前言</h2><p>2016的Google IO 大会上，Android 团队发布了一个数据绑定框架（Data Binding Library）。以后可以直接在 layout 布局 xml 文件中绑定数据了，无需再 findViewById 然后手工设置数据了。其语法和使用方式和 JSP 中的 EL 表达式非常类似。</p>
-<p>看到google出品的<a href="https://developer.android.com/topic/libraries/data-binding/index.html" target="_blank" rel="external">Data Binding Library</a>本来是想边翻译边写写demo，但是csdn上已经有人翻译了，没必要重复劳动，直接拿来链接：<br><a id="more"></a></p>
-<h1 id="Data_Binding_Guide——google官方文档翻译（上）"><a href="http://blog.csdn.net/u014486880/article/details/50508133" target="_blank" rel="external">Data Binding Guide——google官方文档翻译（上）</a></h1><h1 id="Data_Binding_Guide——google官方文档翻译（下）"><a href="http://blog.csdn.net/u014486880/article/details/50531110" target="_blank" rel="external"> Data Binding Guide——google官方文档翻译（下）</a></h1><h2 id="防坑指南">防坑指南</h2><p>引入DataBindingLibrary从最初发布开始，已经有了变化，起初是</p>
-<p>在项目的 gradle 配置文件中添加依赖项：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dependencies &#123; classpath &quot;com.android.tools.build:gradle:1.2.3&quot; classpath &quot;com.android.databinding:dataBinder:1.0-rc0&quot; &#125;</div></pre></td></tr></table></figure>
-<p>上面的依赖项目前在 jcenter 服务器中，所以确保 repositories 中包含 jcenter。<br>allprojects { repositories { jcenter() }}</p>
-<p>在每个需要使用 Data Binding 功能的模块的 gradle 配置文件中启用该插件（添加在 android 插件之后），</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apply plugin: ‘com.android.application&apos;apply plugin: &apos;com.android.databinding&apos;</div></pre></td></tr></table></figure>
-<p>但是现在的google文档中 只要</p>
-<ul>
-<li><p>To get started with Data Binding, download the library from the Support repository in the Android SDK manager.</p>
-</li>
-<li><p>To configure your app to use data binding, add the dataBinding element to your build.gradle file in the app module.</p>
-</li>
-<li><p>Use the following code snippet to configure data binding:</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    ....</div><div class="line">    dataBinding &#123;</div><div class="line">        enabled = true</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/jingle1267/DataDindingSample" target="_blank" rel="external">demo github 地址</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-9-4/6040336.jpg" alt=""></p>
-<h2 id="前言">前言</h2><p>2016的Google IO 大会上，Android 团队发布了一个数据绑定框架（Data Binding Library）。以后可以直接在 layout 布局 xml 文件中绑定数据了，无需再 findViewById 然后手工设置数据了。其语法和使用方式和 JSP 中的 EL 表达式非常类似。</p>
-<p>看到google出品的<a href="https://developer.android.com/topic/libraries/data-binding/index.html">Data Binding Library</a>本来是想边翻译边写写demo，但是csdn上已经有人翻译了，没必要重复劳动，直接拿来链接：<br>]]>
-    
-    </summary>
-    
-      <category term="Data Binding" scheme="http://mzeht.com/tags/Data-Binding/"/>
-    
-      <category term="移动开发" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="Android" scheme="http://mzeht.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Mac/windows下nexus系列产品的刷机官方指南]]></title>
-    <link href="http://mzeht.com/2016/07/30/Mac:windows%E4%B8%8Bnexus%E7%B3%BB%E5%88%97%E4%BA%A7%E5%93%81%E7%9A%84%E5%88%B7%E6%9C%BA%E5%AE%98%E6%96%B9%E6%8C%87%E5%8D%97/"/>
-    <id>http://mzeht.com/2016/07/30/Mac:windows下nexus系列产品的刷机官方指南/</id>
-    <published>2016-07-30T07:26:44.000Z</published>
-    <updated>2016-11-27T10:22:20.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="注意事项">注意事项</h1><p>1.仅针对官方镜像<br>2.需要下载官方镜像，需要翻墙或者国内寻找搬运资源<br>3.nexus刷入新系统后，开机需要网络验证激活（部分可以跳过），需要网络环境能够翻墙，请自行解决  </p>
-<a id="more"></a>
-<h1 id="镜像">镜像</h1><p>1.前往<a href="https://developers.google.com/android/nexus/images" target="_blank" rel="external">镜像官网</a><br>2.<img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/11576201.jpg" alt=""><br>右侧选择对应的设备,同意相关协议，选择下载镜像<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-7-30/27674143.jpg" alt=""><br>这里以6p为例子，镜像列表从上到下，从旧到新</p>
-<h1 id="环境准备">环境准备</h1><p>1.fastboot工具  </p>
-<p>To flash a device using one of the system images below (or one of your own), you need the latest fastboot tool. You can get it from one of the sources below.</p>
-<ul>
-<li><p>From a compiled version of the <a href="https://source.android.com/" target="_blank" rel="external">Android Open Source Project</a>.  </p>
-</li>
-<li><p>From the <code>platform-tools/</code> directory in the Android SDK. Be sure that you have the latest version of the <code>Android SDK Platform-tools</code> from the <a href="https://developer.android.com/studio/intro/update.html" target="_blank" rel="external">SDK Manager</a>.  </p>
-</li>
-</ul>
-<p>Once you have the <code>fastboot tool</code>, add it to your <code>PATH</code> environment variable (the flash-all script below must be able to find it). Also be certain that you’ve set up USB access for your device, as described in the Using <a href="https://developer.android.com/studio/run/device.html" target="_blank" rel="external">Hardware Devices guide</a>.  </p>
-<p>Caution: Flashing a new system image deletes all user data. Be certain to first backup any personal data such as photos.</p>
-<p>简单来说就是下载fastboot工具 并且添加到系统变量，注意用户数据会被清空</p>
-<h1 id="刷入步骤">刷入步骤</h1><ol>
-<li><p>Download the appropriate system image for your device below, then unzip it to a safe directory.  </p>
-</li>
-<li><p>Connect your device to your computer over USB.  </p>
-</li>
-<li><p>Start the device in fastboot mode with one of the following methods:</p>
-<ul>
-<li><p>Using the <code>adb tool</code>: With the device powered on, execute:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb reboot bootloader</div></pre></td></tr></table></figure>
-</li>
-<li><p>Using a key combo: Turn the device off, then turn it on and immediately hold down the relevant<code>key combination</code> for your device. For example, to put a Nexus 5 (“hammerhead”) into fastboot mode, press and hold Volume Up + Volume Down + Power as the device begins booting up.  </p>
-</li>
-</ul>
-</li>
-<li><p>If necessary, unlock the device’s bootloader by running:</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fastboot flashing unlock</div></pre></td></tr></table></figure>
-<p>or, for older devices, running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fastboot oem unlock</div></pre></td></tr></table></figure>
-<p>The target device will show you a confirmation screen. (This erases all data on the target device.)  </p>
-<ol>
-<li><p>Open a terminal and navigate to the unzipped system image directory.  </p>
-</li>
-<li><p>Execute the flash-all script. This script installs the necessary bootloader, baseband firmware(s), and operating system.  </p>
-</li>
-</ol>
-<p>Once the script finishes, your device reboots. You should now lock the bootloader for security:</p>
-<ol>
-<li>Start the device in fastboot mode again, as described above.</li>
-<li>Execute:<br>fastboot flashing lock<br>or, for older devices, running:<br>fastboot oem lock</li>
-</ol>
-<p>Locking bootloader will wipe the data on some devices. After locking the bootloader, if you want to flash the device again, you must run <code>fastboot oem unlock again</code>, which will wipe the data.</p>
-<h1 id="结语">结语</h1><p>偷懒，直接上官方指南了，一些细节问题，（比如怎么下载fastboot，怎么配置系统变量）,相信能看到这篇文章和有这个意向的人都能解决。  </p>
-<p>通过此方法完美利用mac给nexus5手机和nexus7wifi刷好系统,前者网络验证可以跳过，后者不行，采用可以刷入开源固件的路由器，刷入openwrt，设置好socks代理（付费版），即可无线翻墙，顺利激活，windows上可以电脑翻墙后共享热点，期间还尝试了<code>Privoxy</code>将shadowsocks的socks5代理转为http代理,然后验证阶段，连接普通wifi,设备和mac处在同一局域网下，设置代理地址为mac上的socks代理，但是不是很理想，还是硬件翻墙来的粗暴</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="注意事项">注意事项</h1><p>1.仅针对官方镜像<br>2.需要下载官方镜像，需要翻墙或者国内寻找搬运资源<br>3.nexus刷入新系统后，开机需要网络验证激活（部分可以跳过），需要网络环境能够翻墙，请自行解决  </p>]]>
-    
-    </summary>
-    
-      <category term="Mac" scheme="http://mzeht.com/tags/Mac/"/>
-    
-      <category term="Nexus" scheme="http://mzeht.com/tags/Nexus/"/>
-    
-      <category term="综合" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="其他" scheme="http://mzeht.com/categories/%E7%BB%BC%E5%90%88/%E5%85%B6%E4%BB%96/"/>
     
   </entry>
   

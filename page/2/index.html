@@ -172,7 +172,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/工具/">
-                    工具 <span class="right">5</span></a>
+                    工具 <span class="right">6</span></a>
                 </a>
             </li>
 
@@ -202,25 +202,25 @@
 
         
 
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/工具/破解/">
+                    破解 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/运维/">
-                    运维 <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/后端开发/">
+                    后端开发 <span class="right">6</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/运维/docker/">
-                    docker <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/运维/java/">
-                    java <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/后端开发/java/">
+                    java <span class="right">6</span></a>
                 </a>
             </li>
 
@@ -251,8 +251,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/框架/">
-                    框架 <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/运维/">
+                    运维 <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/运维/docker/">
+                    docker <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/运维/java/">
+                    java <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -269,6 +285,14 @@
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/编程语言/Gradle/">
                     Gradle <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/框架/">
+                    框架 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -325,22 +349,6 @@
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/Web前端/Nodejs/">
                     Nodejs <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/后端开发/">
-                    后端开发 <span class="right">5</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/后端开发/java/">
-                    java <span class="right">5</span></a>
                 </a>
             </li>
 
@@ -432,6 +440,46 @@
             <div class="article-title">
                 
     
+        <h1 class="brown-link-context"><a href="/2016/12/28/spring boot整合mybatis/">Spring boot整合mybatis</a></h1>
+    
+
+
+            </div>
+
+            <time class="light-green-link-context" datetime="2016-12-28T14:20:33.000Z"><a href="/2016/12/28/spring boot整合mybatis/">Dec 28 2016</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Spring-boot/" class="chip light-green">Spring boot</a>
+        
+    </div>
+
+
+
+            
+                <div class="entry light-green-link-context">
+                    <h1 id="基本配置">基本配置</h1><h2 id="配置数据库">配置数据库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">@EnableTransactionManagement</div><div class="line">@PropertySource(value = &#123;&quot;classpath:config/source.properties&quot;&#125;)</div><div class="line">public class BeanConfig &#123;</div><div class="line"></div><div class="line">    @Autowired</div><div class="line">    private Environment env;</div><div class="line"></div><div class="line">    @Bean(destroyMethod = &quot;close&quot;)</div><div class="line">    public DataSource dataSource() &#123;</div><div class="line">        DruidDataSource dataSource = new DruidDataSource();</div><div class="line">        dataSource.setDriverClassName(env.getProperty(&quot;source.driverClassName&quot;).trim());</div><div class="line">        dataSource.setUrl(env.getProperty(&quot;source.url&quot;).trim());</div><div class="line">        dataSource.setUsername(env.getProperty(&quot;source.username&quot;).trim());</div><div class="line">        dataSource.setPassword(env.getProperty(&quot;source.password&quot;).trim());</div><div class="line">        return dataSource;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean</div><div class="line">    public JdbcTemplate jdbcTemplate() &#123;</div><div class="line">        JdbcTemplate jdbcTemplate = new JdbcTemplate();</div><div class="line">        jdbcTemplate.setDataSource(dataSource());</div><div class="line">        return jdbcTemplate;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>默认配置文件配置端口和Mapper文件位置</p>
+                </div>
+            
+        </div>
+
+        
+        <div class="card-action light-green-link-context">
+            <a href="/2016/12/28/spring boot整合mybatis/">READ MORE</a>
+        </ div>
+        
+    </div>
+</article>
+
+    
+        <article class="simple-article">
+    <div class="card">
+        <div class="card-content">
+            <div class="article-title">
+                
+    
         <h1 class="brown-link-context"><a href="/2016/12/28/spring boot jdbc/">Spring boot搭建jdbc</a></h1>
     
 
@@ -460,6 +508,45 @@
         
         <div class="card-action light-green-link-context">
             <a href="/2016/12/28/spring boot jdbc/">READ MORE</a>
+        </ div>
+        
+    </div>
+</article>
+
+    
+        <article class="simple-article">
+    <div class="card">
+        <div class="card-content">
+            <div class="article-title">
+                
+    
+        <h1 class="brown-link-context"><a href="/2016/12/28/spring boot 多数据源配置/">Spring boot配置多数据源</a></h1>
+    
+
+
+            </div>
+
+            <time class="light-green-link-context" datetime="2016-12-28T14:20:33.000Z"><a href="/2016/12/28/spring boot 多数据源配置/">Dec 28 2016</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Spring-boot/" class="chip light-green">Spring boot</a>
+        
+    </div>
+
+
+
+            
+                <div class="entry light-green-link-context">
+                    <h2 id="编辑配置文件">编辑配置文件</h2><p>可以是默认的application.properties，亦可以是自定义的source.properties</p>
+                </div>
+            
+        </div>
+
+        
+        <div class="card-action light-green-link-context">
+            <a href="/2016/12/28/spring boot 多数据源配置/">READ MORE</a>
         </ div>
         
     </div>
@@ -739,88 +826,6 @@
         
         <div class="card-action light-green-link-context">
             <a href="/2016/09/07/Android-Studio-Gradle-进阶设置/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="brown-link-context"><a href="/2016/09/04/Data-Binding-Guide/">Data Binding Guide</a></h1>
-    
-
-
-            </div>
-
-            <time class="light-green-link-context" datetime="2016-09-04T06:37:50.000Z"><a href="/2016/09/04/Data-Binding-Guide/">Sep 4 2016</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Data-Binding/" class="chip light-green">Data Binding</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry light-green-link-context">
-                    <p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-9-4/6040336.jpg" alt=""></p>
-<h2 id="前言">前言</h2><p>2016的Google IO 大会上，Android 团队发布了一个数据绑定框架（Data Binding Library）。以后可以直接在 layout 布局 xml 文件中绑定数据了，无需再 findViewById 然后手工设置数据了。其语法和使用方式和 JSP 中的 EL 表达式非常类似。</p>
-<p>看到google出品的<a href="https://developer.android.com/topic/libraries/data-binding/index.html">Data Binding Library</a>本来是想边翻译边写写demo，但是csdn上已经有人翻译了，没必要重复劳动，直接拿来链接：<br>
-                </div>
-            
-        </div>
-
-        
-        <div class="card-action light-green-link-context">
-            <a href="/2016/09/04/Data-Binding-Guide/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="brown-link-context"><a href="/2016/07/30/Mac:windows下nexus系列产品的刷机官方指南/">Mac/windows下nexus系列产品的刷机官方指南</a></h1>
-    
-
-
-            </div>
-
-            <time class="light-green-link-context" datetime="2016-07-30T07:26:44.000Z"><a href="/2016/07/30/Mac:windows下nexus系列产品的刷机官方指南/">Jul 30 2016</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Mac/" class="chip light-green">Mac</a>
-        
-            <a href="/tags/Nexus/" class="chip light-green">Nexus</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry light-green-link-context">
-                    <h1 id="注意事项">注意事项</h1><p>1.仅针对官方镜像<br>2.需要下载官方镜像，需要翻墙或者国内寻找搬运资源<br>3.nexus刷入新系统后，开机需要网络验证激活（部分可以跳过），需要网络环境能够翻墙，请自行解决  </p>
-                </div>
-            
-        </div>
-
-        
-        <div class="card-action light-green-link-context">
-            <a href="/2016/07/30/Mac:windows下nexus系列产品的刷机官方指南/">READ MORE</a>
         </ div>
         
     </div>
