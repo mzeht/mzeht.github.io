@@ -179,6 +179,14 @@
         
 
             <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/工具/markdown/">
+                    markdown <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/工具/其他/">
                     其他 <span class="right">1</span></a>
                 </a>
@@ -189,14 +197,6 @@
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/工具/IDE/">
                     IDE <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/工具/markdown/">
-                    markdown <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -227,16 +227,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/移动开发/">
-                    移动开发 <span class="right">10</span></a>
+                <a class="no-padding" href="/categories/文章/">
+                    文章 <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/移动开发/AndroidHero/">
-                    AndroidHero <span class="right">3</span></a>
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/移动开发/">
+                    移动开发 <span class="right">10</span></a>
                 </a>
             </li>
 
@@ -250,9 +250,17 @@
 
         
 
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/移动开发/AndroidHero/">
+                    AndroidHero <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/运维/">
-                    运维 <span class="right">5</span></a>
+                    运维 <span class="right">6</span></a>
                 </a>
             </li>
 
@@ -275,6 +283,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/框架/">
+                    框架 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/编程语言/">
                     编程语言 <span class="right">3</span></a>
                 </a>
@@ -285,14 +301,6 @@
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/编程语言/Gradle/">
                     Gradle <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/框架/">
-                    框架 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -447,7 +455,7 @@
             <div class="entry light-green-link-context">
                 <p>最近写了一个自已用的微服务，放在阿里云主机上，但是带ip的接口看着还是很别扭的，于是安装nginx设置一下域名<br><a id="more"></a></p>
 <p>采用的是下载源码包，编译安装的方式</p>
-<h1 id="安装依赖">安装依赖</h1><p>make</p>
+<h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>make</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc automake autoconf libtool make</div></pre></td></tr></table></figure>
 <p>g++</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install gcc gcc-c++</div></pre></td></tr></table></figure>
@@ -457,9 +465,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install zlib zlib-devel</div></pre></td></tr></table></figure>
 <p>OpenSSL</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install openssl openssl-devel</div></pre></td></tr></table></figure>
-<h1 id="下载源码包">下载源码包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://nginx.org/download/nginx-1.10.1.tar.gz</div><div class="line">tar zxf nginx-1.10.1.tar.gz</div><div class="line">cd nginx-1.10.1/</div></pre></td></tr></table></figure>
-<h1 id="安装">安装</h1><p>./configure<br>make<br>make install</p>
-<h1 id="配置">配置</h1><p>安装好后出现以下目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/usr/local/nginx</div><div class="line">ls</div><div class="line">client_body_temp  fastcgi_temp  logs        sbin       uwsgi_temp</div><div class="line">conf              html          proxy_temp  scgi_temp</div></pre></td></tr></table></figure></p>
+<h1 id="下载源码包"><a href="#下载源码包" class="headerlink" title="下载源码包"></a>下载源码包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://nginx.org/download/nginx-1.10.1.tar.gz</div><div class="line">tar zxf nginx-1.10.1.tar.gz</div><div class="line">cd nginx-1.10.1/</div></pre></td></tr></table></figure>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>./configure<br>make<br>make install</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>安装好后出现以下目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/usr/local/nginx</div><div class="line">ls</div><div class="line">client_body_temp  fastcgi_temp  logs        sbin       uwsgi_temp</div><div class="line">conf              html          proxy_temp  scgi_temp</div></pre></td></tr></table></figure></p>
 <p>conf文件夹下nginx.conf文件就是我们要动刀的配置文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line">#user  nobody;</div><div class="line">worker_processes  1;</div><div class="line"></div><div class="line">#error_log  logs/error.log;</div><div class="line">#error_log  logs/error.log  notice;</div><div class="line">#error_log  logs/error.log  info;</div><div class="line"></div><div class="line">#pid        logs/nginx.pid;</div><div class="line"></div><div class="line"></div><div class="line">events &#123;</div><div class="line">##并发连接数量</div><div class="line">    worker_connections  100;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">http &#123;</div><div class="line">    include       mime.types;</div><div class="line">    default_type  application/octet-stream;</div><div class="line"></div><div class="line">    #log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</div><div class="line">    #                  &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</div><div class="line">    #                  &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</div><div class="line"></div><div class="line">    #access_log  logs/access.log  main;</div><div class="line"></div><div class="line">    sendfile        on;</div><div class="line">    #tcp_nopush     on;</div><div class="line"></div><div class="line">    #keepalive_timeout  0;</div><div class="line">    keepalive_timeout  65;</div><div class="line"></div><div class="line">    #gzip  on;</div><div class="line"></div><div class="line">    server &#123;</div><div class="line">        listen       80;</div><div class="line">        server_name  ******.com;##域名</div><div class="line"></div><div class="line">        #charset koi8-r;</div><div class="line">        </div><div class="line">         #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://127.0.0.1:****;##服务器端口号</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://127.0.0.1:10101;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #error_page  404              /404.html;</div><div class="line"></div><div class="line">        # redirect server error pages to the static page /50x.html</div><div class="line">        #</div><div class="line">        error_page   500 502 503 504  /50x.html;</div><div class="line">        location = /50x.html &#123;</div><div class="line">            root   html;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        # proxy the PHP scripts to Apache listening on 127.0.0.1:80</div><div class="line">        #</div><div class="line">        #location ~ \.php$ &#123;</div><div class="line">        #    proxy_pass   http://127.0.0.1;</div><div class="line">        #&#125;</div><div class="line"></div><div class="line">        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</div><div class="line">        #</div><div class="line">        #location ~ \.php$ &#123;</div><div class="line">        #    root           html;</div><div class="line">        #    fastcgi_pass   127.0.0.1:9000;</div><div class="line">        #    fastcgi_index  index.php;</div><div class="line">        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</div><div class="line">        #    include        fastcgi_params;</div><div class="line">        #&#125;</div><div class="line"></div><div class="line">        # deny access to .htaccess files, if Apache&apos;s document root</div><div class="line">        # concurs with nginx&apos;s one</div><div class="line">        #</div><div class="line">        #location ~ /\.ht &#123;</div><div class="line">        #    deny  all;</div><div class="line">        #&#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>好了配置完成，效果是访问域名，请求被转发到服务器本地的对应端口号</p>

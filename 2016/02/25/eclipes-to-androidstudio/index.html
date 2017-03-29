@@ -179,6 +179,14 @@
         
 
             <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/工具/markdown/">
+                    markdown <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/工具/其他/">
                     其他 <span class="right">1</span></a>
                 </a>
@@ -189,14 +197,6 @@
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/工具/IDE/">
                     IDE <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/工具/markdown/">
-                    markdown <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -227,16 +227,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/移动开发/">
-                    移动开发 <span class="right">10</span></a>
+                <a class="no-padding" href="/categories/文章/">
+                    文章 <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/移动开发/AndroidHero/">
-                    AndroidHero <span class="right">3</span></a>
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/移动开发/">
+                    移动开发 <span class="right">10</span></a>
                 </a>
             </li>
 
@@ -250,9 +250,17 @@
 
         
 
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/移动开发/AndroidHero/">
+                    AndroidHero <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/运维/">
-                    运维 <span class="right">5</span></a>
+                    运维 <span class="right">6</span></a>
                 </a>
             </li>
 
@@ -275,6 +283,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/框架/">
+                    框架 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/编程语言/">
                     编程语言 <span class="right">3</span></a>
                 </a>
@@ -285,14 +301,6 @@
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/编程语言/Gradle/">
                     Gradle <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/框架/">
-                    框架 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -438,16 +446,18 @@
 
 
             <div class="toc light-green-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#jar包冲突"><span class="section table-of-contents-text">jar包冲突</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#图片资源报错"><span class="section table-of-contents-text">图片资源报错</span></a></li></ol>
+    
 </div>
 
 
             <div class="entry light-green-link-context">
-                <h2 id="jar包冲突">jar包冲突</h2><blockquote>
+                <p>##jar包冲突</p>
+<blockquote>
 <p>Error:Execution failed for task ‘:app:transformResourcesWithMergeJavaResForDebug’.<br>com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/LICENSE.txt<br>      File1: /Users/wpmac/AndroidStudioProjects/Android_XinJiang/app/libs/httpmime-4.1.1.jar<br>      File2: /Users/wpmac/AndroidStudioProjects/Android_XinJiang/app/libs/commons-codec-1.4.jar</p>
 </blockquote>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">packagingOptions &#123;</div><div class="line">     exclude &apos;META-INF/DEPENDENCIES&apos;</div><div class="line">     exclude &apos;META-INF/NOTICE&apos;</div><div class="line">     exclude &apos;META-INF/LICENSE&apos;</div><div class="line">     exclude &apos;META-INF/LICENSE.txt&apos;</div><div class="line">     exclude &apos;META-INF/NOTICE.txt&apos;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<h2 id="图片资源报错">图片资源报错</h2><blockquote>
+<p>##图片资源报错 </p>
+<blockquote>
 <p>AAPT: /Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-xhdpi/suspected_association_normal.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited<br>AAPT err(Facade for 203993302) : No Delegate set : lost message:/Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-xhdpi/register_info_normal.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited<br>AAPT: /Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-xxhdpi/attention_pressed.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited<br>AAPT: /Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-hdpi/splash_imageview.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited<br>AAPT: /Users/wpmac/AndroidStudioProjects/Android_JieQian/app/src/main/res/drawable-xhdpi/province_select.png: libpng warning: iCCP: Not recognizing known sRGB profile that has been edited</p>
 </blockquote>
 <p>buildtools 23.0.2  warning: iCCP: Not recognizing known sRGB profile that has been edited</p>

@@ -179,6 +179,14 @@
         
 
             <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/工具/markdown/">
+                    markdown <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/工具/其他/">
                     其他 <span class="right">1</span></a>
                 </a>
@@ -189,14 +197,6 @@
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/工具/IDE/">
                     IDE <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/工具/markdown/">
-                    markdown <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -227,16 +227,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/移动开发/">
-                    移动开发 <span class="right">10</span></a>
+                <a class="no-padding" href="/categories/文章/">
+                    文章 <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/移动开发/AndroidHero/">
-                    AndroidHero <span class="right">3</span></a>
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/移动开发/">
+                    移动开发 <span class="right">10</span></a>
                 </a>
             </li>
 
@@ -250,9 +250,17 @@
 
         
 
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/移动开发/AndroidHero/">
+                    AndroidHero <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/运维/">
-                    运维 <span class="right">5</span></a>
+                    运维 <span class="right">6</span></a>
                 </a>
             </li>
 
@@ -275,6 +283,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/框架/">
+                    框架 <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/编程语言/">
                     编程语言 <span class="right">3</span></a>
                 </a>
@@ -285,14 +301,6 @@
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/编程语言/Gradle/">
                     Gradle <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/框架/">
-                    框架 <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -448,30 +456,30 @@
                 <p>最近的一个Android项目需要用到数据库的功能，之前的一个项目采用的是xutis，感觉用起来不是很方便，公司的项目我来之前同事用的基本实现<br>为了开发效率，决定采用greendao，看了不少介绍greendao的文章, 发现3.0前后用法变化较大，版本介绍各有不同，到了官方网站确定最新版本，开始研究</p>
 <p><a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="external">greendao github地址</a><br><a href="http://greenrobot.org/greendao/" target="_blank" rel="external">greendao 官方网站地址</a></p>
 <a id="more"></a>
-<h1 id="基本配置">基本配置</h1><p>在项目的project的build.gradle文件中配置</p>
+<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p>在项目的project的build.gradle文件中配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">        classpath &apos;com.android.tools.build:gradle:2.2.3&apos;</div><div class="line">        classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;</div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">        classpath &apos;org.greenrobot:greendao-gradle-plugin:3.2.1&apos;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>在项目需要用到的module的build.gradle文件中配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;org.greenrobot.greendao&apos;</div><div class="line">android &#123;</div><div class="line">		//greendao 数据库版本</div><div class="line">		schemaVersion 2</div><div class="line">		//greendao 插件生成代码位置</div><div class="line">        targetGenDir &apos;src/main/java&apos;</div><div class="line">&#125;</div><div class="line">dependencies &#123;</div><div class="line"> compile &apos;org.greenrobot:greendao:3.2.0&apos;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<h1 id="流程概要">流程概要</h1><ol>
+<h1 id="流程概要"><a href="#流程概要" class="headerlink" title="流程概要"></a>流程概要</h1><ol>
 <li>编写数据库实体类</li>
 <li>Make project编译工程，greendao插件生成代码</li>
 <li>编写代码，封装使用</li>
 </ol>
-<h1 id="使用示例">使用示例</h1><h2 id="新建实体类">新建实体类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@Entity</div><div class="line">public class Order &#123;</div><div class="line"></div><div class="line">    @Id</div><div class="line">    private Long id;</div><div class="line">    @Property</div><div class="line">    private String userId;</div><div class="line">    @Property</div><div class="line">    private String OrderNumber;</div><div class="line">    @Property</div><div class="line">    private String phoneNumber;</div><div class="line">    @Property</div><div class="line">    private String PaymentType;</div><div class="line">    @Property</div><div class="line">    private boolean isChecked;</div><div class="line">    @Property</div><div class="line">    private String moudleName;</div><div class="line">    </div><div class="line">    //...............</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="markeproject">markeproject</h2><p>Androidstudio （顶部工具栏上那个绿色小锤子，想xcode学习？），<br>生成代码<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-1-2/55678525-file_1483291295356_2436.png" alt=""><br>可以看见没有被git跟踪的三个棕色文件就是生成的文件</p>
-<h2 id="封装使用">封装使用</h2><p>新建一个DbManager.java</p>
+<h1 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h1><h2 id="新建实体类"><a href="#新建实体类" class="headerlink" title="新建实体类"></a>新建实体类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@Entity</div><div class="line">public class Order &#123;</div><div class="line"></div><div class="line">    @Id</div><div class="line">    private Long id;</div><div class="line">    @Property</div><div class="line">    private String userId;</div><div class="line">    @Property</div><div class="line">    private String OrderNumber;</div><div class="line">    @Property</div><div class="line">    private String phoneNumber;</div><div class="line">    @Property</div><div class="line">    private String PaymentType;</div><div class="line">    @Property</div><div class="line">    private boolean isChecked;</div><div class="line">    @Property</div><div class="line">    private String moudleName;</div><div class="line">    </div><div class="line">    //...............</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="markeproject"><a href="#markeproject" class="headerlink" title="markeproject"></a>markeproject</h2><p>Androidstudio （顶部工具栏上那个绿色小锤子，想xcode学习？），<br>生成代码<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-1-2/55678525-file_1483291295356_2436.png" alt=""><br>可以看见没有被git跟踪的三个棕色文件就是生成的文件</p>
+<h2 id="封装使用"><a href="#封装使用" class="headerlink" title="封装使用"></a>封装使用</h2><p>新建一个DbManager.java</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">public class DBManager &#123;</div><div class="line"></div><div class="line">    private final static String dbName = &quot;test_db&quot;;</div><div class="line">    private static DBManager mInstance;</div><div class="line">    private DaoMaster.DevOpenHelper openHelper;</div><div class="line">    private Context context;</div><div class="line">    private DaoSession daoSession;</div><div class="line">    private DaoMaster daoMaster;</div><div class="line"></div><div class="line"></div><div class="line">    public static void initialize(Context context) &#123;</div><div class="line">        if (mInstance == null) &#123;</div><div class="line">            synchronized (DBManager.class) &#123;</div><div class="line">                if (mInstance == null) &#123;</div><div class="line">                    mInstance = new DBManager(context);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public DBManager(Context context) &#123;</div><div class="line">        this.context = context;</div><div class="line">        openHelper = new DaoMaster.DevOpenHelper(context, dbName, null);</div><div class="line">        daoMaster=new DaoMaster(openHelper.getWritableDb());</div><div class="line">        daoSession = daoMaster.newSession();</div><div class="line"></div><div class="line">        //打印日志</div><div class="line">        QueryBuilder.LOG_SQL=true;</div><div class="line">        QueryBuilder.LOG_VALUES=true;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 获取单例引用</div><div class="line">     *</div><div class="line">     * @param</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    public static DBManager getInstance() &#123;</div><div class="line"></div><div class="line"></div><div class="line">        return mInstance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 获取session对象</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    public DaoSession getDaoSession() &#123;</div><div class="line">        return daoSession;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在Application中进行DbManager的初始化</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">public class BaimiApplication extends Application &#123;</div><div class="line"></div><div class="line"></div><div class="line">    private static Context mContext;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onCreate() &#123;</div><div class="line">        super.onCreate();</div><div class="line">        mContext = this;</div><div class="line">        BasePreference.initialize(mContext);</div><div class="line">        DBManager.initialize(mContext);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * @return</div><div class="line">     * 全局的上下文</div><div class="line">     */</div><div class="line">    public static Context getmContext() &#123;</div><div class="line">        return mContext;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>DbManager里面还可以进行进一步的封装，比如一些常用操作</p>
-<h2 id="调用">调用</h2><h3 id="插入数据">插入数据</h3><p> 这部分我还没来的及封装</p>
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><p> 这部分我还没来的及封装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">private void saveDb() &#123;</div><div class="line"></div><div class="line">        OrderDao orderdao = DBManager.getInstance().getDaoSession().getOrderDao();</div><div class="line">        Order order=new Order();</div><div class="line">        order.setPaymentType(paymentType);</div><div class="line">        order.setOrderNumber(orderEdit.getText().toString());</div><div class="line">        order.setPhoneNumber(phoneEdit.getText().toString());</div><div class="line">        order.setChecked(false);</div><div class="line">        order.setUserId(BasePreference.getInstance().getLoginName());</div><div class="line">        order.setMoudleName(&quot;快递接件&quot;);</div><div class="line">        orderdao.insert(order);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h3 id="查询数据">查询数据</h3><p>新建了一个DbHelper进行封装，主要是同种查询条件多处调用，写的累。。<br>链式调研，很舒服</p>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><p>新建了一个DbHelper进行封装，主要是同种查询条件多处调用，写的累。。<br>链式调研，很舒服</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class DbHelper &#123;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * @param moduleName</div><div class="line">     * 获取当前用户订单列表</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    public  static  List&lt;Order&gt; getUserOrderByMouleName(String moduleName)&#123;</div><div class="line">        OrderDao orderdao = DBManager.getInstance().getDaoSession().getOrderDao();</div><div class="line">        List&lt;Order&gt; orders = orderdao.queryBuilder()</div><div class="line">                .where(OrderDao.Properties.MoudleName.eq(moduleName))</div><div class="line">                .where(OrderDao.Properties.UserId.eq(BasePreference.getInstance().getLoginName()))</div><div class="line">                .list();</div><div class="line"></div><div class="line">        return orders;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="删除数据">删除数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">OrderDao mOrderdao = DBManager.getInstance().getDaoSession().getOrderDao();</div><div class="line"> for (Order order : mOrderList) &#123;</div><div class="line">            if (order.isChecked() == true) &#123;</div><div class="line">                mOrderdao.delete(order);</div><div class="line">            &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<h3 id="更新数据">更新数据</h3><p>也是基于实体类生成的Dao文件,利用AS智能提示查看一下方法和参数信息，就可以使用了</p>
-<h2 id="查看日志">查看日志</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">01-02 01:43:45.549 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:45.549 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div><div class="line">01-02 01:43:51.983 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:51.983 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div><div class="line">01-02 01:43:51.987 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:51.987 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div><div class="line">01-02 01:43:52.813 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:52.813 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div><div class="line">01-02 01:43:52.815 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:52.815 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div></pre></td></tr></table></figure>
-<h1 id="后记">后记</h1><p>总的来说，greendao的使用和后端的hibernate ORM框架使用方式类似<br>以后会不会出现和Mybatis类似的androidORM框架呢，希望有生之年能看见<br>联想到Mybatis使用时的日志配置，可以实时打印出语句和参数信息<br>寻找了一下greendao打印日志的方法 在DbManager.java里面已经添加了</p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">OrderDao mOrderdao = DBManager.getInstance().getDaoSession().getOrderDao();</div><div class="line"> for (Order order : mOrderList) &#123;</div><div class="line">            if (order.isChecked() == true) &#123;</div><div class="line">                mOrderdao.delete(order);</div><div class="line">            &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><p>也是基于实体类生成的Dao文件,利用AS智能提示查看一下方法和参数信息，就可以使用了</p>
+<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">01-02 01:43:45.549 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:45.549 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div><div class="line">01-02 01:43:51.983 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:51.983 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div><div class="line">01-02 01:43:51.987 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:51.987 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div><div class="line">01-02 01:43:52.813 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:52.813 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div><div class="line">01-02 01:43:52.815 31150-31150/com.wpmac.momi D/greenDAO: Built SQL for query: SELECT T.&quot;_id&quot;,T.&quot;USER_ID&quot;,T.&quot;ORDER_NUMBER&quot;,T.&quot;PHONE_NUMBER&quot;,T.&quot;PAYMENT_TYPE&quot;,T.&quot;IS_CHECKED&quot;,T.&quot;MOUDLE_NAME&quot; FROM &quot;ORDER&quot; T  WHERE T.&quot;MOUDLE_NAME&quot;=? AND T.&quot;USER_ID&quot;=?</div><div class="line">01-02 01:43:52.815 31150-31150/com.wpmac.momi D/greenDAO: Values for query: [快递接件, 007]</div></pre></td></tr></table></figure>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>总的来说，greendao的使用和后端的hibernate ORM框架使用方式类似<br>以后会不会出现和Mybatis类似的androidORM框架呢，希望有生之年能看见<br>联想到Mybatis使用时的日志配置，可以实时打印出语句和参数信息<br>寻找了一下greendao打印日志的方法 在DbManager.java里面已经添加了</p>
 
                 
 <p class="light-green-link-context">
