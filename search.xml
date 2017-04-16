@@ -4,107 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[谈一谈我印象中的互联网团队]]></title>
-      <url>http://mzeht.com/2017/03/29/2017-03-29/</url>
-      <content type="html"><![CDATA[<p>##办公环境<br>气氛可以轻松活泼，但是开发任务起来后需要相对安静的环境，要给开发人员良好的思考空间，敲代码的时候有其他同事大声喧哗很影响思维，各个部门（模块）格局分明，不要混搭，产品模块，市场模块，后台模块，前端模块，移动模块，其他模块</p>
-<p>##开发平台准备</p>
-<table>
-<thead>
-<tr>
-<th>项目平台</th>
-<th>小团队</th>
-<th>大团队</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>管理平台</td>
-<td>tower，coding</td>
-<td>自建，readmine，禅道，均有开源</td>
-</tr>
-<tr>
-<td>接口管理平台</td>
-<td>在线rap</td>
-<td>自建rap</td>
-</tr>
-<tr>
-<td>代码管理平台</td>
-<td>coding</td>
-<td>自建gitlab</td>
-</tr>
-<tr>
-<td>持续集成</td>
-<td></td>
-<td>自建jenkins</td>
-</tr>
-<tr>
-<td>成员交流</td>
-<td>qq等</td>
-<td>内部</td>
-</tr>
-<tr>
-<td>考勤</td>
-<td>dingding</td>
-<td>内部OA</td>
-</tr>
-</tbody>
-</table>
-<p>大力推荐：<br>rap：mock数据功能加快前端开发（定义好接口，即可访问到生成数据），占用内存也不大，阿里云上2G内存机器即可，代价小，效率提升在以上工具中最为明显</p>
-<p>##项目开发流程</p>
-<h3 id="需求整理"><a href="#需求整理" class="headerlink" title="需求整理"></a>需求整理</h3><p>这个阶段主要是产品经理的工作，或者小团队的集思广益，这个阶段最为关键，公司发展到一定阶段，开发团队是没有瓶颈的，但是一个好的点子／产品经理却很难遇到，不要评估出伪需求，也不要一开始就大而全，需求应该分期规划，先做核心功能，验证模式，这个阶段一般开发leader也会参与</p>
-<p>这个阶段产品要有清晰的思维产物，以及两个书面产物，一个是需求文档，第二个是产品原型</p>
-<p>产品原型又有ps的初步原型，或者专业原型工具的高保真原型（如Axure）下图就是一个Axure页面，有动态交互细节，和像素参考，进阶设计师必备技能</p>
-<h3 id="开发阶段"><a href="#开发阶段" class="headerlink" title="开发阶段"></a>开发阶段</h3><p>1.选型</p>
-<p>语言（默认java）node？php？<br>数据库（默认mybatis加上redis）hadoop? mongodb?<br>服务器（默认云：传统？docker？）<br>开发框架（ssm：传统集成？spring boot？）个人偏向boot+spring cloud<br>前后端分离（默认）<br>客户端授权验证（没有？）</p>
-<p>2.模块划分<br>如用户信息模块，企业信息模块，订单模块，风控模块</p>
-<p>3.数据库建库<br>确定字段，这是在2的基础上 数据库工具推荐<code>DataGrip</code></p>
-<p>4.任务指派<br>一般由开发负责人指派，要注意工作的进度，可靠性，也要注意带动新人的发展，配合项目管理工具（个人用过<code>禅道</code>（公司初期），<code>readmine</code>（公司重构后），<code>coding</code>（自己玩），<code>tower</code>（大三团队期间）），一方面是管理层追踪，一方面是员工之间的透明</p>
-<p>任务状态有<br><code>创建</code> <code>指派给</code> <code>进行中</code> <code>已解决</code> <code>关闭</code> <code>反馈</code><br>任务优先级<br>从高到低<br>每个人能看到自己的工作量</p>
-<p>5.代码阶段<br>就拿微服务来说，所有微服务应该风格相同，基础配置fork自一份原始代码，不过对小团队不作要求</p>
-<p>6.是否支持上一版系统</p>
-<h3 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h3><h4 id="基本原则"><a href="#基本原则" class="headerlink" title="基本原则"></a>基本原则</h4><p>不同环境之间需要隔离</p>
-<h4 id="如何提测"><a href="#如何提测" class="headerlink" title="如何提测"></a>如何提测</h4><p>1.代码层面<br>代码有切换运行环境的“总开关”<br>以springboot为例子<br>application.yml文件中配置不同的profiles</p>
-<p>以android为例<br>build.gradle文件中配置不同的buldeType</p>
-<p>2.发布方式<br>人工发布费时费力，还有出错率<br>建议采用CI工具，如jenkins绑定git仓库，设置触发器发布／手动登录jenkis构建</p>
-<h4 id="测试反馈"><a href="#测试反馈" class="headerlink" title="测试反馈"></a>测试反馈</h4><p>1.先测试环境测试</p>
-<p>2.后模拟线上环境测试</p>
-<p>3.上线观察期</p>
-<p>4.稳定<br>测试出bug后 把问题经项目管理工具指派给开发者</p>
-<p>问题分类有<br><code>缺陷</code>，<code>新增需求</code>，<code>优化</code></p>
-<p>问题的状态和任务类似<br><code>创建</code> <code>指派给</code> <code>进行中</code> <code>已解决</code> <code>关闭</code> <code>反馈</code></p>
-<p>问题优先级<br>从高到低</p>
-<h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><h2 id="相关建议"><a href="#相关建议" class="headerlink" title="相关建议"></a>相关建议</h2><p>结合实际，以下可以推行</p>
-<ul>
-<li>后端开发全面转型IDEA</li>
-<li>新项目转向SpringBoot</li>
-<li>使用一个项目管理工具</li>
-<li>采用git仓库，自建／托管 （4G阿里云／coding）</li>
-<li>使用接口管理工具 rap／自建rap （在线使用／2G阿里云）</li>
-<li>接口定义统一restfu风格</li>
-<li>代码配置区分profiles</li>
-<li>代码架构由负责人负责，提供技术支持和所有架构上的代码</li>
-<li>codereview</li>
-<li>负责人本地jenkins发版</li>
-</ul>
-<p>后续 loading</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 文章 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 团队 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Mybatis-plugin收费插件破解]]></title>
       <url>http://mzeht.com/2017/02/10/Mybatis-plugin%E6%94%B6%E8%B4%B9%E6%8F%92%E4%BB%B6%E7%A0%B4%E8%A7%A3/</url>
       <content type="html"><![CDATA[<p>IDEA版本</p>
@@ -123,6 +22,8 @@
             <category> 工具 </category>
             
             <category> 破解 </category>
+            
+            <category> resource </category>
             
         </categories>
         
@@ -146,6 +47,8 @@
         <categories>
             
             <category> 运维 </category>
+            
+            <category> tech </category>
             
         </categories>
         
@@ -195,6 +98,8 @@
             <category> 运维 </category>
             
             <category> docker </category>
+            
+            <category> tech </category>
             
         </categories>
         
@@ -458,6 +363,8 @@
             
             <category> java </category>
             
+            <category> tech </category>
+            
         </categories>
         
         
@@ -500,6 +407,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line">     * 获取用户信息</div><div class="line">     * @param phone</div><div class="line">     * @return</div><div class="line">     * @throws Exception</div><div class="line">     */</div><div class="line">    public ApiResult&lt;UserBean&gt; info(String phone) throws Exception &#123;</div><div class="line">        if (StringUtils.isEmpty(phone))</div><div class="line">            throw new Exception(&quot;手机号不能为空&quot;);</div><div class="line">        UserParam userParam = new UserParam();</div><div class="line">        userParam.setPhoneNumber(phone);</div><div class="line">        Call&lt;ApiResult&lt;UserBean&gt;&gt; call = apiRetrofit.getCommonApi().info(userParam);</div><div class="line">        Response&lt;ApiResult&lt;UserBean&gt;&gt; response = call.execute();</div><div class="line">        if (!response.isSuccessful()) &#123;</div><div class="line">            throw new Exception(response.message());</div><div class="line">        &#125; else &#123;</div><div class="line">            return response.body();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <h2 id="分页请求泛型"><a href="#分页请求泛型" class="headerlink" title="分页请求泛型"></a>分页请求泛型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@JsonInclude(JsonInclude.Include.NON_NULL)</div><div class="line">public class ApiPagesResult&lt;T&gt; implements Serializable&#123;</div><div class="line"></div><div class="line"></div><div class="line">    private static final long serialVersionUID = -8421200997970330114L;</div><div class="line">    @JsonProperty(&quot;success&quot;)</div><div class="line">    private boolean success = false;</div><div class="line">    @JsonProperty(&quot;message&quot;)</div><div class="line">    private String message;</div><div class="line">    @JsonProperty(&quot;data&quot;)</div><div class="line">    private Data&lt;T&gt; data;</div><div class="line"></div><div class="line">    </div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">@JsonInclude(JsonInclude.Include.NON_NULL)</div><div class="line">public class Data&lt;R&gt;  implements Serializable&#123;</div><div class="line"></div><div class="line">    @JsonProperty(&quot;total&quot;)</div><div class="line">    private Integer total;</div><div class="line"></div><div class="line">    @JsonProperty(&quot;currentPage&quot;)</div><div class="line">    private Integer currentPage;</div><div class="line"></div><div class="line">    @JsonProperty(&quot;pageSize&quot;)</div><div class="line">    private Integer pageSize;</div><div class="line"></div><div class="line">    @JsonProperty(&quot;pages&quot;)</div><div class="line">    private Integer pages;</div><div class="line"></div><div class="line">    @JsonProperty(&quot;dataList&quot;)</div><div class="line">    private List&lt;R&gt; dataList;</div></pre></td></tr></table></figure>
+<p>1</p>
 ]]></content>
       
         <categories>
@@ -613,6 +521,42 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Spring boot配置多数据源]]></title>
+      <url>http://mzeht.com/2016/12/28/spring%20boot%20%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<h2 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h2><p>可以是默认的application.properties，亦可以是自定义的source.properties</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># mysql</div><div class="line">spring.datasource.one.driver-class-name=com.mysql.jdbc.Driver</div><div class="line">spring.datasource.one.url=jdbc:mysql://localhost:3306/wpspringboot</div><div class="line">spring.datasource.one.username=root</div><div class="line">spring.datasource.one.password=root</div><div class="line"></div><div class="line">spring.datasource.two.driver-class-name=com.mysql.jdbc.Driver</div><div class="line">spring.datasource.two.url=jdbc:mysql://localhost:3306/wpspringboottwo</div><div class="line">spring.datasource.two.username=root</div><div class="line">spring.datasource.two.password=root</div></pre></td></tr></table></figure>
+<p>@Configuration</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">//@EnableTransactionManagement</div><div class="line">//@PropertySource(value = &#123;&quot;classpath:config/source.properties&quot;&#125;)</div><div class="line">public class BeanConfig &#123;</div><div class="line"></div><div class="line">//    @Autowired</div><div class="line">//    private Environment env;</div><div class="line">//</div><div class="line">//</div><div class="line">//    @Bean(destroyMethod = &quot;close&quot;)</div><div class="line">//    public DataSource dataSource() &#123;</div><div class="line">//        DruidDataSource dataSource = new DruidDataSource();</div><div class="line">//        dataSource.setDriverClassName(env.getProperty(&quot;source.driverClassName&quot;).trim());</div><div class="line">//        dataSource.setUrl(env.getProperty(&quot;source.url&quot;).trim());</div><div class="line">//        dataSource.setUsername(env.getProperty(&quot;source.username&quot;).trim());</div><div class="line">//        dataSource.setPassword(env.getProperty(&quot;source.password&quot;).trim());</div><div class="line">//</div><div class="line">//        return dataSource;</div><div class="line">//    &#125;</div><div class="line">//</div><div class="line">//    @Bean</div><div class="line">//    public JdbcTemplate jdbcTemplate() &#123;</div><div class="line">//        JdbcTemplate jdbcTemplate = new JdbcTemplate();</div><div class="line">//        jdbcTemplate.setDataSource(dataSource());</div><div class="line">//        return jdbcTemplate;</div><div class="line">//    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;oneDataSource&quot;)</div><div class="line">    @Qualifier(&quot;oneDataSource&quot;)</div><div class="line">    @Primary</div><div class="line">    @ConfigurationProperties(prefix=&quot;spring.datasource.one&quot;)</div><div class="line">    public DataSource oneDataSource() &#123;</div><div class="line">        return DataSourceBuilder.create().build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;twoDataSource&quot;)</div><div class="line">    @Qualifier(&quot;twoDataSource&quot;)</div><div class="line">    @ConfigurationProperties(prefix=&quot;spring.datasource.two&quot;)</div><div class="line">    public DataSource twoDataSource() &#123;</div><div class="line">        return DataSourceBuilder.create().build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;oneJdbcTemplate&quot;)</div><div class="line">    public JdbcTemplate oneJdbcTemplate(@Qualifier(&quot;oneDataSource&quot;) DataSource dataSource) &#123;</div><div class="line">        return new JdbcTemplate(dataSource);</div><div class="line">    &#125;</div><div class="line">    @Bean(name = &quot;twoJdbcTemplate&quot;)</div><div class="line">    public JdbcTemplate twoJdbcTemplate(@Qualifier(&quot;twoDataSource&quot;) DataSource dataSource) &#123;</div><div class="line">        return new JdbcTemplate(dataSource);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">@Repository</div><div class="line">public class AuthorDaoImpl implements AuthorDao &#123;</div><div class="line">    @Autowired</div><div class="line">    @Qualifier(&quot;oneJdbcTemplate&quot;)</div><div class="line">    private JdbcTemplate jdbcTemplate;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int add(Author author) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;insert into t_author(real_name, nick_name) values(?, ?)&quot;,</div><div class="line">                author.getRealName(), author.getNickName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int update(Author author) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;update t_author set real_name = ?, nick_name = ? where id = ?&quot;,</div><div class="line">                new Object[]&#123;author.getRealName(), author.getNickName(), author.getId()&#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int delete(Long id) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;delete from t_author where id = ?&quot;, id);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public Author findAuthor(Long id) &#123;</div><div class="line">        List&lt;Author&gt; list = jdbcTemplate.query(&quot;select * from t_author where id = ?&quot;, new Object[]&#123;id&#125;, new BeanPropertyRowMapper(Author.class));</div><div class="line">        if(null != list &amp;&amp; list.size()&gt;0)&#123;</div><div class="line">            Author auhtor = list.get(0);</div><div class="line">            return auhtor;</div><div class="line">        &#125;else&#123;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public List&lt;Author&gt; findAuthorList() &#123;</div><div class="line">        List&lt;Author&gt; list = jdbcTemplate.query(&quot;select * from t_author&quot;, new Object[]&#123;&#125;, new BeanPropertyRowMapper&lt;Author&gt;(Author.class));</div><div class="line">        return list;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>试下单元测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@SpringApplicationConfiguration(WpspringbootApplication.class)</div><div class="line">public class JdbcTest &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>idea提示SpringApplicationConfiguration方法已被废弃<br>那就用自动生成的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringRunner.class)</div><div class="line">@SpringBootTest</div><div class="line">public class WpspringbootApplicationTests &#123;</div><div class="line"></div><div class="line">	@Test</div><div class="line">	public void contextLoads() &#123;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Resource(name=&quot;oneJdbcTemplate&quot;)</div><div class="line">	protected JdbcTemplate jdbcTemplate1;</div><div class="line">	@Resource(name=&quot;twoJdbcTemplate&quot;)</div><div class="line">	protected JdbcTemplate jdbcTemplate2;</div><div class="line"></div><div class="line">	@Test</div><div class="line">	public void test() throws Exception &#123;</div><div class="line">		jdbcTemplate1.update(&quot;insert into t_author(id, real_name, nick_name) values(?, ?, ?)&quot;, 5, &quot;梁桂钊&quot;, &quot;LiangGzone&quot;);</div><div class="line">		jdbcTemplate2.update(&quot;insert into t_author(id, real_name, nick_name) values(?, ?, ?)&quot;, 6, &quot;梁桂钊&quot;, &quot;LiangGzone&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行之后发现数据库中文是问号<br>数据库配置文件中配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spring.datasource.one.url=jdbc:mysql://localhost:3306/wpspringboot?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true</div></pre></td></tr></table></figure>
+<p>再次测试，正常了</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 后端开发 </category>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Spring boot </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Spring boot整合mybatis]]></title>
       <url>http://mzeht.com/2016/12/28/spring%20boot%E6%95%B4%E5%90%88mybatis/</url>
       <content type="html"><![CDATA[<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><h2 id="配置数据库"><a href="#配置数据库" class="headerlink" title="配置数据库"></a>配置数据库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">@EnableTransactionManagement</div><div class="line">@PropertySource(value = &#123;&quot;classpath:config/source.properties&quot;&#125;)</div><div class="line">public class BeanConfig &#123;</div><div class="line"></div><div class="line">    @Autowired</div><div class="line">    private Environment env;</div><div class="line"></div><div class="line">    @Bean(destroyMethod = &quot;close&quot;)</div><div class="line">    public DataSource dataSource() &#123;</div><div class="line">        DruidDataSource dataSource = new DruidDataSource();</div><div class="line">        dataSource.setDriverClassName(env.getProperty(&quot;source.driverClassName&quot;).trim());</div><div class="line">        dataSource.setUrl(env.getProperty(&quot;source.url&quot;).trim());</div><div class="line">        dataSource.setUsername(env.getProperty(&quot;source.username&quot;).trim());</div><div class="line">        dataSource.setPassword(env.getProperty(&quot;source.password&quot;).trim());</div><div class="line">        return dataSource;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean</div><div class="line">    public JdbcTemplate jdbcTemplate() &#123;</div><div class="line">        JdbcTemplate jdbcTemplate = new JdbcTemplate();</div><div class="line">        jdbcTemplate.setDataSource(dataSource());</div><div class="line">        return jdbcTemplate;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -711,79 +655,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Spring boot配置多数据源]]></title>
-      <url>http://mzeht.com/2016/12/28/spring%20boot%20%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<h2 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h2><p>可以是默认的application.properties，亦可以是自定义的source.properties</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># mysql</div><div class="line">spring.datasource.one.driver-class-name=com.mysql.jdbc.Driver</div><div class="line">spring.datasource.one.url=jdbc:mysql://localhost:3306/wpspringboot</div><div class="line">spring.datasource.one.username=root</div><div class="line">spring.datasource.one.password=root</div><div class="line"></div><div class="line">spring.datasource.two.driver-class-name=com.mysql.jdbc.Driver</div><div class="line">spring.datasource.two.url=jdbc:mysql://localhost:3306/wpspringboottwo</div><div class="line">spring.datasource.two.username=root</div><div class="line">spring.datasource.two.password=root</div></pre></td></tr></table></figure>
-<p>@Configuration</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">//@EnableTransactionManagement</div><div class="line">//@PropertySource(value = &#123;&quot;classpath:config/source.properties&quot;&#125;)</div><div class="line">public class BeanConfig &#123;</div><div class="line"></div><div class="line">//    @Autowired</div><div class="line">//    private Environment env;</div><div class="line">//</div><div class="line">//</div><div class="line">//    @Bean(destroyMethod = &quot;close&quot;)</div><div class="line">//    public DataSource dataSource() &#123;</div><div class="line">//        DruidDataSource dataSource = new DruidDataSource();</div><div class="line">//        dataSource.setDriverClassName(env.getProperty(&quot;source.driverClassName&quot;).trim());</div><div class="line">//        dataSource.setUrl(env.getProperty(&quot;source.url&quot;).trim());</div><div class="line">//        dataSource.setUsername(env.getProperty(&quot;source.username&quot;).trim());</div><div class="line">//        dataSource.setPassword(env.getProperty(&quot;source.password&quot;).trim());</div><div class="line">//</div><div class="line">//        return dataSource;</div><div class="line">//    &#125;</div><div class="line">//</div><div class="line">//    @Bean</div><div class="line">//    public JdbcTemplate jdbcTemplate() &#123;</div><div class="line">//        JdbcTemplate jdbcTemplate = new JdbcTemplate();</div><div class="line">//        jdbcTemplate.setDataSource(dataSource());</div><div class="line">//        return jdbcTemplate;</div><div class="line">//    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;oneDataSource&quot;)</div><div class="line">    @Qualifier(&quot;oneDataSource&quot;)</div><div class="line">    @Primary</div><div class="line">    @ConfigurationProperties(prefix=&quot;spring.datasource.one&quot;)</div><div class="line">    public DataSource oneDataSource() &#123;</div><div class="line">        return DataSourceBuilder.create().build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;twoDataSource&quot;)</div><div class="line">    @Qualifier(&quot;twoDataSource&quot;)</div><div class="line">    @ConfigurationProperties(prefix=&quot;spring.datasource.two&quot;)</div><div class="line">    public DataSource twoDataSource() &#123;</div><div class="line">        return DataSourceBuilder.create().build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Bean(name = &quot;oneJdbcTemplate&quot;)</div><div class="line">    public JdbcTemplate oneJdbcTemplate(@Qualifier(&quot;oneDataSource&quot;) DataSource dataSource) &#123;</div><div class="line">        return new JdbcTemplate(dataSource);</div><div class="line">    &#125;</div><div class="line">    @Bean(name = &quot;twoJdbcTemplate&quot;)</div><div class="line">    public JdbcTemplate twoJdbcTemplate(@Qualifier(&quot;twoDataSource&quot;) DataSource dataSource) &#123;</div><div class="line">        return new JdbcTemplate(dataSource);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">@Repository</div><div class="line">public class AuthorDaoImpl implements AuthorDao &#123;</div><div class="line">    @Autowired</div><div class="line">    @Qualifier(&quot;oneJdbcTemplate&quot;)</div><div class="line">    private JdbcTemplate jdbcTemplate;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int add(Author author) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;insert into t_author(real_name, nick_name) values(?, ?)&quot;,</div><div class="line">                author.getRealName(), author.getNickName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int update(Author author) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;update t_author set real_name = ?, nick_name = ? where id = ?&quot;,</div><div class="line">                new Object[]&#123;author.getRealName(), author.getNickName(), author.getId()&#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int delete(Long id) &#123;</div><div class="line">        return jdbcTemplate.update(&quot;delete from t_author where id = ?&quot;, id);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public Author findAuthor(Long id) &#123;</div><div class="line">        List&lt;Author&gt; list = jdbcTemplate.query(&quot;select * from t_author where id = ?&quot;, new Object[]&#123;id&#125;, new BeanPropertyRowMapper(Author.class));</div><div class="line">        if(null != list &amp;&amp; list.size()&gt;0)&#123;</div><div class="line">            Author auhtor = list.get(0);</div><div class="line">            return auhtor;</div><div class="line">        &#125;else&#123;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public List&lt;Author&gt; findAuthorList() &#123;</div><div class="line">        List&lt;Author&gt; list = jdbcTemplate.query(&quot;select * from t_author&quot;, new Object[]&#123;&#125;, new BeanPropertyRowMapper&lt;Author&gt;(Author.class));</div><div class="line">        return list;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>试下单元测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@SpringApplicationConfiguration(WpspringbootApplication.class)</div><div class="line">public class JdbcTest &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>idea提示SpringApplicationConfiguration方法已被废弃<br>那就用自动生成的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringRunner.class)</div><div class="line">@SpringBootTest</div><div class="line">public class WpspringbootApplicationTests &#123;</div><div class="line"></div><div class="line">	@Test</div><div class="line">	public void contextLoads() &#123;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Resource(name=&quot;oneJdbcTemplate&quot;)</div><div class="line">	protected JdbcTemplate jdbcTemplate1;</div><div class="line">	@Resource(name=&quot;twoJdbcTemplate&quot;)</div><div class="line">	protected JdbcTemplate jdbcTemplate2;</div><div class="line"></div><div class="line">	@Test</div><div class="line">	public void test() throws Exception &#123;</div><div class="line">		jdbcTemplate1.update(&quot;insert into t_author(id, real_name, nick_name) values(?, ?, ?)&quot;, 5, &quot;梁桂钊&quot;, &quot;LiangGzone&quot;);</div><div class="line">		jdbcTemplate2.update(&quot;insert into t_author(id, real_name, nick_name) values(?, ?, ?)&quot;, 6, &quot;梁桂钊&quot;, &quot;LiangGzone&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行之后发现数据库中文是问号<br>数据库配置文件中配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spring.datasource.one.url=jdbc:mysql://localhost:3306/wpspringboot?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true</div></pre></td></tr></table></figure>
-<p>再次测试，正常了</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 后端开发 </category>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Spring boot </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Android Scroll分析]]></title>
-      <url>http://mzeht.com/2016/10/12/Android%20Scroll%E5%88%86%E6%9E%90/</url>
-      <content type="html"><![CDATA[<h1 id="滑动效果的产生"><a href="#滑动效果的产生" class="headerlink" title="滑动效果的产生"></a>滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
-<a id="more"></a>
-<h2 id="Android坐标系"><a href="#Android坐标系" class="headerlink" title="Android坐标系"></a>Android坐标系</h2><p>Android坐标系以屏幕左上角为原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-22/68901668.jpg" alt=""></p>
-<h2 id="视图坐标系"><a href="#视图坐标系" class="headerlink" title="视图坐标系"></a>视图坐标系</h2><p>子视图以父视图左上角为坐标原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/13206722.jpg" alt=""><br>触控事件中，通过getX(),getY()获得的坐标就是视图中的坐标系</p>
-<h2 id="触控事件"><a href="#触控事件" class="headerlink" title="触控事件"></a>触控事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//单点触摸按下动作</div><div class="line">   public static final int ACTION_DOWN             = 0;</div><div class="line">   </div><div class="line">   //单点触摸离开动作</div><div class="line">   public static final int ACTION_UP               = 1;</div><div class="line">   </div><div class="line">  //触摸点移动动作</div><div class="line">   public static final int ACTION_MOVE             = 2;</div><div class="line">   </div><div class="line">  //触摸动作取消</div><div class="line">   public static final int ACTION_CANCEL           = 3;</div><div class="line">   </div><div class="line">  //触摸动作超出边界</div><div class="line">   public static final int ACTION_OUTSIDE          = 4;</div><div class="line"></div><div class="line">   //多点触摸按下动作</div><div class="line">   public static final int ACTION_POINTER_DOWN     = 5;</div><div class="line">   </div><div class="line">   //多点离开动作</div><div class="line">   public static final int ACTION_POINTER_UP       = 6;</div><div class="line"></div><div class="line">   public static final int ACTION_HOVER_MOVE       = 7;</div><div class="line"></div><div class="line">   </div><div class="line">   public static final int ACTION_SCROLL           = 8;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_ENTER      = 9;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_EXIT       = 10;</div><div class="line"></div><div class="line"></div><div class="line">   public static final int ACTION_BUTTON_PRESS   = 11;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_BUTTON_RELEASE  = 12;</div></pre></td></tr></table></figure>
-<p>一般在View的onTouchEvent方法中对event.getAction()进行筛选控制，（不涉及多点触控的情况下）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Override</div><div class="line">public boolean onTouchEvent(MotionEvent event) &#123;</div><div class="line">    int x = (int) event.getX();</div><div class="line">    int y = (int) event.getY();</div><div class="line">    switch (event.getAction()) &#123;</div><div class="line">        case MotionEvent.ACTION_DOWN:</div><div class="line">            lastX = (int) event.getX();</div><div class="line">            lastY = (int) event.getY();</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_MOVE:</div><div class="line">            int offsetX = x - lastX;</div><div class="line">            int offsetY = y - lastY;</div><div class="line">            ((View) getParent()).scrollBy(-offsetX, -offsetY);</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_UP:</div><div class="line">            // 手指离开时，执行滑动过程</div><div class="line">            View viewGroup = ((View) getParent());</div><div class="line">            mScroller.startScroll(</div><div class="line">                    viewGroup.getScrollX(),</div><div class="line">                    viewGroup.getScrollY(),</div><div class="line">                    -viewGroup.getScrollX(),</div><div class="line">                    -viewGroup.getScrollY());</div><div class="line">            invalidate();</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>系统提供了很多获取坐标值，相对距离的坐标值的方法，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/82371833.jpg" alt=""></p>
-<p>大概分为两类：</p>
-<hr>
-<p>View提供的获取坐标的方法<br>getTop(): 获取到View自身顶边到其父布局顶部的距离<br>getLeft() : 获取到View自身左边到其父布局左边的距离<br>getRight():<br>getBottom();</p>
-<hr>
-<p>MotionEvent提供的方法<br>getX():    获取点击事件距离控件左边的距离，即视图坐标<br>getY():获取点击事件距离控件顶部的距离，即视图坐标<br>getRawX():获取点击事件距离整个屏幕左边的距离，即绝对坐标<br>getRawY():….</p>
-<h1 id="实现滑动的七种方法"><a href="#实现滑动的七种方法" class="headerlink" title="实现滑动的七种方法"></a>实现滑动的七种方法</h1><h2 id="layout方法"><a href="#layout方法" class="headerlink" title="layout方法"></a>layout方法</h2>]]></content>
-      
-        <categories>
-            
-            <category> 移动开发 </category>
-            
-            <category> AndroidHero </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Android </tag>
-            
-            <tag> Scroll </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Mac下的整套翻墙方案]]></title>
       <url>http://mzeht.com/2016/10/12/12.01mac%E4%B8%8B%E7%9A%84%E7%BF%BB%E5%A2%99%E6%96%B9%E6%A1%88/</url>
       <content type="html"><![CDATA[<p>最近brew升级网络速度很慢，加上Macos系统版本的变化，升级的变化也较大，（权限变化，需要用到brew的建议尽快升级）执行brew update老半天还失败，于是寻找命令行翻墙的解决方法，期间尝试了proxychains，效果不好，<code>我和同学os一个版本的，他可以，我的不行</code>，于是找别的解决方法</p>
@@ -834,6 +705,43 @@
             <tag> Mac </tag>
             
             <tag> 翻墙 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android Scroll分析]]></title>
+      <url>http://mzeht.com/2016/10/12/Android%20Scroll%E5%88%86%E6%9E%90/</url>
+      <content type="html"><![CDATA[<h1 id="滑动效果的产生"><a href="#滑动效果的产生" class="headerlink" title="滑动效果的产生"></a>滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
+<a id="more"></a>
+<h2 id="Android坐标系"><a href="#Android坐标系" class="headerlink" title="Android坐标系"></a>Android坐标系</h2><p>Android坐标系以屏幕左上角为原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-22/68901668.jpg" alt=""></p>
+<h2 id="视图坐标系"><a href="#视图坐标系" class="headerlink" title="视图坐标系"></a>视图坐标系</h2><p>子视图以父视图左上角为坐标原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/13206722.jpg" alt=""><br>触控事件中，通过getX(),getY()获得的坐标就是视图中的坐标系</p>
+<h2 id="触控事件"><a href="#触控事件" class="headerlink" title="触控事件"></a>触控事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//单点触摸按下动作</div><div class="line">   public static final int ACTION_DOWN             = 0;</div><div class="line">   </div><div class="line">   //单点触摸离开动作</div><div class="line">   public static final int ACTION_UP               = 1;</div><div class="line">   </div><div class="line">  //触摸点移动动作</div><div class="line">   public static final int ACTION_MOVE             = 2;</div><div class="line">   </div><div class="line">  //触摸动作取消</div><div class="line">   public static final int ACTION_CANCEL           = 3;</div><div class="line">   </div><div class="line">  //触摸动作超出边界</div><div class="line">   public static final int ACTION_OUTSIDE          = 4;</div><div class="line"></div><div class="line">   //多点触摸按下动作</div><div class="line">   public static final int ACTION_POINTER_DOWN     = 5;</div><div class="line">   </div><div class="line">   //多点离开动作</div><div class="line">   public static final int ACTION_POINTER_UP       = 6;</div><div class="line"></div><div class="line">   public static final int ACTION_HOVER_MOVE       = 7;</div><div class="line"></div><div class="line">   </div><div class="line">   public static final int ACTION_SCROLL           = 8;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_ENTER      = 9;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_HOVER_EXIT       = 10;</div><div class="line"></div><div class="line"></div><div class="line">   public static final int ACTION_BUTTON_PRESS   = 11;</div><div class="line"></div><div class="line">  </div><div class="line">   public static final int ACTION_BUTTON_RELEASE  = 12;</div></pre></td></tr></table></figure>
+<p>一般在View的onTouchEvent方法中对event.getAction()进行筛选控制，（不涉及多点触控的情况下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Override</div><div class="line">public boolean onTouchEvent(MotionEvent event) &#123;</div><div class="line">    int x = (int) event.getX();</div><div class="line">    int y = (int) event.getY();</div><div class="line">    switch (event.getAction()) &#123;</div><div class="line">        case MotionEvent.ACTION_DOWN:</div><div class="line">            lastX = (int) event.getX();</div><div class="line">            lastY = (int) event.getY();</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_MOVE:</div><div class="line">            int offsetX = x - lastX;</div><div class="line">            int offsetY = y - lastY;</div><div class="line">            ((View) getParent()).scrollBy(-offsetX, -offsetY);</div><div class="line">            break;</div><div class="line">        case MotionEvent.ACTION_UP:</div><div class="line">            // 手指离开时，执行滑动过程</div><div class="line">            View viewGroup = ((View) getParent());</div><div class="line">            mScroller.startScroll(</div><div class="line">                    viewGroup.getScrollX(),</div><div class="line">                    viewGroup.getScrollY(),</div><div class="line">                    -viewGroup.getScrollX(),</div><div class="line">                    -viewGroup.getScrollY());</div><div class="line">            invalidate();</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>系统提供了很多获取坐标值，相对距离的坐标值的方法，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/82371833.jpg" alt=""></p>
+<p>大概分为两类：</p>
+<hr>
+<p>View提供的获取坐标的方法<br>getTop(): 获取到View自身顶边到其父布局顶部的距离<br>getLeft() : 获取到View自身左边到其父布局左边的距离<br>getRight():<br>getBottom();</p>
+<hr>
+<p>MotionEvent提供的方法<br>getX():    获取点击事件距离控件左边的距离，即视图坐标<br>getY():获取点击事件距离控件顶部的距离，即视图坐标<br>getRawX():获取点击事件距离整个屏幕左边的距离，即绝对坐标<br>getRawY():….</p>
+<h1 id="实现滑动的七种方法"><a href="#实现滑动的七种方法" class="headerlink" title="实现滑动的七种方法"></a>实现滑动的七种方法</h1><h2 id="layout方法"><a href="#layout方法" class="headerlink" title="layout方法"></a>layout方法</h2>]]></content>
+      
+        <categories>
+            
+            <category> 移动开发 </category>
+            
+            <category> AndroidHero </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> Scroll </tag>
             
         </tags>
         
@@ -1157,7 +1065,7 @@
         
         <tags>
             
-            <tag> Android Studio </tag>
+            <tag> AndroidStudio </tag>
             
             <tag> Gradle </tag>
             
@@ -2955,6 +2863,8 @@ public void OnItemIconClick(View view, String data) {
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="86" src="http://music.163.com/outchain/player?type=2&id=247529&auto=0&height=66"></iframe>
+
+
 ]]></content>
       
         
@@ -3145,8 +3055,22 @@ public void OnItemIconClick(View view, String data) {
   
     
     <entry>
-      <title><![CDATA[categories]]></title>
-      <url>http://mzeht.com/categories/index.html</url>
+      <title><![CDATA[help]]></title>
+      <url>http://mzeht.com/help/index.html</url>
+      <content type="html"><![CDATA[<p>暂时没有哦</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[rss]]></title>
+      <url>http://mzeht.com/rss/index.html</url>
+      <content type="html"><![CDATA[<p>暂时没有哦</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[关于]]></title>
+      <url>http://mzeht.com/about/index.html</url>
       <content type="html"></content>
     </entry>
     
@@ -3157,14 +3081,21 @@ public void OnItemIconClick(View view, String data) {
     </entry>
     
     <entry>
-      <title><![CDATA[tags]]></title>
-      <url>http://mzeht.com/tags/index.html</url>
+      <title><![CDATA[video]]></title>
+      <url>http://mzeht.com/video/index.html</url>
+      <content type="html"><![CDATA[<p>暂时没有哦</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[categories]]></title>
+      <url>http://mzeht.com/categories/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[关于]]></title>
-      <url>http://mzeht.com/about/index.html</url>
+      <title><![CDATA[tags]]></title>
+      <url>http://mzeht.com/tags/index.html</url>
       <content type="html"></content>
     </entry>
     
