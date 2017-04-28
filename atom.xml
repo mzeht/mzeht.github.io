@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mzeht.com/"/>
-  <updated>2017-04-28T05:09:55.000Z</updated>
+  <updated>2017-04-28T07:35:50.000Z</updated>
   <id>http://mzeht.com/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>android项目利用cmake方式实现ndk开发</title>
+    <link href="http://mzeht.com/2017/04/28/2017-04-28-1/"/>
+    <id>http://mzeht.com/2017/04/28/2017-04-28-1/</id>
+    <published>2017-04-28T06:53:01.000Z</published>
+    <updated>2017-04-28T07:35:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="添加ndk支持"><a href="#添加ndk支持" class="headerlink" title="添加ndk支持"></a>添加ndk支持</h2><p><code>gradle.properties</code>(project properties)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">org.gradle.daemon=true</div><div class="line">org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8</div><div class="line">org.gradle.parallel=true</div><div class="line">org.gradle.configureondemand=true</div><div class="line">android.useDeprecatedNdk=true</div></pre></td></tr></table></figure>
+<h2 id="在需要ndk的模块新建JNI-Folder"><a href="#在需要ndk的模块新建JNI-Folder" class="headerlink" title="在需要ndk的模块新建JNI Folder"></a>在需要ndk的模块新建JNI Folder</h2><p>当前模块下生成了/src/main/jni</p>
+<p>这个文件夹下放置<code>CMakeLists.txt</code>，和c文件<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-4-28/13776882-file_1493364079424_4904.png" alt=""></p>
+<h2 id="创建CMakeLists-txt"><a href="#创建CMakeLists-txt" class="headerlink" title="创建CMakeLists.txt"></a>创建CMakeLists.txt</h2><p><code>stringutils</code> cmake生成so包命名相关<br>反编译apk，可以发现so包名称为<code>libstringutils.so</code></p>
+<p><code>SHARED</code>之后</p>
+<p>打包进入so包的文件目录，可以多个</p>
+<p><code>cmake_minimum_required(VERSION 3.4.1)</code>默认版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cmake_minimum_required(VERSION 3.4.1)</div><div class="line"></div><div class="line">add_library(stringutils SHARED</div><div class="line">            stringutils.c)</div><div class="line"></div><div class="line"># Include libraries needed for stringutils lib</div><div class="line">target_link_libraries(stringutils log android)</div></pre></td></tr></table></figure>
+<p>##在java文件中创建native方法</p>
+<p>如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class StringUtils &#123;</div><div class="line"></div><div class="line">    public static native String makeSkey(String[] array, Context context);</div><div class="line">    static &#123;</div><div class="line">        System.loadLibrary(&quot;stringutils&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="创建c文件"><a href="#创建c文件" class="headerlink" title="创建c文件"></a>创建c文件</h2><p>在java报红的方法名处查看智能提示，生成c文件</p>
+<p>如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#include &lt;jni.h&gt;</div><div class="line"></div><div class="line">JNIEXPORT jstring JNICALL</div><div class="line">Java_com_mzeht_wp_skbyjni_StringUtils_makeSkey(JNIEnv *env, jclass type, jobjectArray array,</div><div class="line">                                               jobject context) &#123;</div><div class="line"></div><div class="line">    // TODO</div><div class="line"></div><div class="line"></div><div class="line">    return (*env)-&gt;NewStringUTF(env, &quot;hehe&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>返回一个“hehe”，运行android项目即可</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;添加ndk支持&quot;&gt;&lt;a href=&quot;#添加ndk支持&quot; class=&quot;headerlink&quot; title=&quot;添加ndk支持&quot;&gt;&lt;/a&gt;添加ndk支持&lt;/h2&gt;&lt;p&gt;&lt;code&gt;gradle.properties&lt;/code&gt;(project properties)
+    
+    </summary>
+    
+      <category term="移动开发" scheme="http://mzeht.com/categories/app/"/>
+    
+      <category term="Android" scheme="http://mzeht.com/categories/app/Android/"/>
+    
+    
+      <category term="cmake" scheme="http://mzeht.com/tags/cmake/"/>
+    
+      <category term="ndk" scheme="http://mzeht.com/tags/ndk/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>android ndk开发检查包名，签名</title>
+    <link href="http://mzeht.com/2017/04/28/2017-04-28-2/"/>
+    <id>http://mzeht.com/2017/04/28/2017-04-28-2/</id>
+    <published>2017-04-28T06:53:01.000Z</published>
+    <updated>2017-04-28T07:42:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>java层传入app的Context，ndk内检查包名和签名特征</p>
+<h2 id="java-native-方法"><a href="#java-native-方法" class="headerlink" title="java native 方法"></a>java native 方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static native String getSignIfo(Context context);</div></pre></td></tr></table></figure>
+<h2 id="c语言调用"><a href="#c语言调用" class="headerlink" title="c语言调用"></a>c语言调用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">JNIEXPORT jstring JNICALL</div><div class="line">Java_com_example_hehe_utils_StringUtils_getSignIfo(JNIEnv *env, jclass type, jobject obj) &#123;</div><div class="line"></div><div class="line"></div><div class="line">    // 获得Context类</div><div class="line">    jclass cls = (*env)-&gt;GetObjectClass(env, obj);</div><div class="line">    // 得到getPackageManager方法的ID</div><div class="line">    jmethodID mid = (*env)-&gt;GetMethodID(env, cls, &quot;getPackageManager&quot;, &quot;()Landroid/content/pm/PackageManager;&quot;);</div><div class="line"></div><div class="line">    // 获得应用包的管理器</div><div class="line">    jobject pm = (*env)-&gt;CallObjectMethod(env, obj, mid);</div><div class="line"></div><div class="line">    // 得到getPackageName方法的ID</div><div class="line">    mid = (*env)-&gt;GetMethodID(env, cls, &quot;getPackageName&quot;, &quot;()Ljava/lang/String;&quot;);</div><div class="line">    // 获得当前应用包名</div><div class="line">    jstring packageName = (jstring)(*env)-&gt;CallObjectMethod(env, obj, mid);</div><div class="line"></div><div class="line">//    printf(&quot;%s&quot;,packageName);</div><div class="line">//    const jbyte *str = (*env)-&gt;GetStringUTFChars(env, packageName, NULL);</div><div class="line">//    __android_log_print(ANDROID_LOG_INFO, &quot;JNITag&quot;,&quot;string From Java To C : %s&quot;, str);</div><div class="line"></div><div class="line">    // 获得PackageManager类</div><div class="line">    cls = (*env)-&gt;GetObjectClass(env, pm);</div><div class="line">    // 得到getPackageInfo方法的ID</div><div class="line">    mid  = (*env)-&gt;GetMethodID(env, cls, &quot;getPackageInfo&quot;, &quot;(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;&quot;);</div><div class="line">    // 获得应用包的信息</div><div class="line">    jobject packageInfo = (*env)-&gt;CallObjectMethod(env, pm, mid, packageName, 0x40); //GET_SIGNATURES = 64;</div><div class="line">    // 获得PackageInfo 类</div><div class="line">    cls = (*env)-&gt;GetObjectClass(env, packageInfo);</div><div class="line">    // 获得签名数组属性的ID</div><div class="line">    jfieldID fid = (*env)-&gt;GetFieldID(env, cls, &quot;signatures&quot;, &quot;[Landroid/content/pm/Signature;&quot;);</div><div class="line">    // 得到签名数组</div><div class="line">    jobjectArray signatures = (jobjectArray)(*env)-&gt;GetObjectField(env, packageInfo, fid);</div><div class="line">    // 得到签名</div><div class="line">    jobject sign = (*env)-&gt;GetObjectArrayElement(env, signatures, 0);</div><div class="line"></div><div class="line">    // 获得Signature类</div><div class="line">    cls = (*env)-&gt;GetObjectClass(env, sign);</div><div class="line">    // 得到toCharsString方法的ID</div><div class="line">    mid = (*env)-&gt;GetMethodID(env, cls, &quot;toCharsString&quot;, &quot;()Ljava/lang/String;&quot;);</div><div class="line"></div><div class="line"></div><div class="line">    jstring signString=(jstring)(*env)-&gt;CallObjectMethod(env, sign, mid);</div><div class="line">//    const jbyte *singn = (*env)-&gt;GetStringUTFChars(env, signString, NULL);</div><div class="line">//    __android_log_print(ANDROID_LOG_INFO, &quot;JNITag&quot;,&quot;string From Java To C : %s&quot;, singn);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    return packageName;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="http://blog.csdn.net/grafx/article/details/40403577" target="_blank" rel="external">参考链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;java层传入app的Context，ndk内检查包名和签名特征&lt;/p&gt;
+&lt;h2 id=&quot;java-native-方法&quot;&gt;&lt;a href=&quot;#java-native-方法&quot; class=&quot;headerlink&quot; title=&quot;java native 方法&quot;&gt;&lt;/a&gt;java
+    
+    </summary>
+    
+      <category term="移动开发" scheme="http://mzeht.com/categories/app/"/>
+    
+      <category term="Android" scheme="http://mzeht.com/categories/app/Android/"/>
+    
+    
+      <category term="ndk" scheme="http://mzeht.com/tags/ndk/"/>
+    
+  </entry>
   
   <entry>
     <title>jenkins 发布war包到远程tomcat(含脚本)</title>
@@ -402,33 +472,6 @@
   </entry>
   
   <entry>
-    <title>Spring cloud服务注册与发现</title>
-    <link href="http://mzeht.com/2017/01/22/2017-02-08/"/>
-    <id>http://mzeht.com/2017/01/22/2017-02-08/</id>
-    <published>2017-01-22T07:05:33.000Z</published>
-    <updated>2017-04-16T13:36:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</div><div class="line">	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</div><div class="line"></div><div class="line">	&lt;groupId&gt;com.example&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;mzeht-eureka&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</div><div class="line">	&lt;packaging&gt;jar&lt;/packaging&gt;</div><div class="line"></div><div class="line">	&lt;name&gt;mzeht-eureka&lt;/name&gt;</div><div class="line">	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;</div><div class="line"></div><div class="line">	&lt;parent&gt;</div><div class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;1.5.1.RELEASE&lt;/version&gt;</div><div class="line">		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</div><div class="line">	&lt;/parent&gt;</div><div class="line"></div><div class="line">	&lt;properties&gt;</div><div class="line">		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</div><div class="line">		&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</div><div class="line">		&lt;java.version&gt;1.7&lt;/java.version&gt;</div><div class="line">	&lt;/properties&gt;</div><div class="line"></div><div class="line">	&lt;dependencies&gt;</div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line"></div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</div><div class="line">			&lt;scope&gt;test&lt;/scope&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line"></div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-cloud-starter-eureka-server&lt;/artifactId&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line">	&lt;/dependencies&gt;</div><div class="line"></div><div class="line">	&lt;dependencyManagement&gt;</div><div class="line">		&lt;dependencies&gt;</div><div class="line">			&lt;dependency&gt;</div><div class="line">				&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</div><div class="line">				&lt;version&gt;Brixton.RELEASE&lt;/version&gt;</div><div class="line">				&lt;type&gt;pom&lt;/type&gt;</div><div class="line">				&lt;scope&gt;import&lt;/scope&gt;</div><div class="line">			&lt;/dependency&gt;</div><div class="line">		&lt;/dependencies&gt;</div><div class="line">	&lt;/dependencyManagement&gt;</div><div class="line"></div><div class="line">	&lt;build&gt;</div><div class="line">		&lt;plugins&gt;</div><div class="line">			&lt;plugin&gt;</div><div class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</div><div class="line">			&lt;/plugin&gt;</div><div class="line">		&lt;/plugins&gt;</div><div class="line">	&lt;/build&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;添加依赖&quot;&gt;&lt;a href=&quot;#添加依赖&quot; class=&quot;headerlink&quot; title=&quot;添加依赖&quot;&gt;&lt;/a&gt;添加依赖&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
-    
-    </summary>
-    
-      <category term="后端开发" scheme="http://mzeht.com/categories/bg/"/>
-    
-      <category term="java" scheme="http://mzeht.com/categories/bg/java/"/>
-    
-    
-      <category term="Spring boot" scheme="http://mzeht.com/tags/Spring-boot/"/>
-    
-      <category term="Spring cloud" scheme="http://mzeht.com/tags/Spring-cloud/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Spring boot整合retrofit简化三方接口调用</title>
     <link href="http://mzeht.com/2017/01/22/%E5%9C%A8springboot%E4%B8%AD%E4%BD%BF%E7%94%A8retrofit%E5%8A%A0%E5%BF%AB%E4%B8%89%E6%96%B9%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8/"/>
     <id>http://mzeht.com/2017/01/22/在springboot中使用retrofit加快三方接口调用/</id>
@@ -480,6 +523,33 @@
       <category term="retrofit" scheme="http://mzeht.com/tags/retrofit/"/>
     
       <category term="okHttp" scheme="http://mzeht.com/tags/okHttp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring cloud服务注册与发现</title>
+    <link href="http://mzeht.com/2017/01/22/2017-02-08/"/>
+    <id>http://mzeht.com/2017/01/22/2017-02-08/</id>
+    <published>2017-01-22T07:05:33.000Z</published>
+    <updated>2017-04-16T13:36:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</div><div class="line">	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</div><div class="line"></div><div class="line">	&lt;groupId&gt;com.example&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;mzeht-eureka&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</div><div class="line">	&lt;packaging&gt;jar&lt;/packaging&gt;</div><div class="line"></div><div class="line">	&lt;name&gt;mzeht-eureka&lt;/name&gt;</div><div class="line">	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;</div><div class="line"></div><div class="line">	&lt;parent&gt;</div><div class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;1.5.1.RELEASE&lt;/version&gt;</div><div class="line">		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</div><div class="line">	&lt;/parent&gt;</div><div class="line"></div><div class="line">	&lt;properties&gt;</div><div class="line">		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</div><div class="line">		&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</div><div class="line">		&lt;java.version&gt;1.7&lt;/java.version&gt;</div><div class="line">	&lt;/properties&gt;</div><div class="line"></div><div class="line">	&lt;dependencies&gt;</div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line"></div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</div><div class="line">			&lt;scope&gt;test&lt;/scope&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line"></div><div class="line">		&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-cloud-starter-eureka-server&lt;/artifactId&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line">	&lt;/dependencies&gt;</div><div class="line"></div><div class="line">	&lt;dependencyManagement&gt;</div><div class="line">		&lt;dependencies&gt;</div><div class="line">			&lt;dependency&gt;</div><div class="line">				&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</div><div class="line">				&lt;version&gt;Brixton.RELEASE&lt;/version&gt;</div><div class="line">				&lt;type&gt;pom&lt;/type&gt;</div><div class="line">				&lt;scope&gt;import&lt;/scope&gt;</div><div class="line">			&lt;/dependency&gt;</div><div class="line">		&lt;/dependencies&gt;</div><div class="line">	&lt;/dependencyManagement&gt;</div><div class="line"></div><div class="line">	&lt;build&gt;</div><div class="line">		&lt;plugins&gt;</div><div class="line">			&lt;plugin&gt;</div><div class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</div><div class="line">			&lt;/plugin&gt;</div><div class="line">		&lt;/plugins&gt;</div><div class="line">	&lt;/build&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;添加依赖&quot;&gt;&lt;a href=&quot;#添加依赖&quot; class=&quot;headerlink&quot; title=&quot;添加依赖&quot;&gt;&lt;/a&gt;添加依赖&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+    
+    </summary>
+    
+      <category term="后端开发" scheme="http://mzeht.com/categories/bg/"/>
+    
+      <category term="java" scheme="http://mzeht.com/categories/bg/java/"/>
+    
+    
+      <category term="Spring boot" scheme="http://mzeht.com/tags/Spring-boot/"/>
+    
+      <category term="Spring cloud" scheme="http://mzeht.com/tags/Spring-cloud/"/>
     
   </entry>
   
@@ -1031,72 +1101,6 @@
       <category term="Android" scheme="http://mzeht.com/tags/Android/"/>
     
       <category term="自定义控件" scheme="http://mzeht.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>butterknife 8.0.1 AndroidStudio peizhi</title>
-    <link href="http://mzeht.com/2016/09/08/butterknife-8-0-1-AndroidStudio-%E9%85%8D%E7%BD%AE/"/>
-    <id>http://mzeht.com/2016/09/08/butterknife-8-0-1-AndroidStudio-配置/</id>
-    <published>2016-09-08T11:18:29.000Z</published>
-    <updated>2017-04-16T12:19:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>#前言<br>butterknife是一个android上的注解库，升级的很快，在7.0.1版本中只要添加依赖就可以了，但是8.0.1版本中配置稍有不同</p>
-<a id="more"></a>
-<p>##在project 下的build.gradle文件下配置classpath</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line"></div><div class="line">        classpath &apos;com.android.tools.build:gradle:2.1.3&apos;</div><div class="line">        classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;</div><div class="line"></div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>##在moudle下的builde.gradle文件中配置plugin</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;com.android.application&apos;</div><div class="line">apply plugin: &apos;com.neenbedankt.android-apt&apos;</div></pre></td></tr></table></figure>
-<p>##在moudle下的builde.gradle文件中配置dependencies</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;]</div><div class="line">    compile &apos;com.jakewharton:butterknife:8.0.1&apos;</div><div class="line">    apt &apos;com.jakewharton:butterknife-compiler:8.0.1&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>butterknife之所以配置变化这么大，主要是在于apt，取代了之前的注解实现方法</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#前言&lt;br&gt;butterknife是一个android上的注解库，升级的很快，在7.0.1版本中只要添加依赖就可以了，但是8.0.1版本中配置稍有不同&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="移动开发" scheme="http://mzeht.com/categories/app/"/>
-    
-      <category term="Android" scheme="http://mzeht.com/categories/app/Android/"/>
-    
-    
-      <category term="AndroidStudio" scheme="http://mzeht.com/tags/AndroidStudio/"/>
-    
-      <category term="Butterknife" scheme="http://mzeht.com/tags/Butterknife/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Intellij IDEA Mac OS X KeyMap 中文版</title>
-    <link href="http://mzeht.com/2016/09/07/Intellij-IDEA-Mac-OS-X-KeyMap-%E4%B8%AD%E6%96%87%E7%89%88/"/>
-    <id>http://mzeht.com/2016/09/07/Intellij-IDEA-Mac-OS-X-KeyMap-中文版/</id>
-    <published>2016-09-07T10:52:50.000Z</published>
-    <updated>2017-04-16T12:19:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>#官方版本<br><a href="https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard_mac.pdf" target="_blank" rel="external">官方版本</a></p>
-<p>#翻译版本预览<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/16-9-7/44368370.jpg" alt=""></p>
-<p>#翻译版本下载<br><a href="https://www.jianguoyun.com/p/DSblRVAQpN36BRi7jBs" target="_blank" rel="external">Word版本下载</a></p>
-<p><a href="https://www.jianguoyun.com/p/DSMleAUQpN36BRi9jBs" target="_blank" rel="external">PDF版本下载</a></p>
-<p><a href="https://www.jianguoyun.com/p/DQuCALMQpN36BRi-jBs" target="_blank" rel="external">JPG版本下载</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#官方版本&lt;br&gt;&lt;a href=&quot;https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard_mac.pdf&quot; target=&quot;_blank&quot; rel=&quot;
-    
-    </summary>
-    
-      <category term="工具" scheme="http://mzeht.com/categories/tool/"/>
-    
-      <category term="IDE" scheme="http://mzeht.com/categories/tool/IDE/"/>
-    
-    
-      <category term="Mac" scheme="http://mzeht.com/tags/Mac/"/>
-    
-      <category term="Intellij IDEA" scheme="http://mzeht.com/tags/Intellij-IDEA/"/>
     
   </entry>
   
