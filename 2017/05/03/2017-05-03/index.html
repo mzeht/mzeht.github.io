@@ -48,7 +48,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>my soul your beats - null</title>
+<title>开发评估 - my soul your beats</title>
 
 <meta name="keywords" content="undefined">
 
@@ -101,9 +101,7 @@
 </div>
             <div class="page-title">
     <ul>
-        <li class="active">
-            <a href="/" data-name="最近文章">最近</a>
-        </li>
+        <li><a href="/">最新</a></li>
         
         <li class="">
             <a href="/categories/bg" data-name="后端开发">后端开发</a>
@@ -133,7 +131,7 @@
             <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
         </li>
         
-        <li class="">
+        <li class="active">
             <a href="/categories/documents" data-name="文档">文档</a>
         </li>
         
@@ -176,70 +174,64 @@
     </ul>
 </div>
 <div class="main-inner">
-    
-    <!-- 首页默认取最最新文章集 -->
-    
-    
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://www.mzeht.com" target="_blank">
-                <strong>mzeht</strong>
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://www.mzeht.com" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://www.mzeht.com" target="_blank">mzeht</a>
+                    <span title="最后编辑于5月 3 2017">5月 3 2017</span>
+                </p>
+                <p>一个写代码的</p>
+            </div>
+            <h2 class="post-title">开发评估</h2>
+            <div class="post-meta">
+                本文总共296个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
+<li>客户端应该有两个，监控方和被监控方，</li>
+<li>被监控设备要实时同步信息，给后台地图，心率，步数信息，能响应后台要求设置闹钟</li>
+<li>监控方能获取被监控方地图信息和健康信息（心率，步数），还能通过后台推送提醒（给被监控方设置闹钟）</li>
+<li>其他</li>
+</ol>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><h3 id="被监控客户端"><a href="#被监控客户端" class="headerlink" title="被监控客户端"></a>被监控客户端</h3><ol>
+<li>实时推送地图信息</li>
+<li>获取心率，步数，实时推送</li>
+<li>和后台长链接，设置闹钟</li>
+<li>实时获取设备信息，推送后台</li>
+</ol>
+<h3 id="监控客户端"><a href="#监控客户端" class="headerlink" title="监控客户端"></a>监控客户端</h3><p>如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-5-3/50653537-file_1493781295399_e0d2.png" alt=""></p>
+<ol>
+<li>接入支付宝，微信支付</li>
+</ol>
+<p>##项目重点</p>
+<ol>
+<li>后台的配合（对地图sdk的数据熟悉，支付宝，微信支付）</li>
+<li>地图sdk的选择</li>
+<li>和后台的长链接交互，重连机制</li>
+<li>适配智能设备的心率，步数获取</li>
+<li>后台管理（地图数据，双方绑定，新闻维护，商城维护）</li>
+</ol>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-donate" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赏
             </a>
-            <em>·</em>6月 2 2015
         </div>
-        <a class="post-title" href="/2015/06/02/hello-world/" target="_blank" title="Hello World">Hello World</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
+        
+        <div class="post-tags">标签：
             
         </div>
-    </div>
-    <div class="post-desc">
-        hello-world
-    </div>
-</article>
-
-
-
-    
-    
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://www.mzeht.com" target="_blank">
-                <strong>mzeht</strong>
-            </a>
-            <em>·</em>3月 10 2015
-        </div>
-        <a class="post-title" href="/2015/03/10/2015-03-10-markdown/" target="_blank" title="markdown 语法">markdown 语法</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://mzeht.com/tags/markdown/" target="_blank">markdown</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        2015-03-10-markdown
-    </div>
-</article>
-
-
-
-    
+        
+    </article>
     
 </div>
-<!-- 分页开始 -->
-
-<div id="btn-pager">
-    
-    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-</div>
-
-
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
