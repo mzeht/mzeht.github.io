@@ -69,7 +69,7 @@
 <div class="nav-user">
     <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
     <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
-    <a class="btn-donate" href="javascript:"><i class="fa fa-weixin"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
 </div>
 <div id="wrapper" class="clearfix">
     <div id="body">
@@ -84,7 +84,7 @@
         <div class="cover-sns">
             <div class="btn btn-weixin">
                 <a class="" href="javascript:"><i class="fa fa-weixin"></i></a>
-                <div class="qrcode"><img src="/images/weixin-mp.png" alt="weixinQrcode" /></div>
+                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode" /></div>
                 <div class="qrcode-arrow"></div>
             </div>
             <div class="btn btn-weibo">
@@ -103,37 +103,39 @@
     <ul>
         <li><a href="/">最新</a></li>
         
-        <li class="active">
-            <a href="/categories/bg" data-name="后端开发">后端开发</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/tool" data-name="工具">工具</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/app" data-name="移动开发">移动开发</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/operation" data-name="运维">运维</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/composite" data-name="综合">综合</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/db" data-name="数据库">数据库</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/documents" data-name="文档">文档</a>
-        </li>
+            
+                <li class="active">
+                    <a href="/categories/bg" data-name="后端开发">后端开发</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/tool" data-name="工具">工具</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/app" data-name="移动开发">移动开发</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/operation" data-name="运维">运维</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/composite" data-name="综合">综合</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/db" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/documents" data-name="文档">文档</a>
+                </li>
+            
         
         <li class="page-search">
     <form id="search" class="search-form">
@@ -177,14 +179,14 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://www.mzeht.com" target="_blank">
-                    <img width="48" src="/images/favicon.png" alt="avatar"/>
+                <a class="avatar fleft" href="undefined" target="_blank">
+                    <img width="48" src="undefined" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://www.mzeht.com" target="_blank">mzeht</a>
+                    <a href="undefined" target="_blank">mzeht</a>
                     <span title="最后编辑于5月 28 2017">5月 28 2017</span>
                 </p>
-                <p>一个写代码的</p>
+                <p>undefined</p>
             </div>
             <h2 class="post-title">jenkins项目打包发布配置(srpingboot-jar,war,apk)</h2>
             <div class="post-meta">
@@ -236,8 +238,8 @@
 
         </div>
         <div class="post-tool">
-            <a class="btn-donate" href="javascript:void(0);" data-cid="52" title="95">
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赏
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打包
             </a>
         </div>
         
@@ -283,7 +285,7 @@
         SimpleCore.init({
             buildingTime: '04/16/2015',
             current: $('.post-tags').length > 0 ? 'post' : 'archive',
-            donateImg: '/images/weixin_donate.png'
+            customImg: '/images/weixin-mp.png'
         });
     });
 </script>
