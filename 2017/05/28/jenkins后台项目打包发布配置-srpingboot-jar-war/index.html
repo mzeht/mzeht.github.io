@@ -48,7 +48,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>开发评估 - my soul your beats</title>
+<title>jenkins项目打包发布配置(srpingboot-jar,war,apk) - my soul your beats</title>
 
 <meta name="keywords" content="undefined">
 
@@ -103,7 +103,7 @@
     <ul>
         <li><a href="/">最新</a></li>
         
-        <li class="">
+        <li class="active">
             <a href="/categories/bg" data-name="后端开发">后端开发</a>
         </li>
         
@@ -131,7 +131,7 @@
             <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
         </li>
         
-        <li class="active">
+        <li class="">
             <a href="/categories/documents" data-name="文档">文档</a>
         </li>
         
@@ -182,40 +182,57 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://www.mzeht.com" target="_blank">mzeht</a>
-                    <span title="最后编辑于5月 3 2017">5月 3 2017</span>
+                    <span title="最后编辑于5月 28 2017">5月 28 2017</span>
                 </p>
                 <p>一个写代码的</p>
             </div>
-            <h2 class="post-title">开发评估</h2>
+            <h2 class="post-title">jenkins项目打包发布配置(srpingboot-jar,war,apk)</h2>
             <div class="post-meta">
-                本文总共296个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共2851个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
-<li>客户端应该有两个，监控方和被监控方，</li>
-<li>被监控设备要实时同步信息，给后台地图，心率，步数信息，能响应后台要求设置闹钟</li>
-<li>监控方能获取被监控方地图信息和健康信息（心率，步数），还能通过后台推送提醒（给被监控方设置闹钟）</li>
-<li>其他</li>
-</ol>
-<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><h3 id="被监控客户端"><a href="#被监控客户端" class="headerlink" title="被监控客户端"></a>被监控客户端</h3><ol>
-<li>实时推送地图信息</li>
-<li>获取心率，步数，实时推送</li>
-<li>和后台长链接，设置闹钟</li>
-<li>实时获取设备信息，推送后台</li>
-</ol>
-<h3 id="监控客户端"><a href="#监控客户端" class="headerlink" title="监控客户端"></a>监控客户端</h3><p>如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-5-3/50653537-file_1493781295399_e0d2.png" alt=""></p>
+            <h2 id="两种不同打包"><a href="#两种不同打包" class="headerlink" title="两种不同打包"></a>两种不同打包</h2><p>jar类 springboot项目</p>
 <ol>
-<li>接入支付宝，微信支付</li>
+<li>springboot框架</li>
+<li>生成jar包</li>
+<li>内置tomcat</li>
+<li>运行环境 java</li>
 </ol>
-<p>##项目重点</p>
+<p>war类 springmvc项目</p>
 <ol>
-<li>后台的配合（对地图sdk的数据熟悉，支付宝，微信支付）</li>
-<li>地图sdk的选择</li>
-<li>和后台的长链接交互，重连机制</li>
-<li>适配智能设备的心率，步数获取</li>
-<li>后台管理（地图数据，双方绑定，新闻维护，商城维护）</li>
+<li>springmvc</li>
+<li>生成war包</li>
+<li>需要外部tomcat</li>
 </ol>
+<h2 id="jar类配置"><a href="#jar类配置" class="headerlink" title="jar类配置"></a>jar类配置</h2><ol>
+<li>配置代码分支来源</li>
+<li>打包</li>
+<li>传输</li>
+<li>启动</li>
+</ol>
+<h3 id="配置代码"><a href="#配置代码" class="headerlink" title="配置代码"></a>配置代码</h3><h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-5-28/33852371.jpg" alt=""></p>
+<h3 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h3><p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-5-28/21535521.jpg" alt=""></p>
+<h3 id="邮件"><a href="#邮件" class="headerlink" title="邮件"></a>邮件</h3><h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">#defined</div><div class="line">ID=`ps -ef|grep &quot;official-web-0.0.1-SNAPSHOT&quot; | grep &quot;java&quot;| awk &apos;&#123;print $2&#125;&apos;`</div><div class="line">echo $ID</div><div class="line">kill -9 $ID</div><div class="line">echo &quot;kill $ID finish&quot;</div><div class="line">nohup java -jar official-web-0.0.1-SNAPSHOT.jar &amp;</div><div class="line">....</div></pre></td></tr></table></figure>
+<p>[slide]</p>
+<h2 id="war类配置"><a href="#war类配置" class="headerlink" title="war类配置"></a>war类配置</h2><ol>
+<li>配置代码分支来源</li>
+<li>打包</li>
+<li>传输</li>
+<li>启动</li>
+</ol>
+<p>[slide]</p>
+<h3 id="配置代码-1"><a href="#配置代码-1" class="headerlink" title="配置代码"></a>配置代码</h3><h3 id="打包-1"><a href="#打包-1" class="headerlink" title="打包"></a>打包</h3><h3 id="传输-1"><a href="#传输-1" class="headerlink" title="传输"></a>传输</h3><h3 id="脚本-1"><a href="#脚本-1" class="headerlink" title="脚本"></a>脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"># !bin/sh</div><div class="line"># jenkins传输war包位置</div><div class="line">jenkins_dir=&quot;/root/jenkinsproject&quot;</div><div class="line"># war_name=&quot;appservice.war&quot;</div><div class="line">#项目名称</div><div class="line">project_name=&quot;appservice&quot;</div><div class="line">#tomcat路径</div><div class="line">tomcat_dir=&quot;/usr/tomcat/apache-tomcat-7.0.42&quot;</div><div class="line"># 当前脚本名称,查找进称号需要排除</div><div class="line">shell_name=&quot;appservice-deploy.sh&quot;</div><div class="line">pid=`ps -ef | grep $tomcat_dir | grep -v $shell_name | grep -v grep | awk &apos;&#123;print $2&#125;&apos;`</div><div class="line">echo &quot;old pid:&quot;.$pid</div><div class="line">if test &quot;$pid&quot;</div><div class="line">then</div><div class="line">  echo &quot;kill old pid: $pid ing&quot;</div><div class="line">  kill -9 $pid</div><div class="line">  # 睡眠5s</div><div class="line">  sleep 20s</div><div class="line">else</div><div class="line">        echo &quot;not find old pid&quot;</div><div class="line">fi</div><div class="line">#删除旧的war包和生成文件夹</div><div class="line">rm -rf $tomcat_dir/webapps/$project_name*</div><div class="line"># 拷贝新的war包</div><div class="line">cp $jenkins_dir/$project_name.war  $tomcat_dir/webapps</div><div class="line">#启动tomcat</div><div class="line">sh $tomcat_dir/bin/startup.sh</div><div class="line">sleep 10s</div><div class="line"># 检查启动</div><div class="line">newpid=`ps -ef | grep $tomcat_dir | grep -v $shell_name | grep -v grep | awk &apos;&#123;print $2&#125;&apos;`</div><div class="line">if test &quot;$newpid&quot;</div><div class="line">then</div><div class="line">        echo &quot;new pid:&quot;.$newpid</div><div class="line">#    刷新nginx</div><div class="line">    /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf -s reload</div><div class="line">        exit</div><div class="line">else</div><div class="line">        echo &quot;not find new pid&quot;</div><div class="line">        exit 1</div><div class="line">fi</div><div class="line">....</div></pre></td></tr></table></figure>
+<p>[slide]</p>
+<h2 id="apk类配置"><a href="#apk类配置" class="headerlink" title="apk类配置"></a>apk类配置</h2><ol>
+<li>配置代码分支来源</li>
+<li>打包</li>
+<li>传输</li>
+</ol>
+<p>[slide]</p>
+<h3 id="配置代码-2"><a href="#配置代码-2" class="headerlink" title="配置代码"></a>配置代码</h3><h3 id="打包-2"><a href="#打包-2" class="headerlink" title="打包"></a>打包</h3><p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-5-28/67349864.jpg" alt=""></p>
+<h3 id="传输-2"><a href="#传输-2" class="headerlink" title="传输"></a>传输</h3><h3 id="脚本-2"><a href="#脚本-2" class="headerlink" title="脚本"></a>脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">applicationVariants.all &#123; variant -&gt;</div><div class="line">    if (variant.buildType.name.equals(&apos;release&apos;)) &#123;</div><div class="line">        variant.outputs.each &#123; output -&gt;</div><div class="line">            def outputFile = output.outputFile</div><div class="line">            if (outputFile != null &amp;&amp; outputFile.name.endsWith(&apos;.apk&apos;)) &#123;</div><div class="line">                def fileName = &quot;baimimobile_v$&#123;defaultConfig.versionName&#125;_$&#123;buildTime()&#125;.apk&quot;</div><div class="line">                output.outputFile = new File(outputFile.parent, fileName)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">BUILD SUCCESSFUL</div><div class="line"></div><div class="line">Total time: 1 mins 27.55 secs</div><div class="line">Build step &apos;Invoke Gradle script&apos; changed build result to SUCCESS</div><div class="line">Root directory to find files to upload : /Users/wpmac/.jenkins/workspace/baimi-mobile-android</div><div class="line">found remote files : [app/build/outputs/apk/baimimobile_v1.1.6_2017-05-18_1126228.apk]</div><div class="line">Deploying archive app/build/outputs/apk/baimimobile_v1.1.6_2017-05-18_1126228.apk to fir.im (description=&quot;ecf02a33f60e3ad65c2bc0cae240c7f1&quot;, groups=&quot;&quot;)</div><div class="line">You can use ENV var $FIR_DOWNLOAD_URL in other plugins.</div><div class="line">Deployment to fir.im Done.</div><div class="line"> Your app short url: http://fir.im/baimimobile</div><div class="line">Finished: SUCCESS</div></pre></td></tr></table></figure>
 
         </div>
         <div class="post-tool">

@@ -48,7 +48,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>分类 - android - my soul your beats</title>
+<title>gitflow 工作流 - my soul your beats</title>
 
 <meta name="keywords" content="undefined">
 
@@ -101,9 +101,7 @@
 </div>
             <div class="page-title">
     <ul>
-        <li class="">
-            <a href="/" data-name="最近文章">最近</a>
-        </li>
+        <li><a href="/">最新</a></li>
         
         <li class="">
             <a href="/categories/bg" data-name="后端开发">后端开发</a>
@@ -176,36 +174,85 @@
     </ul>
 </div>
 <div class="main-inner">
-    
-    
-    
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://www.mzeht.com" target="_blank">
-                <strong>mzeht</strong>
-            </a>
-            <em>·</em>5月 3 2017
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://www.mzeht.com" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://www.mzeht.com" target="_blank">mzeht</a>
+                    <span title="最后编辑于5月 28 2017">5月 28 2017</span>
+                </p>
+                <p>一个写代码的</p>
+            </div>
+            <h2 class="post-title">Gitflow 工作流</h2>
+            <div class="post-meta">
+                本文总共1499个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
         </div>
-        <a class="post-title" href="/2017/05/03/2017-05-03/" target="_blank" title="开发评估">开发评估</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
+        <div class="post-content markdown-body">
+            <p>##简介</p>
+<p><img src="http://nvie.com/img/git-model@2x.png" alt=""><br>[slide]</p>
+<ol>
+<li><code>feature</code>（多个、玫红）。主要是自己玩了，差不多的时候要合并回develop去。从不与master交互。</li>
+<li><code>develop</code>（1个、黄色）。主要是和feature以及release交互。</li>
+<li><code>release</code>（同一时间1个、绿色）。总是基于develop，最后又合并回develop。当然对应的tag跑到master这边去了。生命周期很短，只是为了发布</li>
+<li><code>hotfix</code>（同一时间1个、红色）。总是基于master，并最后合并到master和develop。生命周期较短，用了修复bug或小粒度修改发布。</li>
+<li><code>master</code>（1个蓝色）。没有什么东西，仅是一些关联的tag，因从不在master上开发。</li>
+</ol>
+<p>[slide]</p>
+<ol>
+<li><code>master</code>和<code>develop</code>都具有象征意义。master分支上的代码总是稳定的（stable build），随时可以发布出去。develop上的代码总是从feature上合并过来的，可以进行Nightly Builds，但不直接在develop上进行开发。当develop上的feature足够多以至于可以进行新版本的发布时，可以创建release分支</li>
+<li><code>release</code>分支基于develop，进行很简单的修改后就被合并到master，并打上tag，表示可以发布了。紧接着release将被合并到develop；此时develop可能往前跑了一段，出现合并冲突，需要手工解决冲突后再次合并。这步完成后就删除release分支。</li>
+<li>当从已发布版本中发现bug要修复时，就应用到<code>hotfix</code>分支了。hotfix基于master分支，完成bug修复或紧急修改后，要merge回master，打上一个新的tag，并merge回develop，删除hotfix分支。</li>
+<li>由此可见release和hotfix的生命周期都较短，master/develop虽然总是存在但却不常使用。</li>
+</ol>
+<p>[slide]</p>
+<h2 id="分支详解"><a href="#分支详解" class="headerlink" title="分支详解"></a>分支详解</h2><h3 id="主分支-（Historical-Branches）"><a href="#主分支-（Historical-Branches）" class="headerlink" title="主分支 （Historical Branches）"></a>主分支 （Historical Branches）</h3><p><img src="http://upload-images.jianshu.io/upload_images/54009-70ef16000c0832b0.jpg" alt=""></p>
+<ol>
+<li>主分支是所有开发活动的核心分支。所有的开发活动产生的输出物最终都会反映到主分支的代码中。主分支分为master分支和development分支。</li>
+</ol>
+<p>[slide]</p>
+<h4 id="master-分支"><a href="#master-分支" class="headerlink" title="master 分支"></a>master 分支</h4><p>master分支上存放的应该是随时可供在生产环境中部署的代码（Production Ready state）。当开发活动告一段落，产生了一份新的可供部署的代码时，master分支上的代码会被更新。同时，每一次更新，最好添加对应的版本号标签（TAG）。<br>[slide]</p>
+<h4 id="develop分支"><a href="#develop分支" class="headerlink" title="develop分支"></a>develop分支</h4><p>develop分支是保存当前最新开发成果的分支。通常这个分支上的代码也是可进行每日夜间发布的代码（Nightly build）。因此这个分支有时也可以被称作整合分支（integration branch）。</p>
+<p>[slide]</p>
+<h2 id="辅助分支"><a href="#辅助分支" class="headerlink" title="辅助分支"></a>辅助分支</h2><p><img src="http://upload-images.jianshu.io/upload_images/54009-7265a72025bddb1a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>用于开发新功能时所使用的feature分支；</li>
+<li>用于辅助版本发布的release分支；</li>
+<li>用于修正生产代码中的缺陷的hotfix分支。</li>
+</ol>
+<p>[slide]</p>
+<h3 id="feature-分支"><a href="#feature-分支" class="headerlink" title="feature 分支"></a>feature 分支</h3><p>使用规范：</p>
+<ol>
+<li>可以从develop分支发起feature分支</li>
+<li>代码必须合并回develop分支</li>
+<li>feature分支（有时也可以被叫做“topic分支”）通常是在开发一项新的软件功能的时候使用，这个分支上的代码变更最终合并回develop分支或者干脆被抛弃掉（例如实验性且效果不好的代码变更）</li>
+</ol>
+<p>[slide]</p>
+<h3 id="release分支"><a href="#release分支" class="headerlink" title="release分支"></a>release分支</h3><p><img src="http://upload-images.jianshu.io/upload_images/54009-be502bd4658d9d79.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>可以从develop分支派生</li>
+<li>必须合并回develop分支和master分支</li>
+<li>分支命名惯例：release-*</li>
+</ol>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-donate" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
             
         </div>
-    </div>
-    <div class="post-desc">
-        2017-05-03
-    </div>
-</article>
-
-
-
+        
+    </article>
     
 </div>
-<!-- 分页开始 -->
-
-
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
