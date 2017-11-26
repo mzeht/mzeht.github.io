@@ -1,0 +1,62 @@
+# site name
+siteName: mzeht的小站
+shortName: 简
+
+# cover info config
+coverTitle: 交流技术，畅谈人生
+coverDescription: 一个关注技术与人文的IT博客
+sinaWb: https://weibo.com/2865942514
+facebook: https://fackbook.com/mzeht
+github: https://github.com/mzeht
+
+# full https model which means #Content-Security-Policy = upgrade-insecure-requests# in meat tag
+fullHttps: false
+
+# favicon
+favicon: /images/favicon.png
+
+
+# Home page sort type: -1: newer first，1: older first.
+homePageSortType: -1
+# Home page article shown number)
+homeArticleShown: 10
+
+# webmaster info config
+avatar: /images/favicon.png
+author: mzeht
+authorName: mzeht
+authorLink: https://www.mzeht.com
+authorAbout: https://www.mzeht.com
+authorDesc: 一个写代码的
+
+# your site build time or founded date
+siteBuildingTime: 04/16/2015
+
+
+# Top navigate menu name
+## Notice:
+## Name order decide show index.The name also called category alias,so you must set category alias before start server.
+## BTW,'category_map' and 'tag_map' field in site '_config.yml' file must one to one correspondence with menus below.
+menu:
+  后端开发: bg
+  工具: tool
+#  文章: renwen
+  移动开发: app
+  运维: operation
+  综合: composite
+  数据库: db
+  Web前端: qianduan
+  文档: documents
+   
+
+
+# Git-pages server info
+pageServerName: Git
+pageServerUrl: https://github.com/mzeht/mzeht.github.io.git
+
+# Code Highlight theme
+# Available value:
+#    default | normal | night | night eighties | night blue | night bright
+# https://github.com/chriskempson/tomorrow-theme
+highlight_theme: night blue
+
