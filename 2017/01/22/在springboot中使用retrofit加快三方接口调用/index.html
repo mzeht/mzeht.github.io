@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
+<meta name="author" content="mzeht">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>spring boot整合retrofit简化三方接口调用 - my soul your beats</title>
+
+<meta name="keywords" content="undefined">
+
+<meta name="description " content="talking is cheap show me the code">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="简">简</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
+        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
+        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
+        <h1>mzeht的小站</h1>
+        <h3>交流技术，畅谈人生</h3>
+        <p>一个关注技术与人文的IT博客</p>
+        <div class="cover-sns">
+            <div class="btn btn-weixin">
+                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
+                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
+                <div class="qrcode-arrow"></div>
+            </div>
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/bg" data-name="后端开发">后端开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/tool" data-name="工具">工具</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/app" data-name="移动开发">移动开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/operation" data-name="运维">运维</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/composite" data-name="综合">综合</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/db" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/documents" data-name="文档">文档</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="undefined" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="undefined" target="_blank">mzeht</a>
+                    <span title="最后编辑于1月 22 2017">1月 22 2017</span>
+                </p>
+                <p>undefined</p>
+            </div>
+            <h2 class="post-title">Spring boot整合retrofit简化三方接口调用</h2>
+            <div class="post-meta">
+                本文总共8968个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>公司改用srpingboot微服务架构后，服务之间的调用十分频繁，而同事的写法都是基于httpclient的简单工具类，写起来比较混乱，手动调用json转换为实体类，后期维护不方便，而且接口地址，参数（手动拼接）不好管理，于是想到了我在android中常常使用的retrofit+okhttp，于是动手移植到springboot项目上</p>
+<a id="more"></a>
+<h1 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;com.squareup.retrofit2&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;retrofit&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;2.1.0&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;com.squareup.retrofit2&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;converter-gson&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;2.1.0&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;logging-interceptor&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;3.1.2&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>从上到下为retrofit基本框架，gson解析器，日志拦截器</p>
+<h2 id="初步实现方法（不结合spring特性）"><a href="#初步实现方法（不结合spring特性）" class="headerlink" title="初步实现方法（不结合spring特性）"></a>初步实现方法（不结合spring特性）</h2><p>提炼返回格式，使用泛型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">public class BasicResult&lt;T&gt; implements Serializable &#123;</span><br><span class="line"></span><br><span class="line">	private static final long serialVersionUID = 517161603122400300L;</span><br><span class="line">	private boolean success = false;</span><br><span class="line">	private String message;</span><br><span class="line">	private T data;</span><br><span class="line"></span><br><span class="line">	public BasicResult(boolean success , String message)&#123;</span><br><span class="line">		this.success = success ;</span><br><span class="line">		this.message = message ;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public BasicResult(boolean success , String message, T data)&#123;</span><br><span class="line">		this.success = success ;</span><br><span class="line">		this.message = message ;</span><br><span class="line">		this.data = data ;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * @return the success</span><br><span class="line">	 */</span><br><span class="line">	public final boolean isSuccess() &#123;</span><br><span class="line">		return success;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * @param success</span><br><span class="line">	 *            the success to set</span><br><span class="line">	 */</span><br><span class="line">	public final void setSuccess(boolean success) &#123;</span><br><span class="line">		this.success = success;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * @return the message</span><br><span class="line">	 */</span><br><span class="line">	public final String getMessage() &#123;</span><br><span class="line">		return message;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * @param message</span><br><span class="line">	 *            the message to set</span><br><span class="line">	 */</span><br><span class="line">	public final void setMessage(String message) &#123;</span><br><span class="line">		this.message = message;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public T getData() &#123;</span><br><span class="line">		return data;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setData(T data) &#123;</span><br><span class="line">		this.data = data;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义请求体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Useregister &#123;</span><br><span class="line"></span><br><span class="line">    private String companyName;	//公司名称	string</span><br><span class="line">    private String emailAddress;    //邮箱地址	string</span><br><span class="line">    private String password; //登录密码;	string</span><br><span class="line">    private String phoneNumber;	//手机号码	string</span><br><span class="line">    private String verificationCode;	//验证码</span><br><span class="line"></span><br><span class="line">    ....</span><br></pre></td></tr></table></figure>
+<p>定义api接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface UserApi &#123;</span><br><span class="line"></span><br><span class="line">    @POST(&quot;/common/user/v1/register&quot;)</span><br><span class="line">    Call&lt;BasicResult&gt; listRepos(@Body Useregister useregister);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>构造api接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class ApiRetrofit &#123;</span><br><span class="line"></span><br><span class="line">    public UserApi userApi;</span><br><span class="line">    public static final String USER_BASE_URL = &quot;http://10.10.168.79:10100/&quot;;</span><br><span class="line"></span><br><span class="line">    public UserApi getUserApi() &#123;</span><br><span class="line">        return userApi;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ApiRetrofit() &#123;</span><br><span class="line">        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() &#123;</span><br><span class="line">            public void log(String s) &#123;</span><br><span class="line">                //打印日志</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);</span><br><span class="line">        OkHttpClient client = new OkHttpClient.Builder()</span><br><span class="line">                .addInterceptor(logInterceptor)</span><br><span class="line">                .build();</span><br><span class="line">        Retrofit retrofit_user = new Retrofit.Builder()</span><br><span class="line">                .baseUrl(USER_BASE_URL)</span><br><span class="line">                .client(client)</span><br><span class="line">                .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">                .build();</span><br><span class="line">        userApi = retrofit_user.create(UserApi.class);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>工厂类提供单列api</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class ApiFactory &#123;</span><br><span class="line">    protected static final Object monitor = new Object();</span><br><span class="line">    static UserApi userApi = null;</span><br><span class="line"></span><br><span class="line">    public static UserApi getUserApi() &#123;</span><br><span class="line">        synchronized (monitor) &#123;</span><br><span class="line">            if (userApi == null) &#123;</span><br><span class="line">                userApi = new ApiRetrofit().getUserApi();</span><br><span class="line">            &#125;</span><br><span class="line">            return userApi;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>较为通用的java实现，没有结合spring注入的特性，</p>
+<p>实际调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Useregister useregister=new Useregister();</span><br><span class="line">Call&lt;BaseResult&gt; res=ApiFactory.getUserApi.listRepos(useregister);</span><br><span class="line">Response&lt;BaseResult&gt; response = call.execute();</span><br><span class="line">if (!response.isSuccessful()) &#123;</span><br><span class="line">            throw new Exception(response.message());</span><br><span class="line">&#125; else &#123;</span><br><span class="line">            return response.body();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>BaseResult里面传入实体类也是OK的，可以直接拿到解析好的实体对象，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Call&lt;ApiResult&lt;UserBean&gt;&gt; call = apiRetrofit.getCommonApi().info(userParam);</span><br><span class="line">        Response&lt;ApiResult&lt;UserBean&gt;&gt; response = call.execute();</span><br><span class="line">        if (!response.isSuccessful()) &#123;</span><br><span class="line">            throw new Exception(response.message());</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return response.body();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="结合springboot，去除工厂类，改为注入"><a href="#结合springboot，去除工厂类，改为注入" class="headerlink" title="结合springboot，去除工厂类，改为注入"></a>结合springboot，去除工厂类，改为注入</h2><p>以上实现在非spring框架下也可用，但是既然用了spring，就要好好利用，spring框架下还有工厂类代码，有点说不过去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Component</span><br><span class="line">public class ApiRetrofit &#123;</span><br><span class="line"></span><br><span class="line">    private static final Logger log = Logger.getLogger(ApiRetrofit.class);</span><br><span class="line"></span><br><span class="line">    private CommonApi commonApi;</span><br><span class="line"></span><br><span class="line">    public CommonApi getCommonApi() &#123;</span><br><span class="line">        return commonApi;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private CorpApi corpApi;</span><br><span class="line"></span><br><span class="line">    public CorpApi getCorpApi()&#123;</span><br><span class="line">        return corpApi;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;api.common&#125;&quot;)</span><br><span class="line">    private  String COMMON_BASE_URL ;//= &quot;http://10.10.168.79:10100/&quot;;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;api.corp&#125;&quot;)</span><br><span class="line">    private String CROP_BASE_URL;</span><br><span class="line"></span><br><span class="line">    @PostConstruct</span><br><span class="line">    public void init()&#123;</span><br><span class="line">        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLogger());</span><br><span class="line">        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);</span><br><span class="line"></span><br><span class="line">        OkHttpClient client = new OkHttpClient.Builder()</span><br><span class="line">                .addNetworkInterceptor(logInterceptor)</span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">        Retrofit retrofit_common = new Retrofit.Builder()</span><br><span class="line">                .baseUrl(COMMON_BASE_URL)</span><br><span class="line">                .client(client)</span><br><span class="line">                .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">                .build();</span><br><span class="line">        commonApi = retrofit_common.create(CommonApi.class);</span><br><span class="line"></span><br><span class="line">        Retrofit retrofit_corp = new Retrofit.Builder()</span><br><span class="line">                .baseUrl(CROP_BASE_URL+&quot;/&quot;)</span><br><span class="line">                .client(client)</span><br><span class="line">                .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">                .build();</span><br><span class="line">        corpApi = retrofit_corp.create(CorpApi.class);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private class HttpLogger implements HttpLoggingInterceptor.Logger &#123;</span><br><span class="line">//        private StringBuilder mMessage = new StringBuilder();</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void log(String message) &#123;</span><br><span class="line">            log.info(message);</span><br><span class="line">//</span><br><span class="line">//            if (message.startsWith(&quot;--&gt; POST&quot;)) &#123;</span><br><span class="line">//                mMessage.setLength(0);</span><br><span class="line">//                mMessage.append(&quot;\n&quot;);</span><br><span class="line">//            &#125;</span><br><span class="line">//            // 以&#123;&#125;或者[]形式的说明是响应结果的json数据，需要进行格式化</span><br><span class="line">//            if ((message.startsWith(&quot;&#123;&quot;) &amp;&amp; message.endsWith(&quot;&#125;&quot;))</span><br><span class="line">//                    || (message.startsWith(&quot;[&quot;) &amp;&amp; message.endsWith(&quot;]&quot;))) &#123;</span><br><span class="line">//                message = JSONUtil.formatJson(message);</span><br><span class="line">//            &#125;</span><br><span class="line">//            mMessage.append(message.concat(&quot;\n&quot;));</span><br><span class="line">//            // 请求或者响应结束，打印整条日志</span><br><span class="line">//            if (message.startsWith(&quot;&lt;-- END HTTP&quot;)) &#123;</span><br><span class="line">//                log.info(mMessage.toString());</span><br><span class="line">//            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@Value注入配置的baseurl的值<br>@Component 申明注入<br>@PostConstruct 在构造方法前初始化相关变量</p>
+<p>实际调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 获取用户信息</span><br><span class="line">     * @param phone</span><br><span class="line">     * @return</span><br><span class="line">     * @throws Exception</span><br><span class="line">     */</span><br><span class="line">    public ApiResult&lt;UserBean&gt; info(String phone) throws Exception &#123;</span><br><span class="line">        if (StringUtils.isEmpty(phone))</span><br><span class="line">            throw new Exception(&quot;手机号不能为空&quot;);</span><br><span class="line">        UserParam userParam = new UserParam();</span><br><span class="line">        userParam.setPhoneNumber(phone);</span><br><span class="line">        Call&lt;ApiResult&lt;UserBean&gt;&gt; call = apiRetrofit.getCommonApi().info(userParam);</span><br><span class="line">        Response&lt;ApiResult&lt;UserBean&gt;&gt; response = call.execute();</span><br><span class="line">        if (!response.isSuccessful()) &#123;</span><br><span class="line">            throw new Exception(response.message());</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return response.body();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="分页请求泛型"><a href="#分页请求泛型" class="headerlink" title="分页请求泛型"></a>分页请求泛型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@JsonInclude(JsonInclude.Include.NON_NULL)</span><br><span class="line">public class ApiPagesResult&lt;T&gt; implements Serializable&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private static final long serialVersionUID = -8421200997970330114L;</span><br><span class="line">    @JsonProperty(&quot;success&quot;)</span><br><span class="line">    private boolean success = false;</span><br><span class="line">    @JsonProperty(&quot;message&quot;)</span><br><span class="line">    private String message;</span><br><span class="line">    @JsonProperty(&quot;data&quot;)</span><br><span class="line">    private Data&lt;T&gt; data;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">@JsonInclude(JsonInclude.Include.NON_NULL)</span><br><span class="line">public class Data&lt;R&gt;  implements Serializable&#123;</span><br><span class="line"></span><br><span class="line">    @JsonProperty(&quot;total&quot;)</span><br><span class="line">    private Integer total;</span><br><span class="line"></span><br><span class="line">    @JsonProperty(&quot;currentPage&quot;)</span><br><span class="line">    private Integer currentPage;</span><br><span class="line"></span><br><span class="line">    @JsonProperty(&quot;pageSize&quot;)</span><br><span class="line">    private Integer pageSize;</span><br><span class="line"></span><br><span class="line">    @JsonProperty(&quot;pages&quot;)</span><br><span class="line">    private Integer pages;</span><br><span class="line"></span><br><span class="line">    @JsonProperty(&quot;dataList&quot;)</span><br><span class="line">    private List&lt;R&gt; dataList;</span><br></pre></td></tr></table></figure>
+<p>1</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/Spring-boot/">Spring boot</a>
+            
+            <a href="/tags/retrofit/">retrofit</a>
+            
+            <a href="/tags/okHttp/">okHttp</a>
+            
+        </div>
+        
+    </article>
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
+            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+        </p>
+        
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/16/2015',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/images/weixin-mp.png'
+        });
+    });
+</script>
+</body>
+</html>

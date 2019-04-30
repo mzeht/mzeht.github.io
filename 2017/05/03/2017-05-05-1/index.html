@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
+<meta name="author" content="mzeht">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>重构到springboot注意事项 - my soul your beats</title>
+
+<meta name="keywords" content="undefined">
+
+<meta name="description " content="talking is cheap show me the code">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="简">简</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
+        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
+        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
+        <h1>mzeht的小站</h1>
+        <h3>交流技术，畅谈人生</h3>
+        <p>一个关注技术与人文的IT博客</p>
+        <div class="cover-sns">
+            <div class="btn btn-weixin">
+                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
+                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
+                <div class="qrcode-arrow"></div>
+            </div>
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/bg" data-name="后端开发">后端开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/tool" data-name="工具">工具</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/app" data-name="移动开发">移动开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/operation" data-name="运维">运维</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/composite" data-name="综合">综合</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/db" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/documents" data-name="文档">文档</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="undefined" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="undefined" target="_blank">mzeht</a>
+                    <span title="最后编辑于5月 3 2017">5月 3 2017</span>
+                </p>
+                <p>一个写代码的</p>
+            </div>
+            <h2 class="post-title">重构到springboot注意事项</h2>
+            <div class="post-meta">
+                本文总共5506个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>旧web项目没有采用maven管理依赖包，jsp页面，xml配置环境，mybatis数据库交互，现在改造为springboot项目，最终打包为war包，java命令直接启动，不依赖tomcat容器</p>
+<p>开发环境 idea</p>
+<p>###idea新建springboot项目<br>选择web支持</p>
+<p>生成的项目src／main下有java，resource两个文件夹</p>
+<p>新建第三个文件夹webapp，和之上两个同级，最终<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-5-5/36622722-file_1493976502014_16cc0.png" alt></p>
+<h3 id="jsp依赖配置（同时适配本地运行和打包）"><a href="#jsp依赖配置（同时适配本地运行和打包）" class="headerlink" title="jsp依赖配置（同时适配本地运行和打包）"></a>jsp依赖配置（同时适配本地运行和打包）</h3><p>注意有些依赖改为<code>&lt;scope&gt;compile&lt;/scope&gt;</code>， 参考maven的scope解释(test,runtime,provide,complie)<br>这样通过idea的application或者打包都不会有问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">			&lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">			&lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;jstl&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">		&lt;!--用于编译jsp--&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;tomcat-embed-jasper&lt;/artifactId&gt;</span><br><span class="line">			&lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>jsp映射路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  profiles: dev</span><br><span class="line">  mvc:</span><br><span class="line">    view:</span><br><span class="line">      prefix: /WEB-INF/jsp/</span><br><span class="line">      suffix: .jsp</span><br></pre></td></tr></table></figure>
+<h3 id="serverlet支持"><a href="#serverlet支持" class="headerlink" title="serverlet支持"></a>serverlet支持</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">public class BootlabbookmanagerApplication  extends SpringBootServletInitializer&#123;</span><br><span class="line">	 @Override</span><br><span class="line">    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;</span><br><span class="line">        return application.sources(BootlabbookmanagerApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">.......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###拦截器，资源映射，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@Component</span><br><span class="line">public class WebMVCConfig extends WebMvcConfigurerAdapter</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public HandlerInterceptor getLoginInterceptor()&#123;</span><br><span class="line">        return new LoginInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     *  * &lt;mvc:mapping path=&quot;/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/assets/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/images/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/upload/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/login/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/register/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/forgetPassword/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/check/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/exists/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/code/**&quot; /&gt;</span><br><span class="line">     * @param registry</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void addInterceptors(InterceptorRegistry registry) &#123;</span><br><span class="line">        registry.addInterceptor(getLoginInterceptor()).addPathPatterns(&quot;/**&quot;);</span><br><span class="line">        registry.addInterceptor(getLoginInterceptor()).excludePathPatterns(&quot;/assets/**&quot;,&quot;/images/**&quot;,&quot;/upload/**&quot;,&quot;/login/**&quot;,&quot;/register/**&quot;,&quot;/forgetPassword/**&quot;,&quot;/check/**&quot;,&quot;/exists/**&quot;,&quot;/code/**&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * &lt;mvc:resources location=&quot;/WEB-INF/assets/&quot; mapping=&quot;/assets/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:resources location=&quot;/WEB-INF/images/&quot; mapping=&quot;/images/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:resources location=&quot;/upload/&quot; mapping=&quot;/upload/**&quot; /&gt;</span><br><span class="line">     * @param registry</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void addResourceHandlers(ResourceHandlerRegistry registry) &#123;</span><br><span class="line">        registry.addResourceHandler(&quot;/assets/**&quot;).addResourceLocations(&quot;classpath:/WEB-INF/assets/&quot;);</span><br><span class="line">        registry.addResourceHandler(&quot;/images/**&quot;).addResourceLocations(&quot;classpath:/WEB-INF/images/&quot;);</span><br><span class="line">        registry.addResourceHandler(&quot;/upload/**&quot;).addResourceLocations(&quot;classpath:/upload&quot;);</span><br><span class="line">        super.addResourceHandlers(registry);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>注释对象旧web项目中的设置，注意拦截器之中引用service或其他需要注入的变量时</p>
+<p>配置拦截器不能写成以下形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line">    public void addInterceptors(InterceptorRegistry registry) &#123;</span><br><span class="line">        registry.addInterceptor(new LoginInterceptor().addPathPatterns(&quot;/**&quot;);</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>必须要提前注入，否则LoginInterceptor中变量注入失败</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">   public HandlerInterceptor getLoginInterceptor()&#123;</span><br><span class="line">       return new LoginInterceptor();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="默认error页面"><a href="#默认error页面" class="headerlink" title="默认error页面"></a>默认error页面</h3><p>Application中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> @Bean</span><br><span class="line">    public EmbeddedServletContainerCustomizer containerCustomizer() &#123;</span><br><span class="line"></span><br><span class="line">        return new EmbeddedServletContainerCustomizer() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void customize(ConfigurableEmbeddedServletContainer container) &#123;</span><br><span class="line"></span><br><span class="line">//                ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, &quot;/401.html&quot;);</span><br><span class="line">                ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, &quot;/error&quot;);</span><br><span class="line">//                ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, &quot;/500.html&quot;);</span><br><span class="line"></span><br><span class="line">                container.addErrorPages( error404Page);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="全局错误处理"><a href="#全局错误处理" class="headerlink" title="全局错误处理"></a>全局错误处理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@ControllerAdvice</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static final String DEFAULT_ERROR_VIEW = &quot;error&quot;;</span><br><span class="line">    public static final String DEFAULT_NOT_LOG = &quot;login&quot;;</span><br><span class="line">    public static final String DEFAULT_INDEX = &quot;index&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @ExceptionHandler(value = UserNotLoginException.class)</span><br><span class="line">    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception &#123;</span><br><span class="line">        ModelAndView mav = new ModelAndView();</span><br><span class="line">        mav.setViewName(DEFAULT_NOT_LOG);</span><br><span class="line">        return mav;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>数据库源，mybatis，redis之类的就很常规了</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/springboot/">springboot</a>
+            
+        </div>
+        
+    </article>
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
+            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+        </p>
+        
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/16/2015',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/images/weixin-mp.png'
+        });
+    });
+</script>
+</body>
+</html>

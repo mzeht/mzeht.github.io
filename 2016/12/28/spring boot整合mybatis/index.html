@@ -1,0 +1,276 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
+<meta name="author" content="mzeht">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>spring boot整合mybatis - my soul your beats</title>
+
+<meta name="keywords" content="undefined">
+
+<meta name="description " content="talking is cheap show me the code">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="简">简</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
+        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
+        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
+        <h1>mzeht的小站</h1>
+        <h3>交流技术，畅谈人生</h3>
+        <p>一个关注技术与人文的IT博客</p>
+        <div class="cover-sns">
+            <div class="btn btn-weixin">
+                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
+                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
+                <div class="qrcode-arrow"></div>
+            </div>
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/bg" data-name="后端开发">后端开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/tool" data-name="工具">工具</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/app" data-name="移动开发">移动开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/operation" data-name="运维">运维</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/composite" data-name="综合">综合</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/db" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/documents" data-name="文档">文档</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="undefined" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="undefined" target="_blank">mzeht</a>
+                    <span title="最后编辑于12月 28 2016">12月 28 2016</span>
+                </p>
+                <p>undefined</p>
+            </div>
+            <h2 class="post-title">Spring boot整合mybatis</h2>
+            <div class="post-meta">
+                本文总共12181个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><h2 id="配置数据库"><a href="#配置数据库" class="headerlink" title="配置数据库"></a>配置数据库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableTransactionManagement</span><br><span class="line">@PropertySource(value = &#123;&quot;classpath:config/source.properties&quot;&#125;)</span><br><span class="line">public class BeanConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private Environment env;</span><br><span class="line"></span><br><span class="line">    @Bean(destroyMethod = &quot;close&quot;)</span><br><span class="line">    public DataSource dataSource() &#123;</span><br><span class="line">        DruidDataSource dataSource = new DruidDataSource();</span><br><span class="line">        dataSource.setDriverClassName(env.getProperty(&quot;source.driverClassName&quot;).trim());</span><br><span class="line">        dataSource.setUrl(env.getProperty(&quot;source.url&quot;).trim());</span><br><span class="line">        dataSource.setUsername(env.getProperty(&quot;source.username&quot;).trim());</span><br><span class="line">        dataSource.setPassword(env.getProperty(&quot;source.password&quot;).trim());</span><br><span class="line">        return dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public JdbcTemplate jdbcTemplate() &#123;</span><br><span class="line">        JdbcTemplate jdbcTemplate = new JdbcTemplate();</span><br><span class="line">        jdbcTemplate.setDataSource(dataSource());</span><br><span class="line">        return jdbcTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认配置文件配置端口和Mapper文件位置</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># mysql</span><br><span class="line">spring.datasource.one.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.one.url=jdbc:mysql://localhost:3306/wpspringboot?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull</span><br><span class="line">spring.datasource.one.username=root</span><br><span class="line">spring.datasource.one.password=root</span><br><span class="line"></span><br><span class="line">spring.datasource.two.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.two.url=jdbc:mysql://localhost:3306/wpspringboottwo?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull</span><br><span class="line">spring.datasource.two.username=root</span><br><span class="line">spring.datasource.two.password=root</span><br><span class="line"></span><br><span class="line">spring.datasource.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.url=jdbc:mysql://localhost:3306/wpspringboot?useUnicode = true&amp;characterEncoding=UTF-8&amp;&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull</span><br><span class="line">spring.datasource.username=root</span><br><span class="line">spring.datasource.password=root</span><br><span class="line"></span><br><span class="line">server.port=9688</span><br><span class="line">#mybatis配置文件位置</span><br><span class="line">mybatis.mapper-locations=classpath*:mybatis/*Mapper.xml</span><br></pre></td></tr></table></figure>
+<p>自定义配置文件配置数据库地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># mysql</span><br><span class="line">source.driverClassName = com.mysql.jdbc.Driver</span><br><span class="line">source.url = jdbc:mysql://localhost:3306/wpspringboot?useUnicode = true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</span><br><span class="line">source.username = root</span><br><span class="line">source.password = root</span><br></pre></td></tr></table></figure>
+<h2 id="配置实体类"><a href="#配置实体类" class="headerlink" title="配置实体类"></a>配置实体类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class Author &#123;</span><br><span class="line">    private Long id;</span><br><span class="line">    private String realName;</span><br><span class="line">    private String nickName;</span><br><span class="line"></span><br><span class="line">    public Long getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(Long id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getRealName() &#123;</span><br><span class="line">        return realName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setRealName(String realName) &#123;</span><br><span class="line">        this.realName = realName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getNickName() &#123;</span><br><span class="line">        return nickName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setNickName(String nickName) &#123;</span><br><span class="line">        this.nickName = nickName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="配置Mapper对应接口"><a href="#配置Mapper对应接口" class="headerlink" title="配置Mapper对应接口"></a>配置Mapper对应接口</h2><p>使用@Mapper注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Mapper</span><br><span class="line">public interface AuthorMapper &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public Author findAuthor(Long id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="配置Mapper文件"><a href="#配置Mapper文件" class="headerlink" title="配置Mapper文件"></a>配置Mapper文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; </span><br><span class="line">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace=&quot;com.example.mapper.AuthorMapper&quot;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&lt;resultMap id=&quot;authorResultMap&quot; type=&quot;com.example.po.Author&quot;&gt;</span><br><span class="line">		&lt;id property=&quot;id&quot; column=&quot;id&quot; /&gt;</span><br><span class="line">		&lt;result property=&quot;realName&quot; column=&quot;real_name&quot; /&gt;</span><br><span class="line">		&lt;result property=&quot;nickName&quot; column=&quot;nick_name&quot; /&gt;</span><br><span class="line">	&lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">	&lt;select id=&quot;findAuthor&quot; parameterType=&quot;com.example.po.Author&quot; resultMap=&quot;authorResultMap&quot;&gt;</span><br><span class="line">		select id, real_name, nick_name from t_author where id = #&#123;id&#125;</span><br><span class="line">	&lt;/select&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="准备service"><a href="#准备service" class="headerlink" title="准备service"></a>准备service</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class AuthorService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private AuthorMapper authorMapper;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public Author findAuthor(Long userId) &#123;</span><br><span class="line">        return authorMapper.findAuthor(userId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(value=&quot;/mybatis/author&quot;)</span><br><span class="line">public class AuthorController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private AuthorService authorService;</span><br><span class="line">//    /**</span><br><span class="line">//     * 查询用户列表</span><br><span class="line">//     */</span><br><span class="line">//    @RequestMapping(method = RequestMethod.GET)</span><br><span class="line">//    public Map&lt;String,Object&gt; getAuthorList(HttpServletRequest request) &#123;</span><br><span class="line">//        List&lt;Author&gt; authorList = this.authorService.findAuthorList();</span><br><span class="line">//        Map&lt;String,Object&gt; param = new HashMap&lt;String,Object&gt;();</span><br><span class="line">//        param.put(&quot;total&quot;, authorList.size());</span><br><span class="line">//        param.put(&quot;rows&quot;, authorList);</span><br><span class="line">//        return param;</span><br><span class="line">//    &#125;</span><br><span class="line">    /**</span><br><span class="line">     * 查询用户信息</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value = &quot;/&#123;userId:\\d+&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">    public Author getAuthor(@PathVariable Long userId, HttpServletRequest request) &#123;</span><br><span class="line">        Author author = this.authorService.findAuthor(userId);</span><br><span class="line">        if(author == null)&#123;</span><br><span class="line">            throw new RuntimeException(&quot;查询错误&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return author;</span><br><span class="line">    &#125;</span><br><span class="line">//</span><br><span class="line">//    /**</span><br><span class="line">//     * 新增方法</span><br><span class="line">//     */</span><br><span class="line">//    @RequestMapping(method = RequestMethod.POST)</span><br><span class="line">//    public void add(@RequestBody JSONObject jsonObject) &#123;</span><br><span class="line">//        String userId = jsonObject.getString(&quot;user_id&quot;);</span><br><span class="line">//        String realName = jsonObject.getString(&quot;real_name&quot;);</span><br><span class="line">//        String nickName = jsonObject.getString(&quot;nick_name&quot;);</span><br><span class="line">//</span><br><span class="line">//        try&#123;</span><br><span class="line">//            this.authorService.add(realName, nickName);</span><br><span class="line">//        &#125;catch(Exception e)&#123;</span><br><span class="line">//            e.printStackTrace();</span><br><span class="line">//            throw new RuntimeException(&quot;新增错误&quot;);</span><br><span class="line">//        &#125;</span><br><span class="line">//    &#125;</span><br><span class="line">//    /**</span><br><span class="line">//     * 更新方法</span><br><span class="line">//     */</span><br><span class="line">//    @RequestMapping(value = &quot;/&#123;userId:\\d+&#125;&quot;, method = RequestMethod.PUT)</span><br><span class="line">//    public void update(@PathVariable Long userId, @RequestBody JSONObject jsonObject) &#123;</span><br><span class="line">//        Author author = this.authorService.findAuthor(userId);</span><br><span class="line">//        String realName = jsonObject.getString(&quot;real_name&quot;);</span><br><span class="line">//        String nickName = jsonObject.getString(&quot;nick_name&quot;);</span><br><span class="line">//</span><br><span class="line">//        try&#123;</span><br><span class="line">//            this.authorService.update(realName, nickName, author.getId());</span><br><span class="line">//        &#125;catch(Exception e)&#123;</span><br><span class="line">//            e.printStackTrace();</span><br><span class="line">//            throw new RuntimeException(&quot;更新错误&quot;);</span><br><span class="line">//        &#125;</span><br><span class="line">//    &#125;</span><br><span class="line">//    /**</span><br><span class="line">//     * 删除方法</span><br><span class="line">//     */</span><br><span class="line">//    @RequestMapping(value = &quot;/&#123;userId:\\d+&#125;&quot;, method = RequestMethod.DELETE)</span><br><span class="line">//    public void delete(@PathVariable Long userId) &#123;</span><br><span class="line">//        try&#123;</span><br><span class="line">//            this.authorService.delete(userId);</span><br><span class="line">//        &#125;catch(Exception e)&#123;</span><br><span class="line">//            throw new RuntimeException(&quot;删除错误&quot;);</span><br><span class="line">//        &#125;</span><br><span class="line">//    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试通过</p>
+<h1 id="配置日志"><a href="#配置日志" class="headerlink" title="配置日志"></a>配置日志</h1><p>mybatis配置日志打印<br>resources文件夹下新建logback.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;configuration scan=&quot;true&quot;&gt;</span><br><span class="line">    &lt;appender name=&quot;CONSOLE&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;</span><br><span class="line">        &lt;encoder&gt;</span><br><span class="line">            &lt;charset&gt;utf-8&lt;/charset&gt;</span><br><span class="line">            &lt;Pattern&gt;%d %-5level [%thread] %logger&#123;0&#125;: %msg%n&lt;/Pattern&gt;</span><br><span class="line">        &lt;/encoder&gt;</span><br><span class="line">    &lt;/appender&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- The FILE and ASYNC appenders are here as examples for a production configuration --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;appender name=&quot;FILE&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;</span><br><span class="line">        &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;</span><br><span class="line">            &lt;fileNamePattern&gt;log/wpspringbootmybatis.%d&#123;yyyy-MM-dd&#125;.log.zip&lt;/fileNamePattern&gt;</span><br><span class="line">            &lt;maxHistory&gt;90&lt;/maxHistory&gt;</span><br><span class="line">        &lt;/rollingPolicy&gt;</span><br><span class="line">        &lt;encoder&gt;</span><br><span class="line">            &lt;charset&gt;utf-8&lt;/charset&gt;</span><br><span class="line">            &lt;Pattern&gt;%d %-5level [%thread] %logger&#123;0&#125;: %msg%n&lt;/Pattern&gt;</span><br><span class="line">        &lt;/encoder&gt;</span><br><span class="line">    &lt;/appender&gt;</span><br><span class="line"></span><br><span class="line">    &lt;appender name=&quot;ASYNC&quot; class=&quot;ch.qos.logback.classic.AsyncAppender&quot;&gt;</span><br><span class="line">        &lt;queueSize&gt;512&lt;/queueSize&gt;</span><br><span class="line">        &lt;appender-ref ref=&quot;FILE&quot;/&gt;</span><br><span class="line">    &lt;/appender&gt;</span><br><span class="line"></span><br><span class="line">    &lt;logger name=&quot;cn.upg&quot; level=&quot;$&#123;logback.loglevel&#125;&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;logger name=&quot;javax.activation&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;javax.mail&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;javax.xml.bind&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;ch.qos.logback&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;com.codahale.metrics&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;com.ryantenney&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;com.sun.xml.internal.bind&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;com.zaxxer&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;io.undertow&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.apache&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.apache.catalina.startup.DigesterFactory&quot; level=&quot;OFF&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.bson&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.hibernate.validator&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.hibernate&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.hibernate.ejb.HibernatePersistence&quot; level=&quot;OFF&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.springframework&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.springframework.web&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.springframework.security&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.springframework.cache&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.thymeleaf&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;org.xnio&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;com.mangofactory.swagger&quot; level=&quot;INFO&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;com.wordnik.swagger&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line">    &lt;logger name=&quot;sun.rmi.transport&quot; level=&quot;WARN&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;logger name=&quot;redis.clients.jedis&quot; level=&quot;WARN&quot; /&gt;</span><br><span class="line">    &lt;logger name=&quot;org.springframework.data.redis&quot; level=&quot;WARN&quot; /&gt;</span><br><span class="line">    &lt;logger name=&quot;org.springframework.data.mongodb&quot; level=&quot;INFO&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;contextListener class=&quot;ch.qos.logback.classic.jul.LevelChangePropagator&quot;&gt;</span><br><span class="line">        &lt;resetJUL&gt;true&lt;/resetJUL&gt;</span><br><span class="line">    &lt;/contextListener&gt;</span><br><span class="line"></span><br><span class="line">    &lt;root level=&quot;$&#123;logback.loglevel&#125;&quot;&gt;</span><br><span class="line">        &lt;appender-ref ref=&quot;ASYNC&quot;/&gt;</span><br><span class="line">        &lt;appender-ref ref=&quot;CONSOLE&quot;/&gt;</span><br><span class="line">    &lt;/root&gt;</span><br><span class="line"></span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2016-12-30 16:16:54,216 DEBUG [http-nio-9688-exec-1] SqlSessionUtils: Creating a new SqlSession</span><br><span class="line">2016-12-30 16:16:54,225 DEBUG [http-nio-9688-exec-1] SqlSessionUtils: SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c3e793d] was not registered for synchronization because synchronization is not active</span><br><span class="line">2016-12-30 16:16:54,356 INFO  [http-nio-9688-exec-1] DruidDataSource: &#123;dataSource-1&#125; inited</span><br><span class="line">2016-12-30 16:16:54,621 DEBUG [http-nio-9688-exec-1] SpringManagedTransaction: JDBC Connection [com.mysql.jdbc.JDBC4Connection@20dc4786] will not be managed by Spring</span><br><span class="line">2016-12-30 16:16:54,629 DEBUG [http-nio-9688-exec-1] findAuthor: ==&gt;  Preparing: select id, real_name, nick_name from t_author where id = ? </span><br><span class="line">2016-12-30 16:16:54,672 DEBUG [http-nio-9688-exec-1] findAuthor: ==&gt; Parameters: 1(Long)</span><br><span class="line">2016-12-30 16:16:54,708 DEBUG [http-nio-9688-exec-1] findAuthor: &lt;==      Total: 1</span><br><span class="line">2016-12-30 16:16:54,710 DEBUG [http-nio-9688-exec-1] SqlSessionUtils: Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c3e793d]</span><br></pre></td></tr></table></figure>
+<hr>
+<p>相关链接 </p>
+<ol>
+<li><a href="http://blog.didispace.com/springbootlog/" target="_blank" rel="noopener">spring boot日志管理</a></li>
+</ol>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/Spring-boot/">Spring boot</a>
+            
+        </div>
+        
+    </article>
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
+            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+        </p>
+        
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/16/2015',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/images/weixin-mp.png'
+        });
+    });
+</script>
+</body>
+</html>

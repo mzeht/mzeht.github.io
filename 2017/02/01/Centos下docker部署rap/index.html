@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
+<meta name="author" content="mzeht">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>centos下docker部署rap - my soul your beats</title>
+
+<meta name="keywords" content="undefined">
+
+<meta name="description " content="talking is cheap show me the code">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="简">简</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
+        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
+        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
+        <h1>mzeht的小站</h1>
+        <h3>交流技术，畅谈人生</h3>
+        <p>一个关注技术与人文的IT博客</p>
+        <div class="cover-sns">
+            <div class="btn btn-weixin">
+                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
+                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
+                <div class="qrcode-arrow"></div>
+            </div>
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class>
+                    <a href="/categories/bg" data-name="后端开发">后端开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/tool" data-name="工具">工具</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/app" data-name="移动开发">移动开发</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/operation" data-name="运维">运维</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/composite" data-name="综合">综合</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/db" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/documents" data-name="文档">文档</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="undefined" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="undefined" target="_blank">mzeht</a>
+                    <span title="最后编辑于2月 1 2017">2月 1 2017</span>
+                </p>
+                <p>undefined</p>
+            </div>
+            <h2 class="post-title">Centos下docker部署rap</h2>
+            <div class="post-meta">
+                本文总共4445个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p><a href="http://rap.taobao.org/org/index.do" target="_blank" rel="noopener">rap官网</a><br><a href="https://github.com/thx/RAP/wiki/home_cn" target="_blank" rel="noopener">rapgithub地址</a></p>
+<p>RAP是一个GUI的WEB接口管理工具。在RAP中，您可定义接口的URL、请求&amp;响应细节格式等等。通过分析这些数据，RAP提供MOCK服务、测试服务等自动化工具。RAP同时提供大量企业级功能，帮助企业和团队高效的工作。</p>
+<p>在前后端分离的开发模式下，我们通常需要定义一份接口文档来规范接口的具体信息。如一个请求的地址、有几个参数、参数名称及类型含义等等。RAP 首先方便团队录入、查看和管理这些接口文档，并通过分析结构化的文档数据，重复利用并生成自测数据、提供自测控制台等等… 大幅度提升开发效率</p>
+<a id="more"></a>
+<p>1.<code>强大的GUI工具</code> 给力的用户体验，你将会爱上使用RAP来管理您的API文档。<br>2.<code>完善的MOCK服务</code> 文档定义好的瞬间，所有接口已经准备就绪。有了MockJS，无论您的业务模型有多复杂，它都能很好的满足。</p>
+<h1 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h1><p>由于我是在阿里云上的服务器</p>
+<h2 id="采用阿里云的脚本进行安装"><a href="#采用阿里云的脚本进行安装" class="headerlink" title="采用阿里云的脚本进行安装"></a>采用阿里云的脚本进行安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -</span><br></pre></td></tr></table></figure>
+<h2 id="添加内核参数"><a href="#添加内核参数" class="headerlink" title="添加内核参数"></a>添加内核参数</h2><p>默认配置下，在 CentOS 使用 Docker 可能会碰到下面的这些警告信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WARNING: bridge-nf-call-iptables is disabled</span><br><span class="line">WARNING: bridge-nf-call-ip6tables is disabled</span><br></pre></td></tr></table></figure>
+<p>很不巧我就遇到了</p>
+<p>添加内核配置参数以启用这些功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo tee -a /etc/sysctl.conf &lt;&lt;-EOF</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<p>然后重新加载 sysctl.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo sysctl -p</span><br></pre></td></tr></table></figure>
+<h1 id="配置加速器"><a href="#配置加速器" class="headerlink" title="配置加速器"></a>配置加速器</h1><p> 参考阿里云论坛的一篇文章<a href="https://yq.aliyun.com/articles/29941" target="_blank" rel="noopener">here</a></p>
+<p>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来<br>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service<br>然后再将加速器地址添加到配置文件的启动命令<br>重启Docker就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</span><br><span class="line">sudo sed -i &quot;s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon --registry-mirror=&lt;your accelerate address&gt;|g&quot; /etc/systemd/system/docker.service</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
+<p>your accelerate address 处填入阿里云账号分配的加速器地址</p>
+<h1 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">docker search rap</span><br><span class="line">NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">neo4j                           Neo4j is a highly scalable, robust native ...   282       [OK]</span><br><span class="line">r-base                          R is a system for statistical computation ...   147       [OK]</span><br><span class="line">arangodb                        ArangoDB - a distributed database with a f...   78        [OK]</span><br><span class="line">orientdb                        OrientDB a Multi-Model Open Source NoSQL D...   46        [OK]</span><br><span class="line">ubuntu-debootstrap              debootstrap --variant=minbase --components...   27        [OK]</span><br><span class="line">rapidftr/rapidftr               UNICEF RapidFTR (Family Tracing and Reunif...   2                    [OK]</span><br><span class="line">rapi/psgi                       Image for running PSGI apps, comes with Ra...   2                    [OK]</span><br><span class="line">huangfushun/rap                 ali rap web ui docker file                      1                    [OK]</span><br><span class="line">lihuansse/rap                   RAP 接口管理工具                                      1</span><br><span class="line">masonliu/rap                    Docker Image for RAP https://github.com/th...   1</span><br><span class="line">rapidoid                        Rapidoid is a high-performance HTTP server...   1         [OK]</span><br><span class="line">ukgovdatascience/rap-docker     Environment for reproducible analytical pi...   0                    [OK]</span><br><span class="line">rapidreg/rapidreg                                                               0                    [OK]</span><br><span class="line">raphiz/raphael.li                                                               0                    [OK]</span><br><span class="line">rapi/rapidapp                   Standard RapidApp base image, from officia...   0                    [OK]</span><br><span class="line">team19awshack/rapidprowebhook   RapidProWebhook                                 0                    [OK]</span><br><span class="line">tp81/rapidstorm                 RapidSTORM docker image                         0                    [OK]</span><br><span class="line">qdsang/rap                      docker rap alpine                               0                    [OK]</span><br><span class="line">raphsfeir/raphaelsfeir          Portfolio and blog for me                       0                    [OK]</span><br><span class="line">rapidpro/rapidpro-base          Base Python 2.7 + geolibs Docker image for...   0                    [OK]</span><br><span class="line">tonimichel/rapidflask           A boilerplate flask application for easy s...   0                    [OK]</span><br><span class="line">andreweskeclarke/rapidftr                                                       0                    [OK]</span><br><span class="line">raphiz/mathe.raphael.li                                                         0                    [OK]</span><br><span class="line">raphaelgroup/magi                                                               0                    [OK]</span><br><span class="line">divio/rapidpro                  RapidPro in docker.                             0                    [OK]</span><br></pre></td></tr></table></figure>
+<p>这里选择lihuansse/rap</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull lihuansse/rap</span><br></pre></td></tr></table></figure>
+<p>创建并启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name rap -p 8080:8080 -d lihuansse/rap:latest</span><br></pre></td></tr></table></figure>
+<p>然而就在即将完成这最后一步的时候</p>
+<p>形如下面的错误出现了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --rm -ti ubuntu:14.04 bin/bash                                       </span><br><span class="line">FATA[0000] Error response from daemon: mkdir /var/lib/docker/overlay/c4a8f5e516d401534f2d994f5546f7e08639ffd675eb3573267f76d79394f172-init/merged/dev/shm: invalid argument</span><br></pre></td></tr></table></figure>
+<p>请看下回分解</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/Centos/">Centos</a>
+            
+        </div>
+        
+    </article>
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
+            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+        </p>
+        
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/16/2015',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/images/weixin-mp.png'
+        });
+    });
+</script>
+</body>
+</html>

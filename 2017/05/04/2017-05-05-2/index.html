@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
+<meta name="author" content="mzeht">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>recycleview mutitype的使用 - my soul your beats</title>
+
+<meta name="keywords" content="undefined">
+
+<meta name="description " content="talking is cheap show me the code">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="简">简</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
+        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
+        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
+        <h1>mzeht的小站</h1>
+        <h3>交流技术，畅谈人生</h3>
+        <p>一个关注技术与人文的IT博客</p>
+        <div class="cover-sns">
+            <div class="btn btn-weixin">
+                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
+                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
+                <div class="qrcode-arrow"></div>
+            </div>
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class>
+                    <a href="/categories/bg" data-name="后端开发">后端开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/tool" data-name="工具">工具</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/app" data-name="移动开发">移动开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/operation" data-name="运维">运维</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/composite" data-name="综合">综合</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/db" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/documents" data-name="文档">文档</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="undefined" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="undefined" target="_blank">mzeht</a>
+                    <span title="最后编辑于5月 4 2017">5月 4 2017</span>
+                </p>
+                <p>一个写代码的</p>
+            </div>
+            <h2 class="post-title">Recycleview Mutitype的使用</h2>
+            <div class="post-meta">
+                本文总共7086个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>安利一波<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">compile(&apos;me.drakeet.multitype:multitype:2.5.0&apos;, &#123;</span><br><span class="line">       exclude group: &apos;com.android.support&apos;</span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>基本文档github主页写的较好</p>
+<p>基本使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class EmptyDataViewProvider extends ItemViewBinder&lt;EmptyData,EmptyDataViewProvider.ViewHolder&gt;&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @NonNull</span><br><span class="line">    @Override</span><br><span class="line">    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) &#123;</span><br><span class="line">        return new ViewHolder(inflater.inflate(R.layout.bm_list_empty_view,parent,false));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull EmptyData item) &#123;</span><br><span class="line">        if (TextUtils.isEmpty(item.getMessage()))&#123;</span><br><span class="line">        holder.messageTextView.setText(&quot;你来到一片荒芜之地, 空空如也, 什么都没有\\n实在是太冷清了╮(╯_╰)╭&quot;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            holder.messageTextView.setText(item.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static class ViewHolder extends RecyclerView.ViewHolder &#123;</span><br><span class="line">        private TextView messageTextView;</span><br><span class="line"></span><br><span class="line">        public ViewHolder(View itemView) &#123;</span><br><span class="line">            super(itemView);</span><br><span class="line">            this.messageTextView = (TextView) itemView.findViewById(R.id.bm_empty_text);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));</span><br><span class="line">       mAdapter = new MultiTypeAdapter();</span><br><span class="line">       mAdapter.register(EmptyData.class,new EmptyDataViewProvider());</span><br><span class="line">       mAdapter.register(SendExpressOrder.class,new OrderViewProvider(new OrderViewProvider.OnItemClickListener() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void onItemClick(View view, int position, SendExpressOrder order) &#123;</span><br><span class="line">               Intent intent=new Intent();</span><br><span class="line">               intent.setClass(getActivity(), JijianSearchDetailActivity.class);</span><br><span class="line">               intent.putExtra(&quot;order&quot;, order);</span><br><span class="line">               startActivity(intent);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;));</span><br><span class="line">       mRecyclerView.setAdapter(mAdapter);</span><br><span class="line">       mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void onRefresh() &#123;</span><br><span class="line">               new Handler().postDelayed(new Runnable() &#123;</span><br><span class="line">                   @Override</span><br><span class="line">                   public void run() &#123;</span><br><span class="line">                       searchData();</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;, 1000);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="下拉刷新"><a href="#下拉刷新" class="headerlink" title="下拉刷新"></a>下拉刷新</h3><p>针对LinearLayoutManager</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public abstract class OnLoadMoreListener extends RecyclerView.OnScrollListener&#123;</span><br><span class="line">    private LinearLayoutManager layoutManager;</span><br><span class="line">    private int itemCount, lastPosition, lastItemCount;</span><br><span class="line"></span><br><span class="line">    public abstract void onLoadMore();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onScrolled(RecyclerView recyclerView, int dx, int dy) &#123;</span><br><span class="line">        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) &#123;</span><br><span class="line">            layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();</span><br><span class="line"></span><br><span class="line">            itemCount = layoutManager.getItemCount();</span><br><span class="line">            lastPosition = layoutManager.findLastCompletelyVisibleItemPosition();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            L.e(&quot;OnLoadMoreListener&quot;, &quot;The OnLoadMoreListener only support LinearLayoutManager&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if ( lastPosition == itemCount - 1) &#123;</span><br><span class="line">            lastItemCount = itemCount;</span><br><span class="line">            this.onLoadMore();</span><br><span class="line">        &#125;</span><br><span class="line">        L.d(&quot;itemCount&quot;,itemCount+&quot;&quot;);</span><br><span class="line">        L.d(&quot;lastPosition&quot;,lastPosition+&quot;&quot;);</span><br><span class="line">        L.d(&quot;lastItemCount&quot;,lastItemCount+&quot;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>暴露子视图接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public class PayMentTempLateProvider extends ItemViewBinder&lt;PayMentTempLatePO,PayMentTempLateProvider.ViewHolder&gt; &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public PayMentTempLateProvider(OnItemClickListener onItemClickListener) &#123;</span><br><span class="line">        this.mOnItemClickListener=onItemClickListener;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public interface OnItemClickListener&#123;</span><br><span class="line">        void onItemClick(View view,int position,PayMentTempLatePO payMentTempLatePO);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private OnItemClickListener mOnItemClickListener;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @NonNull</span><br><span class="line">    @Override</span><br><span class="line">    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) &#123;</span><br><span class="line">        return new ViewHolder(inflater.inflate(R.layout.item_express_template,parent,false));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull PayMentTempLatePO item) &#123;</span><br><span class="line">        holder.templateName_tv.setText(item.getTemplateName());</span><br><span class="line">        holder.templatCode.setText(item.getTemplateCode());</span><br><span class="line">        holder.itemView.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                mOnItemClickListener.onItemClick(holder.itemView,holder.getLayoutPosition(),item);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class ViewHolder extends RecyclerView.ViewHolder &#123;</span><br><span class="line">        private TextView templateName_tv;</span><br><span class="line">        private TextView templatCode;</span><br><span class="line">        public ViewHolder(View itemView) &#123;</span><br><span class="line">            super(itemView);</span><br><span class="line">            templateName_tv = (TextView) itemView.findViewById(R.id.templateName);</span><br><span class="line">            templatCode = (TextView) itemView.findViewById(R.id.templateCode);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更新ui</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">                   public void onCompleted() &#123;</span><br><span class="line">                       QujianFragment.getInstance().setWeiquItemText(count);</span><br><span class="line">                   &#125;</span><br><span class="line"></span><br><span class="line">                   @Override</span><br><span class="line">                   public void onError(Throwable e) &#123;</span><br><span class="line">                       L.e(e.getMessage());</span><br><span class="line">                       if (mSwipeRefreshLayout.isRefreshing()) &#123;</span><br><span class="line">                           mSwipeRefreshLayout.setRefreshing(false);</span><br><span class="line">                       &#125;</span><br><span class="line">                       Items items = new Items();</span><br><span class="line">                       items.add(new EmptyData(&quot;请求失败&quot;));</span><br><span class="line">                       adapter.setItems(items);</span><br><span class="line">                       adapter.notifyDataSetChanged();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                   &#125;</span><br><span class="line"></span><br><span class="line">                   @Override</span><br><span class="line">                   public void onNext(ApiPagesResult&lt;SendExpressOrder&gt; listApiResult) &#123;</span><br><span class="line">                       if (mSwipeRefreshLayout.isRefreshing()) &#123;</span><br><span class="line">                           mSwipeRefreshLayout.setRefreshing(false);</span><br><span class="line">                       &#125;</span><br><span class="line">                       mRecyclerView.scrollToPosition(0);</span><br><span class="line">                       if (listApiResult.getFlag().equals(&quot;1&quot;)) &#123;</span><br><span class="line">                           Items items = new Items();</span><br><span class="line">                           if (listApiResult.getContent().getCount() == 0) &#123;</span><br><span class="line">                               items.add(new EmptyData());</span><br><span class="line">                           &#125; else &#123;</span><br><span class="line">                               items.addAll(listApiResult.getContent().getContent());</span><br><span class="line">                               count = listApiResult.getContent().getCount();</span><br><span class="line"></span><br><span class="line">                           &#125;</span><br><span class="line"></span><br><span class="line">                           adapter.setItems(items);</span><br><span class="line">                           adapter.notifyDataSetChanged();</span><br><span class="line"></span><br><span class="line">                       &#125;</span><br><span class="line"></span><br><span class="line">                   &#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/multitype/">multitype</a>
+            
+        </div>
+        
+    </article>
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
+            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+        </p>
+        
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/16/2015',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/images/weixin-mp.png'
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
+<meta name="author" content="mzeht">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>android scroll分析 - my soul your beats</title>
+
+<meta name="keywords" content="undefined">
+
+<meta name="description " content="talking is cheap show me the code">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="简">简</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
+        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
+        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
+        <h1>mzeht的小站</h1>
+        <h3>交流技术，畅谈人生</h3>
+        <p>一个关注技术与人文的IT博客</p>
+        <div class="cover-sns">
+            <div class="btn btn-weixin">
+                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
+                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
+                <div class="qrcode-arrow"></div>
+            </div>
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class>
+                    <a href="/categories/bg" data-name="后端开发">后端开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/tool" data-name="工具">工具</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/app" data-name="移动开发">移动开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/operation" data-name="运维">运维</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/composite" data-name="综合">综合</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/db" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/documents" data-name="文档">文档</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="undefined" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="undefined" target="_blank">mzeht</a>
+                    <span title="最后编辑于10月 12 2016">10月 12 2016</span>
+                </p>
+                <p>undefined</p>
+            </div>
+            <h2 class="post-title">Android Scroll分析</h2>
+            <div class="post-meta">
+                本文总共2318个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1 id="滑动效果的产生"><a href="#滑动效果的产生" class="headerlink" title="滑动效果的产生"></a>滑动效果的产生</h1><p>滑动的本质是移动View，通过不断改变View的坐标实现，与动画的原理类似，不过既然是滑动，就需要监听各种点击，触摸事件</p>
+<a id="more"></a>
+<h2 id="Android坐标系"><a href="#Android坐标系" class="headerlink" title="Android坐标系"></a>Android坐标系</h2><p>Android坐标系以屏幕左上角为原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-22/68901668.jpg" alt></p>
+<h2 id="视图坐标系"><a href="#视图坐标系" class="headerlink" title="视图坐标系"></a>视图坐标系</h2><p>子视图以父视图左上角为坐标原点，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/13206722.jpg" alt><br>触控事件中，通过getX(),getY()获得的坐标就是视图中的坐标系</p>
+<h2 id="触控事件"><a href="#触控事件" class="headerlink" title="触控事件"></a>触控事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">//单点触摸按下动作</span><br><span class="line">   public static final int ACTION_DOWN             = 0;</span><br><span class="line">   </span><br><span class="line">   //单点触摸离开动作</span><br><span class="line">   public static final int ACTION_UP               = 1;</span><br><span class="line">   </span><br><span class="line">  //触摸点移动动作</span><br><span class="line">   public static final int ACTION_MOVE             = 2;</span><br><span class="line">   </span><br><span class="line">  //触摸动作取消</span><br><span class="line">   public static final int ACTION_CANCEL           = 3;</span><br><span class="line">   </span><br><span class="line">  //触摸动作超出边界</span><br><span class="line">   public static final int ACTION_OUTSIDE          = 4;</span><br><span class="line"></span><br><span class="line">   //多点触摸按下动作</span><br><span class="line">   public static final int ACTION_POINTER_DOWN     = 5;</span><br><span class="line">   </span><br><span class="line">   //多点离开动作</span><br><span class="line">   public static final int ACTION_POINTER_UP       = 6;</span><br><span class="line"></span><br><span class="line">   public static final int ACTION_HOVER_MOVE       = 7;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">   public static final int ACTION_SCROLL           = 8;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">   public static final int ACTION_HOVER_ENTER      = 9;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">   public static final int ACTION_HOVER_EXIT       = 10;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   public static final int ACTION_BUTTON_PRESS   = 11;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">   public static final int ACTION_BUTTON_RELEASE  = 12;</span><br></pre></td></tr></table></figure>
+<p>一般在View的onTouchEvent方法中对event.getAction()进行筛选控制，（不涉及多点触控的情况下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public boolean onTouchEvent(MotionEvent event) &#123;</span><br><span class="line">    int x = (int) event.getX();</span><br><span class="line">    int y = (int) event.getY();</span><br><span class="line">    switch (event.getAction()) &#123;</span><br><span class="line">        case MotionEvent.ACTION_DOWN:</span><br><span class="line">            lastX = (int) event.getX();</span><br><span class="line">            lastY = (int) event.getY();</span><br><span class="line">            break;</span><br><span class="line">        case MotionEvent.ACTION_MOVE:</span><br><span class="line">            int offsetX = x - lastX;</span><br><span class="line">            int offsetY = y - lastY;</span><br><span class="line">            ((View) getParent()).scrollBy(-offsetX, -offsetY);</span><br><span class="line">            break;</span><br><span class="line">        case MotionEvent.ACTION_UP:</span><br><span class="line">            // 手指离开时，执行滑动过程</span><br><span class="line">            View viewGroup = ((View) getParent());</span><br><span class="line">            mScroller.startScroll(</span><br><span class="line">                    viewGroup.getScrollX(),</span><br><span class="line">                    viewGroup.getScrollY(),</span><br><span class="line">                    -viewGroup.getScrollX(),</span><br><span class="line">                    -viewGroup.getScrollY());</span><br><span class="line">            invalidate();</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>系统提供了很多获取坐标值，相对距离的坐标值的方法，如图<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/public/16-11-23/82371833.jpg" alt></p>
+<p>大概分为两类：</p>
+<hr>
+<p>View提供的获取坐标的方法<br>getTop(): 获取到View自身顶边到其父布局顶部的距离<br>getLeft() : 获取到View自身左边到其父布局左边的距离<br>getRight():<br>getBottom();</p>
+<hr>
+<p>MotionEvent提供的方法<br>getX():    获取点击事件距离控件左边的距离，即视图坐标<br>getY():获取点击事件距离控件顶部的距离，即视图坐标<br>getRawX():获取点击事件距离整个屏幕左边的距离，即绝对坐标<br>getRawY():….</p>
+<h1 id="实现滑动的七种方法"><a href="#实现滑动的七种方法" class="headerlink" title="实现滑动的七种方法"></a>实现滑动的七种方法</h1><h2 id="layout方法"><a href="#layout方法" class="headerlink" title="layout方法"></a>layout方法</h2>
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/Android/">Android</a>
+            
+            <a href="/tags/Scroll/">Scroll</a>
+            
+        </div>
+        
+    </article>
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
+            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+        </p>
+        
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/16/2015',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/images/weixin-mp.png'
+        });
+    });
+</script>
+</body>
+</html>

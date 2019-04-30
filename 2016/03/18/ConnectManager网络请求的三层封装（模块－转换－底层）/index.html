@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
+<meta name="author" content="mzeht">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>connectmanager网络请求的三层封装（模块－转换－底层） - my soul your beats</title>
+
+<meta name="keywords" content="undefined">
+
+<meta name="description " content="talking is cheap show me the code">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="简">简</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
+        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
+        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
+        <h1>mzeht的小站</h1>
+        <h3>交流技术，畅谈人生</h3>
+        <p>一个关注技术与人文的IT博客</p>
+        <div class="cover-sns">
+            <div class="btn btn-weixin">
+                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
+                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
+                <div class="qrcode-arrow"></div>
+            </div>
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
+            </div>
+            <div class="btn btn-facebook">
+                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            </div>
+            <div class="btn btn-github">
+                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class>
+                    <a href="/categories/bg" data-name="后端开发">后端开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/tool" data-name="工具">工具</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/app" data-name="移动开发">移动开发</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/operation" data-name="运维">运维</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/composite" data-name="综合">综合</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/db" data-name="数据库">数据库</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/qianduan" data-name="Web前端">Web前端</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/documents" data-name="文档">文档</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="undefined" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="undefined" target="_blank">mzeht</a>
+                    <span title="最后编辑于3月 18 2016">3月 18 2016</span>
+                </p>
+                <p>undefined</p>
+            </div>
+            <h2 class="post-title">ConnectManager网络请求的三层封装（模块－转换－底层）</h2>
+            <div class="post-meta">
+                本文总共8767个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>基于httpclient，java封装一套Android网络请求框架<br><a id="more"></a><br>调用层－数据解析层－底层</p>
+<p>##调用层</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">private void getSystemToken() &#123;</span><br><span class="line">        GetSystemTokenParam param = new GetSystemTokenParam();</span><br><span class="line">        param.loginId=Constants.LOGINID;</span><br><span class="line">        String password=mPasswordView.getText().toString();</span><br><span class="line">        String encpwd=PasswordUtil.getEncPwd(Constants.LOGINID, password);</span><br><span class="line">        param.password= encpwd;</span><br><span class="line">//        param.password= password;</span><br><span class="line">        L.i(&quot;systemID&quot;,mUsernameView.getText().toString());</span><br><span class="line">        L.i(&quot;明文密码&quot;,mPasswordView.getText().toString());</span><br><span class="line">        L.i(&quot;loginID&quot;,Constants.LOGINID);</span><br><span class="line">        L.i(&quot;password 加密结果为&quot;,encpwd);</span><br><span class="line">        L.i(&quot;password 解密结果为&quot;,PasswordUtil.getDecPwd(Constants.LOGINID,encpwd));</span><br><span class="line">        ConnectManager.getInstance().getSystemToken(param,Tokencallback);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private final AbstractRequestListener&lt;GetSystemTokenBean&gt; Tokencallback = new AbstractRequestListener&lt;GetSystemTokenBean&gt;() &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onComplete(GetSystemTokenBean bean) &#123;</span><br><span class="line">            tokenBean = bean;</span><br><span class="line">            tHandler.sendEmptyMessage(ActivityForResultUtil.REQUEST_DATA_SUCCESS);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onError(CustomError customError) &#123;</span><br><span class="line"></span><br><span class="line">            Message msg = tHandler.obtainMessage();</span><br><span class="line">            msg.obj = customError;</span><br><span class="line">            msg.what = ActivityForResultUtil.REQUEST_DATA_ERROR;</span><br><span class="line">            tHandler.sendMessage(msg);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onFault(CustomError fault) &#123;</span><br><span class="line"></span><br><span class="line">            Message msg = tHandler.obtainMessage();</span><br><span class="line">            msg.obj = fault;</span><br><span class="line">            msg.what = ActivityForResultUtil.REQUEST_DATA_FAULT;</span><br><span class="line">            tHandler.sendMessage(msg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<p>##数据转化层<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 请求systemToken</span><br><span class="line">    *</span><br><span class="line">    * @param params</span><br><span class="line">    * @param callback</span><br><span class="line">    */</span><br><span class="line">   public void getSystemToken(final GetSystemTokenParam params,</span><br><span class="line">                            final AbstractRequestListener&lt;GetSystemTokenBean&gt; callback) &#123;</span><br><span class="line">       exector.execute(new Runnable() &#123;</span><br><span class="line"></span><br><span class="line">           @Override</span><br><span class="line">           public void run() &#123;</span><br><span class="line"></span><br><span class="line">               try &#123;</span><br><span class="line">                   String method = params.getParam().getString(&quot;method&quot;);</span><br><span class="line">                   String response = HttpConnectionUtil.openUrl(</span><br><span class="line">                           Constants.SERVER_URL + method, &quot;GET&quot;,</span><br><span class="line">                           params.getParam(),false);</span><br><span class="line">                   GetSystemTokenBean bean = GetSystemTokenBean.getSystemTokenBean(response);</span><br><span class="line">                   if (callback != null) &#123;</span><br><span class="line">                       callback.onComplete(bean);</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125; catch (RuntimeException e) &#123;</span><br><span class="line">                   e.printStackTrace();</span><br><span class="line">                   if (callback != null) &#123;</span><br><span class="line">                       callback.onFault(new CustomError(network_error));</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125; catch (JSONException e) &#123;</span><br><span class="line">                   e.printStackTrace();</span><br><span class="line">                   if (callback != null) &#123;</span><br><span class="line">                       callback.onError(new CustomError(json_error));</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>##网络底层<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 发送http请求</span><br><span class="line">    *</span><br><span class="line">    * @param url</span><br><span class="line">    * @param method</span><br><span class="line">    *            GET 或 POST</span><br><span class="line">    * @param params</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   public static String openUrl(String url, String method, Bundle params,boolean Token) &#123;</span><br><span class="line">       if (method.equals(&quot;GET&quot;)) &#123;</span><br><span class="line">           if (params != null) &#123;</span><br><span class="line">               url = url + &quot;?&quot; + encodeUrl(params);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       String response = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">       try &#123;</span><br><span class="line">           L.i(method + &quot; URL: &quot; + url);</span><br><span class="line">           HttpClient httpClient = HttpConnectionUtil.getNewHttpClient();</span><br><span class="line">           HttpGet httpGet = new HttpGet(url);</span><br><span class="line">           if(Token==false)&#123;</span><br><span class="line"></span><br><span class="line">           &#125;else&#123;</span><br><span class="line"></span><br><span class="line">               httpGet.setHeader(&quot;systemToken&quot;, Constants.SYSTEMTOKEN);</span><br><span class="line">           &#125;</span><br><span class="line">           //连接超时</span><br><span class="line">           httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 20000);</span><br><span class="line">           // 读取超时</span><br><span class="line">           httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 20000);</span><br><span class="line"></span><br><span class="line">           HttpResponse resp = httpClient.execute(httpGet);</span><br><span class="line"></span><br><span class="line">           if (resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) &#123;</span><br><span class="line">               L.i(LOG_TAG, &quot;httpGet fail, status code = &quot; + resp.getStatusLine().getStatusCode());</span><br><span class="line"></span><br><span class="line">           &#125;else&#123;</span><br><span class="line">               response = EntityUtils.toString(resp.getEntity());</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line">       &#125; catch (Exception e) &#123;</span><br><span class="line">           throw new RuntimeException(e.getMessage(), e);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       L.i(&quot;LOG_TAG&quot;+response);</span><br><span class="line">       return response;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>#具体封装</p>
+<p>##AbstractRequestListener<br>public abstract class AbstractRequestListener<t extends object>{</t></p>
+<pre><code>/**
+ * 将response请求解析为针对具体请求的bean
+ *
+ * @param response
+ *             请求完成后的响应字符串
+ * @return
+ *             若解析成功，返回解析后的对象，否则返回null
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public T parse(String response) {
+    Class&lt;?&gt; c = this.getGenericType();
+    try {
+        Constructor&lt;T&gt; constructor = (Constructor&lt;T&gt;) c.getDeclaredConstructor(String.class);
+        T result = constructor.newInstance(response);
+        return result;
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return null;
+}
+
+/**
+ * 获取T的类型
+ * @param
+ * @return
+ */
+private Class&lt;?&gt; getGenericType() {
+    Type genType = getClass().getGenericSuperclass();
+    if (!(genType instanceof ParameterizedType)) {
+        return Object.class;
+    }
+    Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+    if (params.length &lt; 1) {
+        throw new RuntimeException(&quot;Index outof bounds&quot;);
+    }
+    if (!(params[0] instanceof Class)) {
+        return Object.class;
+    }
+    return (Class&lt;?&gt;) params[0];
+}
+
+ /**
+ * 请求完成后以对象形式返回服务器的响应的结果
+ *
+ * @param bean
+ *             服务器返回的响应字符串解析后得到的对象
+ *        
+ */
+public abstract void onComplete(T bean);
+
+/**
+ * 服务器返回了错误结果，已经正确的链接上了服务器但有错误如：缺少参数.等
+ *
+ * @param customError
+ */
+public abstract void onError(CustomError customError);
+
+/**
+ * 在请求期间发生了严重问题（如：网络故障、访问的地址不存在等）
+ *
+ * @param fault
+ */
+public abstract void onFault(CustomError fault);
+</code></pre><p>}</p>
+<p>##CustomError<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">public class CustomError extends RuntimeException &#123;</span><br><span class="line"></span><br><span class="line">	private static final long serialVersionUID = 1L;</span><br><span class="line">    /**</span><br><span class="line">     * 错误码</span><br><span class="line">     */</span><br><span class="line">	private int mErrorCode;</span><br><span class="line"></span><br><span class="line">	/** 原始响应URL */</span><br><span class="line">	private String mResponse;</span><br><span class="line"></span><br><span class="line">	public CustomError() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	public CustomError(String errorMessage) &#123;</span><br><span class="line">		super(errorMessage);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public CustomError(int errorCode, String errorMessage, String orgResponse) &#123;</span><br><span class="line">		super(errorMessage);</span><br><span class="line">		this.mErrorCode = errorCode;</span><br><span class="line">		this.mResponse = orgResponse;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getOrgResponse() &#123;</span><br><span class="line">		return mResponse;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public int  getErrorCode() &#123;</span><br><span class="line">		return mErrorCode;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;errorCode:&quot; + this.mErrorCode + &quot;\nerrorMessage:&quot;</span><br><span class="line">				+ this.getMessage() + &quot;\norgResponse:&quot; + this.mResponse;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 将服务器返回的errorMessage转换成定义的易于理解的字符串</span><br><span class="line">	 *</span><br><span class="line">	 * @param errorCode</span><br><span class="line">	 * 			服务器返回的错误代码</span><br><span class="line">	 * @param errorMessage</span><br><span class="line">	 * 			服务器返回的错误字符串，和错误代码一一对应</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	public static String interpretErrorMessage(int errorCode, String errorMessage) &#123;</span><br><span class="line">		switch (errorCode)</span><br><span class="line">		&#123;</span><br><span class="line">			/**</span><br><span class="line">			 * 错误处理</span><br><span class="line">			 */</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return errorMessage;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##RequestParam<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> */</span><br><span class="line">public abstract class RequestParam &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 设置请求参数</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">    public abstract Bundle getParam();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##ResponseBean<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">public abstract class ResponseBean implements Serializable &#123;</span><br><span class="line"></span><br><span class="line">	public String response;</span><br><span class="line">	//</span><br><span class="line"></span><br><span class="line">	public ResponseBean()</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	public ResponseBean(String response) throws JSONException &#123;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line"></span><br><span class="line">		if(response == null || response.equals(&quot;&quot;) ||response.equals(&quot;null&quot;))</span><br><span class="line">			throw new JSONException(&quot;数据解析异常&quot;);</span><br><span class="line"></span><br><span class="line">		this.response = response;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setResponse(String response)&#123;</span><br><span class="line">		this.response = response;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getResponse() &#123;</span><br><span class="line">		return response;</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 保存</span><br><span class="line">	 */</span><br><span class="line">	protected  void saveModel()</span><br><span class="line">	&#123;</span><br><span class="line">		   L.i(&quot;save_model&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 更新</span><br><span class="line">	 */</span><br><span class="line">	protected  void updateModel()</span><br><span class="line">	&#123;</span><br><span class="line">		 L.i(&quot;update_model&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 删除</span><br><span class="line">	 */</span><br><span class="line">	protected   void deleteModel()</span><br><span class="line">	&#123;</span><br><span class="line">		 L.i(&quot;delete_model&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#用法<br>参见Demo，给别人做的毕业设计。</p>
+<p>Demo地址<a href="https://github.com/mzeht/ZhiHuiYun" target="_blank" rel="noopener">https://github.com/mzeht/ZhiHuiYun</a></p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/Android/">Android</a>
+            
+            <a href="/tags/设计模式/">设计模式</a>
+            
+            <a href="/tags/网络通讯/">网络通讯</a>
+            
+            <a href="/tags/封装/">封装</a>
+            
+        </div>
+        
+    </article>
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
+            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+        </p>
+        
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '04/16/2015',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            customImg: '/images/weixin-mp.png'
+        });
+    });
+</script>
+</body>
+</html>
