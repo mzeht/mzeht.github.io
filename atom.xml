@@ -424,9 +424,9 @@
       <category term="Android" scheme="http://mzeht.com/categories/app/Android/"/>
     
     
-      <category term="cmake" scheme="http://mzeht.com/tags/cmake/"/>
-    
       <category term="ndk" scheme="http://mzeht.com/tags/ndk/"/>
+    
+      <category term="cmake" scheme="http://mzeht.com/tags/cmake/"/>
     
   </entry>
   
