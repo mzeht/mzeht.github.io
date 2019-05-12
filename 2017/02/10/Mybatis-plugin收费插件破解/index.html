@@ -1,49 +1,25 @@
 <!DOCTYPE HTML>
 <html class="no-js" lang="zh-CN">
-<!--
-//                            _ooOoo_
-//                           o8888888o
-//                           88" . "88
-//                           (| -_- |)
-//                            O\ = /O
-//                        ____/`---'\____
-//                      .   ' \\| |// `.
-//                       / \\||| : |||// \
-//                     / _||||| -:- |||||- \
-//                       | | \\\ - /// | |
-//                     | \_| ''\---/'' | |
-//                      \ .-\__ `-` ___/-. /
-//                   ___`. .' /--.--\ `. . __
-//                ."" '< `.___\_<|>_/___.' >'"".
-//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
-//                 \ \ `-. \_ __\ /__ _/ .-` / /
-//         ======`-.____`-.___\_____/___.-`____.-'======
-//                            `=---='
-//                 拦截插件累计拦截逗比攻击"1381438"次！
-//         .............................................
-//                  佛祖保佑             永无BUG
-//          佛曰:
-//                  写字楼里写字间，写字间里程序员；
-//                  程序人员写程序，又拿程序换酒钱。
-//                  酒醒只在网上坐，酒醉还来网下眠；
-//                  酒醉酒醒日复日，网上网下年复年。
-//                  但愿老死电脑间，不愿鞠躬老板前；
-//                  奔驰宝马贵者趣，公交自行程序员。
-//                  别人笑我忒疯癫，我笑自己命太贱；
-//                  不见满街漂亮妹，哪个归得程序员？
--->
 <head><meta name="generator" content="Hexo 3.8.0">
     <!--[if lte IE 9]>
 <meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
 <![endif]-->
 <meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="http://mzeht.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="http://mzeht.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="http://mzeht.com">
 
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 <meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
 <meta name="author" content="mzeht">
-<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+<link rel="stylesheet" href="/css/JSimple.css">
 
 <link rel="shortcut icon" href="/images/favicon.png">
 
@@ -53,6 +29,21 @@
 <meta name="keywords" content="undefined">
 
 <meta name="description " content="talking is cheap show me the code">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
 </head>
 <body>
 <div id="nav">
@@ -61,47 +52,49 @@
         <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
         <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
         <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
-        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
-        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
-        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
     </nav>
 </div>
+
 <div class="nav-user">
     <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
     <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
-    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
 </div>
+
 <div id="wrapper" class="clearfix">
     <div id="body">
         <div class="main" id="main">
             <div id="cover">
     <div class="cover-img"></div>
     <div class="cover-info">
-        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
-        <h1>mzeht的小站</h1>
-        <h3>交流技术，畅谈人生</h3>
-        <p>一个关注技术与人文的IT博客</p>
+        
+        <h1 class="cover-siteName">mzeht的小站</h1>
+        <h3 class="cover-siteTitle">记录与交流</h3>
+        <p class="cover-siteDesc">一个随笔博客</p>
         <div class="cover-sns">
-            <div class="btn btn-weixin">
-                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
-                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
-                <div class="qrcode-arrow"></div>
-            </div>
-            <div class="btn btn-weibo">
-                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
-            </div>
-            <div class="btn btn-facebook">
-                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
-            </div>
-            <div class="btn btn-github">
-                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
-            </div>
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/mzeht" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+
         </div>
     </div>
 </div>
+
             <div class="page-title">
     <ul>
-        <li><a href="/">最新</a></li>
+        <li><a href="/">最近</a></li>
         
             
                 <li class>
@@ -139,38 +132,9 @@
         
         <li class="page-search">
     <form id="search" class="search-form">
-        <label for="s" class="sr-only">请输入关键字</label>
-        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
-        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="读物检索~">
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
     </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
 </li>
 
     </ul>
@@ -179,35 +143,36 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="undefined" target="_blank">
+                <a class="avatar fleft" href="https://mzeht.com" target="_blank">
                     <img width="48" src="/images/favicon.png" alt="avatar">
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="undefined" target="_blank">mzeht</a>
-                    <span title="最后编辑于2月 10 2017">2月 10 2017</span>
+                    <a href="https://mzeht.com" target="_blank">mzeht</a>
+                    <span title="最后编辑于&nbsp;2月 10 2017">2月 10 2017</span>
                 </p>
                 <p>一个写代码的</p>
             </div>
             <h2 class="post-title">Mybatis-plugin收费插件破解</h2>
             <div class="post-meta">
-                本文总共3979个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文共计3969个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
             <p>IDEA版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">IntelliJ IDEA 2016.3.4</span><br><span class="line">Build #IU-163.12024.16, built on January 31, 2017</span><br><span class="line">Licensed to lan yu</span><br><span class="line">Subscription is active until February 25, 2017</span><br><span class="line">JRE: 1.8.0_112-release-408-b6 x86_64</span><br><span class="line">JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">IntelliJ IDEA 2016.3.4</span><br><span class="line">Build #IU-163.12024.16, built on January 31, 2017</span><br><span class="line">Licensed <span class="keyword">to</span><span class="built_in"> lan </span>yu</span><br><span class="line">Subscription is active until February 25, 2017</span><br><span class="line">JRE: 1.8.0_112-release-408-b6 x86_64</span><br><span class="line">JVM: OpenJDK 64-Bit<span class="built_in"> Server </span>VM by JetBrains s.r.o</span><br></pre></td></tr></table></figure>
 <p>Mybatis-plugin版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Version: 2.9</span><br></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Version:</span> <span class="number">2.9</span></span><br></pre></td></tr></table></figure>
 <p>插件功能介绍地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.oschina.net/p/intellij-mybatis-plugin</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>www.oschina.net<span class="regexp">/p/i</span>ntellij-mybatis-plugin</span><br></pre></td></tr></table></figure>
 <p>破解方法来院地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://myoss.github.io/2016/MyBatis-Plugin-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">➜  IntelliJIdea2016.3 git clone https://github.com/myoss/profile.git</span><br><span class="line">Cloning into &apos;profile&apos;...</span><br><span class="line">remote: Counting objects: 297, done.</span><br><span class="line">remote: Total 297 (delta 0), reused 0 (delta 0), pack-reused 297</span><br><span class="line">Receiving objects: 100% (297/297), 87.32 KiB | 143.00 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (90/90), done.</span><br><span class="line">➜  IntelliJIdea2016.3 ls</span><br><span class="line">ECTranslation1.3.jar     GsonFormat.jar           Sexy_Editor.jar          availables.xml           idea-gitignore           jvm-memory-view          mybatis_plus</span><br><span class="line">GenerateSerialVersionUID MavenRunHelper           TranslationPlugin        codehelper.generator     jr-ide-idea              lombok-plugin            profile</span><br><span class="line">➜  IntelliJIdea2016.3 cd mybatis_plus</span><br><span class="line">➜  mybatis_plus ls</span><br><span class="line">lib</span><br><span class="line">➜  mybatis_plus cd lib</span><br><span class="line">➜  lib ls</span><br><span class="line">mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar</span><br><span class="line">➜  lib cp -R ~/Library/Application\ Support/IntelliJIdea2016.3/profile/idea/plugin</span><br><span class="line">usage: cp [-R [-H | -L | -P]] [-fi | -n] [-apvX] source_file target_file</span><br><span class="line">       cp [-R [-H | -L | -P]] [-fi | -n] [-apvX] source_file ... target_directory</span><br><span class="line">➜  lib cp -R ~/Library/Application\ Support/IntelliJIdea2016.3/profile/idea/plugin/MybatisPlugin/v2.7\~v2.87 .</span><br><span class="line">➜  lib ls</span><br><span class="line">mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar          v2.7~v2.87</span><br><span class="line">➜  lib cp -R ~/Library/Application\ Support/IntelliJIdea2016.3/profile/idea/plugin/MybatisPlugin/v2.7\~v2.87 .</span><br><span class="line">➜  lib ls</span><br><span class="line">mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar          v2.7~v2.87</span><br><span class="line">➜  lib cp -R ~/Library/Application\ Support/IntelliJIdea2016.3/profile/idea/plugin/MybatisPlugin/v2.7\~v2.87/com .</span><br><span class="line">➜  lib ls</span><br><span class="line">com                              mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar          v2.7~v2.87</span><br><span class="line">➜  lib jar uvf mybatis_plus.jar com</span><br><span class="line"></span><br><span class="line">正在添加: com/(输入 = 0) (输出 = 0)(存储了 0%)</span><br><span class="line">正在添加: com/seventh7/(输入 = 0) (输出 = 0)(存储了 0%)</span><br><span class="line">正在添加: com/seventh7/mybatis/(输入 = 0) (输出 = 0)(存储了 0%)</span><br><span class="line">正在添加: com/seventh7/mybatis/dom/(输入 = 0) (输出 = 0)(存储了 0%)</span><br><span class="line">正在添加: com/seventh7/mybatis/dom/model/(输入 = 0) (输出 = 0)(存储了 0%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/(输入 = 0) (输出 = 0)(存储了 0%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/license/(输入 = 0) (输出 = 0)(存储了 0%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/license/ActivationDriver$1.class(输入 = 1926) (输出 = 797)(压缩了 58%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/license/ActivationDriver.class(输入 = 1398) (输出 = 656)(压缩了 53%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/RefProject$1.class(输入 = 2224) (输出 = 1092)(压缩了 50%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/RefProject.class(输入 = 1982) (输出 = 919)(压缩了 53%)</span><br><span class="line">正在添加: com/seventh7/mybatis/service/(输入 = 0) (输出 = 0)(存储了 0%)</span><br><span class="line">正在添加: com/seventh7/mybatis/service/JavaService$1.class(输入 = 1408) (输出 = 613)(压缩了 56%)</span><br><span class="line">正在添加: com/seventh7/mybatis/service/JavaService$2.class(输入 = 1312) (输出 = 575)(压缩了 56%)</span><br><span class="line">正在添加: com/seventh7/mybatis/service/JavaService.class(输入 = 10921) (输出 = 4166)(压缩了 61%)</span><br><span class="line">正在添加: com/seventh7/mybatis/util/(输入 = 0) (输出 = 0)(存储了 0%)</span><br><span class="line">正在添加: com/seventh7/mybatis/util/JavaUtils$SystemData.class(输入 = 3412) (输出 = 1602)(压缩了 53%)</span><br><span class="line">正在添加: com/seventh7/mybatis/util/JavaUtils.class(输入 = 13339) (输出 = 4773)(压缩了 64%)</span><br><span class="line">正在添加: com/seventh7/mybatis/dom/model/Completion.class(输入 = 1663) (输出 = 923)(压缩了 44%)</span><br><span class="line">➜  lib ls</span><br><span class="line">com                              mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar          v2.7~v2.87</span><br><span class="line">➜  lib rm -rf v2.7\~v2.87</span><br><span class="line">➜  lib ls</span><br><span class="line">com                              mybatis-generator-core-1.3.2.jar mybatis_plus.jar                 ref.idea.common-1.0.jar</span><br></pre></td></tr></table></figure>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://myoss.github.io/<span class="number">2016</span>/MyBatis-Plugin-<span class="symbol">%E5</span><span class="symbol">%AD</span><span class="symbol">%A6</span><span class="symbol">%E4</span><span class="symbol">%B9</span><span class="symbol">%A0</span><span class="symbol">%E4</span><span class="symbol">%BD</span><span class="symbol">%BF</span><span class="symbol">%E7</span><span class="symbol">%94</span><span class="symbol">%A8</span>/</span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">➜  IntelliJIdea2016.<span class="number">3</span> git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/myoss</span><span class="regexp">/profile.git</span></span><br><span class="line"><span class="regexp">Cloning into 'profile'...</span></span><br><span class="line"><span class="regexp">remote: Counting objects: 297, done.</span></span><br><span class="line"><span class="regexp">remote: Total 297 (delta 0), reused 0 (delta 0), pack-reused 297</span></span><br><span class="line"><span class="regexp">Receiving objects: 100% (297/</span><span class="number">297</span>), <span class="number">87.32</span> KiB | <span class="number">143.00</span> KiB/s, done.</span><br><span class="line">Resolving <span class="symbol">deltas:</span> <span class="number">100</span>% (<span class="number">90</span>/<span class="number">90</span>), done.</span><br><span class="line">➜  IntelliJIdea2016.<span class="number">3</span> ls</span><br><span class="line">ECTranslation1.<span class="number">3</span>.jar     GsonFormat.jar           Sexy_Editor.jar          availables.xml           idea-gitignore           jvm-memory-view          mybatis_plus</span><br><span class="line">GenerateSerialVersionUID MavenRunHelper           TranslationPlugin        codehelper.generator     jr-ide-idea              lombok-plugin            profile</span><br><span class="line">➜  IntelliJIdea2016.<span class="number">3</span> cd mybatis_plus</span><br><span class="line">➜  mybatis_plus ls</span><br><span class="line"><span class="class"><span class="keyword">lib</span></span></span><br><span class="line">➜  mybatis_plus cd <span class="class"><span class="keyword">lib</span></span></span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">ls</span></span></span><br><span class="line">mybatis-generator-core-<span class="number">1.3</span>.<span class="number">2</span>.jar mybatis_plus.jar                 ref.idea.common-<span class="number">1.0</span>.jar</span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">cp</span> -<span class="title">R</span> ~/<span class="title">Library</span>/<span class="title">Application</span>\ <span class="title">Support</span>/<span class="title">IntelliJIdea2016</span>.3/<span class="title">profile</span>/<span class="title">idea</span>/<span class="title">plugin</span></span></span><br><span class="line"><span class="symbol">usage:</span> cp [-R [-H | -L | -P]] [-fi | -n] [-apvX] source_file target_file</span><br><span class="line">       cp [-R [-H | -L | -P]] [-fi | -n] [-apvX] source_file ... target_directory</span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">cp</span> -<span class="title">R</span> ~/<span class="title">Library</span>/<span class="title">Application</span>\ <span class="title">Support</span>/<span class="title">IntelliJIdea2016</span>.3/<span class="title">profile</span>/<span class="title">idea</span>/<span class="title">plugin</span>/<span class="title">MybatisPlugin</span>/<span class="title">v2</span>.7\~<span class="title">v2</span>.87 .</span></span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">ls</span></span></span><br><span class="line">mybatis-generator-core-<span class="number">1.3</span>.<span class="number">2</span>.jar mybatis_plus.jar                 ref.idea.common-<span class="number">1.0</span>.jar          v2.<span class="number">7</span>~v2.<span class="number">87</span></span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">cp</span> -<span class="title">R</span> ~/<span class="title">Library</span>/<span class="title">Application</span>\ <span class="title">Support</span>/<span class="title">IntelliJIdea2016</span>.3/<span class="title">profile</span>/<span class="title">idea</span>/<span class="title">plugin</span>/<span class="title">MybatisPlugin</span>/<span class="title">v2</span>.7\~<span class="title">v2</span>.87 .</span></span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">ls</span></span></span><br><span class="line">mybatis-generator-core-<span class="number">1.3</span>.<span class="number">2</span>.jar mybatis_plus.jar                 ref.idea.common-<span class="number">1.0</span>.jar          v2.<span class="number">7</span>~v2.<span class="number">87</span></span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">cp</span> -<span class="title">R</span> ~/<span class="title">Library</span>/<span class="title">Application</span>\ <span class="title">Support</span>/<span class="title">IntelliJIdea2016</span>.3/<span class="title">profile</span>/<span class="title">idea</span>/<span class="title">plugin</span>/<span class="title">MybatisPlugin</span>/<span class="title">v2</span>.7\~<span class="title">v2</span>.87/<span class="title">com</span> .</span></span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">ls</span></span></span><br><span class="line">com                              mybatis-generator-core-<span class="number">1.3</span>.<span class="number">2</span>.jar mybatis_plus.jar                 ref.idea.common-<span class="number">1.0</span>.jar          v2.<span class="number">7</span>~v2.<span class="number">87</span></span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">jar</span> <span class="title">uvf</span> <span class="title">mybatis_plus</span>.<span class="title">jar</span> <span class="title">com</span></span></span><br><span class="line"></span><br><span class="line">正在添加: com/(输入 = <span class="number">0</span>) (输出 = <span class="number">0</span>)(存储了 <span class="number">0</span>%)</span><br><span class="line">正在添加: com/seventh7/(输入 = <span class="number">0</span>) (输出 = <span class="number">0</span>)(存储了 <span class="number">0</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/(输入 = <span class="number">0</span>) (输出 = <span class="number">0</span>)(存储了 <span class="number">0</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/dom/(输入 = <span class="number">0</span>) (输出 = <span class="number">0</span>)(存储了 <span class="number">0</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/dom/model/(输入 = <span class="number">0</span>) (输出 = <span class="number">0</span>)(存储了 <span class="number">0</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/(输入 = <span class="number">0</span>) (输出 = <span class="number">0</span>)(存储了 <span class="number">0</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/license/(输入 = <span class="number">0</span>) (输出 = <span class="number">0</span>)(存储了 <span class="number">0</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/license/ActivationDriver$<span class="number">1</span>.<span class="keyword">class</span>(输入 = <span class="number">1926</span>) (输出 = <span class="number">797</span>)(压缩了 <span class="number">58</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/license/ActivationDriver.<span class="keyword">class</span>(输入 = <span class="number">1398</span>) (输出 = <span class="number">656</span>)(压缩了 <span class="number">53</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/RefProject$<span class="number">1</span>.<span class="keyword">class</span>(输入 = <span class="number">2224</span>) (输出 = <span class="number">1092</span>)(压缩了 <span class="number">50</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/ref/RefProject.<span class="keyword">class</span>(输入 = <span class="number">1982</span>) (输出 = <span class="number">919</span>)(压缩了 <span class="number">53</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/service/(输入 = <span class="number">0</span>) (输出 = <span class="number">0</span>)(存储了 <span class="number">0</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/service/JavaService$<span class="number">1</span>.<span class="keyword">class</span>(输入 = <span class="number">1408</span>) (输出 = <span class="number">613</span>)(压缩了 <span class="number">56</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/service/JavaService$<span class="number">2</span>.<span class="keyword">class</span>(输入 = <span class="number">1312</span>) (输出 = <span class="number">575</span>)(压缩了 <span class="number">56</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/service/JavaService.<span class="keyword">class</span>(输入 = <span class="number">10921</span>) (输出 = <span class="number">4166</span>)(压缩了 <span class="number">61</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/util/(输入 = <span class="number">0</span>) (输出 = <span class="number">0</span>)(存储了 <span class="number">0</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/util/JavaUtils$SystemData.<span class="keyword">class</span>(输入 = <span class="number">3412</span>) (输出 = <span class="number">1602</span>)(压缩了 <span class="number">53</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/util/JavaUtils.<span class="keyword">class</span>(输入 = <span class="number">13339</span>) (输出 = <span class="number">4773</span>)(压缩了 <span class="number">64</span>%)</span><br><span class="line">正在添加: com/seventh7/mybatis/dom/model/Completion.<span class="keyword">class</span>(输入 = <span class="number">1663</span>) (输出 = <span class="number">923</span>)(压缩了 <span class="number">44</span>%)</span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">ls</span></span></span><br><span class="line">com                              mybatis-generator-core-<span class="number">1.3</span>.<span class="number">2</span>.jar mybatis_plus.jar                 ref.idea.common-<span class="number">1.0</span>.jar          v2.<span class="number">7</span>~v2.<span class="number">87</span></span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">rm</span> -<span class="title">rf</span> <span class="title">v2</span>.7\~<span class="title">v2</span>.87</span></span><br><span class="line">➜  <span class="class"><span class="keyword">lib</span> <span class="title">ls</span></span></span><br><span class="line">com                              mybatis-generator-core-<span class="number">1.3</span>.<span class="number">2</span>.jar mybatis_plus.jar                 ref.idea.common-<span class="number">1.0</span>.jar</span><br></pre></td></tr></table></figure>
 
         </div>
         <div class="post-tool">
-            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
-                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
             </a>
         </div>
         
@@ -221,44 +186,77 @@
         
     </article>
     
+    <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+
+    
+
 </div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner">
+    <div class="footer-inner" style="text-align: center">
         <p>
-            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/about" title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->
-            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/app" title="App下载">App下载</a>
+            <a href="/help" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
         </p>
         <p>
-            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
-            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
-            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
-            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
-            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://mzeht.com" target="_blank" rel="friend">mzeht</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
         </p>
-        
     </div>
 </footer>
-<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-<script src="/js/InsightSearch.js"></script>
 <script src="/js/SimpleCore.js"></script>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="请输入查询关键词">
+        </div>
+    </div>
+    <div id="local-search-result"></div>
 </div>
 <div class="fixed-btn">
     <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
 </div>
 <script>
     $(function () {
-        SimpleCore.init({
+        var jsi_config = {
             buildingTime: '04/16/2015',
             current: $('.post-tags').length > 0 ? 'post' : 'archive',
-            customImg: '/images/weixin-mp.png'
-        });
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
     });
 </script>
 </body>

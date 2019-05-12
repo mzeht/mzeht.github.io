@@ -1,49 +1,25 @@
 <!DOCTYPE HTML>
 <html class="no-js" lang="zh-CN">
-<!--
-//                            _ooOoo_
-//                           o8888888o
-//                           88" . "88
-//                           (| -_- |)
-//                            O\ = /O
-//                        ____/`---'\____
-//                      .   ' \\| |// `.
-//                       / \\||| : |||// \
-//                     / _||||| -:- |||||- \
-//                       | | \\\ - /// | |
-//                     | \_| ''\---/'' | |
-//                      \ .-\__ `-` ___/-. /
-//                   ___`. .' /--.--\ `. . __
-//                ."" '< `.___\_<|>_/___.' >'"".
-//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
-//                 \ \ `-. \_ __\ /__ _/ .-` / /
-//         ======`-.____`-.___\_____/___.-`____.-'======
-//                            `=---='
-//                 拦截插件累计拦截逗比攻击"1381438"次！
-//         .............................................
-//                  佛祖保佑             永无BUG
-//          佛曰:
-//                  写字楼里写字间，写字间里程序员；
-//                  程序人员写程序，又拿程序换酒钱。
-//                  酒醒只在网上坐，酒醉还来网下眠；
-//                  酒醉酒醒日复日，网上网下年复年。
-//                  但愿老死电脑间，不愿鞠躬老板前；
-//                  奔驰宝马贵者趣，公交自行程序员。
-//                  别人笑我忒疯癫，我笑自己命太贱；
-//                  不见满街漂亮妹，哪个归得程序员？
--->
 <head><meta name="generator" content="Hexo 3.8.0">
     <!--[if lte IE 9]>
 <meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
 <![endif]-->
 <meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="http://mzeht.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="http://mzeht.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="http://mzeht.com">
 
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 <meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
 <meta name="author" content="mzeht">
-<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+<link rel="stylesheet" href="/css/JSimple.css">
 
 <link rel="shortcut icon" href="/images/favicon.png">
 
@@ -53,6 +29,21 @@
 <meta name="keywords" content="undefined">
 
 <meta name="description " content="talking is cheap show me the code">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
 </head>
 <body>
 <div id="nav">
@@ -61,82 +52,55 @@
         <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
         <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
         <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
-        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
-        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
-        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
     </nav>
 </div>
+
 <div class="nav-user">
     <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
     <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
-    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
 </div>
+
 <div id="wrapper" class="clearfix">
     <div id="body">
         <div class="main" id="main">
             <div id="cover">
     <div class="cover-img"></div>
     <div class="cover-info">
-        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
-        <h1>mzeht的小站</h1>
-        <h3>交流技术，畅谈人生</h3>
-        <p>一个关注技术与人文的IT博客</p>
+        
+        <h1 class="cover-siteName">mzeht的小站</h1>
+        <h3 class="cover-siteTitle">记录与交流</h3>
+        <p class="cover-siteDesc">一个随笔博客</p>
         <div class="cover-sns">
-            <div class="btn btn-weixin">
-                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
-                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
-                <div class="qrcode-arrow"></div>
-            </div>
-            <div class="btn btn-weibo">
-                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
-            </div>
-            <div class="btn btn-facebook">
-                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
-            </div>
-            <div class="btn btn-github">
-                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
-            </div>
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/mzeht" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+
         </div>
     </div>
 </div>
+
             <div class="page-title">
     <ul>
         <li><a href="/" data-name="首页" title="Back Home">首页</a></li>
         <li><a href="/archives" data-name="归档" title="归档">归档</a></li>
         <li class="page-search">
     <form id="search" class="search-form">
-        <label for="s" class="sr-only">请输入关键字</label>
-        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
-        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="读物检索~">
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
     </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
 </li>
 
     </ul>
@@ -144,9 +108,9 @@
 <div class="main-inner">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
-            <h3 class="post-title">总的来说 - 目前共计46类标签</h3>
+            <h3 class="post-title">总的来说，本站目前涉及46个领域 😄️</h3>
         </div>
-        <p><img src="/images/tags-bg.jpg" alt="tags-bg"></p> 
+        <p><img src="/images/tags-bg.png" alt="tags-bg"></p>
         <div class="post-content markdown-body" itemprop="articleBody">
             <ul class="tag-list">
                 
@@ -245,44 +209,71 @@
             </ul>
         </div>
     </article>
-</div><!-- end #main-->
+    
+
+</div>
 
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner">
+    <div class="footer-inner" style="text-align: left">
         <p>
-            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/about" title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->
-            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/app" title="App下载">App下载</a>
+            <a href="/help" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
         </p>
         <p>
-            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
-            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
-            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
-            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
-            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://mzeht.com" target="_blank" rel="friend">mzeht</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
         </p>
-        
     </div>
 </footer>
-<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-<script src="/js/InsightSearch.js"></script>
 <script src="/js/SimpleCore.js"></script>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="请输入查询关键词">
+        </div>
+    </div>
+    <div id="local-search-result"></div>
 </div>
 <div class="fixed-btn">
     <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
 </div>
 <script>
     $(function () {
-        SimpleCore.init({
+        var jsi_config = {
             buildingTime: '04/16/2015',
             current: $('.post-tags').length > 0 ? 'post' : 'archive',
-            customImg: '/images/weixin-mp.png'
-        });
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
     });
 </script>
 </body>

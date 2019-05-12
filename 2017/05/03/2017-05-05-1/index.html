@@ -1,49 +1,25 @@
 <!DOCTYPE HTML>
 <html class="no-js" lang="zh-CN">
-<!--
-//                            _ooOoo_
-//                           o8888888o
-//                           88" . "88
-//                           (| -_- |)
-//                            O\ = /O
-//                        ____/`---'\____
-//                      .   ' \\| |// `.
-//                       / \\||| : |||// \
-//                     / _||||| -:- |||||- \
-//                       | | \\\ - /// | |
-//                     | \_| ''\---/'' | |
-//                      \ .-\__ `-` ___/-. /
-//                   ___`. .' /--.--\ `. . __
-//                ."" '< `.___\_<|>_/___.' >'"".
-//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
-//                 \ \ `-. \_ __\ /__ _/ .-` / /
-//         ======`-.____`-.___\_____/___.-`____.-'======
-//                            `=---='
-//                 拦截插件累计拦截逗比攻击"1381438"次！
-//         .............................................
-//                  佛祖保佑             永无BUG
-//          佛曰:
-//                  写字楼里写字间，写字间里程序员；
-//                  程序人员写程序，又拿程序换酒钱。
-//                  酒醒只在网上坐，酒醉还来网下眠；
-//                  酒醉酒醒日复日，网上网下年复年。
-//                  但愿老死电脑间，不愿鞠躬老板前；
-//                  奔驰宝马贵者趣，公交自行程序员。
-//                  别人笑我忒疯癫，我笑自己命太贱；
-//                  不见满街漂亮妹，哪个归得程序员？
--->
 <head><meta name="generator" content="Hexo 3.8.0">
     <!--[if lte IE 9]>
 <meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
 <![endif]-->
 <meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="http://mzeht.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="http://mzeht.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="http://mzeht.com">
 
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 <meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
 <meta name="author" content="mzeht">
-<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+<link rel="stylesheet" href="/css/JSimple.css">
 
 <link rel="shortcut icon" href="/images/favicon.png">
 
@@ -53,6 +29,21 @@
 <meta name="keywords" content="undefined">
 
 <meta name="description " content="talking is cheap show me the code">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
 </head>
 <body>
 <div id="nav">
@@ -61,47 +52,49 @@
         <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
         <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
         <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
-        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
-        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
-        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
     </nav>
 </div>
+
 <div class="nav-user">
     <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
     <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
-    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
 </div>
+
 <div id="wrapper" class="clearfix">
     <div id="body">
         <div class="main" id="main">
             <div id="cover">
     <div class="cover-img"></div>
     <div class="cover-info">
-        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
-        <h1>mzeht的小站</h1>
-        <h3>交流技术，畅谈人生</h3>
-        <p>一个关注技术与人文的IT博客</p>
+        
+        <h1 class="cover-siteName">mzeht的小站</h1>
+        <h3 class="cover-siteTitle">记录与交流</h3>
+        <p class="cover-siteDesc">一个随笔博客</p>
         <div class="cover-sns">
-            <div class="btn btn-weixin">
-                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
-                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
-                <div class="qrcode-arrow"></div>
-            </div>
-            <div class="btn btn-weibo">
-                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
-            </div>
-            <div class="btn btn-facebook">
-                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
-            </div>
-            <div class="btn btn-github">
-                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
-            </div>
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/mzeht" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+
         </div>
     </div>
 </div>
+
             <div class="page-title">
     <ul>
-        <li><a href="/">最新</a></li>
+        <li><a href="/">最近</a></li>
         
             
                 <li class="active">
@@ -139,38 +132,9 @@
         
         <li class="page-search">
     <form id="search" class="search-form">
-        <label for="s" class="sr-only">请输入关键字</label>
-        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
-        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="读物检索~">
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
     </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
 </li>
 
     </ul>
@@ -179,18 +143,19 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="undefined" target="_blank">
+                <a class="avatar fleft" href="https://mzeht.com" target="_blank">
                     <img width="48" src="/images/favicon.png" alt="avatar">
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="undefined" target="_blank">mzeht</a>
-                    <span title="最后编辑于5月 3 2017">5月 3 2017</span>
+                    <a href="https://mzeht.com" target="_blank">mzeht</a>
+                    <span title="最后编辑于&nbsp;5月 3 2017">5月 3 2017</span>
                 </p>
                 <p>一个写代码的</p>
             </div>
             <h2 class="post-title">重构到springboot注意事项</h2>
             <div class="post-meta">
-                本文总共5506个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文共计5116个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
@@ -200,26 +165,26 @@
 <p>生成的项目src／main下有java，resource两个文件夹</p>
 <p>新建第三个文件夹webapp，和之上两个同级，最终<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-5-5/36622722-file_1493976502014_16cc0.png" alt></p>
 <h3 id="jsp依赖配置（同时适配本地运行和打包）"><a href="#jsp依赖配置（同时适配本地运行和打包）" class="headerlink" title="jsp依赖配置（同时适配本地运行和打包）"></a>jsp依赖配置（同时适配本地运行和打包）</h3><p>注意有些依赖改为<code>&lt;scope&gt;compile&lt;/scope&gt;</code>， 参考maven的scope解释(test,runtime,provide,complie)<br>这样通过idea的application或者打包都不会有问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">			&lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">			&lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;jstl&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">		&lt;!--用于编译jsp--&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;tomcat-embed-jasper&lt;/artifactId&gt;</span><br><span class="line">			&lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--用于编译jsp--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat-embed-jasper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>jsp映射路径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  profiles: dev</span><br><span class="line">  mvc:</span><br><span class="line">    view:</span><br><span class="line">      prefix: /WEB-INF/jsp/</span><br><span class="line">      suffix: .jsp</span><br></pre></td></tr></table></figure>
-<h3 id="serverlet支持"><a href="#serverlet支持" class="headerlink" title="serverlet支持"></a>serverlet支持</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">public class BootlabbookmanagerApplication  extends SpringBootServletInitializer&#123;</span><br><span class="line">	 @Override</span><br><span class="line">    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;</span><br><span class="line">        return application.sources(BootlabbookmanagerApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">.......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">spring:</span></span><br><span class="line"><span class="symbol">  profiles:</span> dev</span><br><span class="line"><span class="symbol">  mvc:</span></span><br><span class="line"><span class="symbol">    view:</span></span><br><span class="line"><span class="symbol">      prefix:</span> /WEB-INF<span class="meta-keyword">/jsp/</span></span><br><span class="line"><span class="symbol">      suffix:</span> .jsp</span><br></pre></td></tr></table></figure>
+<h3 id="serverlet支持"><a href="#serverlet支持" class="headerlink" title="serverlet支持"></a>serverlet支持</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">BootlabbookmanagerApplication</span>  <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span></span>&#123;</span><br><span class="line">	 <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="type">SpringApplicationBuilder</span> configure(<span class="type">SpringApplicationBuilder</span> application) &#123;</span><br><span class="line">        <span class="keyword">return</span> application.sources(<span class="type">BootlabbookmanagerApplication</span>.<span class="keyword">class</span>);</span><br><span class="line">    &#125;</span><br><span class="line">.......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>###拦截器，资源映射，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@Component</span><br><span class="line">public class WebMVCConfig extends WebMvcConfigurerAdapter</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public HandlerInterceptor getLoginInterceptor()&#123;</span><br><span class="line">        return new LoginInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     *  * &lt;mvc:mapping path=&quot;/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/assets/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/images/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/upload/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/login/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/register/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/forgetPassword/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/check/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/exists/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:exclude-mapping path=&quot;/code/**&quot; /&gt;</span><br><span class="line">     * @param registry</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void addInterceptors(InterceptorRegistry registry) &#123;</span><br><span class="line">        registry.addInterceptor(getLoginInterceptor()).addPathPatterns(&quot;/**&quot;);</span><br><span class="line">        registry.addInterceptor(getLoginInterceptor()).excludePathPatterns(&quot;/assets/**&quot;,&quot;/images/**&quot;,&quot;/upload/**&quot;,&quot;/login/**&quot;,&quot;/register/**&quot;,&quot;/forgetPassword/**&quot;,&quot;/check/**&quot;,&quot;/exists/**&quot;,&quot;/code/**&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * &lt;mvc:resources location=&quot;/WEB-INF/assets/&quot; mapping=&quot;/assets/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:resources location=&quot;/WEB-INF/images/&quot; mapping=&quot;/images/**&quot; /&gt;</span><br><span class="line">     &lt;mvc:resources location=&quot;/upload/&quot; mapping=&quot;/upload/**&quot; /&gt;</span><br><span class="line">     * @param registry</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void addResourceHandlers(ResourceHandlerRegistry registry) &#123;</span><br><span class="line">        registry.addResourceHandler(&quot;/assets/**&quot;).addResourceLocations(&quot;classpath:/WEB-INF/assets/&quot;);</span><br><span class="line">        registry.addResourceHandler(&quot;/images/**&quot;).addResourceLocations(&quot;classpath:/WEB-INF/images/&quot;);</span><br><span class="line">        registry.addResourceHandler(&quot;/upload/**&quot;).addResourceLocations(&quot;classpath:/upload&quot;);</span><br><span class="line">        super.addResourceHandlers(registry);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Configuration</span></span><br><span class="line"><span class="variable">@Component</span></span><br><span class="line">public class WebMVCConfig extends WebMvcConfigurerAdapter</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="variable">@Bean</span></span><br><span class="line">    public HandlerInterceptor getLoginInterceptor()&#123;</span><br><span class="line">        <span class="selector-tag">return</span> <span class="selector-tag">new</span> <span class="selector-tag">LoginInterceptor</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  * &lt;mvc:mapping path="/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:exclude-mapping path="/assets/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:exclude-mapping path="/images/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:exclude-mapping path="/upload/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:exclude-mapping path="/login/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:exclude-mapping path="/register/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:exclude-mapping path="/forgetPassword/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:exclude-mapping path="/check/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:exclude-mapping path="/exists/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:exclude-mapping path="/code/**" /&gt;</span></span><br><span class="line"><span class="comment">     * @param registry</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    @<span class="selector-tag">Override</span></span><br><span class="line">    <span class="selector-tag">public</span> <span class="selector-tag">void</span> <span class="selector-tag">addInterceptors</span>(InterceptorRegistry registry) &#123;</span><br><span class="line">        <span class="selector-tag">registry</span><span class="selector-class">.addInterceptor</span>(getLoginInterceptor())<span class="selector-class">.addPathPatterns</span>(<span class="string">"/**"</span>);</span><br><span class="line">        <span class="selector-tag">registry</span><span class="selector-class">.addInterceptor</span>(getLoginInterceptor())<span class="selector-class">.excludePathPatterns</span>(<span class="string">"/assets/**"</span>,<span class="string">"/images/**"</span>,<span class="string">"/upload/**"</span>,<span class="string">"/login/**"</span>,<span class="string">"/register/**"</span>,<span class="string">"/forgetPassword/**"</span>,<span class="string">"/check/**"</span>,<span class="string">"/exists/**"</span>,<span class="string">"/code/**"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;mvc:resources location="/WEB-INF/assets/" mapping="/assets/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:resources location="/WEB-INF/images/" mapping="/images/**" /&gt;</span></span><br><span class="line"><span class="comment">     &lt;mvc:resources location="/upload/" mapping="/upload/**" /&gt;</span></span><br><span class="line"><span class="comment">     * @param registry</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    @<span class="selector-tag">Override</span></span><br><span class="line">    <span class="selector-tag">public</span> <span class="selector-tag">void</span> <span class="selector-tag">addResourceHandlers</span>(ResourceHandlerRegistry registry) &#123;</span><br><span class="line">        <span class="selector-tag">registry</span><span class="selector-class">.addResourceHandler</span>(<span class="string">"/assets/**"</span>)<span class="selector-class">.addResourceLocations</span>(<span class="string">"classpath:/WEB-INF/assets/"</span>);</span><br><span class="line">        <span class="selector-tag">registry</span><span class="selector-class">.addResourceHandler</span>(<span class="string">"/images/**"</span>)<span class="selector-class">.addResourceLocations</span>(<span class="string">"classpath:/WEB-INF/images/"</span>);</span><br><span class="line">        <span class="selector-tag">registry</span><span class="selector-class">.addResourceHandler</span>(<span class="string">"/upload/**"</span>)<span class="selector-class">.addResourceLocations</span>(<span class="string">"classpath:/upload"</span>);</span><br><span class="line">        <span class="selector-tag">super</span><span class="selector-class">.addResourceHandlers</span>(registry);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>注释对象旧web项目中的设置，注意拦截器之中引用service或其他需要注入的变量时</p>
 <p>配置拦截器不能写成以下形式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line">    public void addInterceptors(InterceptorRegistry registry) &#123;</span><br><span class="line">        registry.addInterceptor(new LoginInterceptor().addPathPatterns(&quot;/**&quot;);</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> LoginInterceptor().addPathPatterns(<span class="string">"/**"</span>);</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>必须要提前注入，否则LoginInterceptor中变量注入失败</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">   public HandlerInterceptor getLoginInterceptor()&#123;</span><br><span class="line">       return new LoginInterceptor();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">   <span class="keyword">public</span> <span class="function">HandlerInterceptor <span class="title">getLoginInterceptor</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> LoginInterceptor();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="默认error页面"><a href="#默认error页面" class="headerlink" title="默认error页面"></a>默认error页面</h3><p>Application中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> @Bean</span><br><span class="line">    public EmbeddedServletContainerCustomizer containerCustomizer() &#123;</span><br><span class="line"></span><br><span class="line">        return new EmbeddedServletContainerCustomizer() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void customize(ConfigurableEmbeddedServletContainer container) &#123;</span><br><span class="line"></span><br><span class="line">//                ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, &quot;/401.html&quot;);</span><br><span class="line">                ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, &quot;/error&quot;);</span><br><span class="line">//                ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, &quot;/500.html&quot;);</span><br><span class="line"></span><br><span class="line">                container.addErrorPages( error404Page);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="全局错误处理"><a href="#全局错误处理" class="headerlink" title="全局错误处理"></a>全局错误处理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@ControllerAdvice</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static final String DEFAULT_ERROR_VIEW = &quot;error&quot;;</span><br><span class="line">    public static final String DEFAULT_NOT_LOG = &quot;login&quot;;</span><br><span class="line">    public static final String DEFAULT_INDEX = &quot;index&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @ExceptionHandler(value = UserNotLoginException.class)</span><br><span class="line">    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception &#123;</span><br><span class="line">        ModelAndView mav = new ModelAndView();</span><br><span class="line">        mav.setViewName(DEFAULT_NOT_LOG);</span><br><span class="line">        return mav;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function">EmbeddedServletContainerCustomizer <span class="title">containerCustomizer</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> EmbeddedServletContainerCustomizer() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">customize</span><span class="params">(ConfigurableEmbeddedServletContainer container)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//                ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/401.html");</span></span><br><span class="line">                ErrorPage error404Page = <span class="keyword">new</span> ErrorPage(HttpStatus.NOT_FOUND, <span class="string">"/error"</span>);</span><br><span class="line"><span class="comment">//                ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");</span></span><br><span class="line"></span><br><span class="line">                container.addErrorPages( error404Page);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="全局错误处理"><a href="#全局错误处理" class="headerlink" title="全局错误处理"></a>全局错误处理</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> &#123;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_ERROR_VIEW = <span class="string">"error"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_NOT_LOG = <span class="string">"login"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_INDEX = <span class="string">"index"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(value = UserNotLoginException.<span class="keyword">class</span>)</span><br><span class="line">    <span class="keyword">public</span> ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        ModelAndView mav = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        mav.setViewName(DEFAULT_NOT_LOG);</span><br><span class="line">        <span class="keyword">return</span> mav;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>数据库源，mybatis，redis之类的就很常规了</p>
 
         </div>
         <div class="post-tool">
-            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
-                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
             </a>
         </div>
         
@@ -231,44 +196,77 @@
         
     </article>
     
+    <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+
+    
+
 </div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner">
+    <div class="footer-inner" style="text-align: center">
         <p>
-            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/about" title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->
-            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/app" title="App下载">App下载</a>
+            <a href="/help" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
         </p>
         <p>
-            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
-            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
-            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
-            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
-            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://mzeht.com" target="_blank" rel="friend">mzeht</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
         </p>
-        
     </div>
 </footer>
-<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-<script src="/js/InsightSearch.js"></script>
 <script src="/js/SimpleCore.js"></script>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="请输入查询关键词">
+        </div>
+    </div>
+    <div id="local-search-result"></div>
 </div>
 <div class="fixed-btn">
     <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
 </div>
 <script>
     $(function () {
-        SimpleCore.init({
+        var jsi_config = {
             buildingTime: '04/16/2015',
             current: $('.post-tags').length > 0 ? 'post' : 'archive',
-            customImg: '/images/weixin-mp.png'
-        });
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
     });
 </script>
 </body>

@@ -1,49 +1,25 @@
 <!DOCTYPE HTML>
 <html class="no-js" lang="zh-CN">
-<!--
-//                            _ooOoo_
-//                           o8888888o
-//                           88" . "88
-//                           (| -_- |)
-//                            O\ = /O
-//                        ____/`---'\____
-//                      .   ' \\| |// `.
-//                       / \\||| : |||// \
-//                     / _||||| -:- |||||- \
-//                       | | \\\ - /// | |
-//                     | \_| ''\---/'' | |
-//                      \ .-\__ `-` ___/-. /
-//                   ___`. .' /--.--\ `. . __
-//                ."" '< `.___\_<|>_/___.' >'"".
-//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
-//                 \ \ `-. \_ __\ /__ _/ .-` / /
-//         ======`-.____`-.___\_____/___.-`____.-'======
-//                            `=---='
-//                 拦截插件累计拦截逗比攻击"1381438"次！
-//         .............................................
-//                  佛祖保佑             永无BUG
-//          佛曰:
-//                  写字楼里写字间，写字间里程序员；
-//                  程序人员写程序，又拿程序换酒钱。
-//                  酒醒只在网上坐，酒醉还来网下眠；
-//                  酒醉酒醒日复日，网上网下年复年。
-//                  但愿老死电脑间，不愿鞠躬老板前；
-//                  奔驰宝马贵者趣，公交自行程序员。
-//                  别人笑我忒疯癫，我笑自己命太贱；
-//                  不见满街漂亮妹，哪个归得程序员？
--->
 <head><meta name="generator" content="Hexo 3.8.0">
     <!--[if lte IE 9]>
 <meta http-equiv="refresh" content="0;url=http://mzeht.com/warn.html">
 <![endif]-->
 <meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="http://mzeht.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="http://mzeht.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="http://mzeht.com">
 
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 <meta http-equiv="mobile-agent" content="format=html5; url=http://mzeht.com">
 <meta name="author" content="mzeht">
-<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+<link rel="stylesheet" href="/css/JSimple.css">
 
 <link rel="shortcut icon" href="/images/favicon.png">
 
@@ -53,6 +29,21 @@
 <meta name="keywords" content="undefined">
 
 <meta name="description " content="talking is cheap show me the code">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
 </head>
 <body>
 <div id="nav">
@@ -61,47 +52,49 @@
         <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
         <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
         <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
-        <a href="/video" title="视频资源"><i class="fa fa-video-camera"></i><span>视频资源</span></a>
-        <a href="/rss" title="RSS Feed"><i class="fa fa-rss"></i><span>RSS Feed</span></a>
-        <a href="/help" title="帮助中心"><i class="fa fa-question-circle"></i><span>帮助中心</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
     </nav>
 </div>
+
 <div class="nav-user">
     <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
     <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
-    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
 </div>
+
 <div id="wrapper" class="clearfix">
     <div id="body">
         <div class="main" id="main">
             <div id="cover">
     <div class="cover-img"></div>
     <div class="cover-info">
-        <img class="avatar" width="72" src="/images/favicon.png" alt="avatar">
-        <h1>mzeht的小站</h1>
-        <h3>交流技术，畅谈人生</h3>
-        <p>一个关注技术与人文的IT博客</p>
+        
+        <h1 class="cover-siteName">mzeht的小站</h1>
+        <h3 class="cover-siteTitle">记录与交流</h3>
+        <p class="cover-siteDesc">一个随笔博客</p>
         <div class="cover-sns">
-            <div class="btn btn-weixin">
-                <a class href="javascript:"><i class="fa fa-weixin"></i></a>
-                <div class="qrcode"><img src="/images/weixin-qrcode.png" alt="weixinQrcode"></div>
-                <div class="qrcode-arrow"></div>
-            </div>
-            <div class="btn btn-weibo">
-                <a href="https://weibo.com/2865942514" target="_blank" rel="nofollow"><i class="fa fa-weibo"></i></a>
-            </div>
-            <div class="btn btn-facebook">
-                <a href="https://fackbook.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
-            </div>
-            <div class="btn btn-github">
-                <a href="https://github.com/mzeht" target="_blank" rel="nofollow"><i class="fa fa-github"></i></a>
-            </div>
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/mzeht" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+
         </div>
     </div>
 </div>
+
             <div class="page-title">
     <ul>
-        <li><a href="/">最新</a></li>
+        <li><a href="/">最近</a></li>
         
             
                 <li class>
@@ -139,38 +132,9 @@
         
         <li class="page-search">
     <form id="search" class="search-form">
-        <label for="s" class="sr-only">请输入关键字</label>
-        <input class="search-field" type="text" name="s" placeholder="请输入关键字">
-        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="读物检索~">
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
     </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
 </li>
 
     </ul>
@@ -179,18 +143,19 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="undefined" target="_blank">
+                <a class="avatar fleft" href="https://mzeht.com" target="_blank">
                     <img width="48" src="/images/favicon.png" alt="avatar">
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="undefined" target="_blank">mzeht</a>
-                    <span title="最后编辑于1月 28 2017">1月 28 2017</span>
+                    <a href="https://mzeht.com" target="_blank">mzeht</a>
+                    <span title="最后编辑于&nbsp;1月 28 2017">1月 28 2017</span>
                 </p>
-                <p>undefined</p>
+                <p>成为极客</p>
             </div>
             <h2 class="post-title">mac下docker的应用</h2>
             <div class="post-meta">
-                本文总共9822个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文共计9787个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
@@ -203,15 +168,15 @@
 <h2 id="配置加速器"><a href="#配置加速器" class="headerlink" title="配置加速器"></a>配置加速器</h2><p><a href="https://cr.console.aliyun.com/#/accelerator" target="_blank" rel="noopener">阿里云加速器获取地址</a><br>注册一个阿里云账号，访问以上地址，查看加速器，就可以看到分配的加速器地址</p>
 <p><a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="noopener">DaoCloud加速器</a><br>注册并获得加速器地址</p>
 <p>到客户端的Daemon选项卡配置获取到的地址<br><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-2-1/58855725-file_1485919966984_1093e.png" alt><br>preferens-Damon-Basic<br>Registry mirrors</p>
-<h2 id="命令测试"><a href="#命令测试" class="headerlink" title="命令测试"></a>命令测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker --version</span><br><span class="line">Docker version 1.13.0, build 49bf474</span><br><span class="line">➜  ~ docker--compose --version</span><br><span class="line">zsh: command not found: docker--compose</span><br><span class="line">➜  ~ docker-compose --version</span><br><span class="line">docker-compose version 1.10.0, build 4bd6f1a</span><br><span class="line">➜  ~ docker-machine --version</span><br><span class="line">docker-machine version 0.9.0, build 15fd4c7</span><br><span class="line">➜  ~</span><br></pre></td></tr></table></figure>
+<h2 id="命令测试"><a href="#命令测试" class="headerlink" title="命令测试"></a>命令测试</h2><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker <span class="params">--version</span></span><br><span class="line">Docker <span class="keyword">version</span> 1.13.0, build 49bf474</span><br><span class="line">➜  ~ docker<span class="params">--compose</span> <span class="params">--version</span></span><br><span class="line">zsh: <span class="keyword">command</span> not found: docker<span class="params">--compose</span></span><br><span class="line">➜  ~ docker-compose <span class="params">--version</span></span><br><span class="line">docker-compose <span class="keyword">version</span> 1.10.0, build 4bd6f1a</span><br><span class="line">➜  ~ docker-machine <span class="params">--version</span></span><br><span class="line">docker-machine <span class="keyword">version</span> 0.9.0, build 15fd4c7</span><br><span class="line">➜  ~</span><br></pre></td></tr></table></figure>
 <h1 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h1><p>docker search </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker search rap</span><br><span class="line">NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">neo4j                           Neo4j is a highly scalable, robust native ...   282       [OK]</span><br><span class="line">r-base                          R is a system for statistical computation ...   147       [OK]</span><br><span class="line">arangodb                        ArangoDB - a distributed database with a f...   78        [OK]</span><br><span class="line">orientdb                        OrientDB a Multi-Model Open Source NoSQL D...   46        [OK]</span><br><span class="line">ubuntu-debootstrap              debootstrap --variant=minbase --components...   27        [OK]</span><br><span class="line">rapidftr/rapidftr               UNICEF RapidFTR (Family Tracing and Reunif...   2                    [OK]</span><br><span class="line">rapi/psgi                       Image for running PSGI apps, comes with Ra...   2                    [OK]</span><br><span class="line">masonliu/rap                    Docker Image for RAP https://github.com/th...   1</span><br><span class="line">huangfushun/rap                 ali rap web ui docker file                      1                    [OK]</span><br><span class="line">lihuansse/rap                   RAP 接口管理工具                                      1</span><br><span class="line">rapidoid                        Rapidoid is a high-performance HTTP server...   1         [OK]</span><br><span class="line">ukgovdatascience/rap-docker     Environment for reproducible analytical pi...   0                    [OK]</span><br><span class="line">rapidreg/rapidreg                                                               0                    [OK]</span><br><span class="line">raphiz/raphael.li                                                               0                    [OK]</span><br><span class="line">rapi/rapidapp                   Standard RapidApp base image, from officia...   0                    [OK]</span><br><span class="line">team19awshack/rapidprowebhook   RapidProWebhook                                 0                    [OK]</span><br><span class="line">tp81/rapidstorm                 RapidSTORM docker image                         0                    [OK]</span><br><span class="line">qdsang/rap                      docker rap alpine                               0                    [OK]</span><br><span class="line">raphsfeir/raphaelsfeir          Portfolio and blog for me                       0                    [OK]</span><br><span class="line">rapidpro/rapidpro-base          Base Python 2.7 + geolibs Docker image for...   0                    [OK]</span><br><span class="line">tonimichel/rapidflask           A boilerplate flask application for easy s...   0                    [OK]</span><br><span class="line">raphaelgroup/magi                                                               0                    [OK]</span><br><span class="line">andreweskeclarke/rapidftr                                                       0                    [OK]</span><br><span class="line">raphiz/mathe.raphael.li                                                         0                    [OK]</span><br><span class="line">divio/rapidpro                  RapidPro in docker.                             0                    [OK]</span><br></pre></td></tr></table></figure>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker search rap</span><br><span class="line">NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">neo4j                           Neo4j <span class="keyword">is</span> a highly scalable, robust native ...   282       <span class="comment">[OK]</span></span><br><span class="line">r-base                          R <span class="keyword">is</span> a system for statistical computation ...   147       <span class="comment">[OK]</span></span><br><span class="line">arangodb                        ArangoDB - a distributed database with a f...   78        <span class="comment">[OK]</span></span><br><span class="line">orientdb                        OrientDB a Multi-Model <span class="keyword">Open</span> Source NoSQL D...   46        <span class="comment">[OK]</span></span><br><span class="line">ubuntu-debootstrap              debootstrap --variant=minbase --components...   27        <span class="comment">[OK]</span></span><br><span class="line">rapidftr/rapidftr               UNICEF RapidFTR (Family Tracing and Reunif...   2                    <span class="comment">[OK]</span></span><br><span class="line">rapi/psgi                       Image for running PSGI apps, comes with Ra...   2                    <span class="comment">[OK]</span></span><br><span class="line">masonliu/rap                    Docker Image for RAP https://github.com/th...   1</span><br><span class="line">huangfushun/rap                 ali rap web ui docker file                      1                    <span class="comment">[OK]</span></span><br><span class="line">lihuansse/rap                   RAP 接口管理工具                                      1</span><br><span class="line">rapidoid                        Rapidoid <span class="keyword">is</span> a high-performance HTTP server...   1         <span class="comment">[OK]</span></span><br><span class="line">ukgovdatascience/rap-docker     Environment for reproducible analytical pi...   0                    <span class="comment">[OK]</span></span><br><span class="line">rapidreg/rapidreg                                                               0                    <span class="comment">[OK]</span></span><br><span class="line">raphiz/raphael.li                                                               0                    <span class="comment">[OK]</span></span><br><span class="line">rapi/rapidapp                   Standard RapidApp base image, from officia...   0                    <span class="comment">[OK]</span></span><br><span class="line">team19awshack/rapidprowebhook   RapidProWebhook                                 0                    <span class="comment">[OK]</span></span><br><span class="line">tp81/rapidstorm                 RapidSTORM docker image                         0                    <span class="comment">[OK]</span></span><br><span class="line">qdsang/rap                      docker rap alpine                               0                    <span class="comment">[OK]</span></span><br><span class="line">raphsfeir/raphaelsfeir          Portfolio and blog for me                       0                    <span class="comment">[OK]</span></span><br><span class="line">rapidpro/rapidpro-base          Base Python 2.7 + geolibs Docker image for...   0                    <span class="comment">[OK]</span></span><br><span class="line">tonimichel/rapidflask           A boilerplate flask application for easy s...   0                    <span class="comment">[OK]</span></span><br><span class="line">raphaelgroup/magi                                                               0                    <span class="comment">[OK]</span></span><br><span class="line">andreweskeclarke/rapidftr                                                       0                    <span class="comment">[OK]</span></span><br><span class="line">raphiz/mathe.raphael.li                                                         0                    <span class="comment">[OK]</span></span><br><span class="line">divio/rapidpro                  RapidPro in docker.                             0                    <span class="comment">[OK]</span></span><br></pre></td></tr></table></figure>
 <p>GUI</p>
 <p><img src="http://7xqtsx.com1.z0.glb.clouddn.com/17-2-1/45031596-file_1485920300648_448b.png" alt></p>
 <p>我有时gui客户端网络错误，修改偏好设置-网络-dns-8.8.8.8后正常</p>
 <h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><p> docker pull 【镜像名称】</p>
 <h2 id="列出镜像"><a href="#列出镜像" class="headerlink" title="列出镜像"></a>列出镜像</h2><p>docker images</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">mzeht/webv2         latest              8e684c1fb7d3        30 hours ago        182 MB</span><br><span class="line">nginx               v2                  8e684c1fb7d3        30 hours ago        182 MB</span><br><span class="line">nginx               latest              cc1b61406712        7 days ago          182 MB</span><br><span class="line">ubuntu              14.04               b969ab9f929b        11 days ago         188 MB</span><br><span class="line">hello-world         latest              48b5124b2768        2 weeks ago         1.84 kB</span><br><span class="line">centos              latest              67591570dd29        6 weeks ago         192 MB</span><br><span class="line">lihuansse/rap       latest              3ded84cdf4f5        3 months ago        1.14 GB</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">mzeht/webv2         latest              <span class="number">8e684</span>c1fb7d3        <span class="number">30</span> hours ago        <span class="number">182</span> MB</span><br><span class="line">nginx               v2                  <span class="number">8e684</span>c1fb7d3        <span class="number">30</span> hours ago        <span class="number">182</span> MB</span><br><span class="line">nginx               latest              cc1b61406712        <span class="number">7</span> days ago          <span class="number">182</span> MB</span><br><span class="line">ubuntu              <span class="number">14.04</span>               b969ab9f929b        <span class="number">11</span> days ago         <span class="number">188</span> MB</span><br><span class="line">hello-world         latest              <span class="number">48</span>b5124b2768        <span class="number">2</span> weeks ago         <span class="number">1.84</span> kB</span><br><span class="line">centos              latest              <span class="number">67591570</span>dd29        <span class="number">6</span> weeks ago         <span class="number">192</span> MB</span><br><span class="line">lihuansse/rap       latest              <span class="number">3</span>ded84cdf4f5        <span class="number">3</span> months ago        <span class="number">1.14</span> GB</span><br></pre></td></tr></table></figure>
 <h2 id="删除本地镜像"><a href="#删除本地镜像" class="headerlink" title="删除本地镜像"></a>删除本地镜像</h2><p>如果要删除本地的镜像，可以使用 <code>docker rmi</code> 命令，其格式为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</span><br></pre></td></tr></table></figure>
 <p><em>注意 <code>docker rm</code> 命令是删除容器，不要混淆。</em></p>
@@ -240,12 +205,12 @@
 <h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>##启动容器<br>启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（stopped）的容器重新启动。</p>
 <p>因为 Docker 的容器实在太轻量级了，很多时候用户都是随时删除和新创建容器。</p>
 <p>###新建并启动<br>所需要的命令主要为 <code>docker run</code>。</p>
-<p>例如，下面的命令输出一个 “Hello World”，之后终止容器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run ubuntu:14.04 /bin/echo &apos;Hello world&apos;</span><br><span class="line">Hello world</span><br></pre></td></tr></table></figure></p>
+<p>例如，下面的命令输出一个 “Hello World”，之后终止容器。<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="keyword">run</span><span class="bash"> ubuntu:14.04 /bin/<span class="built_in">echo</span> <span class="string">'Hello world'</span></span></span><br><span class="line">Hello world</span><br></pre></td></tr></table></figure></p>
 <p>这跟在本地直接执行 <code>/bin/echo &#39;hello world&#39;</code> 几乎感觉不出任何区别。</p>
-<p>下面的命令则启动一个 bash 终端，允许用户进行交互。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run -t -i ubuntu:14.04 /bin/bash</span><br><span class="line">root@af8bae53bdd3:/#</span><br></pre></td></tr></table></figure></p>
+<p>下面的命令则启动一个 bash 终端，允许用户进行交互。<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo docker run -t -i <span class="symbol">ubuntu:</span><span class="number">14.04</span> /bin/bash</span><br><span class="line">root<span class="variable">@af8bae53bdd3</span><span class="symbol">:/</span><span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
 <p>其中，<code>-t</code> 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， <code>-i</code> 则让容器的标准输入保持打开。</p>
 <p>在交互模式下，用户可以通过所创建的终端来输入命令，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@af8bae53bdd3:/# pwd</span><br><span class="line">/</span><br><span class="line">root@af8bae53bdd3:/# ls</span><br><span class="line">bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var</span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@<span class="symbol">af8bae53bdd3:</span>/<span class="comment"># pwd</span></span><br><span class="line">/</span><br><span class="line">root@<span class="symbol">af8bae53bdd3:</span>/<span class="comment"># ls</span></span><br><span class="line">bin boot dev etc home <span class="class"><span class="keyword">lib</span> <span class="title">lib64</span> <span class="title">media</span> <span class="title">mnt</span> <span class="title">opt</span> <span class="title">proc</span> <span class="title">root</span> <span class="title">run</span> <span class="title">sbin</span> <span class="title">srv</span> <span class="title">sys</span> <span class="title">tmp</span> <span class="title">usr</span> <span class="title">var</span></span></span><br></pre></td></tr></table></figure>
 <p>当利用 <code>docker run</code> 来创建容器时，Docker 在后台运行的标准操作包括：</p>
 <ul>
 <li>检查本地是否存在指定的镜像，不存在就从公有仓库下载</li>
@@ -258,27 +223,27 @@
 </ul>
 <p>###启动已终止容器<br>可以利用 <code>docker start</code> 命令，直接将一个已经终止的容器启动运行。</p>
 <p>容器的核心为所执行的应用程序，所需要的资源都是应用程序运行所必需的。除此之外，并没有其它的资源。可以在伪终端中利用 <code>ps</code> 或 <code>top</code> 来查看进程信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@ba267838cc1b:/# ps</span><br><span class="line">  PID TTY          TIME CMD</span><br><span class="line">    1 ?        00:00:00 bash</span><br><span class="line">   11 ?        00:00:00 ps</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">root</span>@<span class="selector-tag">ba267838cc1b</span>:/# <span class="selector-tag">ps</span></span><br><span class="line">  <span class="selector-tag">PID</span> <span class="selector-tag">TTY</span>          <span class="selector-tag">TIME</span> <span class="selector-tag">CMD</span></span><br><span class="line">    <span class="selector-tag">1</span> ?        <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">bash</span></span><br><span class="line">   <span class="selector-tag">11</span> ?        <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">ps</span></span><br></pre></td></tr></table></figure>
 <p>可见，容器中仅运行了指定的 bash 应用。这种特点使得 Docker 对资源的利用率极高，是货真价实的轻量级虚拟化。</p>
 <p>##后台(background)运行</p>
 <p>更多的时候，需要让 Docker在后台运行而不是直接把执行命令的结果输出在当前宿主机下。此时，可以通过添加 <code>-d</code> 参数来实现。</p>
 <p>下面举两个例子来说明一下。</p>
 <p>如果不使用 <code>-d</code> 参数运行容器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run ubuntu:14.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="keyword">run</span><span class="bash"> ubuntu:14.04 /bin/sh -c <span class="string">"while true; do echo hello world; sleep 1; done"</span></span></span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
 <p>容器会把输出的结果(STDOUT)打印到宿主机上面</p>
 <p>如果使用了 <code>-d</code> 参数运行容器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run -d ubuntu:14.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;</span><br><span class="line">77b2dc01fe0f3f1265df143181e7b9af5e05279a884f4776ee75350ea9d8017a</span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="keyword">run</span><span class="bash"> -d ubuntu:14.04 /bin/sh -c <span class="string">"while true; do echo hello world; sleep 1; done"</span></span></span><br><span class="line"><span class="number">77</span>b2dc01fe0f3f1265df143181e7b9af5e05279a884f4776ee75350ea9d8017a</span><br></pre></td></tr></table></figure>
 <p>此时容器会在后台运行并不会把输出的结果(STDOUT)打印到宿主机上面(输出结果可以用docker logs 查看)。</p>
 <p><strong>注：</strong> 容器是否会长久运行，是和docker run指定的命令有关，和 <code>-d</code> 参数无关。</p>
 <p>使用 <code>-d</code> 参数启动后会返回一个唯一的 id，也可以通过 <code>docker ps</code> 命令来查看容器信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker ps</span><br><span class="line">CONTAINER ID  IMAGE         COMMAND               CREATED        STATUS       PORTS NAMES</span><br><span class="line">77b2dc01fe0f  ubuntu:14.04  /bin/sh -c &apos;while tr  2 minutes ago  Up 1 minute        agitated_wright</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker ps</span><br><span class="line">CONTAINER ID  IMAGE         <span class="keyword">COMMAND</span>               CREATED        STATUS       PORTS NAMES</span><br><span class="line"><span class="number">77</span>b2dc01fe0f  ubuntu:<span class="number">14.04</span>  /bin/sh -c '<span class="keyword">while</span> tr  <span class="number">2</span> minutes ago  Up <span class="number">1</span> minute        agitated_wright</span><br></pre></td></tr></table></figure>
 <p>要获取容器的输出信息，可以通过 <code>docker logs</code> 命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker logs [container ID or NAMES]</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">. . .</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo docker logs [container ID <span class="keyword">or</span> NAMES]</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">. . .</span><br></pre></td></tr></table></figure>
 
         </div>
         <div class="post-tool">
-            <a class="btn-weixin-mp" href="javascript:void(0);" data-cid="52" title="95">
-                <i class="fa fa-mobile" aria-hidden="true"></i> 打赏
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
             </a>
         </div>
         
@@ -290,44 +255,77 @@
         
     </article>
     
+    <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+
+    
+
 </div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner">
+    <div class="footer-inner" style="text-align: center">
         <p>
-            <a href="/about" title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/help" title="帮助中心">帮助中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/video" title="视频资源">视频资源</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/about" title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->
-            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/app" title="App下载">App下载</a>
+            <a href="/help" title="帮助">帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
         </p>
         <p>
-            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br>
-            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
-            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
-            ，作者<a href="https://www.tangkunyin" target="_blank">唐先森</a>
-            ，感谢<a href="https://github.com/mzeht/mzeht.github.io.git" target="_blank">Git</a>提供免费优质的强力驱动
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://mzeht.com" target="_blank" rel="friend">mzeht</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
         </p>
-        
     </div>
 </footer>
-<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-<script src="/js/InsightSearch.js"></script>
 <script src="/js/SimpleCore.js"></script>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="请输入查询关键词">
+        </div>
+    </div>
+    <div id="local-search-result"></div>
 </div>
 <div class="fixed-btn">
     <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
 </div>
 <script>
     $(function () {
-        SimpleCore.init({
+        var jsi_config = {
             buildingTime: '04/16/2015',
             current: $('.post-tags').length > 0 ? 'post' : 'archive',
-            customImg: '/images/weixin-mp.png'
-        });
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
     });
 </script>
 </body>
